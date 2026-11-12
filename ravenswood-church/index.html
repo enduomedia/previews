@@ -1465,7 +1465,44 @@ a.ycard{text-decoration:none;display:block;transition:transform .15s;}a.ycard:ho
 #marriage .mwl.mwcta{background:var(--crimson);border-top-color:var(--gunmetal);color:#fff;}
 #marriage .mwl.mwcta .n,#marriage .mwl.mwcta b{color:#fff;}
 #christmas .xwatch.soon[href]{cursor:pointer;}
-[data-bg="b_worship"]{background-image:url('img/b_worship.jpg')}[data-bg="g_outing"]{background-image:url('img/g_outing.jpg')}[data-bg="h_building"]{background-image:url('img/h_building.jpg')}[data-bg="k_lego"]{background-image:url('img/k_lego.jpg')}[data-bg="p_bibles"]{background-image:url('img/p_bibles.jpg')}[data-bg="p_crowd2"]{background-image:url('img/p_crowd2.jpg')}[data-bg="p_duston"]{background-image:url('img/p_duston.jpg')}[data-bg="p_kids3"]{background-image:url('img/p_kids3.jpg')}[data-bg="p_preach"]{background-image:url('img/p_preach.jpg')}[data-bg="p_singing"]{background-image:url('img/p_singing.jpg')}[data-bg="p_wide"]{background-image:url('img/p_wide.jpg')}[data-bg="p_worship"]{background-image:url('img/p_worship.jpg')}[data-bg="p_worship2"]{background-image:url('img/p_worship2.jpg')}[data-bg="p_worship3"]{background-image:url('img/p_worship3.jpg')}[data-bg="ph_worship_1"]{background-image:url('img/ph_worship_1.jpg')}[data-bg="w_hands"]{background-image:url('img/w_hands.jpg')}[data-bg="w_trio"]{background-image:url('img/w_trio.jpg')}[data-bg="worship_bw"]{background-image:url('img/worship_bw.jpg')}[data-bg="y_lake"]{background-image:url('img/y_lake.jpg')}</style>
+[data-bg="b_worship"]{background-image:url('img/b_worship.jpg')}[data-bg="g_outing"]{background-image:url('img/g_outing.jpg')}[data-bg="h_building"]{background-image:url('img/h_building.jpg')}[data-bg="k_lego"]{background-image:url('img/k_lego.jpg')}[data-bg="p_bibles"]{background-image:url('img/p_bibles.jpg')}[data-bg="p_crowd2"]{background-image:url('img/p_crowd2.jpg')}[data-bg="p_duston"]{background-image:url('img/p_duston.jpg')}[data-bg="p_kids3"]{background-image:url('img/p_kids3.jpg')}[data-bg="p_preach"]{background-image:url('img/p_preach.jpg')}[data-bg="p_singing"]{background-image:url('img/p_singing.jpg')}[data-bg="p_wide"]{background-image:url('img/p_wide.jpg')}[data-bg="p_worship"]{background-image:url('img/p_worship.jpg')}[data-bg="p_worship2"]{background-image:url('img/p_worship2.jpg')}[data-bg="p_worship3"]{background-image:url('img/p_worship3.jpg')}[data-bg="ph_worship_1"]{background-image:url('img/ph_worship_1.jpg')}[data-bg="w_hands"]{background-image:url('img/w_hands.jpg')}[data-bg="w_trio"]{background-image:url('img/w_trio.jpg')}[data-bg="worship_bw"]{background-image:url('img/worship_bw.jpg')}[data-bg="y_lake"]{background-image:url('img/y_lake.jpg')}
+/* About page: explore tiles, who we are, core values */
+.ab-tiles .mtile{min-height:250px;}
+.ab-tiles .mtile .wordmark{font-size:50px;}
+.ab-tiles .mtile .wordmark span{letter-spacing:.2em;}
+.wwa{background:var(--gunmetal);color:#fff;position:relative;overflow:hidden;clip-path:polygon(0 56px,100% 0,100% 100%,0 100%);padding-top:130px;}
+.wwa .eyebrow{color:#fff;}
+.wwa h2.big{font-size:clamp(46px,6.4vw,96px);line-height:.9;}
+.wwa h2.big .ol{-webkit-text-stroke-color:#fff;}
+.wwa h2.big .r{color:var(--crimson);}
+.wwa h2.big .t{color:var(--teal);}
+.pmv{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:56px;}
+.pmv>div{position:relative;padding:40px 38px 38px;isolation:isolate;overflow:hidden;}
+.pmv .k{font-family:'RBCHead',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.2em;font-size:15px;display:flex;justify-content:space-between;gap:12px;}
+.pmv .k i{font-style:normal;opacity:.75;letter-spacing:.14em;}
+.pmv h3{font-size:clamp(40px,4.4vw,60px);margin-top:10px;}
+.pmv p{font-size:20px;line-height:1.55;margin-top:16px;max-width:640px;}
+.pmv .crown{position:absolute;right:-6%;bottom:-22%;width:40%;opacity:.13;z-index:-1;transform:rotate(-8deg);pointer-events:none;}
+.pmv .pp{grid-column:1/-1;background:var(--crimson);color:#fff;padding:52px 48px 50px;}
+.pmv .pp p.st{font-family:'RBCHead',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(36px,4.6vw,66px);line-height:.98;max-width:1000px;margin-top:20px;color:#fff;text-wrap:balance;}
+.pmv .mm{background:var(--teal);color:var(--gunmetal);}
+.pmv .mm p{color:var(--gunmetal);}
+.pmv .vv{background:#fff;color:var(--gunmetal);}
+.pmv .vv p{color:#3a3d43;}
+.pmv .vv .k{color:var(--crimson);}
+.wwa .together{display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap;margin-top:44px;padding-top:34px;border-top:2px solid rgba(255,255,255,.18);}
+.wwa .together p{font-size:21px;max-width:640px;color:#fff;}
+.cvals{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:44px;counter-reset:cv;}
+.cvals div{counter-increment:cv;background:var(--soft);border-top:6px solid var(--teal);padding:26px 24px 28px;font-family:'RBCHead',sans-serif;font-weight:700;text-transform:uppercase;font-size:27px;line-height:1;}
+.cvals div:before{content:counter(cv);display:flex;align-items:center;justify-content:center;width:50px;height:44px;margin-bottom:18px;background:var(--gunmetal);color:#fff;font-size:24px;clip-path:polygon(0 0,100% 0,88% 100%,0 100%);}
+.cvals small{display:block;font-weight:500;font-size:16px;letter-spacing:.06em;margin-bottom:4px;color:#5b5e64;}
+.cvals div:nth-child(3n+2){border-top-color:var(--crimson);}
+.cvals div:nth-child(3n){border-top-color:var(--gunmetal);}
+.cvals div.wide{grid-column:span 2;background:var(--teal);border-top-color:var(--teal);}
+.cvals div.wide small{color:var(--gunmetal);}
+@media(max-width:900px){.pmv{grid-template-columns:1fr;}.pmv .pp{padding:40px 30px;}.pmv>div{padding:34px 28px;}.cvals{grid-template-columns:1fr 1fr;}.cvals div.wide{grid-column:span 2;}.wwa{padding-top:100px;}}
+@media(max-width:560px){.cvals{grid-template-columns:1fr;}.cvals div.wide{grid-column:auto;}.pmv .k{flex-direction:column;gap:4px;}}
+</style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -1478,6 +1515,7 @@ a.ycard{text-decoration:none;display:block;transition:transform .15s;}a.ycard:ho
     <ul class="menu">
       <li data-nav="about"><a href="#about" onclick="go('about');return false">About</a>
         <div class="drop">
+          <a href="#about" onclick="go('about');return false">Who We Are</a>
           <a href="#story" onclick="go('story');return false">Our Story</a>
           <a href="#beliefs" onclick="go('beliefs');return false">What We Believe</a>
           <a href="#leadership" onclick="go('leadership');return false">Leadership &amp; Staff</a>
@@ -1899,37 +1937,52 @@ a.ycard{text-decoration:none;display:block;transition:transform .15s;}a.ycard:ho
   <div class="pagehead"><div class="bg" data-bg="p_crowd2"></div><div class="tint"></div><div class="stripes" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
     <div class="wrap"><div class="eyebrow">About</div><h1><span class="ol w">We Are</span><br>Ravenswood</h1><p>A family of believers on Chicago's north side since 1891, where Jesus is first and the gospel of Christ is at the center of everything.</p></div></div>
   <section>
-    <div class="wrap grid2">
-      <div>
-        <div class="eyebrow">Our Purpose</div>
-        <p class="pull" style="color:var(--crimson)">We exist to make disciples of all people for the glory of God.</p>
-        <p class="lead mt"><b>Our mission:</b> We are a gospel-centered church that proclaims Christ, forms disciples through the ministry of the Word and prayer, and lives faithfully in community and on mission.</p>
-        <p class="lead mt"><b>Our vision:</b> We envision a church where Christ is treasured above all, the gospel shapes every part of life, disciples multiply, prayer fuels ministry, and our community reflects the light of Jesus in Chicago and around the world.</p>
-        <p class="mt">Together, our purpose grounds us, our mission guides us, and our vision inspires us. <a class="textlink" href="https://www.youtube.com/@ravenswoodbaptistchurch/search?query=We+Are+Ravenswood" target="_blank" rel="noopener">Hear more in the We Are Ravenswood sermon series</a></p>
-        <p class="mt">Ravenswood loves the city of Chicago and desires to serve the community. We are an independent church with no official affiliation with any denomination.</p>
-      </div>
-      <div class="values">
-        <h2>Core Values</h2>
-        <ol>
-          <li><span><small>We</small>Treasure Christ above all</span></li>
-          <li><span><small>We are</small>Transformed by the Gospel</span></li>
-          <li><span><small>We</small>Prioritize Prayer</span></li>
-          <li><span><small>We</small>Preach the Word faithfully</span></li>
-          <li><span><small>We</small>Make disciples who make disciples</span></li>
-          <li><span><small>We</small>Belong in community</span></li>
-          <li><span><small>We</small>Practice generosity with joy</span></li>
-        </ol>
+    <div class="wrap">
+      <div class="mtiles ab-tiles">
+        <a class="mtile mt-red" href="#about" onclick="document.getElementById('whoweare').scrollIntoView({behavior:'smooth'});return false"><img loading="lazy" class="wm sq" src="img/crown_white.png" alt=""><div class="wordmark"><span>Purpose and Values</span>Who We Are</div><div><p>Why we exist, how we live it out and where we're headed.</p><div class="go">Read more</div></div></a>
+        <a class="mtile mt-teal" href="#story" onclick="go('story');return false"><img loading="lazy" class="wm sq" src="img/crown_white.png" alt=""><div class="wordmark"><span>Since 1891</span>Our Story</div><div><p>135 years of God's faithfulness on Chicago's north side.</p><div class="go">Read our story</div></div></a>
+        <a class="mtile mt-dark" href="#beliefs" onclick="go('beliefs');return false"><img loading="lazy" class="wm sq" src="img/crown_white.png" alt=""><div class="wordmark"><span>Statement of Faith</span>What We Believe</div><div><p>Our full statement of faith, rooted in the Bible.</p><div class="go">Our beliefs</div></div></a>
+        <a class="mtile mt-dark" href="#leadership" onclick="go('leadership');return false"><img loading="lazy" class="wm sq" src="img/crown_white.png" alt=""><div class="wordmark"><span>Meet the Team</span>Leadership &amp; Staff</div><div><p>Meet the pastors and staff who serve Ravenswood.</p><div class="go">Meet the team</div></div></a>
+        <a class="mtile mt-red" href="#gospel" onclick="go('gospel');return false"><img loading="lazy" class="wm sq" src="img/crown_white.png" alt=""><div class="wordmark"><span>God's Love for You</span>The Good News</div><div><p>God's love for you, step by step.</p><div class="go">Read it</div></div></a>
+        <a class="mtile mt-teal" href="#school" onclick="go('school');return false"><img loading="lazy" class="wm sq" src="img/crown_white.png" alt=""><div class="wordmark"><span>Pre-K to 12th Grade</span>Our School</div><div><p>Ravenswood Christian School, a ministry of the church.</p><div class="go">Learn more</div></div></a>
       </div>
     </div>
   </section>
-  <section class="softbg">
-    <div class="wrap grid3">
-      <a class="card" href="#story" onclick="go('story');return false"><h3>Our Story</h3><p>135 years of God's faithfulness on Chicago's north side.</p><span class="textlink">Read our story</span></a>
-      <a class="card" href="#beliefs" onclick="go('beliefs');return false"><h3>What We Believe</h3><p>Our full statement of faith, rooted in the Bible.</p><span class="textlink">Our beliefs</span></a>
-      <a class="card" href="#leadership" onclick="go('leadership');return false"><h3>Leadership &amp; Staff</h3><p>Meet the pastors and staff who serve Ravenswood.</p><span class="textlink">Meet the team</span></a>
-      <a class="card" href="#gospel" onclick="go('gospel');return false"><h3>The Good News</h3><p>God's love for you, step by step.</p><span class="textlink">Read it</span></a>
-      <a class="card" href="https://ravenswoodchristian.org" target="_blank" rel="noopener"><h3>Our School</h3><p>Ravenswood Christian School, Pre-K to 12th grade.</p><span class="textlink">Visit the school</span></a>
-      <a class="card" href="#visit" onclick="go('visit');return false" style="background:var(--crimson);border-color:var(--crimson);color:#fff"><h3>Visit Sunday</h3><p style="color:#fff">Worship at 10:30 AM. We'd love to host you as our honored guest.</p><span class="textlink" style="color:#fff">Plan a visit</span></a>
+  <section class="wwa" id="whoweare">
+    <div class="wrap">
+      <div class="eyebrow">Who We Are</div>
+      <h2 class="big"><span class="r">Grounded.</span> <span class="t">Guided.</span> <span class="ol">Inspired.</span></h2>
+      <div class="pmv">
+        <div class="pp"><img loading="lazy" class="crown" src="img/crown_white.png" alt=""><div class="k"><span>Our Purpose</span><i>Why we exist</i></div><p class="st">We exist to make disciples of all people for the glory of God.</p></div>
+        <div class="mm"><div class="k"><span>Our Mission</span><i>How we live it out</i></div><h3>Proclaim. Form. Live.</h3><p>We are a gospel-centered church that proclaims Christ, forms disciples through the ministry of the Word and prayer, and lives faithfully in community and on mission.</p></div>
+        <div class="vv"><div class="k"><span>Our Vision</span><i>Where we're headed</i></div><h3>Christ Treasured Above All</h3><p>We envision a church where Christ is treasured above all, the gospel shapes every part of life, disciples multiply, prayer fuels ministry, and our community reflects the light of Jesus in Chicago and around the world.</p></div>
+      </div>
+      <div class="together">
+        <p>Together, our purpose grounds us, our mission guides us, and our vision inspires us.</p>
+        <div class="btnrow" style="margin-top:0"><a class="btn btn-white" href="https://www.youtube.com/@ravenswoodbaptistchurch/search?query=We+Are+Ravenswood" target="_blank" rel="noopener"><span>Watch the We Are Ravenswood Series</span></a></div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="wrap">
+      <div class="eyebrow">What Shapes Us</div>
+      <h2 style="font-size:clamp(46px,5.4vw,78px)">Our Core Values</h2>
+      <p class="lead mt" style="max-width:760px">Ravenswood loves the city of Chicago and desires to serve the community. We are an independent church with no official affiliation with any denomination.</p>
+      <div class="cvals">
+        <div class="wide"><small>We</small>Treasure Christ above all</div>
+        <div><small>We are</small>Transformed by the Gospel</div>
+        <div><small>We</small>Prioritize Prayer</div>
+        <div><small>We</small>Preach the Word faithfully</div>
+        <div><small>We</small>Make disciples who make disciples</div>
+        <div><small>We</small>Belong in community</div>
+        <div><small>We</small>Practice generosity with joy</div>
+      </div>
+    </div>
+  </section>
+  <section class="redbg">
+    <div class="wrap grid2">
+      <div><div class="eyebrow">Visit Sunday</div><h2 style="font-size:clamp(40px,4.6vw,62px)">We'd Love to Meet You</h2></div>
+      <div><p class="lead" style="color:#fff">Worship is Sundays at 10:30 AM. We'd love to host you as our honored guest.</p><div class="btnrow"><a class="btn btn-white" href="#visit" onclick="go('visit');return false"><span>Plan a Visit</span></a></div></div>
     </div>
   </section>
 </div>
