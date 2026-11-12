@@ -1604,6 +1604,14 @@ a.ycard{text-decoration:none;display:block;transition:transform .15s;}a.ycard:ho
 @media(max-width:1080px){#vbs .tf-days{grid-template-columns:repeat(3,1fr);}#vbs .tf-night,#vbs .tf-facts{grid-template-columns:1fr 1fr;}}
 @media(max-width:760px){#vbs .tf-grid2{grid-template-columns:1fr;gap:34px;}#vbs .tf-days{grid-template-columns:1fr 1fr;}#vbs .tf-glider{top:auto;bottom:130px;}#vbs .tf-plane{top:4%;}#vbs .tf-card{padding:28px 22px;}#vbs .tf-sec{padding:60px 0;}}
 @media(max-width:480px){#vbs .tf-days,#vbs .tf-night,#vbs .tf-facts{grid-template-columns:1fr;}#vbs .tf-pill{font-size:16px;}}
+#vbs .tf-presents{display:inline-flex;align-items:center;gap:14px;background:#fff;border-radius:999px;padding:10px 22px 10px 16px;box-shadow:0 6px 0 rgba(29,63,115,.15);position:relative;z-index:2;margin-bottom:10px;}
+#vbs .tf-presents img{height:38px;width:auto;}
+#vbs .tf-presents span{font-weight:800;font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:var(--navy);}
+#vbs .tf-tag{font-size:clamp(18px,1.7vw,21px);line-height:1.5;max-width:640px;margin:20px auto 0;font-weight:800;position:relative;z-index:2;color:var(--navy);}
+#vbs .tf-rbc{display:grid;grid-template-columns:220px 1fr;gap:40px;align-items:center;background:#fff;border-radius:30px;padding:40px;box-shadow:0 10px 0 rgba(29,63,115,.12);border-top:10px solid #D32047;}
+#vbs .tf-rbc-kids{width:100%;height:auto;}
+#vbs .tf-rbc p{font-size:18px;line-height:1.6;margin-top:12px;}
+@media(max-width:760px){#vbs .tf-rbc{grid-template-columns:1fr;padding:28px 22px;}#vbs .tf-rbc-kids{width:160px;}#vbs .tf-presents{flex-direction:column;gap:6px;border-radius:22px;padding:12px 18px;}#vbs .tf-presents span{font-size:12px;}}
 </style>
 </head>
 <body>
@@ -2539,8 +2547,10 @@ a.ycard{text-decoration:none;display:block;transition:transform .15s;}a.ycard:ho
     <img class="tf-glider" src="img/tf_paraglider.png" alt="" aria-hidden="true">
     <div class="wrap">
       <h1 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Vacation Bible School 2027: Take Flight</h1>
+      <div class="tf-presents"><img src="img/logo_h.png" alt="Ravenswood Baptist Church"><span>and Ravenswood Kids present</span></div>
       <img class="tf-logo" src="img/tf_logo.png" alt="Take Flight VBS: Trusting God's Faithfulness Above All, Psalm 100:5">
       <div class="tf-strip"><span class="tf-pill c">July 26 to 29, 2027</span><span class="tf-pill">6 to 8 PM each night</span><span class="tf-pill s">Ages 3 to 12</span></div>
+      <p class="tf-tag">Vacation Bible School at Ravenswood Baptist Church on Chicago's north side, for kids ages 3 to 12. Every kid is welcome, so invite a friend!</p>
       <div class="tf-btns"><a class="tf-btn" href="#vbs-register" onclick="document.getElementById('vbs-register').scrollIntoView({behavior:'smooth'});return false">Registration Info</a><a class="tf-btn alt" href="#serve" onclick="go('serve');return false">Volunteer</a></div>
     </div>
   </div>
@@ -2551,7 +2561,7 @@ a.ycard{text-decoration:none;display:block;transition:transform .15s;}a.ycard:ho
         <h2 style="font-size:clamp(40px,4.8vw,64px)">Trusting God's Faithfulness Above All</h2>
         <p class="tf-verse">"For the LORD is good; his mercy is everlasting; and his truth endureth to all generations."</p>
         <p class="tf-ref">Psalm 100:5</p>
-        <p style="font-size:18px;line-height:1.6;margin-top:18px;color:#fff">At Take Flight, kids discover that God can be trusted no matter what: when they feel alone, when bad things happen, when they mess up, when they don't understand, and when following Him is hard.</p>
+        <p style="font-size:18px;line-height:1.6;margin-top:18px;color:#fff">This summer at Ravenswood, kids will discover that God can be trusted no matter what: when they feel alone, when bad things happen, when they mess up, when they don't understand, and when following Him is hard.</p>
       </div>
       <img loading="lazy" class="tf-theme" src="img/tf_theme.jpg" alt="Take Flight artwork of hot air balloons floating over green hills">
     </div>
@@ -2570,7 +2580,7 @@ a.ycard{text-decoration:none;display:block;transition:transform .15s;}a.ycard:ho
   </section>
   <section class="tf-sec tf-cream">
     <div class="wrap">
-      <div class="tf-center"><div class="tf-eyebrow">What to Expect</div><h2 style="font-size:clamp(40px,4.8vw,64px)">Every Night at VBS</h2><p>Each summer, kids spend an exciting week at Ravenswood discovering who God is and how much He loves them.</p></div>
+      <div class="tf-center"><div class="tf-eyebrow">What to Expect</div><h2 style="font-size:clamp(40px,4.8vw,64px)">Every Night at Ravenswood VBS</h2><p>Each summer, kids spend an exciting week at Ravenswood discovering who God is and how much He loves them. We worship together in the sanctuary, dig into the Bible story, make crafts in our classrooms and head outside for games.</p></div>
       <div class="tf-night">
         <figure><img loading="lazy" src="img/vbs26_1.jpg" alt="Kids and volunteers doing worship song motions together in the sanctuary at VBS"><b>Worship and Music</b><p>Songs and worship that help kids connect with God and each other.</p></figure>
         <figure><img loading="lazy" src="img/vbs26_4.jpg" alt="A volunteer telling a Bible story to kids at VBS"><b>Bible Stories</b><p>Engaging lessons that bring the Bible to life and point kids to Jesus.</p></figure>
@@ -2581,7 +2591,7 @@ a.ycard{text-decoration:none;display:block;transition:transform .15s;}a.ycard:ho
         <div class="tf-fact"><span>Dates</span><b>Monday, July 26 to Thursday, July 29</b></div>
         <div class="tf-fact"><span>Time</span><b>6 to 8 PM each evening</b></div>
         <div class="tf-fact"><span>Ages</span><b>3 to 12, entering PreK through 7th grade</b></div>
-        <div class="tf-fact"><span>Where</span><b>Ravenswood, 4455 N. Seeley Ave.</b></div>
+        <a class="tf-fact" href="https://www.google.com/maps/dir/?api=1&amp;destination=4455+N+Seeley+Ave+Chicago+IL+60625" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><span>Where</span><b>Ravenswood Baptist Church, 4455 N. Seeley Ave.</b></a>
       </div>
     </div>
   </section>
@@ -2600,7 +2610,17 @@ a.ycard{text-decoration:none;display:block;transition:transform .15s;}a.ycard:ho
         <div class="tf-btns" style="justify-content:flex-start"><a class="tf-btn" href="#serve" onclick="go('serve');return false">Volunteer</a><a class="tf-btn sun" href="#kids" onclick="go('kids');return false">Ravenswood Kids</a></div>
       </div>
     </div>
-    <div class="wrap tf-center" style="margin-top:56px"><div class="tf-eyebrow">Last Summer</div><h2 style="font-size:clamp(32px,3.6vw,46px)">See Photos From VBS 2026</h2><div class="tf-btns"><a class="tf-btn alt" href="#summer" onclick="go('summer');return false">Summer 2026 in Pictures</a></div></div>
+    <div class="wrap" style="margin-top:56px">
+      <div class="tf-rbc">
+        <img class="tf-rbc-kids" src="img/kids_full.svg" alt="Ravenswood Kids logo">
+        <div>
+          <div class="tf-eyebrow">Part of Ravenswood Kids</div>
+          <h2 style="font-size:clamp(32px,3.6vw,46px)">The Fun Doesn't Stop in July</h2>
+          <p>VBS is just one week of the year at Ravenswood. Kids are welcome every Sunday, with a nursery for newborns to age 2, Kids' Church on the 1st, 3rd and 5th Sundays, and Awana on Sunday evenings, September through May. Come worship with us Sundays at 10:30 AM.</p>
+          <div class="tf-btns" style="justify-content:flex-start"><a class="tf-btn" href="#visit" onclick="go('visit');return false">Plan a Visit</a><a class="tf-btn sun" href="#kids" onclick="go('kids');return false">Ravenswood Kids</a><a class="tf-btn alt" href="#summer" onclick="go('summer');return false">VBS 2026 Photos</a></div>
+        </div>
+      </div>
+    </div>
   </section>
 </div>
 
