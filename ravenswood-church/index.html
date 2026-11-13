@@ -961,6 +961,8 @@ footer{clip-path:polygon(0 48px,100% 0,100% 100%,0 100%);padding-top:120px;margi
 .mgrid div:nth-child(3){border-top-color:var(--gunmetal);}
 .mgrid h3{font-size:30px;}
 .mgrid p{font-size:16px;color:#3a3d43;margin-top:10px;}
+.mgrid.two{grid-template-columns:1fr 1fr;}
+@media(max-width:560px){.mgrid.two{grid-template-columns:1fr;}}
 
 @media(max-width:900px){
   :root{--slant:36px;}
@@ -3406,10 +3408,21 @@ a.ycard{text-decoration:none;display:flex;transition:transform .15s;}a.ycard:hov
         <div class="eyebrow">In Our City</div>
         <h2 style="font-size:clamp(40px,4.6vw,62px)">Loving Chicago</h2>
         <p class="lead mt">Ravenswood loves the city of Chicago and desires to serve the community, from Easter outreach and See You at the Pole to serving together in outreach projects across the city.</p>
-        <p>Each year we also gather for Missions Sunday to hear from missionaries and pray for the work of the gospel around the world.</p>
+        <p>Twice a year, we also gather for Missions Sunday.</p>
         <div class="btnrow"><a class="btn btn-red" href="#serve" onclick="go('serve');return false"><span>Serve With Us</span></a><a class="btn btn-outd" href="https://ravenswoodbaptist.breezechms.com/give/online" target="_blank" rel="noopener"><span>Give to Missions</span></a></div>
       </div>
       <img loading="lazy" class="photo r43 bw angle-r" src="img/y_girls.jpg" alt="Two Ravenswood teens smiling together outdoors">
+    </div>
+  </section>
+  <section class="softbg">
+    <div class="wrap">
+      <div class="eyebrow">Twice a Year</div>
+      <h2 style="font-size:clamp(40px,4.6vw,62px)">Missions Sunday</h2>
+      <p class="lead mt" style="max-width:760px">Missions Sunday is two times a year: one Sunday in the first couple of months of the year, and a second one in September.</p>
+      <div class="mgrid two mt2">
+        <div><h3>Early in the Year</h3><p>Our first Missions Sunday is typically one Sunday in the first couple of months of the year.</p></div>
+        <div><h3>September: International Buffet</h3><p>In September, our church celebrates our diversity with our International Buffet, when people bring a dish from their country of heritage. This is a wonderful time of community and celebration.</p></div>
+      </div>
     </div>
   </section>
   <section class="darkbg">
