@@ -1649,6 +1649,8 @@ a.ycard{text-decoration:none;display:flex;transition:transform .15s;}a.ycard:hov
 .lead-feature .lf-txt>*{grid-column:2}
 .lead-feature .lf-txt>.gtk,.lead-feature .lf-txt>.funfact{grid-column:1 / -1;margin-top:18px}
 .lead-feature .gtk{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+@media(min-width:1000px){.lead-feature .gtk:has(>div:nth-child(5)){grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}.lead-feature .gtk:has(>div:nth-child(5))>div:nth-child(5):last-child{grid-column:auto}.lead-feature .gtk:has(>div:nth-child(5)) .chips{flex-direction:column;align-items:flex-start}.lead-feature .gtk:has(>div:nth-child(5))>div{padding:14px 12px}}
+@media(min-width:601px) and (max-width:999px){.lead-feature .gtk:has(>div:nth-child(5)){grid-template-columns:repeat(3,minmax(0,1fr))}.lead-feature .gtk:has(>div:nth-child(5))>div:nth-child(5):last-child{grid-column:span 2}}
 @media(max-width:900px){.lead-feature,.lead-feature:nth-child(even){grid-template-columns:1fr !important;padding:22px}.lead-feature .lf-pic,.lead-feature .lf-txt>*{grid-column:1 !important;grid-row:auto}.lead-feature .lf-pic{max-width:340px;width:100%}}
 /* Deacons */
 ul.deacons{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
