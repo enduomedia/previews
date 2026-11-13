@@ -1560,7 +1560,7 @@ a.ycard{text-decoration:none;display:flex;transition:transform .15s;}a.ycard:hov
 #vbs .tf-logo{width:min(640px,90%);height:auto;display:block;margin:0 auto;filter:drop-shadow(0 10px 18px rgba(29,63,115,.18));position:relative;z-index:2;animation:tffloat 7s ease-in-out infinite;}
 #vbs .tf-plane{position:absolute;width:clamp(120px,16vw,230px);top:12%;left:4%;z-index:1;animation:tfplanein 2.6s cubic-bezier(.2,.7,.3,1) both,tfdrift 10s ease-in-out 2.6s infinite;}
 #vbs .tf-glider{position:absolute;width:clamp(80px,11vw,160px);top:30%;right:5%;z-index:1;transform:scaleX(-1);animation:tfgliderin 3.4s cubic-bezier(.2,.7,.3,1) .4s both,tfbob 8s ease-in-out 3.8s infinite;}
-@keyframes tfdrift{0%,100%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(22px,12px) rotate(-3deg)}}@keyframes tfplanein{0%{transform:translate(-45vw,40px) rotate(-8deg);opacity:0}15%{opacity:1}100%{transform:translate(0,0) rotate(0deg);opacity:1}}@keyframes tfgliderin{0%{transform:scaleX(-1) translate(-30vw,-260px);opacity:0}20%{opacity:1}100%{transform:scaleX(-1) translate(0,0);opacity:1}}@keyframes tfclouds{0%{transform:translateX(-7%)}100%{transform:translateX(7%)}}@keyframes tffloat{0%,100%{transform:translateY(0) rotate(-.6deg)}50%{transform:translateY(-12px) rotate(.6deg)}}
+@keyframes tfdrift{0%,100%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(14px,-8px) rotate(-1.5deg)}}@keyframes tfplanein{0%{transform:translate(-55vw,90px) rotate(-14deg) scale(.35);opacity:0}12%{opacity:1}70%{transform:translate(-4vw,14px) rotate(-9deg) scale(.9)}100%{transform:translate(0,0) rotate(0deg) scale(1);opacity:1}}@keyframes tfgliderin{0%{transform:scaleX(-1) translate(-30vw,-260px);opacity:0}20%{opacity:1}100%{transform:scaleX(-1) translate(0,0);opacity:1}}@keyframes tfclouds{0%{transform:translateX(-7%)}100%{transform:translateX(7%)}}@keyframes tffloat{0%,100%{transform:translateY(0) rotate(-.6deg)}50%{transform:translateY(-12px) rotate(.6deg)}}
 @keyframes tfbob{0%,100%{transform:scaleX(-1) translate(0,0)}50%{transform:scaleX(-1) translate(10px,-18px)}}
 @media(prefers-reduced-motion:reduce){#vbs .tf-plane,#vbs .tf-glider,#vbs .tf-logo,#vbs .tf-hero:before{animation:none}}
 #vbs .tf-strip{display:inline-flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:26px;position:relative;z-index:2;}
@@ -1617,7 +1617,7 @@ a.ycard{text-decoration:none;display:flex;transition:transform .15s;}a.ycard:hov
 @media(max-width:760px){#vbs .tf-rbc{grid-template-columns:1fr;padding:28px 22px;}#vbs .tf-rbc-kids{width:160px;}#vbs .tf-presents{flex-direction:column;gap:6px;border-radius:22px;padding:12px 18px;}#vbs .tf-presents span{font-size:12px;}}
 #vbs .tf-arch{display:block;width:min(680px,100%);height:auto;margin:0 auto -30px;position:relative;z-index:3;overflow:visible;}
 #vbs .tf-arch text{font-family:'TFHead',sans-serif;font-size:35px;letter-spacing:2.5px;}#vbs .tf-arch .tf-arch-o{fill:#fff;stroke:#fff;stroke-width:10px;stroke-linejoin:round;}#vbs .tf-arch .tf-arch-f{fill:var(--navy);}
-#vbs h1.tf-vbs{font-size:clamp(34px,5vw,62px);color:#fff;margin:6px 0 0;position:relative;z-index:2;-webkit-text-stroke:0;text-shadow:0 4px 0 var(--navy),0 -2px 0 var(--navy),3px 0 0 var(--navy),-3px 0 0 var(--navy),0 8px 14px rgba(29,63,115,.25);line-height:1.05;}
+#vbs h1.tf-vbs{font-size:clamp(34px,5vw,62px);color:#fff;margin:6px 0 0;position:relative;z-index:2;-webkit-text-stroke:11px var(--navy);paint-order:stroke fill;stroke-linejoin:round;text-shadow:none;filter:drop-shadow(0 5px 0 rgba(29,63,115,.35));line-height:1.1;}
 /* Singles review fixes */
 .lead:has(+ p:not(:has(a)):not(.cardnote)){font-weight:500;}
 .lead + p:not(:has(a)):not(.cardnote){font-size:16px;opacity:.78;margin-top:16px;}
@@ -2564,7 +2564,6 @@ a.ycard{text-decoration:none;display:flex;transition:transform .15s;}a.ycard:hov
             <img class="tf-logo" src="img/tf_logo.png" alt="Take Flight VBS: Trusting God's Faithfulness Above All, Psalm 100:5">
       <h1 class="tf-vbs">Vacation Bible School</h1>
       <div class="tf-strip"><span class="tf-pill c">July 26 to 29, 2027</span><span class="tf-pill">6 to 8 PM each night</span><span class="tf-pill s">Ages 3 to 12</span></div>
-      <p class="tf-tag">At Ravenswood Baptist Church on Chicago's north side. Every kid is welcome, so invite a friend!</p>
     </div>
   </div>
   <section class="tf-sec tf-green">
@@ -2614,7 +2613,7 @@ a.ycard{text-decoration:none;display:flex;transition:transform .15s;}a.ycard:hov
       <div class="tf-card">
         <div class="tf-eyebrow">Registration</div>
         <h2 style="font-size:clamp(36px,4vw,54px)">Registration Opens Soon</h2>
-        <p>Check back here to register your kids for VBS 2027. Invite a friend!</p>
+        <p>Check back here to register your kids for VBS 2027.</p>
         <div class="needbox"><b>#8 &nbsp;NEED FROM RAVENSWOOD:</b> When does VBS 2027 registration open? Once the Breeze registration form is ready, we'll connect the Register button here.</div>
       </div>
       <div class="tf-card">
@@ -2631,7 +2630,7 @@ a.ycard{text-decoration:none;display:flex;transition:transform .15s;}a.ycard:hov
           <div class="tf-eyebrow">Part of Ravenswood Kids</div>
           <h2 style="font-size:clamp(32px,3.6vw,46px)">The Fun Doesn't Stop in July</h2>
           <p>VBS is just one week of the year at Ravenswood. Kids are welcome every Sunday, with a nursery for newborns to age 2, Kids' Church on the 1st, 3rd and 5th Sundays, and Awana on Sunday evenings, September through May. Come worship with us Sundays at 10:30 AM.</p>
-          <div class="tf-btns" style="justify-content:flex-start"><a class="tf-btn" href="#visit" onclick="go('visit');return false">Plan a Visit</a><a class="tf-btn sun" href="#kids" onclick="go('kids');return false">Ravenswood Kids</a><a class="tf-btn alt" href="#summer" onclick="go('summer');return false">VBS 2026 Photos</a></div>
+          <div class="tf-btns" style="justify-content:flex-start"><a class="tf-btn" href="#visit" onclick="go('visit');return false">Plan a Visit</a><a class="tf-btn sun" href="#kids" onclick="go('kids');return false">Ravenswood Kids</a></div>
         </div>
       </div>
     </div>
@@ -3694,7 +3693,16 @@ function sgjump(i){var p=Math.floor(i/7);document.querySelectorAll('#sg .sgpage'
 function sgw(){var n=document.getElementById('sgname').value.trim();document.getElementById('sgtitle').textContent=n?(n+(/s$/i.test(n)?"'":"'s")+' Top Spiritual Gifts'):'Your Top Spiritual Gifts';var d=new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});document.getElementById('sgwho').textContent='Taken '+d+' · Ravenswood Baptist Church';}
 function sgprint(){sgw();var o=document.getElementById('sgout');if(o)o.remove();o=document.createElement('div');o.id='sgout';o.innerHTML=document.getElementById('sgprint').innerHTML;document.body.appendChild(o);window.print();setTimeout(function(){o.remove();},1000);}
 function sgdl(){sgw();var css='body{font-family:Arial,sans-serif;color:#2B2E33;max-width:900px;margin:30px auto;padding:0 20px}h3{font-size:34px;margin:0}.eyebrow{color:#D32047;font-weight:bold;letter-spacing:.12em;text-transform:uppercase;font-size:13px}.sgwho{color:#6b6e74;font-size:14px;text-transform:uppercase;letter-spacing:.06em}.sgres{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:20px}.g{background:#D32047;color:#fff;padding:18px}.g:nth-child(2){background:#23C5C9;color:#2B2E33}.g:nth-child(3){background:#2B2E33}.g>b{display:block;font-size:26px;text-transform:uppercase}.g p{font-size:14px}.sgcaution{border-left:3px solid currentColor;padding-left:10px}.sgways a{display:inline-block;background:#fff;color:#2B2E33;padding:3px 8px;margin:3px 4px 0 0;font-size:13px;text-decoration:none}.sgways span{display:block;font-size:12px;font-weight:bold;text-transform:uppercase;margin-top:10px}.sgall div{display:grid;grid-template-columns:140px 1fr 30px;gap:10px;align-items:center;margin:6px 0;text-transform:uppercase;font-weight:bold;font-size:14px}.sgall i{display:block;height:10px;background:#eee}.sgall i em{display:block;height:100%;background:#D32047}.gico svg{width:32px;height:32px}@media(max-width:700px){.sgres{grid-template-columns:1fr}}';
-var doc='<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>My Spiritual Gifts | Ravenswood Baptist Church</title><style>'+css+'</style></head><body>'+document.getElementById('sgprint').innerHTML.replace(/ onclick="[^"]*"/g,'').replace(/href="#/g,'href="https://ravenswood.church/#')+'</body></html>';
+var doc='<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>My Spiritual Gifts | Ravenswood Baptist Church</title><style>'+css+'
+/* Nov 13 polish pass */
+.todaysec{background:#eef0f2 !important;}
+.tealbg .mgrid div{border-top-color:var(--crimson) !important;}
+.tealbg .mgrid div:nth-child(2){border-top-color:var(--gunmetal) !important;}
+.tealbg .mgrid div:nth-child(3){border-top-color:var(--crimson-dk,#A8142F) !important;}
+.awana-page .btn-aw{border-radius:0 !important;}
+.ycard.mt-light{background:#e6e9ed !important;box-shadow:inset 0 0 0 2px #cdd3da;}
+.eee>div,.sched{box-shadow:0 0 0 2px #d5dae0;}
+</style></head><body>'+document.getElementById('sgprint').innerHTML.replace(/ onclick="[^"]*"/g,'').replace(/href="#/g,'href="https://ravenswood.church/#')+'</body></html>';
 var b=new Blob([doc],{type:'text/html'});var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='My Spiritual Gifts - Ravenswood.html';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},1500);}
 function sgsave(){try{var v=[];for(var i=0;i<42;i++){var r=document.querySelector('input[name=q'+i+']:checked');v.push(r?+r.value:-1);}localStorage.setItem('rbc_sg',JSON.stringify(v));}catch(e){}}
 function sgload(){try{var v=JSON.parse(localStorage.getItem('rbc_sg')||'null');if(!v)return;v.forEach(function(x,i){if(x>=0){var r=document.querySelector('input[name=q'+i+'][value="'+x+'"]');if(r)r.checked=true;}});sgp();}catch(e){}}
