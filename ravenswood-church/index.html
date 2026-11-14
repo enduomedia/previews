@@ -2253,6 +2253,121 @@ html.rbc-lock,html.rbc-lock body{overflow:hidden;}
   .rp-qlinks a i{grid-column:2;grid-row:1;}
   .rp-cu{padding:22px 18px;}
 }
+
+/* ===== Item 10: Ravenswood Christian School page, church look turning into the school's look ===== */
+@font-face{font-family:'RCSHead';src:url('img/rcs_predator_700.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap;}
+@font-face{font-family:'RCSBody';src:url('img/rcs_mont_400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap;}
+@font-face{font-family:'RCSBody';src:url('img/rcs_mont_600.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap;}
+@font-face{font-family:'RCSBody';src:url('img/rcs_mont_700.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap;}
+#school{--rn:#1A1E3F;--rr:#B50E21;--ri:#232744;--rp:#F4F4F4;--rd:#151935;}
+#school .rcs-head{background:var(--crimson);}
+#school .rcs-crownwm{position:absolute;right:4%;top:50%;width:min(30vw,380px);transform:translateY(-58%);opacity:.16;z-index:0;pointer-events:none;}
+#school .rcs-head .wrap{position:relative;z-index:1;}
+#school .rcs-church{background:#fff;}
+#school .rcs-church .lead + p{font-size:inherit;opacity:1;}
+#school .rcs-hos{display:grid;grid-template-columns:150px 1fr;gap:26px;align-items:center;background:var(--gunmetal);color:#fff;padding:30px;box-shadow:14px 14px 0 var(--crimson);}
+#school .rcs-hos img{width:150px;height:150px;object-fit:cover;object-position:center top;display:block;}
+#school .rcs-hos span{font-family:'RBCHead',sans-serif;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-size:16px;}
+#school .rcs-hos h3{font-size:34px;line-height:1;margin-top:4px;}
+#school .rcs-hos p{font-size:16px;line-height:1.5;margin-top:10px;color:#e3e4e6;}
+#school .rcs-hos a{display:inline-block;margin-top:12px;font-family:'RBCHead',sans-serif;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;text-decoration:none;border-bottom:3px solid var(--crimson);padding-bottom:2px;}
+#school .rcs-hos a:after{content:" \2192";}
+#school .rcs-hos a:hover{color:var(--teal);}
+/* the hand-off band: a diagonal wipe from the church to the school as you scroll */
+#school .rcs-wipe{--w:50;position:relative;min-height:440px;padding:0;overflow:hidden;background:var(--gunmetal);color:#fff;}
+#school .rcs-layer{position:absolute;inset:0;display:flex;align-items:center;}
+#school .rcs-lc{background:var(--gunmetal);justify-content:flex-start;}
+#school .rcs-ls{background:var(--rn);justify-content:flex-end;clip-path:polygon(calc(var(--w)*1% + 7%) 0,100% 0,100% 100%,calc(var(--w)*1% - 7%) 100%);}
+#school .rcs-side{width:50%;padding:40px 6%;display:flex;flex-direction:column;align-items:center;text-align:center;}
+#school .rcs-side small{display:block;margin-top:18px;font-size:14px;letter-spacing:.2em;text-transform:uppercase;}
+#school .rcs-side b{display:block;margin-top:6px;font-size:clamp(28px,3vw,42px);line-height:1.02;text-transform:uppercase;}
+#school .rcs-side p{margin-top:10px;font-size:16px;opacity:.85;max-width:340px;}
+#school .rcs-lc small{font-family:'RBCHead',sans-serif;font-weight:600;color:var(--crimson);}
+#school .rcs-lc b{font-family:'RBCHead',sans-serif;font-weight:700;}
+#school .rcs-lcrown{width:150px;height:auto;}
+#school .rcs-ls .rcs-side{font-family:'RCSBody',sans-serif;}
+#school .rcs-ls small{font-weight:700;color:#fff;border-bottom:3px solid var(--rr);padding-bottom:8px;}
+#school .rcs-ls b{font-family:'RCSHead','RBCHead',sans-serif;font-weight:700;letter-spacing:.01em;}
+#school .rcs-lcrest{width:150px;height:auto;}
+/* the school's own look */
+#school .rcs{font-family:'RCSBody',system-ui,sans-serif;color:var(--ri);}
+#school .rcs h2,#school .rcs h3{font-family:'RCSHead','RBCHead',sans-serif;font-weight:700;text-transform:uppercase;line-height:1.02;letter-spacing:.005em;color:var(--rn);}
+#school .rcs h2{font-size:clamp(36px,4.2vw,56px);}
+#school .rcs section{padding:96px 0;}
+#school .rcs-g2{display:grid;grid-template-columns:1.05fr 1fr;gap:64px;align-items:center;}
+#school .rcs-kicker{font-family:'RCSBody',sans-serif;color:var(--rr);font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:14px;padding-bottom:10px;border-bottom:3px solid var(--rr);width:fit-content;}
+#school .rcs-logo{display:block;height:auto;width:min(360px,100%);margin-bottom:34px;}
+#school .rcs-quote{font-size:clamp(21px,2vw,26px);line-height:1.5;color:var(--rn);font-weight:600;}
+#school .rcs-bbb{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;}
+#school .rcs-bbb b{font-family:'RCSHead','RBCHead',sans-serif;font-size:24px;text-transform:uppercase;padding:8px 16px;background:var(--rn);color:#fff;}
+#school .rcs-bbb b:nth-child(2){background:var(--rr);}
+#school .rcs-bbb b:nth-child(3){background:#fff;color:var(--rn);box-shadow:inset 0 0 0 2px var(--rn);}
+#school .rcs-mission{position:relative;overflow:hidden;background:var(--rn);color:#fff;padding:40px;}
+#school .rcs-mission .rcs-kicker{color:#fff;}
+#school .rcs-mission>p{font-weight:600;}
+#school .rcs-mission ul{list-style:none;margin:16px 0 0;padding:0;position:relative;}
+#school .rcs-mission li{padding:12px 0 12px 22px;border-top:1px solid rgba(255,255,255,.16);font-size:15px;line-height:1.5;color:#d9dbe6;position:relative;}
+#school .rcs-mission li:before{content:"";position:absolute;left:0;top:19px;width:9px;height:9px;background:var(--rr);}
+#school .rcs-mission li b{display:block;color:#fff;font-weight:700;font-size:16px;}
+#school .rcs-wm{position:absolute;right:-60px;bottom:-60px;width:300px;opacity:.07;pointer-events:none;filter:grayscale(1) brightness(3);}
+#school .rcs-navy{position:relative;overflow:hidden;background:var(--rn);color:#fff;}
+#school .rcs-navy .rcs-wm{width:520px;right:-120px;top:50%;bottom:auto;transform:translateY(-50%);opacity:.06;}
+#school .rcs-navy .wrap{position:relative;}
+#school .rcs-navy .rcs-kicker{color:#fff;}
+#school .rcs-navy h2{color:#fff;}
+#school .rcs-stats{display:grid;grid-template-columns:repeat(3,1fr);margin-top:40px;border-top:1px solid rgba(255,255,255,.18);border-bottom:1px solid rgba(255,255,255,.18);}
+#school .rcs-stats>div{padding:26px 20px;text-align:center;}
+#school .rcs-stats>div+div{border-left:1px solid rgba(255,255,255,.18);}
+#school .rcs-stats b{display:block;font-family:'RCSHead','RBCHead',sans-serif;font-size:clamp(40px,4.4vw,58px);line-height:1;color:#fff;}
+#school .rcs-stats span{display:block;margin-top:8px;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#c4c7d6;}
+#school .rcs-why{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px;}
+#school .rcs-why>div{background:#fff;padding:30px;border-top:6px solid var(--rr);}
+#school .rcs-why>div:nth-child(2){border-top-color:var(--gray,#AFAFAF);}
+#school .rcs-why h3{font-size:26px;}
+#school .rcs-why p{margin-top:10px;font-size:15.5px;line-height:1.55;color:var(--ri);}
+#school .rcs-progs{background:var(--rp);}
+#school .rcs-pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px;}
+#school .rcs-pgrid>div{background:#fff;padding:32px 30px;border-left:6px solid var(--rn);}
+#school .rcs-pgrid>div:nth-child(2){border-left-color:var(--rr);}
+#school .rcs-pgrid span{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;background:var(--rn);color:#fff;padding:5px 10px;}
+#school .rcs-pgrid>div:nth-child(2) span{background:var(--rr);}
+#school .rcs-pgrid h3{font-size:28px;margin-top:16px;}
+#school .rcs-pgrid p{margin-top:10px;font-size:15.5px;line-height:1.55;}
+#school .rcs-visit{background:#fff;}
+#school .rcs-photos{position:relative;padding:0 0 70px 0;}
+#school .rcs-photos img{display:block;object-fit:cover;}
+#school .rcs-p1{width:86%;aspect-ratio:4/3;box-shadow:14px 14px 0 var(--rn);}
+#school .rcs-p2{position:absolute;right:0;bottom:0;width:48%;aspect-ratio:1/1;border:6px solid #fff;box-shadow:0 14px 30px rgba(21,25,53,.22);}
+#school .rcs-visit p{margin-top:14px;font-size:17px;line-height:1.6;}
+#school .rcs-addr b{color:var(--rn);}
+#school .rcs-btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px;}
+#school .rcs-btn{display:inline-block;padding:15px 28px;font-family:'RCSBody',sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;border:2px solid transparent;border-radius:0;transition:background .2s,color .2s,border-color .2s;}
+#school .rcs-btn-red{background:var(--rr);border-color:var(--rr);color:#fff;}
+#school .rcs-btn-red:hover{background:#930b1b;border-color:#930b1b;}
+#school .rcs-btn-out{border-color:var(--rn);color:var(--rn);}
+#school .rcs-btn-out:hover{background:var(--rn);color:#fff;}
+#school .rcs-btn:focus-visible,#school .rcs-hos a:focus-visible{outline:3px solid var(--rr);outline-offset:3px;}
+#school .rcs-visit .needtag .need{font-family:'RCSBody',sans-serif;}
+@media(max-width:900px){
+  #school .rcs-g2{grid-template-columns:1fr;gap:44px;}
+  #school .rcs-why,#school .rcs-pgrid{grid-template-columns:1fr;}
+  #school .rcs-crownwm{width:46vw;right:-6vw;top:auto;bottom:calc(var(--slant) + 10px);transform:none;opacity:.12;}
+}
+@media(max-width:760px){
+  #school .rcs-wipe{min-height:620px;}
+  #school .rcs-layer{align-items:flex-start;justify-content:center;}
+  #school .rcs-ls{align-items:flex-end;clip-path:polygon(0 calc(var(--w)*1% + 5%),100% calc(var(--w)*1% - 5%),100% 100%,0 100%);}
+  #school .rcs-side{width:100%;height:50%;padding:30px 24px;justify-content:center;}
+  #school .rcs-lcrown,#school .rcs-lcrest{width:96px;}
+  #school .rcs-side small{margin-top:12px;}
+  #school .rcs-stats{grid-template-columns:1fr;}
+  #school .rcs-stats>div+div{border-left:0;border-top:1px solid rgba(255,255,255,.18);}
+  #school .rcs section{padding:72px 0;}
+  #school .rcs-hos{grid-template-columns:1fr;padding:26px;box-shadow:10px 10px 0 var(--crimson);}
+  #school .rcs-hos img{width:120px;height:120px;}
+  #school .rcs-mission{padding:30px 24px;}
+  #school .rcs-btn{width:100%;text-align:center;}
+}
 </style>
 </head>
 <body>
@@ -2953,45 +3068,115 @@ html.rbc-lock,html.rbc-lock body{overflow:hidden;}
 
 <!-- ==================== RAVENSWOOD CHRISTIAN SCHOOL ==================== -->
 <div class="page" id="school" data-title="Ravenswood Christian School | Ravenswood Baptist Church">
-  <div class="pagehead dark"><div class="bg" data-bg="s_school"></div><div class="tint"></div>
-    <div class="wrap"><div class="eyebrow">A Ministry of Our Church</div><h1><span class="ol w">Ravenswood</span><br>Christian School</h1><p>Christ-centered education on Chicago's north side, Pre-K through 12th grade.</p><div class="btnrow"><a class="btn btn-red" href="https://ravenswoodchristian.org" target="_blank" rel="noopener"><span>Schedule a Tour</span></a><a class="btn btn-outw" href="https://ravenswoodchristian.org" target="_blank" rel="noopener"><span>Visit RavenswoodChristian.org</span></a></div></div></div>
-  <section class="flat">
+  <div class="pagehead rcs-head"><div class="bg" data-bg="s_school"></div><div class="tint"></div>
+    <img class="rcs-crownwm" src="img/crown_white.png" alt="" aria-hidden="true">
+    <div class="wrap"><div class="eyebrow">A Ministry of Our Church</div><h1><span class="ol w">Ravenswood</span><br>Christian School</h1><p>Christ-centered education on Chicago's north side, Pre-K through 12th grade.</p><div class="btnrow"><a class="btn btn-white" href="https://ravenswoodchristian.org" target="_blank" rel="noopener"><span>Schedule a Tour</span></a><a class="btn btn-outw" href="https://ravenswoodchristian.org" target="_blank" rel="noopener"><span>Visit RavenswoodChristian.org</span></a></div></div></div>
+  <section class="flat rcs-church">
     <div class="wrap grid2">
       <div>
         <div class="eyebrow">Church and School Together</div>
         <h2 style="font-size:clamp(40px,4.6vw,62px)">One Family, One Mission</h2>
         <p class="lead mt">Ravenswood Christian School is a ministry of Ravenswood Baptist Church and operates under its own school board. Together, we want to help families raise children who know and love Jesus.</p>
+        <p class="mt">The school first met in the basement of our church in 1972. In 1976 the school building was completed, giving the school its own home on Seeley Avenue. Today the church and school share a campus, a leadership and a purpose.</p>
+        <p class="mt">The generosity of our church family is part of what keeps tuition well below the actual cost of educating a student.</p>
       </div>
-      <div class="deephope">
-        <span>Our Deep Hope</span>
-        <p>That students would behold the beauty of God, believe the power of the Gospel, and become Christlike as they engage God's world with love and wisdom.</p>
-        <div class="bbb"><b>Behold</b><b>Believe</b><b>Become</b></div>
-      </div>
-    </div>
-  </section>
-  <section class="tealbg">
-    <div class="wrap">
-      <div class="eyebrow">Why Families Choose RCS</div>
-      <h2 style="font-size:clamp(40px,4.6vw,62px)">Enrolling Now, Pre-K to 12th Grade</h2>
-      <div class="mgrid mt2">
-        <div><h3>Christ-Centered Education</h3><p>Teaching for Transformation helps students see their learning as part of God's bigger story.</p></div>
-        <div><h3>Smaller Class Sizes</h3><p>Teachers who know each student by name and care about who they are becoming.</p></div>
-        <div><h3>High-Level Academics</h3><p>A strong academic program at an affordable cost for Chicago families.</p></div>
+      <div class="rcs-hos rcs-rv">
+        <img loading="lazy" src="img/hs_dm_clean.jpg" alt="Pastor Duston Moore">
+        <div>
+          <span>Head of School</span>
+          <h3>Pastor Duston Moore</h3>
+          <p>Pastor Duston serves as Lead Pastor of Ravenswood Baptist Church and as Head of School at Ravenswood Christian School.</p>
+          <a href="#leadership" onclick="go('leadership');return false">Meet Our Leadership</a>
+        </div>
       </div>
     </div>
   </section>
-  <section>
-    <div class="wrap grid2">
-      <img loading="lazy" class="photo r43 bw angle-l" src="img/s_schoolflag.jpg" alt="The Ravenswood Christian School building and playground on a sunny day">
-      <div>
-        <div class="eyebrow">Visit the School</div>
-        <h2 style="font-size:clamp(40px,4.6vw,62px)">Come See for Yourself</h2>
-        <p class="mt"><b>Ravenswood Christian School</b><br>4437 N. Seeley Ave., Chicago, IL 60625</p>
-        <p class="mt">Admissions, tuition, calendars and everything else for school families lives on the school's own website.</p>
-        <div class="btnrow"><a class="btn btn-red" href="https://ravenswoodchristian.org" target="_blank" rel="noopener"><span>Schedule a Tour</span></a><a class="btn btn-outd" href="https://ravenswoodchristian.org" target="_blank" rel="noopener"><span>Visit RavenswoodChristian.org</span></a></div>
+  <section class="rcs-wipe" aria-label="From Ravenswood Baptist Church to Ravenswood Christian School">
+    <div class="rcs-layer rcs-lc">
+      <div class="rcs-side">
+        <img src="img/crown_white.png" alt="" aria-hidden="true" class="rcs-lcrown">
+        <small>Since 1891</small>
+        <b>Ravenswood Baptist Church</b>
+        <p>Our church family on Chicago's north side.</p>
+      </div>
+    </div>
+    <div class="rcs-layer rcs-ls">
+      <div class="rcs-side">
+        <img loading="lazy" src="img/rcs_crest.svg" alt="Ravenswood Christian School crest" class="rcs-lcrest">
+        <small>Since 1972</small>
+        <b>Ravenswood Christian School</b>
+        <p>A ministry of our church, Pre-K through 12th grade.</p>
       </div>
     </div>
   </section>
+  <div class="rcs">
+    <section class="rcs-hope">
+      <div class="wrap rcs-g2">
+        <div>
+          <img loading="lazy" class="rcs-logo" src="img/rcs_logo.svg" alt="Ravenswood Christian School">
+          <div class="rcs-kicker">Our Deep Hope</div>
+          <p class="rcs-quote">That students would behold the beauty of God, believe the power of the Gospel, and become Christlike as they engage God's world with love and wisdom.</p>
+          <div class="rcs-bbb"><b>Behold</b><b>Believe</b><b>Become</b></div>
+        </div>
+        <div class="rcs-mission rcs-rv">
+          <img class="rcs-wm" src="img/rcs_crest.svg" alt="" aria-hidden="true" loading="lazy">
+          <div class="rcs-kicker">Our Mission</div>
+          <p>By God's grace, we are committed to:</p>
+          <ul>
+            <li><b>Christlike character</b>Building Christlike character in our students, in the classroom and in how they treat one another.</li>
+            <li><b>A safe place to learn</b>Providing a secure, well-supervised environment where children are free to grow.</li>
+            <li><b>The individual student</b>Focusing on individual student development rather than moving a crowd through a curriculum.</li>
+            <li><b>Academic excellence</b>Achieving academic excellence through researched, proven teaching methods.</li>
+            <li><b>Readiness</b>Preparing students to meet the challenges of today with wisdom and conviction.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="rcs-navy">
+      <img class="rcs-wm" src="img/rcs_crest.svg" alt="" aria-hidden="true" loading="lazy">
+      <div class="wrap">
+        <div class="rcs-kicker">Why Families Choose RCS</div>
+        <h2>Enrolling Now, Pre-K to 12th Grade</h2>
+        <div class="rcs-stats">
+          <div class="rcs-rv"><b>1972</b><span>Serving Chicago families since</span></div>
+          <div class="rcs-rv"><b>Pre-K to 12</b><span>One school family</span></div>
+          <div class="rcs-rv"><b>6:1</b><span>Middle and high school student-teacher ratio</span></div>
+        </div>
+        <div class="rcs-why">
+          <div class="rcs-rv"><h3>Christ-Centered Education</h3><p>Teaching for Transformation helps students see their learning as part of God's bigger story.</p></div>
+          <div class="rcs-rv"><h3>Smaller Class Sizes</h3><p>Teachers who know each student by name and care about who they are becoming.</p></div>
+          <div class="rcs-rv"><h3>High-Level Academics</h3><p>A strong academic program at an affordable cost for Chicago families.</p></div>
+        </div>
+      </div>
+    </section>
+    <section class="rcs-progs">
+      <div class="wrap">
+        <div class="rcs-kicker">Find Your Child's Place</div>
+        <h2>Three Programs, One School Family</h2>
+        <div class="rcs-pgrid">
+          <div class="rcs-rv"><span>Ages 3 to K5</span><h3>Preschool and Kindergarten</h3><p>Play-based learning with real academic foundations, with flexible 3 or 5 day schedules.</p></div>
+          <div class="rcs-rv"><span>1st to 4th Grade</span><h3>Elementary</h3><p>Abeka curriculum inside a Teaching for Transformation framework, with field work that takes learning into the city.</p></div>
+          <div class="rcs-rv"><span>5th to 12th Grade</span><h3>Middle and High School</h3><p>A multi-period schedule, a 24-credit graduation pathway, and dual enrollment for juniors and seniors.</p></div>
+        </div>
+      </div>
+    </section>
+    <section class="rcs-visit">
+      <div class="wrap rcs-g2">
+        <div class="rcs-photos rcs-rv">
+          <img loading="lazy" class="rcs-p1" src="img/s_schoolflag.jpg" alt="The Ravenswood Christian School building and playground on a sunny day">
+          <img loading="lazy" class="rcs-p2" src="img/s_school.jpg" alt="The front of the Ravenswood Christian School building with the flag flying">
+        </div>
+        <div>
+          <div class="rcs-kicker">Visit the School</div>
+          <h2>Come See for Yourself</h2>
+          <p class="rcs-addr"><b>Ravenswood Christian School</b><br>4437 N. Seeley Ave., Chicago, IL 60625</p>
+          <p>Admissions, tuition, calendars and everything else for school families lives on the school's own website.</p>
+          <div class="rcs-btns"><a class="rcs-btn rcs-btn-red" href="https://ravenswoodchristian.org" target="_blank" rel="noopener">Schedule a Tour</a><a class="rcs-btn rcs-btn-out" href="https://ravenswoodchristian.org" target="_blank" rel="noopener">Visit RavenswoodChristian.org</a></div>
+          <div class="needtag"><span class="need">#21 Need from Ravenswood: how should families schedule a tour? For now this button opens the school's website.</span></div>
+        </div>
+      </div>
+    </section>
+  </div>
 </div>
 <!-- ==================== MINISTRIES HUB ==================== -->
 <div class="page" id="ministries" data-title="Ministries | Ravenswood Baptist Church">
@@ -4533,7 +4718,7 @@ function sgreset(){try{localStorage.removeItem('rbc_sg');}catch(e){}document.que
 
 <script>
 (function(){try{if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
-var sel='.cvb,.vrow,.wvnav a,.walk .wstep,.tl .tli,.adsteps>div,#adcal .evcard,.srow,.ecards>div,.mtile,.ycard,.eee>div,.gsteps>*,.btimeline>*,.mgrid>div,.giftlist>div,ul.deacons li,.lead-feature,.expect3>*,.kcards>*,#kids .kstrip>img,.kfun>div,.clubs>.club,.awfour>div,.awduo>*,.ypair>img';
+var sel='#school .rcs-rv,.cvb,.vrow,.wvnav a,.walk .wstep,.tl .tli,.adsteps>div,#adcal .evcard,.srow,.ecards>div,.mtile,.ycard,.eee>div,.gsteps>*,.btimeline>*,.mgrid>div,.giftlist>div,ul.deacons li,.lead-feature,.expect3>*,.kcards>*,#kids .kstrip>img,.kfun>div,.clubs>.club,.awfour>div,.awduo>*,.ypair>img';
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
 function arm(){document.querySelectorAll(sel).forEach(function(el){if(el.dataset.rv)return;el.dataset.rv=1;var r=el.getBoundingClientRect();el.classList.add('rv');io.observe(el)})}
 arm();var o=new MutationObserver(function(){arm()});o.observe(document.body,{attributes:true,subtree:true,attributeFilter:['class']});
@@ -4856,6 +5041,18 @@ if(f&&!rm&&'IntersectionObserver' in window&&/^\d+$/.test(f.textContent)){var to
   /* first load straight onto #readingplan or #readingplan/11-13 */
   if(page.classList.contains('active')){var h=location.hash.slice(1),i=h.indexOf('/');show(i>0?h.slice(i+1):'');}
 })();
+</script>
+<script>
+(function(){try{var w=document.querySelector('#school .rcs-wipe');if(!w)return;
+var rm=window.matchMedia?matchMedia('(prefers-reduced-motion:reduce)'):{matches:false};var tick=false;
+function up(){tick=false;if(rm.matches){w.style.removeProperty('--w');return;}if(!w.offsetParent)return;
+var r=w.getBoundingClientRect(),vh=window.innerHeight||800,c=r.top+r.height/2;
+var p=(vh*.92-c)/(vh*.55);p=p<0?0:p>1?1:p;p=p*p*(3-2*p);
+w.style.setProperty('--w',(108-p*116).toFixed(2));}
+function q(){if(!tick){tick=true;requestAnimationFrame(up);}}
+window.addEventListener('scroll',q,{passive:true});window.addEventListener('resize',q);window.addEventListener('hashchange',function(){setTimeout(q,60);});
+new MutationObserver(q).observe(document.getElementById('school'),{attributes:true,attributeFilter:['class']});q();
+}catch(e){}})();
 </script>
 </body>
 </html>
