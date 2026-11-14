@@ -2492,6 +2492,137 @@ html.rbc-lock,html.rbc-lock body{overflow:hidden;}
 @media(prefers-reduced-motion:reduce){#events .yfive .ycard,#events .yfive .ycard>.ybg{transition:none;}#events .yfive .ycard:hover>.ybg{transform:none;}}
 /* Designed forms: keep the target clear of the sticky header when we scroll to it */
 #plan-form,#connect-card{scroll-margin-top:110px;}
+/* ===== Kids, Youth, Awana: readability and fun (Nov 2026) ===== */
+[data-bg="us_pole"]{background-image:url('img/us_pole.jpg')}[data-bg="us_school"]{background-image:url('img/us_school.jpg')}[data-bg="us_pumpkin"]{background-image:url('img/us_pumpkin.jpg')}[data-bg="us_christmas"]{background-image:url('img/us_christmas.jpg')}[data-bg="kd_2097"]{background-image:url('img/kd_2097.jpg')}
+#kids{--kyellow:#FFC845;}
+/* hero: calmer photo, doodles */
+.khero .pbg{opacity:.4;}
+.khero .kdood{position:absolute;z-index:-1;pointer-events:none;}
+.khero .kd1{width:90px;height:90px;border-radius:50%;background:var(--kyellow);left:6%;top:34px;box-shadow:0 0 0 10px rgba(255,255,255,.35);}
+.khero .kd2{width:150px;height:150px;border-radius:50%;border:12px dotted #fff;opacity:.55;right:34%;top:-50px;}
+.khero .kd3{width:150px;height:38px;left:40%;bottom:calc(var(--slant) + 14px);transform:rotate(-6deg);}
+.khero .kbubble{border-radius:22px;}
+.khero .ksticker{border-radius:22px;}
+/* train track that the little L car rides along */
+.ksunsec{padding-top:40px !important;padding-bottom:20px !important;overflow:hidden;}
+.kticket.k-bonus .kt-stub{background:var(--crimson);color:#fff;}
+.kticket.k-fam .kt-stub{background:var(--teal);}
+.ktrack{position:relative;height:64px;margin-bottom:34px;}
+.krail{position:absolute;left:0;right:0;bottom:6px;height:6px;background:repeating-linear-gradient(90deg,var(--gunmetal) 0 22px,transparent 22px 34px);opacity:.85;}
+.kride{position:absolute;bottom:10px;left:0;display:flex;gap:4px;animation:kride 16s linear infinite;}
+.kride .ktr{width:96px;height:46px;display:block;}
+@keyframes kride{from{transform:translateX(-320px)}to{transform:translateX(100vw)}}
+/* This Sunday ticket */
+.kticket{display:grid;grid-template-columns:200px 1fr;background:#fff;border:4px solid var(--gunmetal);border-radius:22px;box-shadow:10px 10px 0 var(--crimson);position:relative;overflow:hidden;}
+.kt-stub{background:var(--kyellow);color:var(--gunmetal);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:26px 16px;border-right:4px dashed var(--gunmetal);text-align:center;font-family:'RBCHead',sans-serif;text-transform:uppercase;font-weight:700;}
+.kt-small{font-size:15px;letter-spacing:.16em;}
+.kt-mon{font-size:30px;line-height:1;margin-top:8px;letter-spacing:.06em;}
+.kt-num{font-size:84px;line-height:.9;}
+.kt-icon{width:84px;height:40px;margin-top:10px;}
+.kt-main{padding:30px 34px;}
+.kt-main .eyebrow{margin-bottom:8px;}
+.kt-date{font-size:clamp(34px,4vw,54px);line-height:.95;}
+.kt-what{font-size:clamp(19px,1.7vw,23px);line-height:1.4;margin-top:12px;color:var(--gunmetal);font-weight:500;}
+.kt-note{margin-top:12px;font-size:16px;color:#4a4f57;}
+/* next Sundays strip, drawn like a transit map */
+.kline{list-style:none;margin:40px 0 0;padding:0;display:grid;grid-template-columns:repeat(6,1fr);position:relative;}
+.kline:before{content:"";position:absolute;left:8%;right:8%;top:15px;height:8px;border-radius:4px;background:var(--gunmetal);}
+.kline li{position:relative;text-align:center;padding:0 6px;}
+.kline li i{display:block;width:38px;height:38px;margin:0 auto 10px;border-radius:50%;background:#fff;border:7px solid var(--crimson);position:relative;}
+.kline li.k-bonus i{border-color:var(--kyellow);background:var(--gunmetal);}
+.kline li.k-fam i{border-color:var(--teal);}
+.kline li.now i{transform:scale(1.25);box-shadow:0 0 0 5px rgba(211,32,71,.2);}
+.kline b{display:block;font-family:'RBCHead',sans-serif;font-weight:700;font-size:22px;text-transform:uppercase;color:var(--gunmetal);line-height:1;}
+.kline span{display:block;font-size:14.5px;line-height:1.3;margin-top:4px;color:#4a4f57;}
+.kline li.now span{color:var(--gunmetal);font-weight:700;}
+/* Train, Treasure, Tell as stops on the line */
+#kids .kroute{position:relative;padding-top:40px;}
+#kids .kroute:before{content:"";position:absolute;left:0;right:0;top:12px;height:8px;border-radius:4px;background:var(--gunmetal);}
+#kids .kroute .kc{position:relative;border-radius:22px;overflow:visible;}
+#kids .kroute .kc:nth-child(2){transform:none;}
+#kids .kroute .kc:nth-child(2):hover{transform:translateY(-6px);}
+#kids .kstop{position:absolute;top:-38px;left:26px;display:flex;align-items:center;gap:8px;font-family:'RBCHead',sans-serif;font-weight:700;font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:var(--gunmetal);}
+#kids .kstop:before{content:"";width:28px;height:28px;border-radius:50%;background:#fff;border:6px solid var(--gunmetal);box-sizing:border-box;}
+#kids .kroute .kc .kstop{top:-41px;background:#fff;padding-right:10px;border-radius:16px;}
+#kids .kroute .kc .kstop span{display:none;}
+#kids .kstrip img{border-radius:14px;}
+#kids .sched{border-radius:0 14px 14px 0;}
+/* memory verses */
+.kverses{background:#FFF7E0;overflow:hidden;isolation:isolate;}
+.kverses .kdood{position:absolute;z-index:-1;border-radius:50%;pointer-events:none;}
+.kverses .kv1{width:260px;height:260px;background:var(--teal);opacity:.25;right:-70px;top:-60px;}
+.kverses .kv2{width:180px;height:180px;border:14px dotted var(--crimson);opacity:.25;left:-50px;bottom:-40px;}
+.kvgrid{display:grid;grid-template-columns:1.05fr 1fr;gap:26px;align-items:start;}
+.kmem{display:grid;grid-template-columns:130px 1fr;background:#fff;border:4px solid var(--gunmetal);border-radius:22px;box-shadow:10px 10px 0 var(--teal);overflow:hidden;transform:rotate(-1.2deg);}
+.kmem-stub{background:var(--crimson);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border-right:4px dashed var(--gunmetal);font-family:'RBCHead',sans-serif;font-weight:700;text-transform:uppercase;font-size:26px;line-height:1;padding:20px 10px;text-align:center;}
+.kmem-stub .kt-icon{width:76px;height:36px;margin-top:12px;}
+.kmem-main{padding:34px 32px;}
+.kmem .kq{font-size:clamp(26px,2.6vw,36px);line-height:1.25;font-weight:600;color:var(--gunmetal);}
+.kref{font-family:'RBCHead',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:18px;margin-top:14px;color:var(--crimson);}
+.kvs{display:grid;gap:16px;}
+.kverse{border-radius:20px;padding:22px 26px;border:3px solid var(--gunmetal);box-shadow:6px 6px 0 var(--gunmetal);}
+.kverse .kq{font-size:18px;line-height:1.45;font-weight:500;}
+.kverse .kref{font-size:16px;margin-top:8px;color:inherit;}
+.kv-red{background:var(--crimson);color:#fff;}
+.kv-yel{background:var(--kyellow);color:var(--gunmetal);}
+.kv-teal{background:var(--teal);color:var(--gunmetal);}
+/* gentle wiggles */
+@keyframes kwiggle{0%,100%{rotate:0deg}25%{rotate:-1.6deg}75%{rotate:1.6deg}}
+.kverse:hover,.kmem:hover,.kticket:hover .kt-icon,#kids .kfun>div:hover,#kids .kroute .kc:hover .kstop{animation:kwiggle .5s ease-in-out 2;}
+/* VBS band: strong shade behind the words */
+.kvbs .pbg{opacity:.7;}
+.kvbs .ptint:after{background:linear-gradient(90deg,rgba(64,6,20,.92) 0%,rgba(64,6,20,.84) 48%,rgba(64,6,20,.45) 100%);}
+.kvbs h2,.kvbs .eyebrow,.kvbs .sched div span{color:#fff !important;}
+.kvbs .eyebrow:before{background:#fff;}
+.kvbs .kfun div{border-radius:18px;}
+@media(max-width:900px){
+  .kvbs .ptint:after{background:rgba(64,6,20,.86);}
+  .kline{grid-template-columns:repeat(3,1fr);row-gap:26px;}
+  .kline:before{display:none;}
+  .kvgrid{grid-template-columns:1fr;}
+}
+@media(max-width:760px){
+  .kticket{grid-template-columns:1fr;}
+  .kt-stub{flex-direction:row;flex-wrap:wrap;gap:10px;border-right:0;border-bottom:4px dashed var(--gunmetal);padding:16px;}
+  .kt-mon{margin-top:0;font-size:28px;}
+  .kt-num{font-size:44px;}
+  .kt-icon{margin-top:0;width:70px;height:34px;}
+  .kt-main{padding:24px 22px;}
+  #kids .kroute{padding-top:0;padding-left:44px;}
+  #kids .kroute:before{left:12px;right:auto;top:0;bottom:0;width:8px;height:auto;}
+  #kids .kroute .kc .kstop{top:22px;left:-48px;}
+  #kids .kroute .kc .kstop{font-size:0;letter-spacing:0;gap:0;}
+  .kmem{grid-template-columns:1fr;transform:none;}
+  .kmem-stub{flex-direction:row;gap:10px;border-right:0;border-bottom:4px dashed var(--gunmetal);font-size:24px;padding:14px;}
+  .kmem-stub .kt-icon{margin-top:0;}
+  .kmem-main{padding:24px 22px;}
+  .khero .kd2,.khero .kd3{display:none;}
+  .ktrack{margin-bottom:22px;}
+}
+@media(max-width:520px){
+  .kline{grid-template-columns:1fr;row-gap:12px;margin-top:30px;}
+  .kline:before{display:block;left:15px;right:auto;top:10px;bottom:10px;width:8px;height:auto;}
+  .kline li{display:grid;grid-template-columns:38px auto 1fr;align-items:center;column-gap:14px;text-align:left;padding:0;}
+  .kline li i{margin:0;}
+  .kline li.now i{transform:scale(1.12);}
+  .kline span{margin-top:0;}
+}
+@media(prefers-reduced-motion:reduce){
+  .kride{animation:none;transform:translateX(8vw);}
+  .kverse:hover,.kmem:hover,.kticket:hover .kt-icon,#kids .kfun>div:hover,#kids .kroute .kc:hover .kstop{animation:none;}
+}
+/* Youth: readable hero and closing band */
+.yhero .pbg{opacity:.55;}
+.yhero .ptint{opacity:1;background:linear-gradient(90deg,rgba(22,24,27,.95) 0%,rgba(22,24,27,.88) 45%,rgba(22,24,27,.62) 100%);}
+.yhero p,.yhero .lead{color:#fff;}
+.yhero h1 .ol{-webkit-text-stroke:2.5px var(--teal);}
+.ycta .ptint:after{background:linear-gradient(90deg,rgba(40,8,18,.9) 0%,rgba(40,8,18,.8) 50%,rgba(40,8,18,.5) 100%);}
+.ycta h2,.ycta .eyebrow{color:#fff;}
+.ycta .eyebrow:before{background:#fff;}
+@media(max-width:900px){.yhero .ptint{background:rgba(22,24,27,.9);}.ycta .ptint:after{background:rgba(40,8,18,.86);}}
+/* Awana hero: new photo, deeper shade behind the logo */
+.awana-hero .pbg{background-position:center 35%;}
+.awana-hero .ptint:after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(10,32,80,.62) 0%,rgba(10,32,80,.38) 55%,rgba(10,32,80,.15) 100%);}
 </style>
 </head>
 <body>
@@ -3322,18 +3453,34 @@ html.rbc-lock,html.rbc-lock body{overflow:hidden;}
 
 <!-- ==================== KIDS ==================== -->
 <div class="page" id="kids" data-title="Ravenswood Kids | Ravenswood Baptist Church">
-  <div class="khero"><span class="pbg" data-bg="v26_1256" aria-hidden="true"></span><span class="ptint" aria-hidden="true"></span><span class="shape s1"></span><span class="shape s2"></span><span class="shape s3"></span>
+  <div class="khero"><span class="pbg" data-bg="v26_1256" aria-hidden="true"></span><span class="ptint" aria-hidden="true"></span><span class="shape s1"></span><span class="shape s2"></span><span class="shape s3"></span><span class="kdood kd1" aria-hidden="true"></span><span class="kdood kd2" aria-hidden="true"></span><svg class="kdood kd3" viewBox="0 0 120 30" aria-hidden="true"><path d="M4 20 Q19 2 34 16 T64 16 T94 16 T118 12" fill="none" stroke="#FFC845" stroke-width="7" stroke-linecap="round"/></svg>
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="ktrain" viewBox="0 0 120 58"><rect x="3" y="3" width="114" height="42" rx="11" fill="#23C5C9" stroke="#2B2E33" stroke-width="4"/><rect x="5" y="31" width="110" height="6" fill="#D32047"/><rect x="13" y="10" width="17" height="15" rx="3" fill="#fff" stroke="#2B2E33" stroke-width="3"/><rect x="35" y="10" width="17" height="15" rx="3" fill="#fff" stroke="#2B2E33" stroke-width="3"/><rect x="57" y="8" width="16" height="34" rx="2" fill="#fff" stroke="#2B2E33" stroke-width="3"/><line x1="65" y1="9" x2="65" y2="41" stroke="#2B2E33" stroke-width="2.5"/><rect x="78" y="10" width="17" height="15" rx="3" fill="#fff" stroke="#2B2E33" stroke-width="3"/><rect x="100" y="10" width="11" height="15" rx="3" fill="#fff" stroke="#2B2E33" stroke-width="3"/><circle cx="111" cy="36" r="3" fill="#FFC845"/><circle cx="27" cy="50" r="6.5" fill="#2B2E33"/><circle cx="93" cy="50" r="6.5" fill="#2B2E33"/><circle cx="27" cy="50" r="2.2" fill="#fff"/><circle cx="93" cy="50" r="2.2" fill="#fff"/></symbol></svg>
     <div class="wrap grid2">
       <div><h1>Ravenswood Kids</h1><div class="ksticker"><img loading="lazy" class="klogo" src="img/kids_full.svg" alt="Ravenswood Kids logo"></div></div>
       <div class="kbubble"><div class="eyebrow">Ravenswood Kids</div><p class="pull">Training young disciples to treasure Christ and His church.</p><p class="mt" style="color:var(--gunmetal)">Bible lessons, worship and hands-on activities led by our dedicated children's ministry team.</p><div class="btnrow"><a class="btn btn-teal" href="#visit" onclick="go('visit');return false"><span>Plan Your Visit</span></a></div></div>
     </div>
   </div>
+  <section class="flat ksunsec">
+    <div class="ktrack" aria-hidden="true"><div class="krail"></div><div class="kride"><svg class="ktr" viewBox="0 0 120 58" aria-hidden="true" focusable="false"><use href="#ktrain"/></svg><svg class="ktr" viewBox="0 0 120 58" aria-hidden="true" focusable="false"><use href="#ktrain"/></svg><svg class="ktr" viewBox="0 0 120 58" aria-hidden="true" focusable="false"><use href="#ktrain"/></svg></div></div>
+    <div class="wrap">
+      <div class="kticket" id="ksun">
+        <div class="kt-stub"><span class="kt-small">Next stop</span><span class="kt-mon" id="ksun-mon">Sun</span><span class="kt-num" id="ksun-num">10:30</span><svg class="ktr kt-icon" viewBox="0 0 120 58" aria-hidden="true" focusable="false"><use href="#ktrain"/></svg></div>
+        <div class="kt-main">
+          <div class="eyebrow">This Sunday at Ravenswood Kids</div>
+          <h2 class="kt-date" id="ksun-date">Sundays at Ravenswood Kids</h2>
+          <p class="kt-what" id="ksun-what">Kids' Church meets during the 10:30 AM service on the 1st and 3rd Sundays of each month, plus Bonus Sunday Kids' Church on 5th Sundays, for ages 3 through 6th grade on the lower level. Nursery is open every Sunday for newborns to age 2.</p>
+          <p class="kt-note" id="ksun-note" hidden></p>
+        </div>
+      </div>
+      <ol class="kline" id="ksun-line" aria-label="Coming up on Sundays" hidden></ol>
+    </div>
+  </section>
   <section class="flat">
     <div class="wrap">
-      <div class="kcards">
-        <div class="kc" style="background:var(--crimson);color:#fff"><b>Train</b><p>Children learn God's Word through engaging Bible lessons filled with encouragement and wisdom.</p></div>
-        <div class="kc" style="background:var(--teal);color:var(--gunmetal)"><b>Treasure</b><p>Through worship and fun, interactive activities, kids grow to love Jesus and His church.</p></div>
-        <div class="kc" style="background:var(--gunmetal);color:#fff"><b>Tell</b><p>We want every child to know the good news of Jesus and share it with others.</p></div>
+      <div class="kcards kroute">
+        <div class="kc" style="background:var(--crimson);color:#fff"><span class="kstop" aria-hidden="true">Stop 1</span><b>Train</b><p>Children learn God's Word through engaging Bible lessons filled with encouragement and wisdom.</p></div>
+        <div class="kc" style="background:var(--teal);color:var(--gunmetal)"><span class="kstop" aria-hidden="true">Stop 2</span><b>Treasure</b><p>Through worship and fun, interactive activities, kids grow to love Jesus and His church.</p></div>
+        <div class="kc" style="background:var(--gunmetal);color:#fff"><span class="kstop" aria-hidden="true">Stop 3</span><b>Tell</b><p>We want every child to know the good news of Jesus and share it with others.</p></div>
       </div>
       <div class="kstrip mt2">
         <img loading="lazy" class="photo r43 bw" src="img/kd_2097.jpg" alt="Three kids laughing together in their chairs">
@@ -3356,6 +3503,24 @@ html.rbc-lock,html.rbc-lock body{overflow:hidden;}
         <p class="mt">At Kids' Church, learning is interactive and fun. After each lesson, children take part in hands-on activities that deepen their understanding of the teaching, and they sing praises to God together.</p>
       </div>
       <img loading="lazy" class="photo r43 bw angle-l" src="img/kd_7602.jpg" alt="Kids coloring at a table with a leader in Kids' Church">
+    </div>
+  </section>
+  <section class="kverses">
+    <span class="kdood kv1" aria-hidden="true"></span><span class="kdood kv2" aria-hidden="true"></span>
+    <div class="wrap">
+      <div class="eyebrow">Hide God's Word in Your Heart</div>
+      <h2 style="font-size:clamp(40px,4.6vw,62px)">Memory Verses</h2>
+      <div class="kvgrid mt2">
+        <div class="kmem">
+          <div class="kmem-stub"><span>Memory</span><span>Verse</span><svg class="ktr kt-icon" viewBox="0 0 120 58" aria-hidden="true" focusable="false"><use href="#ktrain"/></svg></div>
+          <div class="kmem-main"><p class="kq">&ldquo;Thy word is a lamp unto my feet, and a light unto my path.&rdquo;</p><p class="kref">Psalm 119:105</p></div>
+        </div>
+        <div class="kvs">
+          <div class="kverse kv-red"><p class="kq">&ldquo;But Jesus said, Suffer little children, and forbid them not, to come unto me: for of such is the kingdom of heaven.&rdquo;</p><p class="kref">Matthew 19:14</p></div>
+          <div class="kverse kv-yel"><p class="kq">&ldquo;O taste and see that the LORD is good: blessed is the man that trusteth in him.&rdquo;</p><p class="kref">Psalm 34:8</p></div>
+          <div class="kverse kv-teal"><p class="kq">&ldquo;Children, obey your parents in the Lord: for this is right.&rdquo;</p><p class="kref">Ephesians 6:1</p></div>
+        </div>
+      </div>
     </div>
   </section>
   <section class="tealbg">
@@ -3426,14 +3591,19 @@ html.rbc-lock,html.rbc-lock body{overflow:hidden;}
     <div class="wrap">
       <div class="eyebrow">Through the Year</div>
       <h2 style="font-size:clamp(40px,4.6vw,62px)">What We Do Together</h2>
+      <!-- Stock photos from Unsplash (free under the Unsplash License):
+           See You at the Pole: img/us_pole.jpg, photo by Roger Starnes Sr, https://unsplash.com/photos/red-brick-school-with-american-flag-m70dg81KN3w
+           Back-to-School Bash: img/us_school.jpg, photo by Matt Ragland, https://unsplash.com/photos/flat-lay-photography-of-blue-backpack-beside-book-and-silver-macbook-02z1I7gv4ao
+           Pumpkin Party: img/us_pumpkin.jpg, photo by David Trinks, https://unsplash.com/photos/pumpkins-and-hay-bales-displayed-outdoors-for-autumn-harvest-auilOSMO1lg
+           Christmas Party: img/us_christmas.jpg, photo by Svetozar Cenisev, https://unsplash.com/photos/baubles-on-christmas-tree-with-turned-on-lights-R7af9oF5iJ0 -->
       <div class="ygrid mt2">
         <div class="ycard mt-teal wide yph"><span class="pbg" data-bg="yt_0286" aria-hidden="true"></span><span class="ptint" aria-hidden="true"></span><b>Teen Camp</b><span>A week away every summer.</span></div>
         <div class="ycard mt-red yph"><span class="pbg" data-bg="yt_8148" aria-hidden="true"></span><span class="ptint" aria-hidden="true"></span><b>Winter Retreat</b><span>Time away to grow and have fun.</span></div>
-        <div class="ycard mt-dark"><b>See You at the Pole</b><span>Praying for our schools.</span></div>
-        <div class="ycard mt-red"><b>Back-to-School Bash</b><span>Kicking off the school year together.</span></div>
+        <div class="ycard mt-dark yph"><span class="pbg" data-bg="us_pole" aria-hidden="true"></span><span class="ptint" aria-hidden="true"></span><b>See You at the Pole</b><span>Praying for our schools.</span></div>
+        <div class="ycard mt-red yph"><span class="pbg" data-bg="us_school" aria-hidden="true"></span><span class="ptint" aria-hidden="true"></span><b>Back-to-School Bash</b><span>Kicking off the school year together.</span></div>
         <div class="ycard mt-dark wide yph"><span class="pbg" data-bg="yt_1138" aria-hidden="true"></span><span class="ptint" aria-hidden="true"></span><b>Patio with Pastor</b><span>Questions, food and conversation.</span></div>
-        <div class="ycard mt-teal"><b>Pumpkin Party</b><span>A fall favorite.</span></div>
-        <div class="ycard mt-dark"><b>Christmas Party</b><span>Celebrating the season together.</span></div>
+        <div class="ycard mt-teal yph"><span class="pbg" data-bg="us_pumpkin" aria-hidden="true"></span><span class="ptint" aria-hidden="true"></span><b>Pumpkin Party</b><span>A fall favorite.</span></div>
+        <div class="ycard mt-dark yph"><span class="pbg" data-bg="us_christmas" aria-hidden="true"></span><span class="ptint" aria-hidden="true"></span><b>Christmas Party</b><span>Celebrating the season together.</span></div>
         <div class="ycard mt-red span3 yph"><span class="pbg" data-bg="mb_6793" aria-hidden="true"></span><span class="ptint" aria-hidden="true"></span><b>Easter Outreach</b><span>Sharing the gospel in our community.</span></div>
       </div>
       <div class="kstrip ystrip mt2">
@@ -3460,7 +3630,7 @@ html.rbc-lock,html.rbc-lock body{overflow:hidden;}
 </div>
 <!-- ==================== AWANA ==================== -->
 <div class="page awana-page" id="awana" data-title="Awana Clubs | Ravenswood Baptist Church">
-  <div class="awana-hero awcss"><span class="pbg" data-bg="aw_6530" aria-hidden="true"></span><span class="ptint" aria-hidden="true"></span><span class="ash a1"></span><span class="ash a2"></span><span class="ash a3"></span><span class="ash a4"></span><div class="wrap center">
+  <div class="awana-hero awcss"><span class="pbg" data-bg="kd_2097" aria-hidden="true"></span><span class="ptint" aria-hidden="true"></span><span class="ash a1"></span><span class="ash a2"></span><span class="ash a3"></span><span class="ash a4"></span><div class="wrap center">
     <h1>Awana Clubs at Ravenswood</h1>
     <img loading="lazy" class="alogo" src="img/awana_logo.svg" alt="Awana logo">
     <div><span class="chip">Sundays · 5:00 to 6:30 PM · Ages 3 to 6th grade</span></div>
@@ -5249,5 +5419,33 @@ new MutationObserver(q).observe(document.getElementById('school'),{attributes:tr
 }catch(e){}})();
 </script>
 <script>document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest(".vmore");if(!b)return;var p=document.getElementById(b.getAttribute("aria-controls"));if(!p)return;var o=b.getAttribute("aria-expanded")==="true";b.setAttribute("aria-expanded",o?"false":"true");p.hidden=o;});</script>
+<script>
+/* Ravenswood Kids "This Sunday" card. Uses the Chicago date, or ?asof=YYYY-MM-DD like the rest of the site. */
+(function(){try{var box=document.getElementById('ksun');if(!box)return;
+var MS=86400000,n;
+var a=location.search.match(/asof=(\d{4})-(\d{2})-(\d{2})/);
+if(a){n={y:+a[1],m:+a[2],d:+a[3],h:9,mi:0};}
+else{var o={};new Intl.DateTimeFormat('en-US',{timeZone:'America/Chicago',year:'numeric',month:'numeric',day:'numeric',hour:'numeric',minute:'numeric',hourCycle:'h23'}).formatToParts(new Date()).forEach(function(p){o[p.type]=p.value;});n={y:+o.year,m:+o.month,d:+o.day,h:(+o.hour)%24,mi:+o.minute};}
+var t=Date.UTC(n.y,n.m-1,n.d),wd=new Date(t).getUTCDay(),add=(7-wd)%7;
+if(add===0&&n.h*60+n.mi>=750)add=7;
+var sun=t+add*MS;
+function nth(x){return Math.ceil(new Date(x).getUTCDate()/7);}
+function kind(x){var k=nth(x);return k===5?'bonus':(k===1||k===3)?'kc':'fam';}
+function f(x,o){o.timeZone='UTC';return new Date(x).toLocaleDateString('en-US',o);}
+var k=kind(sun),md=f(sun,{month:'long',day:'numeric'}),what,note='';
+if(k==='kc'){what='Kids\' Church, ages 3 through 6th grade, lower level, during the 10:30 AM service';note='Nursery is open every Sunday for newborns to age 2.';}
+else if(k==='bonus'){what='Bonus Sunday! Kids\' Church, ages 3 through 6th grade';note='Lower level, during the 10:30 AM service. Nursery is open for newborns to age 2.';}
+else{var nx=sun+7*MS;while(kind(nx)==='fam')nx+=7*MS;what='Kids worship with their families in the service. Nursery is open for newborns to age 2. Next Kids\' Church: Sunday, '+f(nx,{month:'long',day:'numeric'})+(kind(nx)==='bonus'?' (Bonus Sunday)':'')+'.';}
+document.getElementById('ksun-date').textContent='This Sunday, '+md;
+document.getElementById('ksun-what').textContent=what;box.classList.add('k-'+k);
+var ne=document.getElementById('ksun-note');if(note){ne.textContent=note;ne.hidden=false;}
+document.getElementById('ksun-mon').textContent=f(sun,{month:'short'});
+document.getElementById('ksun-num').textContent=new Date(sun).getUTCDate();
+box.setAttribute('aria-label','This Sunday, '+md+'. '+what);
+var L=document.getElementById('ksun-line'),h='',lab={kc:'Kids\' Church',bonus:'Bonus Kids\' Church',fam:'Family worship'};
+for(var i=0;i<6;i++){var x=sun+i*7*MS,kk=kind(x);h+='<li class="k-'+kk+(i===0?' now':'')+'"><i></i><b>'+f(x,{month:'short',day:'numeric'})+'</b><span>'+(i===0?'This Sunday: ':'')+lab[kk]+'</span></li>';}
+L.innerHTML=h;L.hidden=false;
+}catch(e){}})();
+</script>
 </body>
 </html>
