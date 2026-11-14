@@ -1671,6 +1671,34 @@ ul.deacons li:nth-child(2){border-top-color:var(--gunmetal)}ul.deacons li:nth-ch
 .rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
 .rv.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+/* Photo library pass (Nov 14) */
+[data-bg="mw_09315"]{background-image:url('img/mw_09315.jpg')}
+#easter2026 .nw-fig.wide img{aspect-ratio:21/9;}
+#easter2026 .nw-lead{margin-top:34px;}
+#easter2026 .nw-inbox{margin:22px 0 4px;}
+#easter2026 .nw-grid.g3{grid-template-columns:repeat(3,1fr);gap:30px 26px;}
+@media(max-width:900px){#easter2026 .nw-grid.g3{grid-template-columns:1fr 1fr;}#easter2026 .nw-fig.wide img{aspect-ratio:16/9;}}
+@media(max-width:560px){#easter2026 .nw-grid.g3{grid-template-columns:1fr;}#easter2026 .nw-fig.wide img{aspect-ratio:4/3;}}
+#easter .ephotos{display:grid;grid-template-columns:1.7fr 1fr 1fr;gap:14px;margin-top:48px;}
+#easter .ephotos img{display:block;width:100%;height:300px;object-fit:cover;border-radius:4px;box-shadow:0 14px 34px rgba(75,58,99,.18);}
+#easter .ewide{width:100%;max-width:1000px;margin-left:auto;margin-right:auto;aspect-ratio:21/9;object-fit:cover;border-radius:4px;}
+@media(max-width:800px){#easter .ephotos{grid-template-columns:1fr 1fr;}#easter .ephotos img{height:180px;}#easter .ephotos img:first-child{grid-column:span 2;height:220px;}#easter .ewide{aspect-ratio:4/3;}}
+#marriage .mwlearnhead{display:grid;grid-template-columns:1.35fr 1fr;gap:48px;align-items:center;}
+#marriage .mwgal{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;gap:14px;}
+#marriage .mwgal img{height:100%;width:100%;object-fit:cover;}
+#marriage .mwgal img:first-child{grid-column:span 2;grid-row:span 2;}
+@media(max-width:900px){#marriage .mwlearnhead{grid-template-columns:1fr;gap:28px;}#marriage .mwgal{grid-template-columns:1fr 1fr;grid-auto-rows:170px;}}
+#vbs .tf-banners{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:40px;}
+#vbs .tf-banners img,#vbs .tf-masonry img{display:block;width:100%;border-radius:20px;border:6px solid #fff;box-shadow:0 8px 0 rgba(29,63,115,.18);filter:grayscale(1) contrast(1.1);}
+#vbs .tf-banners img{aspect-ratio:4/3;object-fit:cover;}
+#vbs .tf-masonry{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:20px;}#vbs .tf-mcol{display:flex;flex-direction:column;gap:20px;}#vbs .tf-mcol img:last-child{flex:1;object-fit:cover;min-height:0;}
+#vbs .tf-masonry img{height:auto;}
+@media(max-width:760px){#vbs .tf-banners{grid-template-columns:1fr;gap:14px;}#vbs .tf-masonry{grid-template-columns:1fr 1fr;gap:14px;}#vbs .tf-mcol{display:contents;}#vbs .tf-masonry img,#vbs .tf-mcol img:last-child{aspect-ratio:1/1;height:auto;object-fit:cover;flex:none;border-width:4px;border-radius:14px;}#vbs .tf-banners img{border-width:4px;border-radius:14px;}}
+#kids .kstrip{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+@media(max-width:800px){#kids .kstrip{grid-template-columns:1fr 1fr;}}
+#awana .awduo{display:grid;grid-template-columns:1fr 1.6fr;gap:26px;align-items:center;}
+@media(max-width:800px){#awana .awduo{grid-template-columns:1fr;}}
+
 </style>
 </head>
 <body>
@@ -2451,7 +2479,12 @@ ul.deacons li:nth-child(2){border-top-color:var(--gunmetal)}ul.deacons li:nth-ch
         <div class="kc" style="background:var(--teal);color:var(--gunmetal)"><b>Treasure</b><p>Through worship and fun, interactive activities, kids grow to love Jesus and His church.</p></div>
         <div class="kc" style="background:var(--gunmetal);color:#fff"><b>Tell</b><p>We want every child to know the good news of Jesus and share it with others.</p></div>
       </div>
-      
+      <div class="kstrip mt2">
+        <img loading="lazy" class="photo r43 bw" src="img/kd_2097.jpg" alt="Three kids laughing together in their chairs">
+        <img loading="lazy" class="photo r43 bw" src="img/kd_9017.jpg" alt="Two smiling girls wearing name tags">
+        <img loading="lazy" class="photo r43 bw" src="img/kd_3312.jpg" alt="Two boys drawing at a table">
+        <img loading="lazy" class="photo r43 bw" src="img/kd_1734.jpg" alt="A girl with her hands folded in prayer">
+      </div>
     </div>
   </section>
   <section class="flat">
@@ -2466,12 +2499,12 @@ ul.deacons li:nth-child(2){border-top-color:var(--gunmetal)}ul.deacons li:nth-ch
         </div>
         <p class="mt">At Kids' Church, learning is interactive and fun. After each lesson, children take part in hands-on activities that deepen their understanding of the teaching, and they sing praises to God together.</p>
       </div>
-      <img loading="lazy" class="photo r43 bw angle-l" src="img/k_sing.jpg" alt="Kids and a teacher in Kids' Church">
+      <img loading="lazy" class="photo r43 bw angle-l" src="img/kd_7602.jpg" alt="Kids coloring at a table with a leader in Kids' Church">
     </div>
   </section>
   <section class="tealbg">
     <div class="wrap grid2">
-      <img loading="lazy" class="photo r43 bw angle-r" src="img/ph_kids_2.jpg" alt="Kids at a colorful table with a hand raised to answer a question">
+      <img loading="lazy" class="photo r43 bw angle-r" src="img/kd_8473.jpg" alt="A smiling boy hugging his dad at church">
       <div>
         <div class="eyebrow">Safety</div>
         <h2 style="font-size:clamp(40px,4.6vw,62px)">Your Kids Are Safe With Us</h2>
@@ -2511,7 +2544,7 @@ ul.deacons li:nth-child(2){border-top-color:var(--gunmetal)}ul.deacons li:nth-ch
     </div>
     <div class="yphoto ycircle">
       <svg class="yring" viewBox="0 0 500 500" aria-hidden="true"><defs><path id="yrc" d="M250,250 m-232,0 a232,232 0 1,1 464,0 a232,232 0 1,1 -464,0"/></defs><text><textPath href="#yrc" textLength="1440">RAVENSWOOD YTH · RAVENSWOOD YTH · RAVENSWOOD YTH ·</textPath></text></svg>
-      <img loading="lazy" src="img/y_lake.jpg" alt="Ravenswood teens hanging out by the lake at Teen Camp">
+      <img loading="lazy" src="img/yt_5012.jpg" alt="Ravenswood teens smiling with cotton candy">
       <div class="ymark"><img loading="lazy" src="img/youth_white.svg" alt="Ravenswood Youth logo" style="width:100%;display:block"></div>
     </div>
   </div></div>
@@ -2524,7 +2557,7 @@ ul.deacons li:nth-child(2){border-top-color:var(--gunmetal)}ul.deacons li:nth-ch
         <p>Our foundation is Christ and the gospel, with a strong emphasis on small groups. Together we go into the community to share the gospel with those who are seeking.</p>
         <div class="sched mt"><div><span>When</span><span>Sunday evenings, 5:00 to 6:15 PM</span></div><div><span>Where</span><span>Educational Building</span></div><div><span>Who</span><span>6th through 12th grade</span></div></div>
       </div>
-      <img loading="lazy" class="photo r34 bw angle-l" src="img/y_table.jpg" alt="Two Ravenswood teens on a swing at Teen Camp" style="aspect-ratio:4/5;max-height:560px">
+      <img loading="lazy" class="photo r34 bw angle-l" src="img/yt_3682.jpg" alt="Ravenswood teens around a table under the Ravenswood logo wall" style="aspect-ratio:4/5;max-height:560px">
     </div>
   </section>
   <section class="redbg">
@@ -2547,12 +2580,16 @@ ul.deacons li:nth-child(2){border-top-color:var(--gunmetal)}ul.deacons li:nth-ch
         <div class="ycard mt-dark"><b>Christmas Party</b><span>Celebrating the season together.</span></div>
         <div class="ycard mt-red span3"><b>Easter Outreach</b><span>Sharing the gospel in our community.</span></div>
       </div>
-      
+      <div class="grid3 mt2">
+        <img loading="lazy" class="photo r43 bw" src="img/yt_8148.jpg" alt="Ravenswood teens and leaders on an ice skating outing">
+        <img loading="lazy" class="photo r43 bw" src="img/yt_1138.jpg" alt="Teen girls smiling together at a youth gathering">
+        <img loading="lazy" class="photo r43 bw" src="img/yt_6434.jpg" alt="A teen giving a thumbs up outside with friends">
+      </div>
     </div>
   </section>
   <section class="darkbg">
     <div class="wrap grid2">
-      <img loading="lazy" class="photo r43 bw angle-l" src="img/ph_youth_1.jpg" alt="Ravenswood teens listening together in the youth room">
+      <img loading="lazy" class="photo r43 bw angle-l" src="img/yt_8156.jpg" alt="A big group photo of Ravenswood teens and leaders">
       <img loading="lazy" class="photo r43 bw angle-r" src="img/ph_youth_2.jpg" alt="Ravenswood teens together at Teen Camp">
     </div>
   </section>
@@ -2573,7 +2610,7 @@ ul.deacons li:nth-child(2){border-top-color:var(--gunmetal)}ul.deacons li:nth-ch
         <p>The purpose of Awana is to reach boys and girls with the gospel of Jesus Christ and to train them to serve Him, through Bible memory, Bible lessons, games, achievements and fellowship.</p>
         <div class="sched mt"><div><span>When</span><span>Sunday nights, 5:00 to 6:30 PM, September through May</span></div><div><span>Where</span><span>Educational Building</span></div><div><span>Finale</span><span>Annual Awana Awards Night each May</span></div></div>
       </div>
-      <img loading="lazy" class="photo r43 bw angle-l" src="img/k_lego.jpg" alt="Kids building together with a leader at church">
+      <img loading="lazy" class="photo r43 bw angle-l" src="img/aw_6530.jpg" alt="An Awana leader giving awards to two boys in Awana vests on stage at Awards Night">
     </div>
   </section>
   <section class="softbg">
@@ -2585,7 +2622,7 @@ ul.deacons li:nth-child(2){border-top-color:var(--gunmetal)}ul.deacons li:nth-ch
         <div class="club c-spark"><h3>Sparks</h3><div class="age">K5 through 2nd grade</div><ul><li>Must be 5 by August 31</li><li>Club book $15</li><li>New vest $20</li></ul></div>
         <div class="club c-tt"><h3>Truth &amp; Training</h3><div class="age">3rd through 6th grade</div><ul><li>Club book $15</li><li>New shirt $20</li></ul></div>
       </div>
-      <div class="awbox mt2"><h3 style="font-size:30px;color:#16336b">Club Dues</h3><p class="mt" style="margin-top:8px">Dues are $45 per child with a family cap of 3, so no family registering 4 or more children is charged more than $135 in dues.</p></div>
+      <div class="awduo mt2"><img loading="lazy" class="photo r43 bw" src="img/aw_6497.jpg" alt="A little girl smiling in her chair at Awana"><div class="awbox"><h3 style="font-size:30px;color:#16336b">Club Dues</h3><p class="mt" style="margin-top:8px">Dues are $45 per child with a family cap of 3, so no family registering 4 or more children is charged more than $135 in dues.</p></div></div>
     </div>
   </section>
   <section class="awjoin">
@@ -2641,9 +2678,9 @@ ul.deacons li:nth-child(2){border-top-color:var(--gunmetal)}ul.deacons li:nth-ch
     <div class="wrap">
       <div class="tf-center"><div class="tf-eyebrow">What to Expect</div><h2 style="font-size:clamp(40px,4.8vw,64px)">Every Night at Ravenswood VBS</h2><p>Each summer, kids spend an exciting week at Ravenswood discovering who God is and how much He loves them. We worship together in the sanctuary, dig into the Bible story, make crafts in our classrooms and head outside for games.</p></div>
       <div class="tf-night">
-        <figure><img loading="lazy" src="img/vbs26_1.jpg" alt="Kids and volunteers doing worship song motions together in the sanctuary at VBS"><b>Worship and Music</b><p>Songs and worship that help kids connect with God and each other.</p></figure>
+        <figure><img loading="lazy" src="img/v26_1264.jpg" alt="Kids worshiping with their hands up in the sanctuary at VBS"><b>Worship and Music</b><p>Songs and worship that help kids connect with God and each other.</p></figure>
         <figure><img loading="lazy" src="img/vbs26_4.jpg" alt="A volunteer telling a Bible story to kids at VBS"><b>Bible Stories</b><p>Engaging lessons that bring the Bible to life and point kids to Jesus.</p></figure>
-        <figure><img loading="lazy" src="img/vbs26_3.jpg" alt="Kids decorating crafts around a table with volunteers at VBS"><b>Crafts</b><p>Hands-on projects that reinforce each night's lesson.</p></figure>
+        <figure><img loading="lazy" src="img/v26_0827.jpg" alt="Kids making crafts at tables under a stained glass cross mural at VBS"><b>Crafts</b><p>Hands-on projects that reinforce each night's lesson.</p></figure>
         <figure><img loading="lazy" src="img/vbs26_2.jpg" alt="Kids racing past cones in an outdoor relay game at VBS"><b>Games</b><p>Energetic games that teach teamwork and God's love.</p></figure>
       </div>
       <div class="tf-facts">
@@ -2651,6 +2688,20 @@ ul.deacons li:nth-child(2){border-top-color:var(--gunmetal)}ul.deacons li:nth-ch
         <div class="tf-fact"><span>Time</span><b>6 to 8 PM each evening</b></div>
         <div class="tf-fact"><span>Ages</span><b>3 to 12, entering PreK through 7th grade</b></div>
         <a class="tf-fact" href="https://www.google.com/maps/dir/?api=1&amp;destination=4455+N+Seeley+Ave+Chicago+IL+60625" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><span>Where</span><b>Ravenswood Baptist Church, 4455 N. Seeley Ave.</b></a>
+      </div>
+    </div>
+  </section>
+  <section class="tf-sec tf-green tf-photos" id="vbs-photos">
+    <div class="wrap">
+      <div class="tf-center"><div class="tf-eyebrow">Illumination Station · July 27 to 30, 2026</div><h2 style="font-size:clamp(40px,4.8vw,64px)">VBS 2026 in Pictures</h2><p>A look back at last summer's VBS. Thank you to every volunteer who made it happen.</p></div>
+      <div class="tf-banners">
+        <img loading="lazy" src="img/v26_1256.jpg" alt="A packed room of kids with their hands up in front of the colorful VBS stage">
+        <img loading="lazy" src="img/v26_1718.jpg" alt="Kids seated in front of the big JESUS stage set at VBS 2026">
+      </div>
+      <div class="tf-masonry">
+        <div class="tf-mcol"><img loading="lazy" src="img/v26_8922.jpg" alt="Kids working at a craft table at VBS"><img loading="lazy" src="img/v26_1249.jpg" alt="Kids worshiping with leaders in costume at VBS"><img loading="lazy" src="img/v26_0839.jpg" alt="The colorful VBS stage set with giant sunglasses"></div>
+        <div class="tf-mcol"><img loading="lazy" src="img/v26_6789.jpg" alt="A VBS leader smiling with a small boy"><img loading="lazy" src="img/v26_8928.jpg" alt="A boy concentrating on his craft at VBS"><img loading="lazy" src="img/vbs26_1.jpg" alt="Kids and volunteers doing worship song motions together in the sanctuary at VBS"></div>
+        <div class="tf-mcol"><img loading="lazy" src="img/v26_8936.jpg" alt="Small kids outside during VBS"><img loading="lazy" src="img/vbs26_3.jpg" alt="Kids decorating crafts around a table with volunteers at VBS"></div>
       </div>
     </div>
   </section>
@@ -3044,10 +3095,10 @@ ul.deacons li:nth-child(2){border-top-color:var(--gunmetal)}ul.deacons li:nth-ch
       <div class="grid3 mt2">
         <img loading="lazy" class="photo r43 bw" style="min-height:0" src="img/y_lake.jpg" alt="Ravenswood teens hanging out by the lake at Teen Camp">
         <img loading="lazy" class="photo r43 bw" style="min-height:0;object-position:center 30%" src="img/y_table.jpg" alt="A Ravenswood teen smiling on a porch swing at Teen Camp">
-        <img loading="lazy" class="photo r43 bw" style="min-height:0" src="img/vbs26_1.jpg" alt="Kids and volunteers doing worship song motions together in the sanctuary at Vacation Bible School">
+        <img loading="lazy" class="photo r43 bw" style="min-height:0" src="img/v26_1256.jpg" alt="A packed room of kids with their hands up at Vacation Bible School">
         <img loading="lazy" class="photo r43 bw" style="min-height:0" src="img/vbs26_2.jpg" alt="Kids racing past cones in an outdoor relay game at Vacation Bible School">
-        <img loading="lazy" class="photo r43 bw" style="min-height:0" src="img/vbs26_3.jpg" alt="Kids decorating crafts around a table with volunteers at Vacation Bible School">
-        <img loading="lazy" class="photo r43 bw" style="min-height:0" src="img/vbs26_4.jpg" alt="A volunteer telling a Bible story to kids in front of the Illumination Station stage at Vacation Bible School">
+        <img loading="lazy" class="photo r43 bw" style="min-height:0" src="img/v26_0827.jpg" alt="Kids making crafts under a stained glass cross mural at Vacation Bible School">
+        <img loading="lazy" class="photo r43 bw" style="min-height:0" src="img/v26_1718.jpg" alt="Kids seated in front of the big JESUS stage set at Vacation Bible School">
       </div>
     </div>
   </section>
@@ -3071,6 +3122,7 @@ ul.deacons li:nth-child(2){border-top-color:var(--gunmetal)}ul.deacons li:nth-ch
       <h1 class="eh1">Easter <span class="escript">at</span> Ravenswood</h1>
       <p class="lead mt" style="max-width:640px;margin-left:auto;margin-right:auto">He is risen! Join us as we remember the cross and celebrate the empty tomb. Bring your family and friends.</p>
       <div class="btnrow" style="justify-content:center"><a class="btn btn-eplum" href="#visit" onclick="go('visit');return false"><span>Plan Your Easter Visit</span></a><a class="btn btn-eout" href="https://www.youtube.com/@ravenswoodbaptistchurch/live" target="_blank" rel="noopener"><span>Watch Live</span></a></div>
+      <div class="ephotos"><img src="img/e26_5257.jpg" alt="A packed auditorium standing to worship on Easter Sunday at Ravenswood"><img loading="lazy" src="img/e26_5313.jpg" alt="Smiling worshipers singing together on Easter Sunday"><img loading="lazy" src="img/e26_5437.jpg" alt="Worshipers with hands raised on Easter Sunday"></div>
     </div>
   </div>
   <section class="flat ecream">
@@ -3091,12 +3143,12 @@ ul.deacons li:nth-child(2){border-top-color:var(--gunmetal)}ul.deacons li:nth-ch
         <p class="lead mt">Easter morning starts early at Ravenswood with a sunrise service at Montrose Beach, celebrating the risen Savior as the sun comes up over Lake Michigan.</p>
         <div class="sched mt"><div><span>Where</span><span>Montrose Beach</span></div><div><span>Time</span><span>7 AM, with coffee and donuts</span></div></div>
       </div>
-      <img loading="lazy" class="photo r43 bw angle-l" src="img/skyline.jpg" alt="The Chicago skyline along Lake Michigan">
+      <img loading="lazy" class="photo r43 angle-l" src="img/mb_6794.jpg" alt="A worship leader with a guitar at the Montrose Beach sunrise service, with the Chicago skyline across Lake Michigan">
     </div>
   </section>
   <section class="flat ecream">
     <div class="wrap grid2">
-      <img loading="lazy" class="photo r43 bw angle-r" src="img/p_kids2.jpg" alt="Kids at Ravenswood Baptist Church">
+      <img loading="lazy" class="photo r43 angle-r" src="img/p_kids2.jpg" alt="Kids at Ravenswood Baptist Church">
       <div>
         <div class="eyebrow">For Families</div>
         <h2 class="eh2">Kids' Easter <span class="escript">Egg</span> Hunt</h2>
@@ -3124,6 +3176,7 @@ ul.deacons li:nth-child(2){border-top-color:var(--gunmetal)}ul.deacons li:nth-ch
       <div class="eyebrow">Last Year</div>
       <h2 class="eh2">Easter 2026 <span class="escript">at</span> Ravenswood</h2>
       <p class="lead mt" style="max-width:640px;margin-left:auto;margin-right:auto">Our first sunrise service by the lake, a full house on Easter morning and a lot of eggs. See how Easter 2026 went.</p>
+      <img loading="lazy" class="photo ewide mt2" src="img/e26_5370.jpg" alt="A packed auditorium on Easter Sunday 2026, seen from the back of the room">
       <div class="btnrow" style="justify-content:center"><a class="btn btn-eplum" href="#easter2026" onclick="go('easter2026');return false"><span>Read the Easter 2026 Recap</span></a></div>
     </div>
   </section>
@@ -3145,6 +3198,7 @@ ul.deacons li:nth-child(2){border-top-color:var(--gunmetal)}ul.deacons li:nth-ch
       <div class="nw-rule"><span>Volume 3</span><span>Ravenswood Baptist Church, Chicago</span><span>Easter 2026 Edition</span></div>
       <h1 class="nw-head">Jewish Man Raised<br>from the Dead!</h1>
       <p class="nw-dek">Looking back on Easter 2026 at Ravenswood</p>
+      <figure class="nw-fig wide nw-lead"><img src="img/e26_5257.jpg" alt="A packed auditorium standing to worship on Easter Sunday 2026, with the worship team on stage"><figcaption>Standing room only. A full house worships the risen Savior on Easter Sunday morning.</figcaption></figure>
       <div class="nw-cols">
         <div>
           <div class="nw-text">
@@ -3172,7 +3226,7 @@ ul.deacons li:nth-child(2){border-top-color:var(--gunmetal)}ul.deacons li:nth-ch
       <div class="nw-kicker">A First for Ravenswood</div>
       <div class="nw-h2">Sunrise by the Lake</div>
       <div class="nw-cols rev">
-        <figure class="nw-fig"><img loading="lazy" src="img/e26_sunrise.jpg" alt="Worshipers in lawn chairs at the Easter sunrise service by Lake Michigan, with the Chicago skyline across the water"><figcaption>Worshipers gather by Lake Michigan for the first Easter sunrise service, with the Chicago skyline across the water.</figcaption></figure>
+        <figure class="nw-fig"><img loading="lazy" src="img/mb_6784.jpg" alt="A worship leader with a guitar leading the Easter sunrise service at Montrose Beach, with the Chicago skyline across Lake Michigan"><figcaption>Worship at Montrose Beach for our first Easter sunrise service, with the Chicago skyline across the water.</figcaption></figure>
         <div class="nw-text" style="columns:1"><p class="nw-drop">Easter 2026 brought our first ever sunrise service. More than 80 people bundled up against a cold morning in the 30s and gathered at Montrose Beach to celebrate the risen Savior as the sun came up over Lake Michigan. It was so meaningful that we're doing it again in 2027.</p></div>
       </div>
     </div>
@@ -3182,6 +3236,7 @@ ul.deacons li:nth-child(2){border-top-color:var(--gunmetal)}ul.deacons li:nth-ch
       <div class="nw-box">
         <div class="nw-kicker">Easter Sunday</div>
         <div class="nw-h2">A Full House and Good News</div>
+        <figure class="nw-fig wide nw-inbox"><img loading="lazy" src="img/e26_5370.jpg" alt="A packed auditorium on Easter Sunday 2026, seen from the back of the room"><figcaption>The view from the back row on Easter morning.</figcaption></figure>
         <div class="nw-briefs">
           <p>Our building was full on Easter morning, with many first-time guests who came at the invitation of friends, neighbors and family.</p>
           <p>The message kept it simple: the gospel of Jesus, who died and rose again. We rejoice that people trusted Christ and went home with a Bible of their own.</p>
@@ -3194,10 +3249,15 @@ ul.deacons li:nth-child(2){border-top-color:var(--gunmetal)}ul.deacons li:nth-ch
   <section class="nw-paper">
     <div class="wrap">
       <div class="nw-sec"><div class="nw-h2">Easter 2026 in Pictures</div></div>
-      <div class="nw-grid">
-        <figure class="nw-fig"><img loading="lazy" src="img/e26_1.jpg" alt="A worship leader playing guitar at the Easter sunrise service by the lake"><figcaption>Worship at sunrise by the lake.</figcaption></figure>
-        <figure class="nw-fig"><img loading="lazy" src="img/e26_2.jpg" alt="A worship team leading a packed sanctuary on Easter Sunday"><figcaption>A packed sanctuary on Easter Sunday.</figcaption></figure>
-        <figure class="nw-fig"><img loading="lazy" src="img/e26_3.jpg" alt="Easter Sunday preaching from the pulpit"><figcaption>The Easter message: Jewish Man Raised from the Dead!</figcaption></figure>
+      <div class="nw-grid g3">
+        <figure class="nw-fig"><img loading="lazy" src="img/mb_6793.jpg" alt="A worship leader with a guitar at the Easter sunrise service, with the Chicago skyline over Lake Michigan"><figcaption>Sunrise worship by the lake.</figcaption></figure>
+        <figure class="nw-fig"><img loading="lazy" src="img/mb_6786.jpg" alt="A crowd gathered on the lakefront lawn at Montrose Beach for the Easter sunrise service"><figcaption>Bundled up on the lakefront at Montrose Beach.</figcaption></figure>
+        <figure class="nw-fig"><img loading="lazy" src="img/mb_6779.jpg" alt="People gathering on the park lawn by a tent before the Easter sunrise service"><figcaption>Gathering on the lawn before the sunrise service.</figcaption></figure>
+        <figure class="nw-fig"><img loading="lazy" src="img/e26_5310.jpg" alt="The congregation standing and singing on Easter Sunday"><figcaption>Standing to sing on Easter Sunday.</figcaption></figure>
+        <figure class="nw-fig"><img loading="lazy" src="img/e26_5437.jpg" alt="The congregation worshiping with hands raised on Easter Sunday"><figcaption>Hands raised in praise.</figcaption></figure>
+        <figure class="nw-fig"><img loading="lazy" src="img/e26_5287.jpg" alt="A woman laughing and worshiping during the Easter Sunday service" style="object-position:center 22%"><figcaption>Joy on Easter morning.</figcaption></figure>
+        <figure class="nw-fig"><img loading="lazy" src="img/e26_5377.jpg" alt="The pastor preaching from the pulpit on Easter Sunday" style="object-position:center 72%"><figcaption>The Easter message: Jewish Man Raised from the Dead!</figcaption></figure>
+        <figure class="nw-fig"><img loading="lazy" src="img/e26_5384.jpg" alt="The congregation seated and listening to the Easter message"><figcaption>Listening to the good news.</figcaption></figure>
         <figure class="nw-fig"><img loading="lazy" src="img/e26_4.jpg" alt="Friends posing at the He is Risen photo booth on Easter Sunday"><figcaption>Friends at the He is Risen photo booth.</figcaption></figure>
       </div>
       <div class="needbox"><b>#12 &nbsp;NEED FROM RAVENSWOOD:</b> We added Easter photos from your Drive. If you have a wide shot of the egg hunt you'd like here, send it over.</div>
@@ -3208,7 +3268,7 @@ ul.deacons li:nth-child(2){border-top-color:var(--gunmetal)}ul.deacons li:nth-ch
 <!-- ==================== MARRIAGE WEEKEND ==================== -->
 <div class="page" id="marriage" data-title="Marriage and Family Weekend | Ravenswood Baptist Church">
   <div class="recapbar"><b>Recap</b><span>A look back at what happened. Watch for the next one on our Events page.</span></div>
-  <div class="pagehead"><div class="bg" data-bg="w_hands"></div><div class="tint"></div>
+  <div class="pagehead"><div class="bg" data-bg="mw_09315"></div><div class="tint"></div>
     <div class="wrap"><div class="eyebrow">Every Fall at Ravenswood</div><h1><span class="ol w">Marriage &amp;</span><br>Family Weekend</h1><p>Invest in your marriage and your home, together with other couples from our church family.</p></div></div>
   <section class="flat">
     <div class="wrap grid2">
@@ -3236,14 +3296,19 @@ ul.deacons li:nth-child(2){border-top-color:var(--gunmetal)}ul.deacons li:nth-ch
         <div class="btnrow"><a class="btn btn-red" href="https://www.youtube.com/watch?v=gl8tnnZ4pk8" target="_blank" rel="noopener"><span>Watch on YouTube</span></a></div>
         <div class="needbox"><b>#14 &nbsp;NEED FROM RAVENSWOOD:</b> Do you have any photos from this year's weekend (Friday night sessions or lunch at Maggiano's) we can add to the recap?</div>
       </div>
-      <img loading="lazy" class="photo r43 bw angle-l" src="img/mw26_sunday.jpg" alt="The worship team leading Sunday worship on November 1, the last day of the 2026 Marriage and Family Weekend">
+      <img loading="lazy" class="photo r43 bw angle-l" src="img/mw_09348.jpg" alt="Kids and families lined up on stage singing on Sunday, November 1, the last day of the 2026 Marriage and Family Weekend">
     </div>
   </section>
   <section class="flat mwlearnsec">
     <div class="wrap">
+      <div class="mwlearnhead">
+      <div>
       <div class="eyebrow">What We Learned</div>
       <h2 style="font-size:clamp(40px,4.6vw,62px)">Put Off, Put On</h2>
       <p class="lead mt" style="max-width:860px">Kurt Skelly opened Friday night with a reminder that marriage is the best place to practice your Christianity, and that the best gift you can give your spouse is your own walk with God. Then he walked couples through Ephesians 4:25-32, where Paul gives five behaviors that keep any relationship unified. Each one follows the same pattern: something to put off, something to put on, and a reason why. And the order matters. It starts on the inside, with honesty, and works its way out.</p>
+      </div>
+      <img loading="lazy" class="photo r43 bw" src="img/mw_6447.jpg" alt="Kurt Skelly preaching at the pulpit during the 2026 Marriage and Family Weekend">
+      </div>
       <div class="mwlearn mt">
         <div class="mwl"><span class="n">01</span><b>Be Honest</b><p class="off"><span>Put off</span> lying</p><p class="on"><span>Put on</span> truth</p><p>Trust is the most important word in any relationship. If I can&rsquo;t trust you, &ldquo;I love you&rdquo; means nothing. Keep your word, keep the door open with your money, your feelings and even your phone, and set aside time each day to talk about more than the weather. If trust has been broken, rebuild it by over-communicating, inviting accountability and giving it time.</p><q>Wherefore putting away lying, speak every man truth with his neighbour: for we are members one of another.<cite>Ephesians 4:25</cite></q></div>
         <div class="mwl"><span class="n">02</span><b>Fight Fair</b><p class="off"><span>Put off</span> sinful anger</p><p class="on"><span>Put on</span> righteous resolution</p><p>Marriage is the union of two sinners, so you will get on each other&rsquo;s nerves. Know your triggers, watch for yelling or the silent treatment, and don&rsquo;t let anger stack up. Pause and pray before reacting, use &ldquo;I&rdquo; statements, and deal with your own anger before bed, even if the problem isn&rsquo;t solved yet. If anger feels out of control, get help from a pastor or counselor.</p><q>Be ye angry, and sin not: let not the sun go down upon your wrath: neither give place to the devil.<cite>Ephesians 4:26-27</cite></q></div>
@@ -3258,6 +3323,21 @@ ul.deacons li:nth-child(2){border-top-color:var(--gunmetal)}ul.deacons li:nth-ch
         <blockquote>&ldquo;Forgiveness is I refuse to hold the past as evidence against you.&rdquo;<cite>Kurt Skelly</cite></blockquote>
       </div>
       <div class="mwtry mt"><b>Try This at Home</b><p>Think of one specific thing you love about your spouse. Not &ldquo;they're nice,&rdquo; something specific. Now tell them. It costs nothing, and it's one of the simplest ways to speak grace in your home.</p></div>
+    </div>
+  </section>
+  <section class="softbg">
+    <div class="wrap">
+      <div class="eyebrow">Sunday, November 1</div>
+      <h2 style="font-size:clamp(40px,4.6vw,62px)">The Weekend in Pictures</h2>
+      <div class="mwgal mt2">
+        <img loading="lazy" class="photo bw" src="img/mw_09315.jpg" alt="A full auditorium standing to worship on Sunday of the 2026 Marriage and Family Weekend">
+        <img loading="lazy" class="photo bw" src="img/mw_6450.jpg" alt="Kurt Skelly preaching and gesturing from the pulpit">
+        <img loading="lazy" class="photo bw" src="img/mw_09331.jpg" alt="Men standing in worship during the Sunday service">
+        <img loading="lazy" class="photo bw" src="img/mw_09271.jpg" alt="Two women hugging in the aisle after the service">
+        <img loading="lazy" class="photo bw" src="img/mw_09446.jpg" alt="An older man holding a smiling little girl after the service">
+        <img loading="lazy" class="photo bw" src="img/mw_09279.jpg" alt="Women greeting each other after the Sunday service">
+        <img loading="lazy" class="photo bw" src="img/mw_09339.jpg" alt="The congregation standing during Sunday worship">
+      </div>
     </div>
   </section>
   <section class="flat">
