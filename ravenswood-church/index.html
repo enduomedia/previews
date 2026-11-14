@@ -2177,7 +2177,7 @@ html.rbc-lock,html.rbc-lock body{overflow:hidden;}
 .rp-cards{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px;}
 .rp-card{background:#fff;padding:14px;box-shadow:0 2px 0 var(--line);display:flex;flex-direction:column;gap:12px;}
 .rp-card .lbl{font-family:'RBCHead',sans-serif;font-weight:600;letter-spacing:.12em;text-transform:uppercase;font-size:14px;color:var(--crimson);}
-.rp-card canvas,.rpv-stage canvas{display:block;width:100%;height:auto;aspect-ratio:1/1;background:var(--gunmetal);cursor:zoom-in;}
+.rp-card canvas,.rpv-stage canvas{display:block;width:100%;height:auto;aspect-ratio:1/1;background:var(--gunmetal);cursor:zoom-in;box-shadow:0 0 0 1px var(--line);}
 .rp-acts{display:flex;gap:8px;flex-wrap:wrap;}
 .rp-acts button{appearance:none;flex:1 1 140px;min-height:50px;border:0;background:var(--gunmetal);color:#fff;font-family:'RBCHead',sans-serif;font-weight:700;font-size:17px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:0 14px;}
 .rp-acts button.red{background:var(--crimson);}
@@ -4730,7 +4730,7 @@ arm();var o=new MutationObserver(function(){arm()});o.observe(document.body,{att
     <div class="rbcbox-hd"><h2 id="rpv-t">Share a Verse</h2><button type="button" class="rbcbox-x" data-rpvclose aria-label="Close verse graphic">&times;</button></div>
     <div class="rbcbox-bd">
       <div class="rpv-stage"><canvas id="rpv-c" width="1080" height="1080" role="img" aria-label="Verse graphic"></canvas></div>
-      <div class="rpv-sw" role="group" aria-label="Graphic color"><span>Color</span><button type="button" data-th="dark" style="background:#2B2E33" aria-label="Gunmetal" aria-pressed="true"></button><button type="button" data-th="red" style="background:#D32047" aria-label="Red" aria-pressed="false"></button><button type="button" data-th="teal" style="background:#23C5C9" aria-label="Teal" aria-pressed="false"></button><button type="button" data-th="cream" style="background:#F6F1E7" aria-label="Cream" aria-pressed="false"></button></div>
+      <div class="rpv-sw" role="group" aria-label="Graphic style"></div>
       <div class="rp-acts"><button type="button" class="red" data-rpv="dl">Download Image</button><button type="button" data-rpv="share" hidden>Share</button></div>
     </div>
   </div>
@@ -4887,13 +4887,13 @@ if(f&&!rm&&'IntersectionObserver' in window&&/^\d+$/.test(f.textContent)){var to
 /* Daily Bible Reading (#readingplan). Hidden page, linked from Next Steps.
    Plan: data/plan.json (300 days from the church's 2026 printed plan; MONTH N of the plan = month N of the year, days 1 to 25, days 26+ are catch-up days).
    Scripture text: data/bible/<book>.json, public-domain 1769 text.
-   Key verses: data/keyverses.json lists references only, in priority order; the first listed verse inside the day's passages wins,
-   otherwise the first verse of the Gospel reading (New Testament) or the Psalm/wisdom reading (Old Testament).
+   Key verses: data/keyverses.json is a hand-picked table, one New Testament ("nt") and one Old Testament ("ot") reference per plan day,
+   keyed "month-day", e.g. {"11-14":{"nt":"1 John 3:1","ot":"Ezekiel 36:26"}}. A reference can cover two verses ("Psalm 23:1-2").
    Links: #readingplan (today), #readingplan/11-13 (month-day), #readingplan/year (full year). Reading progress lives only in this browser (localStorage). */
 (function(){
   var page=document.getElementById('readingplan');if(!page)return;
   var body=document.getElementById('rp-body'),hDate=document.getElementById('rp-date'),hSub=document.getElementById('rp-sub'),daysEl=document.getElementById('rp-days');
-  var PLAN=null,KV=null,BOOKS={},SLUG={},loading=null,cur=null;
+  var PLAN=null,KV=null,BOOKS={},SLUG={},loading=null,cur=null,curSt=0;
   var POEM={'Job':1,'Psalms':1,'Proverbs':1,'Ecclesiastes':1,"Solomon's Song":1,'Lamentations':1};
   var MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
   var DL='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 20h14"/></svg>';
@@ -4914,7 +4914,7 @@ if(f&&!rm&&'IntersectionObserver' in window&&/^\d+$/.test(f.textContent)){var to
   function isRead(m,d){return !!readAll()[rkey(m,d)];}
   function setRead(m,d,on){try{var a=readAll(),k=rkey(m,d);if(on)a[k]=1;else delete a[k];localStorage.setItem('rbc_rp_read',JSON.stringify(a));}catch(e){}}
   function load(){if(loading)return loading;
-    loading=Promise.all([fetch('data/plan.json').then(function(r){if(!r.ok)throw 0;return r.json();}),fetch('data/keyverses.json').then(function(r){if(!r.ok)throw 0;return r.json();}).catch(function(){return {nt:[],ot:[]};})])
+    loading=Promise.all([fetch('data/plan.json').then(function(r){if(!r.ok)throw 0;return r.json();}),fetch('data/keyverses.json').then(function(r){if(!r.ok)throw 0;return r.json();}).catch(function(){return {};})])
       .then(function(a){PLAN=a[0];KV=a[1];PLAN.days.forEach(function(d){d.readings.forEach(function(r){SLUG[r.book]=r.slug;});});});
     loading.catch(function(){loading=null;});return loading;}
   function book(slug){if(!BOOKS[slug])BOOKS[slug]=fetch('data/bible/'+slug+'.json').then(function(r){if(!r.ok)throw 0;return r.json();});
@@ -4950,9 +4950,10 @@ if(f&&!rm&&'IntersectionObserver' in window&&/^\d+$/.test(f.textContent)){var to
     body.innerHTML=h;
     R.forEach(function(r,i){var el=body.querySelector('.rp-text[data-i="'+i+'"]');
       book(r.slug).then(function(B){el.innerHTML=passageHTML(r,B);}).catch(function(){el.innerHTML='<p class="rp-err">We couldn\'t load this passage right now. Open your Bible to '+esc(refText(r))+' and read along.</p>';});});
-    [['nt',[0,1],0],['ot',[2,3],2]].forEach(function(g){var kv=pick(R,g[0],g[1],g[2]),c=body.querySelector('.rp-card[data-g="'+g[0]+'"]');
-      book(SLUG[kv.book]).then(function(B){var t=(B[kv.c-1]||[])[kv.v-1];if(!t)throw 0;kv.t=t;c.querySelector('.ref').textContent=vref(kv);c._v=kv;draw(c.querySelector('canvas'),kv,g[0]==='nt'?'red':'dark');}).catch(function(){c.hidden=true;});});}
-  function card(g,label){return '<div class="rp-card" data-g="'+g+'"><div class="lbl">'+label+' &middot; <span class="ref"></span></div><canvas width="1080" height="1080" role="img" aria-label="'+label+' verse graphic" title="Tap to change the color"></canvas><div class="rp-acts"><button type="button" class="red" data-act="dl">'+DL+'<span>Download Image</span></button><button type="button" data-act="share" hidden>'+SH+'<span>Share</span></button></div></div>';}
+    curSt=((m-1)*25+d-1)%5;
+    [['nt',[0,1],0],['ot',[2,3],2]].forEach(function(g){var kv=pick(m,d,R,g[0],g[1],g[2]),c=body.querySelector('.rp-card[data-g="'+g[0]+'"]');
+      book(SLUG[kv.book]).then(function(B){var ch=B[kv.c-1]||[],t=[];for(var x=kv.v;x<=(kv.v2||kv.v);x++){if(!ch[x-1])throw 0;t.push(ch[x-1]);}kv.t=t.join(' ');c.querySelector('.ref').textContent=vref(kv);c._v=kv;draw(c.querySelector('canvas'),kv,g[0],curSt);}).catch(function(){c.hidden=true;});});}
+  function card(g,label){return '<div class="rp-card" data-g="'+g+'"><div class="lbl">'+label+' &middot; <span class="ref"></span></div><canvas width="1080" height="1080" role="img" aria-label="'+label+' verse graphic" title="Tap to see it bigger and try other styles"></canvas><div class="rp-acts"><button type="button" class="red" data-act="dl">'+DL+'<span>Download Image</span></button><button type="button" data-act="share" hidden>'+SH+'<span>Share</span></button></div></div>';}
   function foot(){return '<div class="rp-foot"><a class="btn btn-dark" href="#readingplan/year" onclick="go(\'readingplan/year\');return false"><span>See the Full Year</span></a><a class="btn btn-outd" href="files/ravenswood-2026-bible-reading-plan.pdf" data-rbcpdf><span>Printable Plan</span></a></div>';}
   function passageHTML(r,B){var h='',multi=r.chapterEnd>r.chapterStart;
     for(var c=r.chapterStart;c<=r.chapterEnd;c++){var V=B[c-1]||[],a=(c===r.chapterStart&&r.verseStart)?r.verseStart:1,z=(c===r.chapterEnd&&r.verseEnd)?r.verseEnd:V.length;
@@ -4961,10 +4962,14 @@ if(f&&!rm&&'IntersectionObserver' in window&&/^\d+$/.test(f.textContent)){var to
       h+='</p>';}
     return h;}
   function inPass(r,b,c,v){if(r.book!==b)return false;var s=r.chapterStart*1000+(r.verseStart||1),e=r.chapterEnd*1000+(r.verseEnd||999),x=c*1000+v;return x>=s&&x<=e;}
-  function pick(R,g,cols,fb){var L=(KV&&KV[g])||[];
-    for(var i=0;i<L.length;i++){var p=/^(.+) (\d+):(\d+)$/.exec(L[i]);if(!p)continue;for(var j=0;j<cols.length;j++)if(inPass(R[cols[j]],p[1],+p[2],+p[3]))return {book:p[1],c:+p[2],v:+p[3]};}
+  /* hand-picked verse for this day and testament; every verse of the reference must sit inside that day's readings */
+  var ALIAS={'Psalm':'Psalms','Song of Songs':"Solomon's Song"};
+  function pick(m,d,R,g,cols,fb){var e=KV&&KV[m+'-'+d],p=e&&/^(.+?) (\d+):(\d+)(?:-(\d+))?$/.exec(e[g]||'');
+    if(p){var b=ALIAS[p[1]]||p[1],c=+p[2],v=+p[3],v2=+(p[4]||p[3]),ok=v2>=v;
+      for(var x=v;x<=v2&&ok;x++)ok=cols.some(function(j){return inPass(R[j],b,c,x);});
+      if(ok)return {book:b,c:c,v:v,v2:v2>v?v2:0};}
     var r=R[fb];return {book:r.book,c:r.chapterStart,v:r.verseStart||1};}
-  function vref(kv){return bookName(kv.book,1,1)+' '+kv.c+':'+kv.v;}
+  function vref(kv){return bookName(kv.book,1,1)+' '+kv.c+':'+kv.v+(kv.v2?'-'+kv.v2:'');}
   function catchUp(m,d,isToday){var h='<div class="rp-cu"><div class="eyebrow">Month '+m+', '+MONTHS[m-1]+'</div><h2>Catch-Up Day</h2><p>'+(isToday?'There\'s no new reading today. ':'')+'Days 26 to the end of the month are set aside to catch up. Pick up any day you missed, or go back and read a favorite passage again.</p>';
     h+='<h3>The Last Few Days</h3><div class="rp-qlinks">';for(var i=21;i<=25;i++)h+=qlink(m,i);h+='</div>';
     var miss=[];for(var j=1;j<=20;j++)if(!isRead(m,j))miss.push(j);
@@ -4984,54 +4989,116 @@ if(f&&!rm&&'IntersectionObserver' in window&&/^\d+$/.test(f.textContent)){var to
     var k=e.target.closest('[data-k]');if(k&&body.contains(k)){e.preventDefault();go('readingplan/'+k.getAttribute('data-k'));return;}
     var j=e.target.closest('[data-jump]');if(j){e.preventDefault();var p=document.getElementById('rp-p'+j.getAttribute('data-jump'));if(p){p.open=true;p.scrollIntoView({behavior:'smooth',block:'start'});}return;}
     var v=e.target.closest('.v');if(v){body.querySelectorAll('.v.sel').forEach(function(x){x.classList.remove('sel');});v.classList.add('sel');
-      var sup=v.querySelector('sup'),t=v.textContent.slice(sup?sup.textContent.length:0).trim();openV({book:v.getAttribute('data-b'),c:+v.getAttribute('data-c'),v:+v.getAttribute('data-v'),t:t},'dark',v);return;}
+      var sup=v.querySelector('sup'),t=v.textContent.slice(sup?sup.textContent.length:0).trim();var ti=v.closest('.rp-text'),vg=ti&&+ti.getAttribute('data-i')>=2?'ot':'nt';openV({book:v.getAttribute('data-b'),c:+v.getAttribute('data-c'),v:+v.getAttribute('data-v'),t:t},vg,curSt,v);return;}
     var cd=e.target.closest('.rp-card');if(cd&&cd._v){var a=e.target.closest('[data-act]');
       if(a){if(a.getAttribute('data-act')==='dl')save(cd.querySelector('canvas'),cd._v);else share(cd.querySelector('canvas'),cd._v);}
-      else if(e.target.tagName==='CANVAS')openV(cd._v,cd.getAttribute('data-g')==='nt'?'red':'dark',e.target);}});
-  /* ---------- verse graphic (1080 x 1080 canvas) ---------- */
-  var TH={dark:{bg:'#2B2E33',tx:'#F6F1E7',ref:'#23C5C9',bar:'#D32047',q:'rgba(35,197,201,.28)',crown:'#FFFFFF',ft:'rgba(246,241,231,.78)',s1:'#23C5C9',s2:'#D32047'},
-    red:{bg:'#D32047',tx:'#FFFFFF',ref:'#FFFFFF',bar:'#2B2E33',q:'rgba(255,255,255,.22)',crown:'#FFFFFF',ft:'rgba(255,255,255,.85)',s1:'#FFFFFF',s2:'#2B2E33'},
-    teal:{bg:'#23C5C9',tx:'#2B2E33',ref:'#2B2E33',bar:'#D32047',q:'rgba(255,255,255,.4)',crown:'#FFFFFF',ft:'rgba(43,46,51,.8)',s1:'#FFFFFF',s2:'#D32047'},
-    cream:{bg:'#F6F1E7',tx:'#2B2E33',ref:'#D32047',bar:'#23C5C9',q:'rgba(211,32,71,.16)',crown:'#D32047',ft:'rgba(43,46,51,.75)',s1:'#23C5C9',s2:'#D32047'}};
+      else if(e.target.tagName==='CANVAS')openV(cd._v,cd.getAttribute('data-g'),e.target._st||0,e.target);}});
+  /* ---------- verse graphic (1080 x 1080 canvas) ----------
+     Ten styles: five for the New Testament card, five for the Old Testament card.
+     Style for a plan day = (plan day index) % 5, so each day looks different from the day before. */
+  var C={red:'#D32047',gun:'#2B2E33',teal:'#23C5C9',cream:'#F6F1E7',white:'#FFFFFF'};
+  var HEAD='RBCHead, Impact, sans-serif',BODY='RBCBody, "Segoe UI", Arial, sans-serif';
+  var STY={nt:[{n:'Cream',sw:C.cream},{n:'Teal',sw:C.teal},{n:'Split',sw:'linear-gradient(#fff 0 66%,'+C.red+' 66% 100%)'},{n:'Charcoal',sw:C.gun},{n:'Framed',sw:'#fff;box-shadow:inset 0 0 0 5px #fff,inset 0 0 0 7px '+C.gun}],
+    ot:[{n:'Charcoal',sw:C.gun},{n:'Red',sw:C.red},{n:'Duotone',sw:'linear-gradient(135deg,'+C.teal+','+C.gun+')'},{n:'White',sw:'#fff'},{n:'Side Block',sw:'linear-gradient(90deg,'+C.gun+' 0 34%,'+C.cream+' 34% 100%)'}]};
   var crownP=null;function crown(){if(!crownP)crownP=new Promise(function(ok){var i=new Image();i.onload=function(){ok(i);};i.onerror=function(){ok(null);};i.src='img/crown_white.png';});return crownP;}
-  var fontP=null;function fonts(){if(!fontP){try{fontP=Promise.all([document.fonts.load('700 56px RBCHead'),document.fonts.load('600 26px RBCHead'),document.fonts.load('500 40px RBCBody')]).catch(function(){});}catch(e){fontP=Promise.resolve();}}return fontP;}
+  var fontP=null;function fonts(){if(!fontP){try{fontP=Promise.all(['700 56px RBCHead','600 26px RBCHead','500 40px RBCBody','600 40px RBCBody','italic 400 40px RBCBody'].map(function(f){return document.fonts.load(f);})).catch(function(){});}catch(e){fontP=Promise.resolve();}}return fontP;}
   function spaced(ctx,s,x,y,sp,align){var w=0,i;for(i=0;i<s.length;i++)w+=ctx.measureText(s[i]).width+(i<s.length-1?sp:0);
-    if(align==='right')x-=w;ctx.textAlign='left';for(i=0;i<s.length;i++){ctx.fillText(s[i],x,y);x+=ctx.measureText(s[i]).width+sp;}return w;}
+    if(align==='right')x-=w;else if(align==='center')x-=w/2;ctx.textAlign='left';for(i=0;i<s.length;i++){ctx.fillText(s[i],x,y);x+=ctx.measureText(s[i]).width+sp;}return w;}
+  function spacedW(ctx,s,sp){var w=0;for(var i=0;i<s.length;i++)w+=ctx.measureText(s[i]).width+(i<s.length-1?sp:0);return w;}
   function wrap(ctx,text,maxW){var words=text.split(' '),lines=[],line='';
     words.forEach(function(w){var t=line?line+' '+w:w;if(ctx.measureText(t).width>maxW&&line){lines.push(line);line=w;}else line=t;});if(line)lines.push(line);return lines;}
-  function draw(cv,kv,th){var T=TH[th]||TH.dark;cv._th=th;
-    return Promise.all([fonts(),crown()]).then(function(a){var cr=a[1],ctx=cv.getContext('2d'),W=1080,P=96;
-      ctx.clearRect(0,0,W,W);ctx.fillStyle=T.bg;ctx.fillRect(0,0,W,W);
-      /* slanted stripes, top right */
-      for(var i=0;i<5;i++){ctx.fillStyle=i%2?T.s2:T.s1;ctx.globalAlpha=i%2?.95:.9;var x=W-80-i*46;ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x+24,0);ctx.lineTo(x+24-70,150);ctx.lineTo(x-70,150);ctx.closePath();ctx.fill();}
-      ctx.globalAlpha=1;
-      if(cr){var o=document.createElement('canvas');o.width=cr.width;o.height=cr.height;var oc=o.getContext('2d');oc.drawImage(cr,0,0);oc.globalCompositeOperation='source-in';oc.fillStyle=T.crown;oc.fillRect(0,0,o.width,o.height);ctx.drawImage(o,P,P-6,100,70);}
-      ctx.fillStyle=T.q;ctx.font='700 360px RBCHead, Impact, sans-serif';ctx.textBaseline='alphabetic';ctx.textAlign='left';ctx.fillText('“',P-14,P+330);
-      /* verse text, sized to fit */
-      var maxW=W-P*2,top=250,bottom=860,refH=96,size=64,lines,lh;
-      for(;size>=24;size-=2){ctx.font='500 '+size+'px RBCBody, "Segoe UI", Arial, sans-serif';lines=wrap(ctx,kv.t,maxW);lh=Math.round(size*1.32);if(lines.length*lh+refH<=bottom-top)break;}
-      var blockH=lines.length*lh+refH,y=top+Math.max(0,(bottom-top-blockH)/2)+size;
-      ctx.fillStyle=T.tx;lines.forEach(function(l){ctx.fillText(l,P,y);y+=lh;});
-      y+=Math.round(size*.15);ctx.fillStyle=T.bar;ctx.fillRect(P,y-Math.round(size*.55)+20,90,8);
-      ctx.fillStyle=T.ref;ctx.font='700 54px RBCHead, Impact, sans-serif';spaced(ctx,vref(kv).toUpperCase(),P,y+68,2);
-      ctx.fillStyle=T.ft;ctx.font='600 26px RBCHead, Impact, sans-serif';ctx.fillRect(P,W-P-46,W-P*2,2);spaced(ctx,'RAVENSWOOD BAPTIST CHURCH',P,W-P+2,5.5);
-      return cv;});}
-  function fname(kv){return 'ravenswood-'+(bookName(kv.book,1,1)+'-'+kv.c+'-'+kv.v).toLowerCase().replace(/[^a-z0-9]+/g,'-')+'.png';}
+  /* largest size whose wrapped lines fit the box, then re-wrap at the narrowest width that keeps the same line count (even lines, no lone last word) */
+  function fit(ctx,text,font,w,h,max,min,lhR){var size,lines,lh;
+    for(size=max;size>=min;size-=2){ctx.font=font(size);lines=wrap(ctx,text,w);lh=Math.round(size*lhR);
+      var wide=text.split(' ').some(function(x){return ctx.measureText(x).width>w;});if(!wide&&lines.length*lh<=h)break;}
+    if(size<min){size=min;ctx.font=font(size);lines=wrap(ctx,text,w);lh=Math.round(size*lhR);}
+    if(lines.length>1){var n=lines.length,lo=w*.5,hi=w;for(var k=0;k<14;k++){var mid=(lo+hi)/2;if(wrap(ctx,text,mid).length<=n)hi=mid;else lo=mid;}lines=wrap(ctx,text,hi);}
+    return {lines:lines,size:size,lh:lh,h:lines.length*lh};}
+  function para(ctx,F,x,y,align){ctx.textAlign=align||'left';ctx.textBaseline='alphabetic';F.lines.forEach(function(l,i){ctx.fillText(l,x,y+F.size*.8+i*F.lh);});ctx.textAlign='left';}
+  function tint(cr,col){var o=document.createElement('canvas');o.width=cr.width;o.height=cr.height;var oc=o.getContext('2d');oc.drawImage(cr,0,0);oc.globalCompositeOperation='source-in';oc.fillStyle=col;oc.fillRect(0,0,o.width,o.height);return o;}
+  /* footer: small crown + church name on one line */
+  function footer(ctx,cr,x,y,align,col,crCol){var name='RAVENSWOOD BAPTIST CHURCH',sp=5;ctx.font='600 24px '+HEAD;ctx.fillStyle=col;
+    var tw=spacedW(ctx,name,sp),cw=cr?36:0,gap=cr?16:0,total=cw+gap+tw,sx=align==='center'?x-total/2:align==='right'?x-total:x;
+    if(cr)ctx.drawImage(tint(cr,crCol||col),sx,y-24,36,25);spaced(ctx,name,sx+cw+gap,y,sp,'left');}
+  function refLine(ctx,s,x,y,size,col,align,sp){ctx.font='700 '+size+'px '+HEAD;ctx.fillStyle=col;var w=spacedW(ctx,s,sp);
+    while(w>860&&size>26){size-=2;ctx.font='700 '+size+'px '+HEAD;w=spacedW(ctx,s,sp);}spaced(ctx,s,x,y,sp,align);return w;}
+  function bodyF(wt,it){return function(s){return (it?'italic ':'')+wt+' '+s+'px '+BODY;};}
+  var DRAW={nt:[
+    /* 1 cream, centered, thin red rule */
+    function(ctx,v,cr){var W=1080;ctx.fillStyle=C.cream;ctx.fillRect(0,0,W,W);
+      ctx.fillStyle=C.gun;var F=fit(ctx,v.text,bodyF(500),840,560,86,30,1.34),blk=F.h+130,y=150+Math.max(0,(700-blk)/2);
+      para(ctx,F,W/2,y,'center');y+=F.h+52;ctx.fillStyle=C.red;ctx.fillRect(W/2-36,y,72,5);
+      refLine(ctx,v.ref,W/2,y+72,44,C.red,'center',4);footer(ctx,cr,W/2,986,'center','rgba(43,46,51,.62)',C.red);},
+    /* 2 full-bleed teal, white text left */
+    function(ctx,v,cr){var W=1080,P=100;ctx.fillStyle=C.teal;ctx.fillRect(0,0,W,W);ctx.fillStyle='#fff';ctx.fillRect(P,112,120,6);
+      ctx.fillStyle='#fff';var F=fit(ctx,v.text,bodyF(600),860,600,86,30,1.28),blk=F.h+96,y=190+Math.max(0,(650-blk)/2);
+      para(ctx,F,P,y);refLine(ctx,v.ref,P,y+F.h+78,46,C.gun,'left',3);footer(ctx,cr,P,986,'left','rgba(43,46,51,.8)','#fff');},
+    /* 3 split: white top, red band with the reference */
+    function(ctx,v,cr){var W=1080,P=100,band=730;ctx.fillStyle='#fff';ctx.fillRect(0,0,W,band);ctx.fillStyle=C.red;ctx.fillRect(0,band,W,W-band);
+      ctx.fillStyle=C.gun;var F=fit(ctx,v.text,bodyF(500),860,560,84,28,1.32);para(ctx,F,P,90+Math.max(0,(band-90-F.h)/2)-10);
+      refLine(ctx,v.ref,P,band+122,56,'#fff','left',3);footer(ctx,cr,P,band+232,'left','rgba(255,255,255,.88)','#fff');},
+    /* 4 charcoal with a big faded chapter:verse watermark */
+    function(ctx,v,cr){var W=1080,P=100;ctx.fillStyle=C.gun;ctx.fillRect(0,0,W,W);var num=v.ref.replace(/^.* /,''),s=560;
+      ctx.font='700 '+s+'px '+HEAD;while(ctx.measureText(num).width>980&&s>200){s-=20;ctx.font='700 '+s+'px '+HEAD;}
+      ctx.fillStyle='rgba(35,197,201,.09)';ctx.textAlign='right';ctx.fillText(num,W-30,W-40);ctx.textAlign='left';
+      ctx.fillStyle=C.cream;var F=fit(ctx,v.text,bodyF(500),860,580,86,30,1.32),blk=F.h+96,y=150+Math.max(0,(660-blk)/2);
+      para(ctx,F,P,y);refLine(ctx,v.ref,P,y+F.h+78,46,C.teal,'left',3);footer(ctx,cr,P,986,'left','rgba(246,241,231,.7)','#fff');},
+    /* 5 framed card with an inset border, italic verse */
+    function(ctx,v,cr){var W=1080;ctx.fillStyle='#fff';ctx.fillRect(0,0,W,W);ctx.strokeStyle=C.gun;ctx.lineWidth=3;ctx.strokeRect(54,54,W-108,W-108);
+      ctx.fillStyle=C.teal;ctx.fillRect(W/2-30,140,60,5);
+      ctx.fillStyle=C.gun;var F=fit(ctx,v.text,bodyF(400,1),780,540,84,30,1.36),blk=F.h+100,y=210+Math.max(0,(620-blk)/2);
+      para(ctx,F,W/2,y,'center');refLine(ctx,v.ref,W/2,y+F.h+84,42,C.red,'center',4);footer(ctx,cr,W/2,960,'center','rgba(43,46,51,.62)',C.red);}],
+  ot:[
+    /* 1 charcoal, centered, teal rule */
+    function(ctx,v,cr){var W=1080;ctx.fillStyle=C.gun;ctx.fillRect(0,0,W,W);
+      ctx.fillStyle=C.cream;var F=fit(ctx,v.text,bodyF(500),840,560,86,30,1.34),blk=F.h+130,y=150+Math.max(0,(700-blk)/2);
+      para(ctx,F,W/2,y,'center');y+=F.h+52;ctx.fillStyle=C.teal;ctx.fillRect(W/2-36,y,72,5);
+      refLine(ctx,v.ref,W/2,y+72,44,C.teal,'center',4);footer(ctx,cr,W/2,986,'center','rgba(246,241,231,.66)','#fff');},
+    /* 2 full-bleed red, white text left */
+    function(ctx,v,cr){var W=1080,P=100;ctx.fillStyle=C.red;ctx.fillRect(0,0,W,W);
+      ctx.fillStyle='#fff';var F=fit(ctx,v.text,bodyF(600),860,600,86,30,1.28),blk=F.h+110,y=170+Math.max(0,(680-blk)/2);
+      para(ctx,F,P,y);ctx.fillStyle='rgba(255,255,255,.55)';ctx.fillRect(P,y+F.h+40,96,4);
+      refLine(ctx,v.ref,P,y+F.h+104,46,'#fff','left',3);footer(ctx,cr,P,986,'left','rgba(255,255,255,.85)','#fff');},
+    /* 3 soft teal to charcoal duotone, centered */
+    function(ctx,v,cr){var W=1080,g=ctx.createLinearGradient(0,0,W,W);g.addColorStop(0,'#2FB9BD');g.addColorStop(.55,'#24777D');g.addColorStop(1,C.gun);
+      ctx.fillStyle=g;ctx.fillRect(0,0,W,W);
+      ctx.fillStyle='#fff';var F=fit(ctx,v.text,bodyF(500),840,580,86,30,1.34),blk=F.h+100,y=150+Math.max(0,(700-blk)/2);
+      para(ctx,F,W/2,y,'center');refLine(ctx,v.ref,W/2,y+F.h+86,44,'#fff','center',5);footer(ctx,cr,W/2,986,'center','rgba(255,255,255,.78)','#fff');},
+    /* 4 minimal white, reference underlined in red */
+    function(ctx,v,cr){var W=1080,P=100;ctx.fillStyle='#fff';ctx.fillRect(0,0,W,W);ctx.fillStyle=C.teal;ctx.fillRect(P,112,16,16);
+      ctx.fillStyle=C.gun;var F=fit(ctx,v.text,bodyF(500),860,600,86,30,1.32),blk=F.h+110,y=180+Math.max(0,(660-blk)/2);
+      para(ctx,F,P,y);var rw=refLine(ctx,v.ref,P,y+F.h+80,46,C.gun,'left',3);ctx.fillStyle=C.red;ctx.fillRect(P,y+F.h+98,rw,8);
+      footer(ctx,cr,P,986,'left','rgba(43,46,51,.6)',C.red);},
+    /* 5 side block: reference in a charcoal column, verse on cream */
+    function(ctx,v,cr){var W=1080,B=360,X=B+70;ctx.fillStyle=C.cream;ctx.fillRect(0,0,W,W);ctx.fillStyle=C.gun;ctx.fillRect(0,0,B,W);
+      var m=/^(.*) (\d+:[\d-]+)$/.exec(v.ref)||[0,v.ref,''],bk=m[1],cv=m[2],s=46;ctx.font='700 '+s+'px '+HEAD;while(spacedW(ctx,bk,3)>B-110&&s>22){s-=2;ctx.font='700 '+s+'px '+HEAD;}
+      var s2=96;ctx.font='700 '+s2+'px '+HEAD;while(ctx.measureText(cv).width>B-110&&s2>40){s2-=4;ctx.font='700 '+s2+'px '+HEAD;}
+      var cy=W/2-(s+s2+24)/2;ctx.fillStyle='#fff';ctx.font='700 '+s+'px '+HEAD;spaced(ctx,bk,60,cy+s,3,'left');ctx.fillStyle=C.teal;ctx.font='700 '+s2+'px '+HEAD;ctx.fillText(cv,58,cy+s+24+s2*.86);
+      ctx.fillStyle=C.red;ctx.fillRect(60,cy-36,56,5);
+      ctx.fillStyle=C.gun;var F=fit(ctx,v.text,bodyF(500),W-X-80,700,64,26,1.34);para(ctx,F,X,140+Math.max(0,(700-F.h)/2));
+      footer(ctx,cr,W-80,986,'right','rgba(43,46,51,.6)',C.red);}]};
+  function shown(t){return String(t).replace(/[,;:]\s*$/,'.');}
+  function draw(cv,kv,g,st){g=g==='ot'?'ot':'nt';st=((+st||0)%5+5)%5;cv._st=st;cv._g=g;
+    return Promise.all([fonts(),crown()]).then(function(a){var ctx=cv.getContext('2d');ctx.clearRect(0,0,1080,1080);ctx.textBaseline='alphabetic';ctx.textAlign='left';
+      DRAW[g][st](ctx,{text:shown(kv.t),ref:vref(kv).toUpperCase()},a[1]);return cv;});}
+  function fname(kv){return 'ravenswood-'+(bookName(kv.book,1,1)+'-'+kv.c+'-'+kv.v+(kv.v2?'-'+kv.v2:'')).toLowerCase().replace(/[^a-z0-9]+/g,'-')+'.png';}
   function blob(cv){return new Promise(function(ok){if(cv.toBlob)cv.toBlob(function(b){ok(b);},'image/png');else ok(null);});}
   function save(cv,kv){blob(cv).then(function(b){var a=document.createElement('a'),u=b?URL.createObjectURL(b):cv.toDataURL('image/png');a.href=u;a.download=fname(kv);document.body.appendChild(a);a.click();a.remove();if(b)setTimeout(function(){URL.revokeObjectURL(u);},4000);});}
   var canFile=false;try{canFile=!!(navigator.canShare&&window.File&&navigator.canShare({files:[new File([new Blob(['x'],{type:'image/png'})],'v.png',{type:'image/png'})]}));}catch(e){canFile=false;}
   function share(cv,kv){blob(cv).then(function(b){if(!b)return;var f=new File([b],fname(kv),{type:'image/png'});
     if(navigator.canShare&&navigator.canShare({files:[f]}))navigator.share({files:[f],title:vref(kv),text:vref(kv)}).catch(function(){});else save(cv,kv);});}
-  var mo=document.getElementById('rpv'),moC=document.getElementById('rpv-c'),moDlg=mo&&mo.querySelector('.rbcbox-dlg'),moX=mo&&mo.querySelector('.rbcbox-x'),moV=null,moLast=null,moTh='dark';
-  function openV(kv,th,trigger){if(!mo)return;moV=kv;moTh=th||'dark';moLast=trigger||document.activeElement;
-    mo.querySelector('#rpv-t').textContent=vref(kv);mo.querySelector('[data-rpv="share"]').hidden=!canFile;setSw();draw(moC,kv,moTh);
+  var mo=document.getElementById('rpv'),moC=document.getElementById('rpv-c'),moDlg=mo&&mo.querySelector('.rbcbox-dlg'),moX=mo&&mo.querySelector('.rbcbox-x'),moV=null,moLast=null,moG='nt',moSt=0;
+  function openV(kv,g,st,trigger){if(!mo)return;moV=kv;moG=g==='ot'?'ot':'nt';moSt=+st||0;moLast=trigger||document.activeElement;
+    mo.querySelector('#rpv-t').textContent=vref(kv);mo.querySelector('[data-rpv="share"]').hidden=!canFile;setSw();draw(moC,kv,moG,moSt);
     mo.hidden=false;document.documentElement.classList.add('rbc-lock');requestAnimationFrame(function(){requestAnimationFrame(function(){mo.classList.add('open');});});moX.focus();}
   function closeV(){if(!mo||mo.hidden)return;mo.classList.remove('open');document.documentElement.classList.remove('rbc-lock');setTimeout(function(){mo.hidden=true;},260);
     if(moLast&&moLast.focus&&moLast.tabIndex>=0){try{moLast.focus({preventScroll:true});}catch(e){}}moLast=null;}
-  function setSw(){mo.querySelectorAll('[data-th]').forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-th')===moTh);});}
-  window.rpVerseGraphic=function(kv,th){return draw(moC,kv,th||'dark');};
+  /* style picker in the share box: the five styles for this verse's testament */
+  function setSw(){var w=mo.querySelector('.rpv-sw'),h='<span>Style</span>';
+    STY[moG].forEach(function(x,i){h+='<button type="button" data-st="'+i+'" style="background:'+x.sw+'" aria-label="Style '+(i+1)+', '+x.n+'" aria-pressed="'+(i===moSt)+'"></button>';});w.innerHTML=h;}
+  window.rpVerseGraphic=function(kv,g,st){return draw(moC,kv,g||'nt',st||0);};
   if(mo){mo.addEventListener('click',function(e){if(e.target.closest('[data-rpvclose]')){e.preventDefault();closeV();return;}
-      var s=e.target.closest('[data-th]');if(s){moTh=s.getAttribute('data-th');setSw();draw(moC,moV,moTh);return;}
+      var s=e.target.closest('[data-st]');if(s){moSt=+s.getAttribute('data-st');setSw();draw(moC,moV,moG,moSt);var f=mo.querySelector('[data-st="'+moSt+'"]');if(f)f.focus();return;}
       var a=e.target.closest('[data-rpv]');if(a){if(a.getAttribute('data-rpv')==='dl')save(moC,moV);else share(moC,moV);}});
     document.addEventListener('keydown',function(e){if(mo.hidden)return;if(e.key==='Escape'||e.key==='Esc'){e.preventDefault();closeV();return;}
       if(e.key==='Tab'){var f=[].slice.call(moDlg.querySelectorAll('button,a[href]')).filter(function(x){return x.offsetParent!==null;});if(!f.length)return;var first=f[0],last=f[f.length-1];
