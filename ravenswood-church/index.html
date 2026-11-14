@@ -1717,6 +1717,101 @@ ul.deacons li:nth-child(2){border-top-color:var(--gunmetal)}ul.deacons li:nth-ch
 #marriage .mwflow .needbox b{display:inline;font-family:inherit;font-size:inherit;text-transform:none;letter-spacing:0;line-height:inherit;margin:0;color:#3f2f00;}
 #marriage .mwgal img:last-child{grid-column:span 2;}
 
+
+/* Kids, Youth, Awana and Singles refresh (Nov 14) */
+[data-bg="v26_1256"]{background-image:url('img/v26_1256.jpg')}[data-bg="v26_1718"]{background-image:url('img/v26_1718.jpg')}[data-bg="v26_1264"]{background-image:url('img/v26_1264.jpg')}[data-bg="ph_youth_1"]{background-image:url('img/ph_youth_1.jpg')}[data-bg="yt_8156"]{background-image:url('img/yt_8156.jpg')}[data-bg="yt_8148"]{background-image:url('img/yt_8148.jpg')}[data-bg="yt_1138"]{background-image:url('img/yt_1138.jpg')}[data-bg="aw_6530"]{background-image:url('img/aw_6530.jpg')}[data-bg="mb_6793"]{background-image:url('img/mb_6793.jpg')}
+.pbg{position:absolute;inset:0;background-size:cover;background-position:center;filter:grayscale(1) contrast(.95) brightness(1.08);z-index:-3;pointer-events:none;}
+.ptint{position:absolute;inset:0;mix-blend-mode:multiply;z-index:-2;pointer-events:none;}
+.phbg{isolation:isolate;overflow:hidden;}
+section.phbg{position:relative;}
+/* kids */
+.khero .pbg{background-position:center 30%;}
+.khero .ptint{background:var(--teal);}
+.khero .shape{z-index:-1;}
+.kvbs .ptint{background:var(--crimson);}
+.kvbs .pbg{background-position:center 40%;}
+.kvbs .ptint:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(80,10,25,.55),rgba(80,10,25,0) 70%);}
+section.kvbs{margin-top:-56px;margin-bottom:-56px;}
+@media(max-width:900px){section.kvbs{margin-top:-28px;margin-bottom:-28px;}}
+.kvbs .sched{border-left-color:#fff;}
+.kvbs .sched div{border-color:rgba(255,255,255,.3);}
+.kvbs .lead{color:#fff;}
+.kvbs .kfun div{box-shadow:8px 8px 0 rgba(0,0,0,.25);}
+#kids .kstrip img{background:#fff;padding:8px;box-shadow:0 10px 24px rgba(43,46,51,.18);transition:opacity .7s ease,transform .35s ease;}
+#kids .kstrip img:nth-child(odd){transform:rotate(-2deg);}
+#kids .kstrip img:nth-child(even){transform:rotate(1.5deg) translateY(6px);}
+#kids .kstrip img:hover{transform:rotate(0) translateY(-6px);}
+#kids .kcards .kc{transition:opacity .7s ease,transform .35s ease,box-shadow .35s ease;}
+#kids .kcards .kc:hover{transform:translateY(-6px);box-shadow:0 14px 28px rgba(43,46,51,.18);}
+#kids .kcards .kc:nth-child(2):hover{transform:translateY(-20px);}
+/* youth */
+.yhero{isolation:isolate;}
+.yhero .pbg{opacity:.5;}
+.yhero .ptint{background:var(--gunmetal);opacity:.6;mix-blend-mode:normal;}
+#youth .ycard{min-height:250px;transition:opacity .7s ease,transform .35s ease;}
+#youth .ycard:hover{transform:translateY(-5px);}
+#youth .ycard.yph{isolation:isolate;color:#fff;text-align:left;}
+#youth .ycard .pbg,#youth .ycard .ptint{margin:0;opacity:1;}
+#youth .ycard.yph .pbg{filter:grayscale(1) contrast(1.15) brightness(.98);}
+#youth .ycard.yph .pbg{transition:transform .8s ease;}
+#youth .ycard.yph:hover .pbg{transform:scale(1.06);}
+#youth .ycard.mt-teal .ptint{background:var(--teal);}
+#youth .ycard.mt-red .ptint{background:var(--crimson);}
+#youth .ycard.mt-dark .ptint{background:#6b7380;}
+#youth .ycard.yph .ptint:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(22,24,27,.85) 0%,rgba(22,24,27,.35) 45%,rgba(22,24,27,0) 75%);mix-blend-mode:normal;}
+#youth .ycard.yph .ptint{mix-blend-mode:normal;opacity:1;}
+#youth .ycard.yph .ptint{background:none;}
+#youth .ycard.yph .ptint:before{content:"";position:absolute;inset:0;mix-blend-mode:multiply;opacity:.85;}
+#youth .ycard.mt-teal.yph .ptint:before{background:var(--teal);opacity:.75;}
+#youth .ycard.mt-red.yph .ptint:before{background:var(--crimson);}
+#youth .ycard.mt-dark.yph .ptint:before{background:var(--gunmetal);opacity:.55;}
+#youth .ycard.yph b,#youth .ycard.yph span{text-shadow:0 1px 12px rgba(0,0,0,.35);}
+@media(max-width:900px){#youth .ygrid{grid-auto-flow:dense;}#youth .ycard.span3{grid-column:span 1;}}
+@media(max-width:760px){#youth .ycard{min-height:190px;}}
+.ycta .ptint{background:var(--crimson);}
+.ycta .ptint:after{content:"";position:absolute;inset:0;background:rgba(43,46,51,.35);}
+.ycta .lead{color:#fff;}
+.ycta .ypair{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:center;}
+.ycta .ypair img{border:8px solid #fff;box-shadow:0 18px 36px rgba(0,0,0,.3);transition:opacity .7s ease,transform .35s ease;}
+.ycta .ypair img:first-child{transform:rotate(-3deg);}
+.ycta .ypair img:last-child{transform:rotate(2.5deg) translateY(24px);}
+.ycta .ypair img:hover{transform:rotate(0) translateY(-6px);}
+@media(max-width:760px){.ycta .ypair{margin-top:20px;}.ycta .ypair img{border-width:6px;}}
+/* awana */
+.awana-hero .pbg{opacity:.9;}
+.awana-hero .ptint{background:#1F8FD6;opacity:.92;}
+.awana-hero .ash{z-index:-1;}
+.awana-hero.awcss{background-color:#1F8FD6;}
+.awana-hero.awcss:after{content:"";position:absolute;inset:0;z-index:-1;background-image:radial-gradient(rgba(255,255,255,.2) 2px,transparent 2.5px);background-size:26px 26px;pointer-events:none;}
+.awana-hero.awcss{background-image:none;}
+.awfour{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.awfour div{border-radius:18px;padding:28px 24px;min-height:170px;display:flex;flex-direction:column;justify-content:flex-end;gap:6px;transition:opacity .7s ease,transform .35s ease;}
+.awfour b{font-family:'RBCHead',sans-serif;font-weight:700;font-size:32px;text-transform:uppercase;line-height:.95;}
+.awfour span{font-size:15.5px;line-height:1.45;}
+.awfour .aw-y{background:#FFC72C;color:#16336b;}
+.awfour .aw-r{background:#E4312B;color:#fff;}
+.awfour .aw-g{background:#1E9E57;color:#fff;}
+.awfour .aw-b{background:#16336b;color:#fff;}
+.awfour div:nth-child(odd){transform:rotate(-1deg);}
+.awfour div:nth-child(even){transform:rotate(1deg);}
+.awfour div:hover,#awana .club:hover{transform:translateY(-6px) rotate(0);}
+#awana .club{transition:opacity .7s ease,transform .35s ease;}
+@media(max-width:900px){.awfour{grid-template-columns:1fr 1fr;}}
+@media(max-width:480px){.awfour{grid-template-columns:1fr;}.awfour div{min-height:0;}}
+#awana .awpol{border:8px solid #fff;box-shadow:0 14px 30px rgba(22,51,107,.18);transform:rotate(-2deg);}
+.awjoin{position:relative;margin-top:-56px;}
+.awjoin .ptint{background:#1F8FD6;opacity:.94;}
+.awjoin .ptint:after{content:"";position:absolute;inset:0;background:rgba(14,40,90,.45);}
+.awjoin .btn{transform:skewX(-14deg);}
+.awjoin .btn>span{transform:skewX(14deg);}
+/* VBS links: squared to match the site buttons */
+#vbs a.tf-btn{border-radius:0 !important;}
+/* singles: stronger card contrast */
+#singles .ycard.mt-light{background:var(--crimson-dkr) !important;color:#fff;box-shadow:none;}
+#singles .ycard{box-shadow:0 10px 22px rgba(43,46,51,.14);transition:opacity .7s ease,transform .35s ease;}
+#singles .ycard:hover{transform:translateY(-5px);}
+@media(prefers-reduced-motion:reduce){#kids .kstrip img,#kids .kcards .kc,#youth .ycard,#youth .ycard.ph .pbg,.ycta .ypair img,.awfour div,#awana .club,#singles .ycard{transition:none !important;}#kids .kstrip img:hover,#kids .kcards .kc:hover,#youth .ycard:hover,.ycta .ypair img:hover,.awfour div:hover,#awana .club:hover,#singles .ycard:hover{transform:none;}#youth .ycard.ph:hover .pbg{transform:none;}#kids .kcards .kc:nth-child(2):hover{transform:translateY(-14px);}}
+@media(prefers-reduced-motion:reduce) and (max-width:760px){#kids .kcards .kc:nth-child(2):hover{transform:none;}}
 </style>
 </head>
 <body>
@@ -2485,7 +2580,7 @@ ul.deacons li:nth-child(2){border-top-color:var(--gunmetal)}ul.deacons li:nth-ch
 
 <!-- ==================== KIDS ==================== -->
 <div class="page" id="kids" data-title="Ravenswood Kids | Ravenswood Baptist Church">
-  <div class="khero"><span class="shape s1"></span><span class="shape s2"></span><span class="shape s3"></span>
+  <div class="khero"><span class="pbg" data-bg="v26_1256" aria-hidden="true"></span><span class="ptint" aria-hidden="true"></span><span class="shape s1"></span><span class="shape s2"></span><span class="shape s3"></span>
     <div class="wrap grid2">
       <div><h1>Ravenswood Kids</h1><div class="ksticker"><img loading="lazy" class="klogo" src="img/kids_full.svg" alt="Ravenswood Kids logo"></div></div>
       <div class="kbubble"><div class="eyebrow">Ravenswood Kids</div><p class="pull">Training young disciples to treasure Christ and His church.</p><p class="mt" style="color:var(--gunmetal)">Bible lessons, worship and hands-on activities led by our dedicated children's ministry team.</p><div class="btnrow"><a class="btn btn-teal" href="#visit" onclick="go('visit');return false"><span>Plan Your Visit</span></a></div></div>
@@ -2532,16 +2627,16 @@ ul.deacons li:nth-child(2){border-top-color:var(--gunmetal)}ul.deacons li:nth-ch
       </div>
     </div>
   </section>
-  <section>
+  <section class="redbg phbg kvbs"><span class="pbg" data-bg="v26_1718" aria-hidden="true"></span><span class="ptint" aria-hidden="true"></span>
     <div class="wrap grid2">
       <div>
         <div class="eyebrow">Every Summer</div>
         <h2 style="font-size:clamp(40px,4.6vw,62px)">Vacation Bible School and Kid City</h2>
         <p class="lead mt">A week of crafts, music, lessons, prizes and games each summer for kids ages 3 to 12, plus Kid City Day Camp through the summer months.</p>
         <div class="sched mt2"><div><span>VBS 2027</span><span>July 26 to 29</span></div><div><span>Kid City</span><span>Summer 2027 dates coming soon</span></div></div>
-        <div class="btnrow"><a class="btn btn-red" href="#vbs" onclick="go('vbs');return false"><span>VBS 2027</span></a><a class="btn btn-outd" href="#awana" onclick="go('awana');return false"><span>Awana Clubs</span></a><a class="btn btn-outd" href="#events" onclick="go('events');return false"><span>Kids Events</span></a></div>
+        <div class="btnrow"><a class="btn btn-white" href="#vbs" onclick="go('vbs');return false"><span>VBS 2027</span></a><a class="btn btn-outw" href="#awana" onclick="go('awana');return false"><span>Awana Clubs</span></a><a class="btn btn-outw" href="#events" onclick="go('events');return false"><span>Kids Events</span></a></div>
       </div>
-      <div class="kfun"><div style="background:var(--crimson);color:#fff"><b>VBS</b><span>Crafts, music, lessons, prizes and games</span></div><div style="background:var(--gunmetal);color:#fff"><b>Kid City</b><span>Day camp through the summer</span></div><div style="background:#fff;color:var(--gunmetal)"><b>Ages 3 to 12</b><span>Bring a friend!</span></div></div>
+      <div class="kfun"><div style="background:var(--teal);color:var(--gunmetal)"><b>VBS</b><span>Crafts, music, lessons, prizes and games</span></div><div style="background:var(--gunmetal);color:#fff"><b>Kid City</b><span>Day camp through the summer</span></div><div style="background:#fff;color:var(--gunmetal)"><b>Ages 3 to 12</b><span>Bring a friend!</span></div></div>
     </div>
   </section>
   <section class="darkbg">
@@ -2553,7 +2648,7 @@ ul.deacons li:nth-child(2){border-top-color:var(--gunmetal)}ul.deacons li:nth-ch
 </div>
 <!-- ==================== YOUTH ==================== -->
 <div class="page" id="youth" data-title="Ravenswood Youth | Ravenswood Baptist Church">
-  <div class="yhero"><div class="wrap yg">
+  <div class="yhero"><span class="pbg" data-bg="ph_youth_1" aria-hidden="true"></span><span class="ptint" aria-hidden="true"></span><div class="wrap yg">
     <div>
       <div class="eyebrow" style="color:var(--teal)">6th through 12th Grade</div>
       <h1><span class="ol">Ravenswood</span><br>Youth</h1>
@@ -2590,32 +2685,35 @@ ul.deacons li:nth-child(2){border-top-color:var(--gunmetal)}ul.deacons li:nth-ch
       <div class="eyebrow">Through the Year</div>
       <h2 style="font-size:clamp(40px,4.6vw,62px)">What We Do Together</h2>
       <div class="ygrid mt2">
-        <div class="ycard mt-teal wide"><b>Teen Camp</b><span>A week away every summer.</span></div>
-        <div class="ycard mt-red"><b>Winter Retreat</b><span>Time away to grow and have fun.</span></div>
+        <div class="ycard mt-teal wide yph"><span class="pbg" data-bg="yt_8156" aria-hidden="true"></span><span class="ptint" aria-hidden="true"></span><b>Teen Camp</b><span>A week away every summer.</span></div>
+        <div class="ycard mt-red yph"><span class="pbg" data-bg="yt_8148" aria-hidden="true"></span><span class="ptint" aria-hidden="true"></span><b>Winter Retreat</b><span>Time away to grow and have fun.</span></div>
         <div class="ycard mt-dark"><b>See You at the Pole</b><span>Praying for our schools.</span></div>
         <div class="ycard mt-red"><b>Back-to-School Bash</b><span>Kicking off the school year together.</span></div>
-        <div class="ycard mt-light wide"><b>Patio with Pastor</b><span>Questions, food and conversation.</span></div>
+        <div class="ycard mt-dark wide yph"><span class="pbg" data-bg="yt_1138" aria-hidden="true"></span><span class="ptint" aria-hidden="true"></span><b>Patio with Pastor</b><span>Questions, food and conversation.</span></div>
         <div class="ycard mt-teal"><b>Pumpkin Party</b><span>A fall favorite.</span></div>
         <div class="ycard mt-dark"><b>Christmas Party</b><span>Celebrating the season together.</span></div>
-        <div class="ycard mt-red span3"><b>Easter Outreach</b><span>Sharing the gospel in our community.</span></div>
-      </div>
-      <div class="grid3 mt2">
-        <img loading="lazy" class="photo r43 bw" src="img/yt_8148.jpg" alt="Ravenswood teens and leaders on an ice skating outing">
-        <img loading="lazy" class="photo r43 bw" src="img/yt_1138.jpg" alt="Teen girls smiling together at a youth gathering">
-        <img loading="lazy" class="photo r43 bw" src="img/yt_6434.jpg" alt="A teen giving a thumbs up outside with friends">
+        <div class="ycard mt-red span3 yph"><span class="pbg" data-bg="mb_6793" aria-hidden="true"></span><span class="ptint" aria-hidden="true"></span><b>Easter Outreach</b><span>Sharing the gospel in our community.</span></div>
       </div>
     </div>
   </section>
-  <section class="darkbg">
+  <section class="darkbg phbg ycta"><span class="pbg" data-bg="y_lake" aria-hidden="true"></span><span class="ptint" aria-hidden="true"></span>
     <div class="wrap grid2">
-      <img loading="lazy" class="photo r43 bw angle-l" src="img/yt_8156.jpg" alt="A big group photo of Ravenswood teens and leaders">
-      <img loading="lazy" class="photo r43 bw angle-r" src="img/ph_youth_2.jpg" alt="Ravenswood teens together at Teen Camp">
+      <div>
+        <div class="eyebrow">Sunday Evenings</div>
+        <h2 style="font-size:clamp(40px,4.6vw,62px)"><span class="ol w">Come Hang Out</span><br>With Us</h2>
+        <p class="lead mt">Sundays from 5:00 to 6:15 PM in the Educational Building, for 6th through 12th grade. Bring a friend!</p>
+        <div class="btnrow"><a class="btn btn-teal" href="#visit" onclick="go('visit');return false"><span>Plan Your Visit</span></a><a class="btn btn-outw" href="#contact" onclick="go('contact');return false"><span>Contact Pastor Josh</span></a></div>
+      </div>
+      <div class="ypair">
+        <img loading="lazy" class="photo r43 bw" src="img/ph_youth_2.jpg" alt="Ravenswood teens together at Teen Camp">
+        <img loading="lazy" class="photo r43 bw" src="img/yt_6434.jpg" alt="A teen giving a thumbs up outside with friends">
+      </div>
     </div>
   </section>
 </div>
 <!-- ==================== AWANA ==================== -->
 <div class="page awana-page" id="awana" data-title="Awana Clubs | Ravenswood Baptist Church">
-  <div class="awana-hero awcss"><span class="ash a1"></span><span class="ash a2"></span><span class="ash a3"></span><span class="ash a4"></span><div class="wrap center">
+  <div class="awana-hero awcss"><span class="pbg" data-bg="aw_6530" aria-hidden="true"></span><span class="ptint" aria-hidden="true"></span><span class="ash a1"></span><span class="ash a2"></span><span class="ash a3"></span><span class="ash a4"></span><div class="wrap center">
     <h1>Awana Clubs at Ravenswood</h1>
     <img loading="lazy" class="alogo" src="img/awana_logo.svg" alt="Awana logo">
     <div><span class="chip">Sundays · 5:00 to 6:30 PM · Ages 3 to 6th grade</span></div>
@@ -2631,6 +2729,14 @@ ul.deacons li:nth-child(2){border-top-color:var(--gunmetal)}ul.deacons li:nth-ch
       </div>
       <img loading="lazy" class="photo r43 bw angle-l" src="img/aw_6530.jpg" alt="An Awana leader giving awards to two boys in Awana vests on stage at Awards Night">
     </div>
+    <div class="wrap">
+      <div class="awfour mt2">
+        <div class="aw-y"><b>Games</b><span>Fun and fellowship every club night.</span></div>
+        <div class="aw-r"><b>Bible Lessons</b><span>Learning more about Jesus Christ and His love.</span></div>
+        <div class="aw-g"><b>Handbook Time</b><span>Bible memory and achievements with our leaders.</span></div>
+        <div class="aw-b"><b>Awards Night</b><span>Celebrating achievements each May.</span></div>
+      </div>
+    </div>
   </section>
   <section class="softbg">
     <div class="wrap">
@@ -2641,10 +2747,10 @@ ul.deacons li:nth-child(2){border-top-color:var(--gunmetal)}ul.deacons li:nth-ch
         <div class="club c-spark"><h3>Sparks</h3><div class="age">K5 through 2nd grade</div><ul><li>Must be 5 by August 31</li><li>Club book $15</li><li>New vest $20</li></ul></div>
         <div class="club c-tt"><h3>Truth &amp; Training</h3><div class="age">3rd through 6th grade</div><ul><li>Club book $15</li><li>New shirt $20</li></ul></div>
       </div>
-      <div class="awduo mt2"><img loading="lazy" class="photo r43 bw" src="img/aw_6497.jpg" alt="A little girl smiling in her chair at Awana"><div class="awbox"><h3 style="font-size:30px;color:#16336b">Club Dues</h3><p class="mt" style="margin-top:8px">Dues are $45 per child with a family cap of 3, so no family registering 4 or more children is charged more than $135 in dues.</p></div></div>
+      <div class="awduo mt2"><img loading="lazy" class="photo r43 bw awpol" src="img/aw_6497.jpg" alt="A little girl smiling in her chair at Awana"><div class="awbox"><h3 style="font-size:30px;color:#16336b">Club Dues</h3><p class="mt" style="margin-top:8px">Dues are $45 per child with a family cap of 3, so no family registering 4 or more children is charged more than $135 in dues.</p></div></div>
     </div>
   </section>
-  <section class="awjoin">
+  <section class="awjoin phbg"><span class="pbg" data-bg="v26_1264" aria-hidden="true"></span><span class="ptint" aria-hidden="true"></span>
     <div class="wrap center">
       <div class="eyebrow" style="justify-content:center">Registration</div>
       <h2 style="font-size:clamp(40px,4.6vw,62px)">Join Us This Year</h2>
@@ -3882,7 +3988,7 @@ function sgreset(){try{localStorage.removeItem('rbc_sg');}catch(e){}document.que
 
 <script>
 (function(){try{if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
-var sel='.srow,.ecards>div,.mtile,.ycard,.eee>div,.gsteps>*,.btimeline>*,.mgrid>div,.giftlist>div,ul.deacons li,.lead-feature,.expect3>*,.kcards>*';
+var sel='.srow,.ecards>div,.mtile,.ycard,.eee>div,.gsteps>*,.btimeline>*,.mgrid>div,.giftlist>div,ul.deacons li,.lead-feature,.expect3>*,.kcards>*,#kids .kstrip>img,.kfun>div,.clubs>.club,.awfour>div,.awduo>*,.ypair>img';
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
 function arm(){document.querySelectorAll(sel).forEach(function(el){if(el.dataset.rv)return;el.dataset.rv=1;var r=el.getBoundingClientRect();el.classList.add('rv');io.observe(el)})}
 arm();var o=new MutationObserver(function(){arm()});o.observe(document.body,{attributes:true,subtree:true,attributeFilter:['class']});
