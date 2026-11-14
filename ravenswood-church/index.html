@@ -4,7 +4,7 @@
 <meta name="robots" content="noindex, nofollow">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script>(function(){var h=location.hash.slice(1);if(/^[a-z0-9-]+$/i.test(h)&&h!=='home'){var s=document.createElement('style');s.id='early-route';s.textContent='#home.page{display:none!important}#'+h+'.page{display:block!important}';document.head.appendChild(s);}})();</script>
+<script>(function(){var h=location.hash.slice(1).split('/')[0];if(/^[a-z0-9-]+$/i.test(h)&&h!=='home'){var s=document.createElement('style');s.id='early-route';s.textContent='#home.page{display:none!important}#'+h+'.page{display:block!important}';document.head.appendChild(s);}})();</script>
 <title>Ravenswood Baptist Church | Bible-Believing Baptist Church on Chicago's North Side</title>
 <meta name="description" content="Ravenswood Baptist Church is a gospel-centered, Bible-believing Baptist church on Chicago's north side, serving the city since 1891. Sunday worship at 10:30 AM.">
 <style>
@@ -2102,6 +2102,157 @@ html.rbc-lock,html.rbc-lock body{overflow:hidden;}
 .rbcpdf .rbcbox-ft .btn:hover{color:#fff;}
 .rbcpdf .rbcbox-ft .btn svg{width:18px;height:18px;flex:0 0 18px;}
 @media(max-width:640px){.rbcpdf .rbcbox-dlg{width:100%;height:100%;height:100dvh;}.rbcpdf .pdfpages{grid-template-columns:1fr;padding:10px;gap:10px;}.rbcpdf .rbcbox-ft{padding:10px 12px calc(12px + env(safe-area-inset-bottom));}.rbcpdf .rbcbox-ft .pdfnote{display:none;}.rbcpdf .rbcbox-ft .pdfacts{width:100%;justify-content:space-between;}.rbcpdf .rbcbox-ft .btn{flex:1;justify-content:center;}}
+/* ===== Item 9B: Daily Bible Reading page (#readingplan) ===== */
+#readingplan{--rp-cream:#F6F1E7;background:var(--rp-cream);}
+.rp-hd{background:var(--gunmetal);color:#fff;padding:26px 0 0;position:relative;overflow:hidden;border-bottom:6px solid var(--crimson);}
+.rp-hd:after{content:"";position:absolute;right:-40px;top:0;width:260px;height:100%;background:repeating-linear-gradient(115deg,transparent 0 26px,rgba(35,197,201,.16) 26px 40px);pointer-events:none;}
+.rp-hd .wrap{position:relative;z-index:1;}
+.rp-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px;font-size:14px;}
+.rp-top a{color:#fff;opacity:.8;text-decoration:none;font-weight:600;}
+.rp-top a:hover{opacity:1;text-decoration:underline;}
+.rp-theme{font-family:'RBCHead',sans-serif;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-size:14px;}
+.rp-hd .eyebrow{color:var(--teal);margin-bottom:6px;font-size:16px;}
+.rp-hd h1{font-size:clamp(40px,6vw,74px);line-height:.92;color:#fff;}
+.rp-sub{font-family:'RBCHead',sans-serif;font-weight:600;font-size:clamp(20px,2.4vw,26px);letter-spacing:.06em;text-transform:uppercase;color:var(--rp-cream);opacity:.9;margin-top:6px;}
+.rp-nav{display:flex;align-items:stretch;gap:10px;margin-top:22px;padding-bottom:18px;flex-wrap:wrap;}
+.rp-days{display:grid;grid-template-columns:repeat(7,minmax(54px,1fr));gap:6px;flex:1 1 440px;max-width:620px;}
+.rp-day{appearance:none;border:2px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);color:#fff;min-height:58px;padding:6px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;cursor:pointer;font-family:'RBCBody',sans-serif;position:relative;}
+.rp-day:hover{border-color:var(--teal);}
+.rp-day .wd{font-size:12px;text-transform:uppercase;letter-spacing:.08em;opacity:.8;font-weight:600;}
+.rp-day .dn{font-family:'RBCHead',sans-serif;font-weight:700;font-size:24px;line-height:1;}
+.rp-day.today{border-color:var(--crimson);}
+.rp-day.today .wd{color:#fff;opacity:1;}
+.rp-day.on{background:var(--teal);border-color:var(--teal);color:var(--gunmetal);}
+.rp-day.on .wd{opacity:.9;}
+.rp-day.done:after{content:"";position:absolute;top:5px;right:5px;width:9px;height:9px;border-radius:50%;background:var(--teal);}
+.rp-day.on.done:after{background:var(--gunmetal);}
+.rp-day.cu .dn{opacity:.7;}
+.rp-tools{display:flex;gap:6px;}
+.rp-btn{appearance:none;border:2px solid rgba(255,255,255,.35);background:transparent;color:#fff;min-height:58px;padding:0 18px;font-family:'RBCHead',sans-serif;font-weight:700;font-size:17px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;}
+.rp-btn:hover{border-color:#fff;}
+.rp-btn.on{background:var(--crimson);border-color:var(--crimson);}
+.rp-main{padding:34px 0 80px;}
+.rp-wrap{max-width:900px;}
+.rp-load{padding:50px 0;text-align:center;color:#5b5e64;}
+.rp-over{background:#fff;padding:22px 24px;display:grid;grid-template-columns:1fr 1fr;gap:6px 26px;box-shadow:0 2px 0 var(--line);}
+.rp-over h2{grid-column:1/-1;font-size:26px;margin-bottom:6px;}
+.rp-over .grp{font-family:'RBCHead',sans-serif;font-weight:600;font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--crimson);margin-top:6px;}
+.rp-over a{display:flex;align-items:center;gap:10px;min-height:44px;font-family:'RBCHead',sans-serif;font-weight:700;font-size:22px;text-transform:uppercase;letter-spacing:.02em;text-decoration:none;color:var(--gunmetal);border-bottom:1px solid var(--line);}
+.rp-over a:after{content:"\2193";margin-left:auto;color:var(--teal);font-size:18px;}
+.rp-over a:hover{color:var(--crimson);}
+.rp-check{display:flex;align-items:center;gap:14px;min-height:60px;margin-top:16px;padding:12px 18px;background:var(--gunmetal);color:#fff;cursor:pointer;font-family:'RBCHead',sans-serif;font-weight:700;font-size:20px;letter-spacing:.06em;text-transform:uppercase;user-select:none;}
+.rp-check input{appearance:none;-webkit-appearance:none;width:30px;height:30px;flex:0 0 30px;border:3px solid var(--teal);background:transparent;display:grid;place-content:center;cursor:pointer;margin:0;}
+.rp-check input:checked{background:var(--teal);}
+.rp-check input:checked:before{content:"";width:12px;height:18px;border:solid var(--gunmetal);border-width:0 4px 4px 0;transform:translateY(-2px) rotate(45deg);}
+.rp-check input:focus-visible{outline:3px solid #fff;outline-offset:2px;}
+.rp-check.is-done{background:var(--teal);color:var(--gunmetal);}
+.rp-check.is-done input{border-color:var(--gunmetal);}
+.rp-hint{font-size:15px;color:#5b5e64;margin:26px 0 0;}
+.rp-sec{margin-top:34px;}
+.rp-sec>h2{font-size:clamp(30px,4vw,44px);display:flex;align-items:center;gap:14px;margin-bottom:14px;}
+.rp-sec>h2:before{content:"";width:34px;height:6px;background:var(--crimson);}
+.rp-sec.ot>h2:before{background:var(--teal);}
+.rp-pass{background:#fff;margin-top:12px;box-shadow:0 2px 0 var(--line);}
+.rp-pass summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:14px;padding:16px 20px;min-height:64px;border-left:6px solid var(--crimson);}
+.rp-sec.ot .rp-pass summary{border-left-color:var(--teal);}
+.rp-pass summary::-webkit-details-marker{display:none;}
+.rp-pass summary h3{font-size:clamp(26px,3.2vw,34px);line-height:1;flex:1;}
+.rp-pass summary .chev{width:34px;height:34px;flex:0 0 34px;display:grid;place-content:center;background:var(--mist);transition:transform .2s ease;}
+.rp-pass summary .chev:before{content:"";width:10px;height:10px;border:solid var(--gunmetal);border-width:0 3px 3px 0;transform:translateY(-2px) rotate(45deg);}
+.rp-pass[open] summary .chev{transform:rotate(180deg);}
+.rp-text{padding:6px 24px 26px 26px;font-size:19px;line-height:1.85;color:#2b2e33;max-width:72ch;}
+.rp-text h4{font-family:'RBCHead',sans-serif;font-size:17px;letter-spacing:.14em;color:var(--crimson);margin:22px 0 6px;}
+.rp-text h4:first-child{margin-top:8px;}
+.rp-text p{margin:0;}
+.rp-text .v{cursor:pointer;border-radius:3px;transition:background .15s ease;-webkit-tap-highlight-color:transparent;}
+.rp-text .v:hover{background:rgba(35,197,201,.14);}
+.rp-text .v.sel{background:rgba(211,32,71,.12);}
+.rp-text sup{font-family:'RBCHead',sans-serif;font-weight:700;font-size:12px;color:#0f7c80;vertical-align:.55em;line-height:0;margin:0 3px 0 2px;letter-spacing:.02em;}
+.rp-text.poem .v{display:block;padding-left:26px;text-indent:-26px;margin-bottom:6px;}
+.rp-text.poem sup{display:inline-block;width:22px;text-indent:0;margin:0 4px 0 0;text-align:right;}
+.rp-err{padding:16px 24px 24px;color:#5b5e64;font-size:16px;}
+.rp-share{margin-top:44px;}
+.rp-share>h2{font-size:clamp(30px,4vw,44px);}
+.rp-share>p{font-size:16px;color:#5b5e64;margin-top:8px;}
+.rp-cards{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px;}
+.rp-card{background:#fff;padding:14px;box-shadow:0 2px 0 var(--line);display:flex;flex-direction:column;gap:12px;}
+.rp-card .lbl{font-family:'RBCHead',sans-serif;font-weight:600;letter-spacing:.12em;text-transform:uppercase;font-size:14px;color:var(--crimson);}
+.rp-card canvas,.rpv-stage canvas{display:block;width:100%;height:auto;aspect-ratio:1/1;background:var(--gunmetal);cursor:zoom-in;}
+.rp-acts{display:flex;gap:8px;flex-wrap:wrap;}
+.rp-acts button{appearance:none;flex:1 1 140px;min-height:50px;border:0;background:var(--gunmetal);color:#fff;font-family:'RBCHead',sans-serif;font-weight:700;font-size:17px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:0 14px;}
+.rp-acts button.red{background:var(--crimson);}
+.rp-acts button:hover{filter:brightness(1.12);}
+.rp-acts button svg{width:18px;height:18px;}
+.rp-cu{background:#fff;padding:30px 28px;box-shadow:0 2px 0 var(--line);border-top:6px solid var(--teal);}
+.rp-cu h2{font-size:clamp(36px,5vw,56px);}
+.rp-cu p{font-size:18px;margin-top:12px;max-width:640px;}
+.rp-cu h3{font-size:24px;margin-top:26px;}
+.rp-qlinks{display:grid;gap:8px;margin-top:12px;}
+.rp-qlinks a{display:grid;grid-template-columns:110px 1fr auto;align-items:center;gap:14px;min-height:56px;padding:8px 16px;background:var(--mist);text-decoration:none;color:var(--gunmetal);}
+.rp-qlinks a:hover{background:#e6eaec;}
+.rp-qlinks b{font-family:'RBCHead',sans-serif;font-size:20px;text-transform:uppercase;}
+.rp-qlinks span{font-size:15px;color:#4a4d53;}
+.rp-qlinks i{font-style:normal;font-family:'RBCHead',sans-serif;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:#8a8f96;}
+.rp-qlinks a.done i{color:#0f7c80;}
+.rp-year-hd{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;}
+.rp-year-hd p{font-size:16px;color:#4a4d53;}
+.rp-year-hd .rp-prog{font-family:'RBCHead',sans-serif;font-weight:700;font-size:22px;text-transform:uppercase;color:var(--gunmetal);}
+.rp-year{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:20px;}
+.rp-wrap.wide{max-width:1200px;}
+.rp-mo{background:#fff;padding:14px 14px 16px;box-shadow:0 2px 0 var(--line);border-top:5px solid var(--gunmetal);}
+.rp-mo.cur{border-top-color:var(--crimson);}
+.rp-mo h3{font-size:24px;display:flex;justify-content:space-between;align-items:baseline;gap:8px;}
+.rp-mo h3 small{font-family:'RBCBody',sans-serif;font-weight:600;font-size:13px;letter-spacing:.04em;color:#6b6f75;text-transform:none;}
+.rp-mo .bk{font-size:13px;color:#5b5e64;margin:4px 0 10px;line-height:1.35;min-height:2.7em;}
+.rp-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;}
+.rp-grid button{appearance:none;border:1px solid var(--line);background:var(--mist);min-height:40px;font-family:'RBCHead',sans-serif;font-weight:700;font-size:17px;color:var(--gunmetal);cursor:pointer;padding:0;}
+.rp-grid button:hover{border-color:var(--gunmetal);}
+.rp-grid button.done{background:var(--teal);border-color:var(--teal);}
+.rp-grid button.today{outline:3px solid var(--crimson);outline-offset:-3px;}
+.rp-legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:16px;font-size:14px;color:#4a4d53;align-items:center;}
+.rp-legend span{display:inline-flex;align-items:center;gap:8px;}
+.rp-legend i{width:18px;height:18px;display:inline-block;background:var(--mist);border:1px solid var(--line);}
+.rp-legend i.d{background:var(--teal);border-color:var(--teal);}
+.rp-legend i.t{outline:3px solid var(--crimson);outline-offset:-3px;}
+.rp-foot{margin-top:40px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;font-size:15px;color:#5b5e64;}
+.rp-foot .btn{font-size:16px;padding:13px 20px;}
+.rpv .rbcbox-dlg{width:min(620px,100%);height:auto;max-height:94vh;}
+.rpv .rbcbox-bd{padding:18px;background:var(--rp-cream,#F6F1E7);}
+.rpv .rbcbox-bd:before{content:none;}
+.rpv-stage{max-width:520px;margin:0 auto;}
+.rpv-sw{display:flex;gap:10px;justify-content:center;margin:14px 0;align-items:center;font-size:14px;color:#4a4d53;}
+.rpv-sw button{appearance:none;width:44px;height:44px;border:3px solid #fff;box-shadow:0 0 0 1px var(--line);cursor:pointer;}
+.rpv-sw button[aria-pressed=true]{box-shadow:0 0 0 3px var(--gunmetal);}
+#rpv .rp-acts{max-width:520px;margin:0 auto;}
+@media(max-width:1000px){.rp-year{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:760px){.rp-year{grid-template-columns:1fr 1fr;}.rp-cards{grid-template-columns:1fr;}.rp-over{grid-template-columns:1fr;}}
+@media(max-width:560px){
+  .rp-hd{padding-top:16px;}
+  .rp-hd .wrap,.rp-main .wrap{padding:0 16px;}
+  .rp-top{margin-bottom:8px;}
+  .rp-hd .eyebrow{font-size:13px;}
+  .rp-hd h1{font-size:36px;}
+  .rp-sub{font-size:18px;}
+  .rp-nav{margin-top:14px;gap:8px;padding-bottom:14px;}
+  .rp-days{flex-basis:100%;gap:4px;grid-template-columns:repeat(7,1fr);}
+  .rp-day{min-height:54px;}
+  .rp-day .dn{font-size:21px;}
+  .rp-day .wd{font-size:11px;}
+  .rp-tools{width:100%;}
+  .rp-btn{flex:1;min-height:50px;}
+  .rp-main{padding-top:18px;}
+  .rp-over{padding:16px;}
+  .rp-over a{font-size:20px;}
+  .rp-check{font-size:18px;}
+  .rp-pass summary{padding:14px 14px;}
+  .rp-text{padding:4px 16px 22px 18px;font-size:18px;line-height:1.8;}
+  .rp-year{grid-template-columns:1fr;}
+  .rp-grid button{min-height:46px;}
+  .rp-qlinks a{grid-template-columns:1fr auto;}
+  .rp-qlinks a span{grid-column:1/-1;grid-row:2;}
+  .rp-qlinks a i{grid-column:2;grid-row:1;}
+  .rp-cu{padding:22px 18px;}
+}
 </style>
 </head>
 <body>
@@ -3862,7 +4013,7 @@ html.rbc-lock,html.rbc-lock body{overflow:hidden;}
         <div class="eyebrow">Grow in God's Word</div>
         <h2 style="font-size:clamp(40px,4.6vw,62px)"><span class="ol w">Read the Bible</span><br>With Us</h2>
         <p class="lead mt">Our Bible Reading Plan walks you through the New Testament and the Old Testament together, a few short readings at a time. Start any month and read along with your church family.</p>
-        <div class="btnrow"><a class="btn btn-dark" href="files/ravenswood-2026-bible-reading-plan.pdf" data-rbcpdf><span>Download the Reading Plan</span></a></div>
+        <div class="btnrow"><a class="btn btn-dark" href="files/ravenswood-2026-bible-reading-plan.pdf" data-rbcpdf><span>Download the Reading Plan</span></a><a class="btn btn-outd" href="#readingplan" onclick="go('readingplan');return false"><span>Read Today's Passage Online</span></a></div>
         <div class="needbox"><b>#17 &nbsp;NEED FROM RAVENSWOOD:</b> The 2026 plan is here as a printable PDF. When the 2027 plan is ready, send it over and we'll swap it in.</div>
       </div>
       <div class="rplan">
@@ -3872,6 +4023,23 @@ html.rbc-lock,html.rbc-lock body{overflow:hidden;}
       </div>
     </div>
   </section>
+</div>
+
+<!-- ==================== DAILY BIBLE READING (not in the menu; linked from Next Steps) ==================== -->
+<div class="page" id="readingplan" data-title="Daily Bible Reading | Ravenswood Baptist Church">
+  <div class="rp-hd">
+    <div class="wrap">
+      <div class="rp-top"><a href="#next" onclick="go('next');return false">&larr; Next Steps</a><span class="rp-theme">Yet Not I, But Christ</span></div>
+      <div class="eyebrow">Daily Bible Reading</div>
+      <h1 id="rp-date">Today's Reading</h1>
+      <p class="rp-sub" id="rp-sub">&nbsp;</p>
+      <div class="rp-nav">
+        <nav class="rp-days" id="rp-days" aria-label="Pick a day"></nav>
+        <div class="rp-tools"><button type="button" class="rp-btn" id="rp-todaybtn">Today</button><button type="button" class="rp-btn" id="rp-yearbtn" aria-pressed="false">Full Year</button></div>
+      </div>
+    </div>
+  </div>
+  <section class="rp-main"><div class="wrap rp-wrap" id="rp-body" aria-live="polite"><p class="rp-load">Loading today's reading...</p></div></section>
 </div>
 
 <!-- ==================== BAPTISM & MEMBERSHIP ==================== -->
@@ -4180,7 +4348,7 @@ html.rbc-lock,html.rbc-lock body{overflow:hidden;}
   <div class="pagehead dark"><div class="wrap"><div class="eyebrow">Legal</div><h1>Privacy Policy</h1><p>How Ravenswood Baptist Church handles the information you share with us.</p></div></div>
   <section>
     <div class="wrap narrow legal">
-      <p class="lupd">Last updated November 13, 2026</p>
+      <p class="lupd">Last updated November 14, 2026</p>
       <h2>Information You Share With Us</h2>
       <p>We only collect information you choose to give us. Our website forms are Plan a Visit, the Digital Connect Card, the Digital Next Steps Card, the Prayer Card and the Contact form. Depending on the form, you may share your name, email, phone number, mailing address, the Sunday you plan to visit, how you heard about us, the ministries you'd like to hear about, your next step of faith, a prayer request or a message.</p>
       <p>On Plan a Visit, a parent or guardian can add the children coming along, with each child's name, birthdate, grade and any allergies, so we can have them ready for the Nursery or Kids' Church. You can also tell us about any accessibility needs so we can help.</p>
@@ -4195,6 +4363,7 @@ html.rbc-lock,html.rbc-lock body{overflow:hidden;}
       <p>Online gifts, and purchases like Awana handbooks and uniforms, are handled by Breeze on its own secure pages. This website does not collect or store your card or bank details.</p>
       <h2>Spiritual Gifts Test</h2>
       <p>Your answers stay on your own device. The test saves your progress in your browser's local storage so you can pick up where you left off, and your answers are never sent to the church. Printing or downloading your results creates a file on your device only. To clear your answers, tap Start Over or clear this site's data in your browser.</p>
+      <p>The Daily Bible Reading page works the same way. Days you mark as read are saved only in your browser on your device and are never sent to the church.</p>
       <h2>Cookies and Tracking</h2>
       <p>This website does not use analytics, advertising or tracking cookies, and it does not use tracking pixels. If we ever add tools like these, we will update this policy and ask for your permission first.</p>
       <h2>Content From Other Services</h2>
@@ -4287,18 +4456,20 @@ html.rbc-lock,html.rbc-lock body{overflow:hidden;}
 <script>
 var NAVMAP={about:'about',story:'about',beliefs:'about',leadership:'about',gospel:'about',school:'about',visit:'sundays',expect:'sundays',christmas:'events',connect:'sundays',
   ministries:'ministries',kids:'ministries',youth:'ministries',awana:'ministries',singles:'ministries',adults:'ministries',groups:'ministries',
-  sermons:'sermons','series-galatians':'sermons','series-amos':'sermons','series-ruth':'sermons','series-joel':'sermons','series-weare':'sermons',events:'events',next:'next',baptism:'next',serve:'next',prayer:'next',contact:'next',missions:'next',give:'give'};
+  sermons:'sermons','series-galatians':'sermons','series-amos':'sermons','series-ruth':'sermons','series-joel':'sermons','series-weare':'sermons',events:'events',next:'next',baptism:'next',serve:'next',prayer:'next',contact:'next',missions:'next',readingplan:'next',give:'give'};
 function go(id,noPush){
   var er=document.getElementById('early-route'); if(er)er.remove();
-  var el=document.getElementById(id); if(!el||!el.classList.contains('page')){id='home';el=document.getElementById('home');}
+  var sub='',sl=String(id||'').indexOf('/'); if(sl>0){sub=id.slice(sl+1);id=id.slice(0,sl);}
+  var el=document.getElementById(id); if(!el||!el.classList.contains('page')){id='home';el=document.getElementById('home');sub='';}
   document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active');});
   el.classList.add('active'); document.title=el.getAttribute('data-title')||document.title;
   document.body.classList.toggle('xmas',id==='christmas');
   document.querySelectorAll('.menu>li').forEach(function(li){li.classList.remove('on');});
   var k=NAVMAP[id]; if(k){var t=document.querySelector('.menu>li[data-nav="'+k+'"]'); if(t)t.classList.add('on');}
   document.querySelector('.menu').classList.remove('open'); var b=document.querySelector('.burger'); if(b)b.setAttribute('aria-expanded','false');
-  if(!noPush&&location.hash!=='#'+id){try{history.pushState(null,'','#'+id);}catch(e){}}
+  var hs='#'+id+(sub?'/'+sub:''); if(!noPush&&location.hash!==hs){try{history.pushState(null,'','#'+hs.slice(1));}catch(e){}}
   window.scrollTo(0,0);
+  if(id==='readingplan'&&window.rpShow)window.rpShow(sub);
 }
 function toggleMenu(b){var m=document.querySelector('.menu');m.classList.toggle('open');b.setAttribute('aria-expanded',m.classList.contains('open'));}
 function gn(i){var n=document.querySelectorAll('#gn nav button'),p=document.querySelectorAll('#gn .panel');if(i<0||i>=p.length)return;
@@ -4368,6 +4539,17 @@ function arm(){document.querySelectorAll(sel).forEach(function(el){if(el.dataset
 arm();var o=new MutationObserver(function(){arm()});o.observe(document.body,{attributes:true,subtree:true,attributeFilter:['class']});
 }catch(e){}})();
 </script>
+<div id="rpv" class="rbcbox rpv" hidden>
+  <div class="rbcbox-scrim" data-rpvclose></div>
+  <div class="rbcbox-dlg" role="dialog" aria-modal="true" aria-labelledby="rpv-t">
+    <div class="rbcbox-hd"><h2 id="rpv-t">Share a Verse</h2><button type="button" class="rbcbox-x" data-rpvclose aria-label="Close verse graphic">&times;</button></div>
+    <div class="rbcbox-bd">
+      <div class="rpv-stage"><canvas id="rpv-c" width="1080" height="1080" role="img" aria-label="Verse graphic"></canvas></div>
+      <div class="rpv-sw" role="group" aria-label="Graphic color"><span>Color</span><button type="button" data-th="dark" style="background:#2B2E33" aria-label="Gunmetal" aria-pressed="true"></button><button type="button" data-th="red" style="background:#D32047" aria-label="Red" aria-pressed="false"></button><button type="button" data-th="teal" style="background:#23C5C9" aria-label="Teal" aria-pressed="false"></button><button type="button" data-th="cream" style="background:#F6F1E7" aria-label="Cream" aria-pressed="false"></button></div>
+      <div class="rp-acts"><button type="button" class="red" data-rpv="dl">Download Image</button><button type="button" data-rpv="share" hidden>Share</button></div>
+    </div>
+  </div>
+</div>
 <div id="rbcpdf" class="rbcbox rbcpdf" hidden>
   <div class="rbcbox-scrim" data-pdfclose></div>
   <div class="rbcbox-dlg" role="dialog" aria-modal="true" aria-labelledby="rbcpdf-t">
@@ -4514,6 +4696,165 @@ if(f&&!rm&&'IntersectionObserver' in window&&/^\d+$/.test(f.textContent)){var to
       if(!dlg.contains(document.activeElement)){e.preventDefault();first.focus();}
       else if(e.shiftKey&&document.activeElement===first){e.preventDefault();lastEl.focus();}
       else if(!e.shiftKey&&document.activeElement===lastEl){e.preventDefault();first.focus();}}});
+})();
+</script>
+<script>
+/* Daily Bible Reading (#readingplan). Hidden page, linked from Next Steps.
+   Plan: data/plan.json (300 days from the church's 2026 printed plan; MONTH N of the plan = month N of the year, days 1 to 25, days 26+ are catch-up days).
+   Scripture text: data/bible/<book>.json, public-domain KJV (1769) from the es-kjv npm package (Unlicense), brackets and paragraph marks removed.
+   Key verses: data/keyverses.json lists references only, in priority order; the first listed verse inside the day's passages wins,
+   otherwise the first verse of the Gospel reading (New Testament) or the Psalm/wisdom reading (Old Testament).
+   Links: #readingplan (today), #readingplan/11-13 (month-day), #readingplan/year (full year). Reading progress lives only in this browser (localStorage). */
+(function(){
+  var page=document.getElementById('readingplan');if(!page)return;
+  var body=document.getElementById('rp-body'),hDate=document.getElementById('rp-date'),hSub=document.getElementById('rp-sub'),daysEl=document.getElementById('rp-days');
+  var PLAN=null,KV=null,BOOKS={},SLUG={},loading=null,cur=null;
+  var POEM={'Job':1,'Psalms':1,'Proverbs':1,'Ecclesiastes':1,"Solomon's Song":1,'Lamentations':1};
+  var MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var DL='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 20h14"/></svg>';
+  var SH='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4"/><path d="M15.4 6.5l-6.8 4"/></svg>';
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function today(){var t=(window.TODAY instanceof Date)?new Date(window.TODAY.getTime()):new Date();t.setHours(0,0,0,0);return t;}
+  function keyOf(d){return (d.getMonth()+1)+'-'+d.getDate();}
+  function dateOf(k){var p=/^(\d{1,2})-(\d{1,2})$/.exec(k||'');if(!p)return null;var m=+p[1],d=+p[2],t=today(),y=t.getFullYear();
+    if(m<1||m>12||d<1)return null;if(m-(t.getMonth()+1)>6)y--;else if((t.getMonth()+1)-m>6)y++;
+    var dt=new Date(y,m-1,d);return dt.getMonth()===m-1?dt:null;}
+  function fmt(d){return d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});}
+  function dayOf(m,d){return d>=1&&d<=25&&PLAN?PLAN.days[(m-1)*25+d-1]:null;}
+  function bookName(b,c1,c2){if(b==='Psalms')return c1===c2?'Psalm':'Psalms';if(b==="Solomon's Song")return 'Song of Songs';return b;}
+  function refText(r){return bookName(r.book,r.chapterStart,r.chapterEnd)+' '+r.label;}
+  /* reading progress: this browser only */
+  function readAll(){try{return JSON.parse(localStorage.getItem('rbc_rp_read')||'{}')||{};}catch(e){return {};}}
+  function rkey(m,d){var dt=dateOf(m+'-'+d);return (dt?dt.getFullYear():today().getFullYear())+'-'+m+'-'+d;}
+  function isRead(m,d){return !!readAll()[rkey(m,d)];}
+  function setRead(m,d,on){try{var a=readAll(),k=rkey(m,d);if(on)a[k]=1;else delete a[k];localStorage.setItem('rbc_rp_read',JSON.stringify(a));}catch(e){}}
+  function load(){if(loading)return loading;
+    loading=Promise.all([fetch('data/plan.json').then(function(r){if(!r.ok)throw 0;return r.json();}),fetch('data/keyverses.json').then(function(r){if(!r.ok)throw 0;return r.json();}).catch(function(){return {nt:[],ot:[]};})])
+      .then(function(a){PLAN=a[0];KV=a[1];PLAN.days.forEach(function(d){d.readings.forEach(function(r){SLUG[r.book]=r.slug;});});});
+    loading.catch(function(){loading=null;});return loading;}
+  function book(slug){if(!BOOKS[slug])BOOKS[slug]=fetch('data/bible/'+slug+'.json').then(function(r){if(!r.ok)throw 0;return r.json();});
+    BOOKS[slug].catch(function(){delete BOOKS[slug];});return BOOKS[slug];}
+  function chips(sel){var t=today(),h='';
+    for(var i=-3;i<=3;i++){var d=new Date(t.getTime());d.setDate(d.getDate()+i);var m=d.getMonth()+1,dd=d.getDate(),k=m+'-'+dd,cls='rp-day';
+      if(i===0)cls+=' today';if(k===sel)cls+=' on';if(dd>25)cls+=' cu';else if(PLAN&&isRead(m,dd))cls+=' done';
+      h+='<button type="button" class="'+cls+'" data-k="'+k+'" aria-label="'+esc(fmt(d)+(dd>25?', catch-up day':', Month '+m+', Day '+dd)+(i===0?', today':''))+'"'+(i===0?' aria-current="date"':'')+' aria-pressed="'+(k===sel)+'"><span class="wd">'+(i===0?'Today':d.toLocaleDateString('en-US',{weekday:'short'}))+'</span><span class="dn">'+dd+'</span></button>';}
+    daysEl.innerHTML=h;document.getElementById('rp-yearbtn').classList.toggle('on',sel==='year');document.getElementById('rp-yearbtn').setAttribute('aria-pressed',sel==='year');}
+  daysEl.addEventListener('click',function(e){var b=e.target.closest('[data-k]');if(b)go('readingplan/'+b.getAttribute('data-k'));});
+  document.getElementById('rp-todaybtn').addEventListener('click',function(){go('readingplan/'+keyOf(today()));});
+  document.getElementById('rp-yearbtn').addEventListener('click',function(){go('readingplan/year');});
+  function checkbox(m,d,label){var on=isRead(m,d);return '<label class="rp-check'+(on?' is-done':'')+'"><input type="checkbox" data-read="'+m+'-'+d+'"'+(on?' checked':'')+'><span>'+esc(label)+'</span></label>';}
+  body.addEventListener('change',function(e){var c=e.target;if(!c.matches('[data-read]'))return;var p=c.getAttribute('data-read').split('-');setRead(+p[0],+p[1],c.checked);
+    body.querySelectorAll('[data-read="'+c.getAttribute('data-read')+'"]').forEach(function(x){x.checked=c.checked;x.parentNode.classList.toggle('is-done',c.checked);});chips(cur);});
+  /* ---------- views ---------- */
+  function show(sub){sub=sub||'';var tk=keyOf(today());
+    if(!PLAN){body.innerHTML='<p class="rp-load">Loading today\'s reading...</p>';
+      load().then(function(){show(sub);}).catch(function(){body.innerHTML='<p class="rp-load">We couldn\'t load the reading plan right now. Please check your connection and try again, or <a href="files/ravenswood-2026-bible-reading-plan.pdf" data-rbcpdf>open the printable plan</a>.</p>';});return;}
+    if(sub==='year'){cur='year';chips('year');yearView();return;}
+    var dt=dateOf(sub)||dateOf(tk),k=keyOf(dt);cur=k;chips(k);body.classList.remove('wide');
+    var m=dt.getMonth()+1,d=dt.getDate();hDate.textContent=fmt(dt);
+    if(d>25){hSub.textContent='Month '+m+', Catch-Up Day';catchUp(m,d,k===tk);}else{hSub.textContent='Month '+m+', Day '+d;dayView(m,d,k===tk);}}
+  window.rpShow=show;
+  function dayView(m,d,isToday){var day=dayOf(m,d),R=day.readings;
+    var link=function(r,i){return '<a href="#rp-p'+i+'" data-jump="'+i+'">'+esc(refText(r))+'</a>';};
+    var pass=function(r,i){return '<details class="rp-pass" id="rp-p'+i+'" open><summary><h3>'+esc(refText(r))+'</h3><span class="chev" aria-hidden="true"></span></summary><div class="rp-text'+(POEM[r.book]?' poem':'')+'" data-i="'+i+'"><p class="rp-load">Loading...</p></div></details>';};
+    var h='<div class="rp-over"><h2>'+(isToday?'Today\'s Readings':'Readings for Day '+d)+'</h2><div><div class="grp">New Testament</div>'+link(R[0],0)+link(R[1],1)+'</div><div><div class="grp">Old Testament</div>'+link(R[2],2)+link(R[3],3)+'</div></div>'+
+      checkbox(m,d,'Mark Day '+d+' as read')+'<p class="rp-hint">Tap any verse to turn it into a graphic you can save or share.</p>'+
+      '<div class="rp-sec nt"><h2>New Testament</h2>'+pass(R[0],0)+pass(R[1],1)+'</div><div class="rp-sec ot"><h2>Old Testament</h2>'+pass(R[2],2)+pass(R[3],3)+'</div>'+
+      checkbox(m,d,'I read Day '+d)+
+      '<div class="rp-share"><h2>Verses to Share</h2><p>One verse from each testament for this day. Save it or send it to a friend.</p><div class="rp-cards">'+card('nt','New Testament')+card('ot','Old Testament')+'</div></div>'+foot();
+    body.innerHTML=h;
+    R.forEach(function(r,i){var el=body.querySelector('.rp-text[data-i="'+i+'"]');
+      book(r.slug).then(function(B){el.innerHTML=passageHTML(r,B);}).catch(function(){el.innerHTML='<p class="rp-err">We couldn\'t load this passage right now. Open your Bible to '+esc(refText(r))+' and read along.</p>';});});
+    [['nt',[0,1],0],['ot',[2,3],2]].forEach(function(g){var kv=pick(R,g[0],g[1],g[2]),c=body.querySelector('.rp-card[data-g="'+g[0]+'"]');
+      book(SLUG[kv.book]).then(function(B){var t=(B[kv.c-1]||[])[kv.v-1];if(!t)throw 0;kv.t=t;c.querySelector('.ref').textContent=vref(kv);c._v=kv;draw(c.querySelector('canvas'),kv,g[0]==='nt'?'red':'dark');}).catch(function(){c.hidden=true;});});}
+  function card(g,label){return '<div class="rp-card" data-g="'+g+'"><div class="lbl">'+label+' &middot; <span class="ref"></span></div><canvas width="1080" height="1080" role="img" aria-label="'+label+' verse graphic" title="Tap to change the color"></canvas><div class="rp-acts"><button type="button" class="red" data-act="dl">'+DL+'<span>Download Image</span></button><button type="button" data-act="share" hidden>'+SH+'<span>Share</span></button></div></div>';}
+  function foot(){return '<div class="rp-foot"><a class="btn btn-dark" href="#readingplan/year" onclick="go(\'readingplan/year\');return false"><span>See the Full Year</span></a><a class="btn btn-outd" href="files/ravenswood-2026-bible-reading-plan.pdf" data-rbcpdf><span>Printable Plan</span></a></div>';}
+  function passageHTML(r,B){var h='',multi=r.chapterEnd>r.chapterStart;
+    for(var c=r.chapterStart;c<=r.chapterEnd;c++){var V=B[c-1]||[],a=(c===r.chapterStart&&r.verseStart)?r.verseStart:1,z=(c===r.chapterEnd&&r.verseEnd)?r.verseEnd:V.length;
+      if(multi)h+='<h4>'+esc(bookName(r.book,1,1)+' '+c)+'</h4>';h+='<p>';
+      for(var v=a;v<=z&&v<=V.length;v++)h+='<span class="v" data-b="'+esc(r.book)+'" data-c="'+c+'" data-v="'+v+'"><sup>'+v+'</sup>'+esc(V[v-1])+' </span>';
+      h+='</p>';}
+    return h;}
+  function inPass(r,b,c,v){if(r.book!==b)return false;var s=r.chapterStart*1000+(r.verseStart||1),e=r.chapterEnd*1000+(r.verseEnd||999),x=c*1000+v;return x>=s&&x<=e;}
+  function pick(R,g,cols,fb){var L=(KV&&KV[g])||[];
+    for(var i=0;i<L.length;i++){var p=/^(.+) (\d+):(\d+)$/.exec(L[i]);if(!p)continue;for(var j=0;j<cols.length;j++)if(inPass(R[cols[j]],p[1],+p[2],+p[3]))return {book:p[1],c:+p[2],v:+p[3]};}
+    var r=R[fb];return {book:r.book,c:r.chapterStart,v:r.verseStart||1};}
+  function vref(kv){return bookName(kv.book,1,1)+' '+kv.c+':'+kv.v;}
+  function catchUp(m,d,isToday){var h='<div class="rp-cu"><div class="eyebrow">Month '+m+', '+MONTHS[m-1]+'</div><h2>Catch-Up Day</h2><p>'+(isToday?'There\'s no new reading today. ':'')+'Days 26 to the end of the month are set aside to catch up. Pick up any day you missed, or go back and read a favorite passage again.</p>';
+    h+='<h3>The Last Few Days</h3><div class="rp-qlinks">';for(var i=21;i<=25;i++)h+=qlink(m,i);h+='</div>';
+    var miss=[];for(var j=1;j<=20;j++)if(!isRead(m,j))miss.push(j);
+    if(miss.length){h+='<h3>Not Marked as Read Yet</h3><div class="rp-qlinks">';miss.forEach(function(x){h+=qlink(m,x);});h+='</div>';}
+    h+='<p>'+(m<12?'The next reading, Month '+(m+1)+', Day 1, is on '+MONTHS[m]+' 1.':'That\'s the end of this year\'s plan. Well done, and keep reading!')+'</p></div>'+foot();
+    body.innerHTML=h;}
+  function qlink(m,d){var day=dayOf(m,d),on=isRead(m,d);return '<a href="#readingplan/'+m+'-'+d+'" data-k="'+m+'-'+d+'"'+(on?' class="done"':'')+'><b>Day '+d+'</b><span>'+esc(day.readings.map(refText).join(', '))+'</span><i>'+(on?'Read':'Not yet')+'</i></a>';}
+  function yearView(){hDate.textContent='The Full Year';hSub.textContent='300 Readings in 12 Months';body.classList.add('wide');
+    var all=readAll(),n=0,t=today(),tm=t.getMonth()+1,td=t.getDate(),h='';
+    for(var m=1;m<=12;m++){var bks=[[],[],[],[]],g='',done=0;
+      for(var d=1;d<=25;d++){var day=dayOf(m,d),on=isRead(m,d);if(on){n++;done++;}
+        day.readings.forEach(function(r,i){var b=bookName(r.book,2,3);if(bks[i].indexOf(b)<0)bks[i].push(b);});
+        g+='<button type="button" data-k="'+m+'-'+d+'" class="'+(on?'done':'')+(m===tm&&d===td?' today':'')+'" title="'+esc(day.readings.map(refText).join(', '))+'" aria-label="Month '+m+', Day '+d+(on?', read':'')+'">'+d+'</button>';}
+      h+='<div class="rp-mo'+(m===tm?' cur':'')+'"><h3>Month '+m+' <small>'+MONTHS[m-1]+' &middot; '+done+'/25</small></h3><p class="bk">'+esc([].concat(bks[0],bks[1],bks[2],bks[3]).join(', '))+'</p><div class="rp-grid">'+g+'</div></div>';}
+    body.innerHTML='<div class="rp-year-hd"><div><h2 style="font-size:clamp(30px,4vw,44px)">Yet Not I, But Christ</h2><p>Tap any day to open it. Days 26 to the end of each month are catch-up days.</p></div><div class="rp-prog">'+n+' of 300 read</div></div><div class="rp-year">'+h+'</div><div class="rp-legend"><span><i class="d"></i>Read</span><span><i class="t"></i>Today</span><span><i></i>Not read yet</span></div>'+foot();}
+  body.addEventListener('click',function(e){
+    var k=e.target.closest('[data-k]');if(k&&body.contains(k)){e.preventDefault();go('readingplan/'+k.getAttribute('data-k'));return;}
+    var j=e.target.closest('[data-jump]');if(j){e.preventDefault();var p=document.getElementById('rp-p'+j.getAttribute('data-jump'));if(p){p.open=true;p.scrollIntoView({behavior:'smooth',block:'start'});}return;}
+    var v=e.target.closest('.v');if(v){body.querySelectorAll('.v.sel').forEach(function(x){x.classList.remove('sel');});v.classList.add('sel');
+      var sup=v.querySelector('sup'),t=v.textContent.slice(sup?sup.textContent.length:0).trim();openV({book:v.getAttribute('data-b'),c:+v.getAttribute('data-c'),v:+v.getAttribute('data-v'),t:t},'dark',v);return;}
+    var cd=e.target.closest('.rp-card');if(cd&&cd._v){var a=e.target.closest('[data-act]');
+      if(a){if(a.getAttribute('data-act')==='dl')save(cd.querySelector('canvas'),cd._v);else share(cd.querySelector('canvas'),cd._v);}
+      else if(e.target.tagName==='CANVAS')openV(cd._v,cd.getAttribute('data-g')==='nt'?'red':'dark',e.target);}});
+  /* ---------- verse graphic (1080 x 1080 canvas) ---------- */
+  var TH={dark:{bg:'#2B2E33',tx:'#F6F1E7',ref:'#23C5C9',bar:'#D32047',q:'rgba(35,197,201,.28)',crown:'#FFFFFF',ft:'rgba(246,241,231,.78)',s1:'#23C5C9',s2:'#D32047'},
+    red:{bg:'#D32047',tx:'#FFFFFF',ref:'#FFFFFF',bar:'#2B2E33',q:'rgba(255,255,255,.22)',crown:'#FFFFFF',ft:'rgba(255,255,255,.85)',s1:'#FFFFFF',s2:'#2B2E33'},
+    teal:{bg:'#23C5C9',tx:'#2B2E33',ref:'#2B2E33',bar:'#D32047',q:'rgba(255,255,255,.4)',crown:'#FFFFFF',ft:'rgba(43,46,51,.8)',s1:'#FFFFFF',s2:'#D32047'},
+    cream:{bg:'#F6F1E7',tx:'#2B2E33',ref:'#D32047',bar:'#23C5C9',q:'rgba(211,32,71,.16)',crown:'#D32047',ft:'rgba(43,46,51,.75)',s1:'#23C5C9',s2:'#D32047'}};
+  var crownP=null;function crown(){if(!crownP)crownP=new Promise(function(ok){var i=new Image();i.onload=function(){ok(i);};i.onerror=function(){ok(null);};i.src='img/crown_white.png';});return crownP;}
+  var fontP=null;function fonts(){if(!fontP){try{fontP=Promise.all([document.fonts.load('700 56px RBCHead'),document.fonts.load('600 26px RBCHead'),document.fonts.load('500 40px RBCBody')]).catch(function(){});}catch(e){fontP=Promise.resolve();}}return fontP;}
+  function spaced(ctx,s,x,y,sp,align){var w=0,i;for(i=0;i<s.length;i++)w+=ctx.measureText(s[i]).width+(i<s.length-1?sp:0);
+    if(align==='right')x-=w;ctx.textAlign='left';for(i=0;i<s.length;i++){ctx.fillText(s[i],x,y);x+=ctx.measureText(s[i]).width+sp;}return w;}
+  function wrap(ctx,text,maxW){var words=text.split(' '),lines=[],line='';
+    words.forEach(function(w){var t=line?line+' '+w:w;if(ctx.measureText(t).width>maxW&&line){lines.push(line);line=w;}else line=t;});if(line)lines.push(line);return lines;}
+  function draw(cv,kv,th){var T=TH[th]||TH.dark;cv._th=th;
+    return Promise.all([fonts(),crown()]).then(function(a){var cr=a[1],ctx=cv.getContext('2d'),W=1080,P=96;
+      ctx.clearRect(0,0,W,W);ctx.fillStyle=T.bg;ctx.fillRect(0,0,W,W);
+      /* slanted stripes, top right */
+      for(var i=0;i<5;i++){ctx.fillStyle=i%2?T.s2:T.s1;ctx.globalAlpha=i%2?.95:.9;var x=W-80-i*46;ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x+24,0);ctx.lineTo(x+24-70,150);ctx.lineTo(x-70,150);ctx.closePath();ctx.fill();}
+      ctx.globalAlpha=1;
+      if(cr){var o=document.createElement('canvas');o.width=cr.width;o.height=cr.height;var oc=o.getContext('2d');oc.drawImage(cr,0,0);oc.globalCompositeOperation='source-in';oc.fillStyle=T.crown;oc.fillRect(0,0,o.width,o.height);ctx.drawImage(o,P,P-6,100,70);}
+      ctx.fillStyle=T.q;ctx.font='700 360px RBCHead, Impact, sans-serif';ctx.textBaseline='alphabetic';ctx.textAlign='left';ctx.fillText('“',P-14,P+330);
+      /* verse text, sized to fit */
+      var maxW=W-P*2,top=250,bottom=860,refH=96,size=64,lines,lh;
+      for(;size>=24;size-=2){ctx.font='500 '+size+'px RBCBody, "Segoe UI", Arial, sans-serif';lines=wrap(ctx,kv.t,maxW);lh=Math.round(size*1.32);if(lines.length*lh+refH<=bottom-top)break;}
+      var blockH=lines.length*lh+refH,y=top+Math.max(0,(bottom-top-blockH)/2)+size;
+      ctx.fillStyle=T.tx;lines.forEach(function(l){ctx.fillText(l,P,y);y+=lh;});
+      y+=Math.round(size*.15);ctx.fillStyle=T.bar;ctx.fillRect(P,y-Math.round(size*.55)+20,90,8);
+      ctx.fillStyle=T.ref;ctx.font='700 54px RBCHead, Impact, sans-serif';spaced(ctx,vref(kv).toUpperCase(),P,y+68,2);
+      ctx.fillStyle=T.ft;ctx.font='600 26px RBCHead, Impact, sans-serif';ctx.fillRect(P,W-P-46,W-P*2,2);spaced(ctx,'RAVENSWOOD BAPTIST CHURCH',P,W-P+2,5.5);
+      return cv;});}
+  function fname(kv){return 'ravenswood-'+(bookName(kv.book,1,1)+'-'+kv.c+'-'+kv.v).toLowerCase().replace(/[^a-z0-9]+/g,'-')+'.png';}
+  function blob(cv){return new Promise(function(ok){if(cv.toBlob)cv.toBlob(function(b){ok(b);},'image/png');else ok(null);});}
+  function save(cv,kv){blob(cv).then(function(b){var a=document.createElement('a'),u=b?URL.createObjectURL(b):cv.toDataURL('image/png');a.href=u;a.download=fname(kv);document.body.appendChild(a);a.click();a.remove();if(b)setTimeout(function(){URL.revokeObjectURL(u);},4000);});}
+  var canFile=false;try{canFile=!!(navigator.canShare&&window.File&&navigator.canShare({files:[new File([new Blob(['x'],{type:'image/png'})],'v.png',{type:'image/png'})]}));}catch(e){canFile=false;}
+  function share(cv,kv){blob(cv).then(function(b){if(!b)return;var f=new File([b],fname(kv),{type:'image/png'});
+    if(navigator.canShare&&navigator.canShare({files:[f]}))navigator.share({files:[f],title:vref(kv),text:vref(kv)}).catch(function(){});else save(cv,kv);});}
+  var mo=document.getElementById('rpv'),moC=document.getElementById('rpv-c'),moDlg=mo&&mo.querySelector('.rbcbox-dlg'),moX=mo&&mo.querySelector('.rbcbox-x'),moV=null,moLast=null,moTh='dark';
+  function openV(kv,th,trigger){if(!mo)return;moV=kv;moTh=th||'dark';moLast=trigger||document.activeElement;
+    mo.querySelector('#rpv-t').textContent=vref(kv);mo.querySelector('[data-rpv="share"]').hidden=!canFile;setSw();draw(moC,kv,moTh);
+    mo.hidden=false;document.documentElement.classList.add('rbc-lock');requestAnimationFrame(function(){requestAnimationFrame(function(){mo.classList.add('open');});});moX.focus();}
+  function closeV(){if(!mo||mo.hidden)return;mo.classList.remove('open');document.documentElement.classList.remove('rbc-lock');setTimeout(function(){mo.hidden=true;},260);
+    if(moLast&&moLast.focus&&moLast.tabIndex>=0){try{moLast.focus({preventScroll:true});}catch(e){}}moLast=null;}
+  function setSw(){mo.querySelectorAll('[data-th]').forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-th')===moTh);});}
+  window.rpVerseGraphic=function(kv,th){return draw(moC,kv,th||'dark');};
+  if(mo){mo.addEventListener('click',function(e){if(e.target.closest('[data-rpvclose]')){e.preventDefault();closeV();return;}
+      var s=e.target.closest('[data-th]');if(s){moTh=s.getAttribute('data-th');setSw();draw(moC,moV,moTh);return;}
+      var a=e.target.closest('[data-rpv]');if(a){if(a.getAttribute('data-rpv')==='dl')save(moC,moV);else share(moC,moV);}});
+    document.addEventListener('keydown',function(e){if(mo.hidden)return;if(e.key==='Escape'||e.key==='Esc'){e.preventDefault();closeV();return;}
+      if(e.key==='Tab'){var f=[].slice.call(moDlg.querySelectorAll('button,a[href]')).filter(function(x){return x.offsetParent!==null;});if(!f.length)return;var first=f[0],last=f[f.length-1];
+        if(!moDlg.contains(document.activeElement)){e.preventDefault();first.focus();}else if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}});}
+  /* share buttons on the day cards show only where the browser can share files */
+  new MutationObserver(function(){if(canFile)body.querySelectorAll('[data-act="share"][hidden]').forEach(function(b){b.hidden=false;});}).observe(body,{childList:true,subtree:true});
+  /* first load straight onto #readingplan or #readingplan/11-13 */
+  if(page.classList.contains('active')){var h=location.hash.slice(1),i=h.indexOf('/');show(i>0?h.slice(i+1):'');}
 })();
 </script>
 </body>
