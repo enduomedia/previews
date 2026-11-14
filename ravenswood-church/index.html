@@ -2403,9 +2403,12 @@ html.rbc-lock,html.rbc-lock body{overflow:hidden;}
 .vpanel .pq p{font-size:16px;}
 .vpanel .textlink{font-size:15px;}
 @supports (grid-template-rows:subgrid){
-  .vgrid .vc2{display:grid;grid-row:span 4;grid-template-rows:subgrid;row-gap:0;}
-  .vc2 .vpanel{align-self:start;}
+  .vgrid .vc2{display:grid;grid-row:span 3;grid-template-rows:subgrid;row-gap:0;}
 }
+.vgrid .vc2{position:relative;}
+.vgrid .vc2 .vpanel{position:absolute;top:100%;left:0;right:0;z-index:6;background:#fff;box-shadow:0 14px 28px rgba(0,0,0,.18);border-top:1px solid var(--line);}
+.vgrid .vc2:has(.vmore[aria-expanded="true"]){z-index:7;}
+@media(max-width:600px){.vgrid .vc2 .vpanel{position:static;box-shadow:none;}}
 .wvsum{margin:0 0 12px;font-size:18px;line-height:1.6;}
 .vrow{flex-wrap:wrap;}
 .wvq{flex:1 1 100%;align-self:stretch;margin-left:92px;display:grid;gap:16px;min-width:0;}
