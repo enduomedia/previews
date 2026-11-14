@@ -1863,6 +1863,120 @@ html.rbc-lock,html.rbc-lock body{overflow:hidden;}
 .rbcbox-ft a{color:var(--gunmetal);font-weight:700;}
 @media(max-width:640px){.rbcbox{padding:0;}.rbcbox-dlg{width:100%;height:100%;height:100dvh;}.rbcbox-hd{padding:10px 10px 10px 16px;}.rbcbox-hd h2{font-size:24px;}.rbcbox-ft{padding:10px 16px calc(12px + env(safe-area-inset-bottom));}}
 @media(prefers-reduced-motion:reduce){.rbcbox-scrim,.rbcbox-dlg{transition:none;}}
+
+/* ===== Item 5: core values bands, We Are Ravenswood, reveals, next steps cards ===== */
+.cvhint{margin-top:14px;font-size:16px;color:#5b5e64;max-width:760px;}
+.cvx{display:grid;gap:12px;margin-top:40px;}
+.cvb{position:relative;display:grid;grid-template-columns:130px 1fr auto;align-items:center;gap:26px;padding:20px 56px 20px 26px;background:var(--soft);color:var(--gunmetal);overflow:hidden;isolation:isolate;clip-path:polygon(0 0,100% 0,calc(100% - 34px) 100%,0 100%);transition:transform .35s ease,opacity .7s ease,filter .35s ease;}
+.cvb:nth-child(4n+1){background:var(--crimson);color:#fff;}
+.cvb:nth-child(4n+2){background:var(--gunmetal);color:#fff;}
+.cvb:nth-child(4n+3){background:var(--teal);color:var(--gunmetal);}
+.cvb:nth-child(even){margin-left:56px;}
+.cvb:nth-child(odd){margin-right:56px;}
+.cvb:first-child{padding-top:30px;padding-bottom:30px;}
+.cvb:after{content:"";position:absolute;right:-40px;top:-30%;width:220px;height:160%;background:rgba(255,255,255,.07);transform:skewX(-18deg);z-index:-1;transition:right .45s ease;}
+.cvb{--cvs:#fff;}.cvb:nth-child(4n+3){--cvs:var(--gunmetal);}.cvb:nth-child(4n){--cvs:var(--crimson);}
+.cvb:nth-child(4n) .cvt small{color:var(--crimson);}
+.cvn{font-family:'RBCHead',sans-serif;font-weight:700;font-size:118px;line-height:.78;text-align:center;color:transparent;-webkit-text-stroke:2px var(--cvs);transition:color .35s ease,transform .35s ease;}
+.cvb:first-child .cvn{font-size:150px;}
+.cvt small{display:block;font-family:'RBCHead',sans-serif;font-weight:600;font-size:17px;letter-spacing:.2em;text-transform:uppercase;opacity:.85;margin-bottom:4px;}
+.cvt a{font-family:'RBCHead',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(30px,3.5vw,50px);line-height:.95;color:inherit;text-decoration:none;display:block;}
+.cvb:first-child .cvt a{font-size:clamp(36px,4.6vw,66px);}
+.cvt a:after{content:"";position:absolute;inset:0;z-index:1;}
+.cvt a:focus-visible{outline:none;}
+.cvb:has(.cvt a:focus-visible){outline:3px solid var(--gunmetal);outline-offset:-6px;}
+.cvm{display:flex;flex-direction:column;align-items:flex-end;gap:10px;text-align:right;}
+.cvref{font-family:'RBCHead',sans-serif;font-weight:600;letter-spacing:.12em;text-transform:uppercase;font-size:15px;opacity:.9;}
+.cvplay{position:relative;z-index:2;display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--gunmetal);text-decoration:none;font-family:'RBCHead',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:16px;padding:9px 16px 9px 12px;transition:background .25s,color .25s,transform .25s;}
+.cvplay i{width:0;height:0;border-left:11px solid var(--crimson);border-top:7px solid transparent;border-bottom:7px solid transparent;}
+.cvplay:hover{background:var(--gunmetal);color:#fff;transform:translateY(-2px);}
+.cvplay:hover i{border-left-color:#fff;}
+.cvb:nth-child(4n+2) .cvplay i{border-left-color:var(--teal);}
+.cvb:nth-child(4n) .cvplay{background:var(--crimson);color:#fff;}
+.cvb:nth-child(4n) .cvplay i{border-left-color:#fff;}
+.cvb:hover{transform:translateX(10px);}
+.cvb:hover .cvn{color:var(--cvs);transform:scale(1.04);}
+.cvb:hover:after{right:-10px;}
+.cvcta{margin-top:30px;}
+.cvb.rv:not(.in){opacity:0;transform:translateX(-46px);}
+.cvb.rv:nth-child(even):not(.in){transform:translateX(46px);}
+@media(max-width:820px){
+  .cvb{grid-template-columns:62px 1fr;gap:6px 16px;padding:20px 40px 20px 16px;clip-path:polygon(0 0,100% 0,calc(100% - 22px) 100%,0 100%);}
+  .cvb:nth-child(even){margin-left:18px;}.cvb:nth-child(odd){margin-right:18px;}
+  .cvb:first-child{padding-top:24px;padding-bottom:24px;}
+  .cvn,.cvb:first-child .cvn{font-size:66px;grid-row:span 2;align-self:start;}
+  .cvt a,.cvb:first-child .cvt a{font-size:30px;}
+  .cvt small{font-size:14px;}
+  .cvm{grid-column:2;flex-direction:row;align-items:center;justify-content:space-between;flex-wrap:wrap;text-align:left;}
+  .cvref{font-size:13px;}
+  .cvplay{font-size:14px;padding:7px 12px 7px 10px;}
+  .cvb:hover{transform:none;}
+  .cvb:after{width:90px;right:-30px;}
+}
+/* We Are Ravenswood series page */
+.wvnav{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px;}
+.wvnav a{display:inline-flex;align-items:center;gap:10px;background:var(--mist);color:var(--gunmetal);text-decoration:none;font-family:'RBCHead',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-size:16px;padding:8px 14px 8px 8px;transition:background .25s,color .25s,transform .25s;}
+.wvnav a b{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;background:var(--crimson);color:#fff;font-size:17px;}
+.wvnav a:nth-child(even) b{background:var(--teal);color:var(--gunmetal);}
+.wvnav a:hover{background:var(--gunmetal);color:#fff;transform:translateY(-2px);}
+.vrow{scroll-margin-top:110px;position:relative;align-items:flex-start;transition:opacity .7s ease,transform .7s ease,box-shadow .3s ease;}
+.vrow .vbody{flex:1;min-width:0;}
+.vrow .vnum{font-size:84px;line-height:.8;min-width:70px;color:transparent;-webkit-text-stroke:2px var(--crimson);transition:color .6s ease .35s;}
+.vrow:nth-child(even) .vnum{-webkit-text-stroke-color:var(--teal-dk);}
+.vrow.in .vnum,.vrow:not(.rv) .vnum{color:var(--crimson);}
+.vrow:nth-child(even).in .vnum,.vrow:nth-child(even):not(.rv) .vnum{color:var(--teal-dk);}
+.vrow:hover{box-shadow:0 14px 34px rgba(30,32,36,.14);}
+.vrow.hl{box-shadow:0 0 0 4px var(--teal),0 14px 34px rgba(30,32,36,.14);}
+.vrow.rv:not(.in){transform:translateX(-36px);}
+.vrow.rv:nth-child(even):not(.in){transform:translateX(36px);}
+.wthumb{position:relative;display:block;flex:0 0 300px;aspect-ratio:16/9;background:var(--gunmetal);overflow:hidden;align-self:flex-start;}
+.wthumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease;}
+.wthumb .vplay{width:58px;height:58px;margin:-29px 0 0 -29px;background:var(--crimson);transition:transform .3s ease;}
+.wthumb .vplay:after{left:22px;top:17px;border-left-width:18px;border-top-width:12px;border-bottom-width:12px;}
+.wthumb:hover img{transform:scale(1.06);}
+.wthumb:hover .vplay{transform:scale(1.12);}
+@media(max-width:900px){.wthumb{flex-basis:220px;}}
+@media(max-width:600px){.wthumb{flex-basis:auto;width:100%;}.vrow .vnum{font-size:60px;}.wvnav{flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;margin-right:-20px;padding-right:20px;}.wvnav a{font-size:14px;flex:0 0 auto;scroll-snap-align:start;}}
+/* Plan a Visit: steps reveal one by one */
+.walk .wstep.rv{opacity:1;transform:none;}
+.walk .wstep.rv .wimg{opacity:0;transform:translateX(-50px);transition:opacity .8s ease,transform .8s ease;}
+.walk .wstep.rv:nth-child(even) .wimg{transform:translateX(50px);}
+.walk .wstep.rv .wtxt>*{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease;}
+.walk .wstep.rv .wtxt>:nth-child(1){transition-delay:.15s;}
+.walk .wstep.rv .wtxt>:nth-child(2){transition-delay:.3s;}
+.walk .wstep.rv .wtxt>:nth-child(3){transition-delay:.45s;}
+.walk .wstep.rv .wtxt>:nth-child(n+4){transition-delay:.6s;}
+.walk .wstep.rv.in .wimg,.walk .wstep.rv.in .wtxt>*{opacity:1;transform:none;}
+/* Our Story: each era reveals, old entries develop like an old photo */
+.tl .tli.rv{transition:opacity .9s ease,transform .9s ease,filter 1.4s ease;}
+.tl .tli.old.rv:not(.in){opacity:0;transform:translateY(18px);filter:sepia(1) blur(2px) brightness(1.12);}
+.tl .tli.mid.rv:not(.in){opacity:0;transform:translateY(22px);filter:grayscale(1);}
+.tl .tli.new.rv:not(.in){opacity:0;transform:translateX(-30px);}
+.tl .tli.rv:before{transition:transform .6s ease .3s;}
+.tl .tli.rv:not(.in):before{transform:scale(0);}
+@media(prefers-reduced-motion:reduce){.cvb,.vrow,.walk .wstep .wimg,.walk .wstep .wtxt>*,.tl .tli,.tl .tli:before,.cvn,.wthumb img,.wthumb .vplay{transition:none !important;}.cvb.rv:not(.in),.vrow.rv:not(.in),.tl .tli.rv:not(.in),.walk .wstep.rv .wimg,.walk .wstep.rv .wtxt>*{opacity:1 !important;transform:none !important;filter:none !important;}.cvb:hover{transform:none;}}
+/* Connect card pages: red headers show the true brand red (no lighter pink wash) */
+.pagehead:not(.dark):not(.teal):not(.sepiahead) .tint{opacity:1;}
+@media(max-width:900px){.tl:before{left:13px;}}
+/* Next Steps cards */
+.nsgrid{gap:12px;}
+.nsgrid a{position:relative;grid-template-columns:64px 1fr 22px;gap:18px;align-items:center;min-height:118px;padding:20px 22px 20px 20px;border:0;border-left:6px solid var(--crimson);background:var(--soft);color:var(--gunmetal);transition:background .25s,color .25s,transform .25s,box-shadow .25s;}
+.nsgrid a:nth-child(even){border-left-color:var(--teal);}
+.nsgrid a:after{content:"";width:12px;height:12px;border-top:3px solid currentColor;border-right:3px solid currentColor;transform:rotate(45deg);justify-self:center;opacity:.55;transition:transform .25s,opacity .25s;}
+.nsgrid a:hover{background:var(--crimson);border-color:var(--crimson-dk);color:#fff;transform:translateX(4px);box-shadow:0 10px 24px rgba(30,32,36,.12);}
+.nsgrid a:nth-child(even):hover{background:var(--gunmetal);border-color:var(--teal);}
+.nsgrid a:nth-child(even):hover .n{color:var(--teal);}
+.nsgrid a:hover:after{opacity:1;transform:translateX(3px) rotate(45deg);}
+.nsgrid .n{font-size:50px;text-align:center;}
+.nsgrid a:nth-child(even) .n{color:var(--teal-dk);}
+.nsgrid h3{font-size:26px;line-height:1;}
+.nsgrid p{margin-top:6px;line-height:1.45;}
+.nsgrid a:focus-visible{outline:3px solid var(--teal);outline-offset:2px;}
+#next .needtag{margin-top:16px;}
+@media(max-width:560px){.nsgrid a{grid-template-columns:44px 1fr 14px;gap:12px;padding:18px 14px 18px 12px;min-height:0;}.nsgrid .n{font-size:38px;}.nsgrid h3{font-size:23px;}.nsgrid a:after{width:9px;height:9px;}}
+.rplan>div{align-self:start;}
+.rplan b{min-height:58px;display:flex;align-items:flex-end;}
+@media(max-width:560px){.rplan{grid-template-columns:1fr 1fr 1fr;padding:28px 22px;gap:12px;transform:rotate(1deg);}.rplan b{font-size:46px;min-height:42px;}.rplan div span{font-size:13px;}}
 </style>
 </head>
 <body>
@@ -2330,15 +2444,7 @@ html.rbc-lock,html.rbc-lock body{overflow:hidden;}
       <div class="eyebrow">What Shapes Us</div>
       <h2 style="font-size:clamp(46px,5.4vw,78px)">Our Core Values</h2>
       <p class="lead mt" style="max-width:760px">Ravenswood loves the city of Chicago and desires to serve the community. We are an independent church with no official affiliation with any denomination.</p>
-      <div class="cvals">
-        <div class="wide"><small>We</small>Treasure Christ above all</div>
-        <div><small>We are</small>Transformed by the Gospel</div>
-        <div><small>We</small>Prioritize Prayer</div>
-        <div><small>We</small>Preach the Word faithfully</div>
-        <div><small>We</small>Make disciples who make disciples</div>
-        <div><small>We</small>Belong in community</div>
-        <div><small>We</small>Practice generosity with joy</div>
-      </div>
+      <p class="cvhint">Each value has its own message from our We Are Ravenswood series. Tap a value to read more, or press Watch to see the message.</p><div class="cvx"><div class="cvb"><span class="cvn" aria-hidden="true">1</span><div class="cvt"><small>We</small><a href="#series-weare" onclick="cvgo(1);return false">Treasure Christ above all</a></div><div class="cvm"><span class="cvref">Philippians 3:7-11</span><a class="cvplay" href="https://www.youtube.com/watch?v=M4J0aqXYfUI" target="_blank" rel="noopener" aria-label="Watch the message: Treasure Christ Above All"><i aria-hidden="true"></i><span>Watch</span></a></div></div><div class="cvb"><span class="cvn" aria-hidden="true">2</span><div class="cvt"><small>We are</small><a href="#series-weare" onclick="cvgo(2);return false">Transformed by the Gospel</a></div><div class="cvm"><span class="cvref">2 Corinthians 3:12-18</span><a class="cvplay" href="https://www.youtube.com/watch?v=D1SjUykeJXE" target="_blank" rel="noopener" aria-label="Watch the message: Transformed by the Gospel"><i aria-hidden="true"></i><span>Watch</span></a></div></div><div class="cvb"><span class="cvn" aria-hidden="true">3</span><div class="cvt"><small>We</small><a href="#series-weare" onclick="cvgo(3);return false">Prioritize Prayer</a></div><div class="cvm"><span class="cvref">1 Thessalonians 5:16-18</span><a class="cvplay" href="https://www.youtube.com/watch?v=OBxalyhKzEQ" target="_blank" rel="noopener" aria-label="Watch the message: Prioritize Prayer"><i aria-hidden="true"></i><span>Watch</span></a></div></div><div class="cvb"><span class="cvn" aria-hidden="true">4</span><div class="cvt"><small>We</small><a href="#series-weare" onclick="cvgo(4);return false">Preach the Word faithfully</a></div><div class="cvm"><span class="cvref">2 Timothy 4:1-5</span><a class="cvplay" href="https://www.youtube.com/watch?v=_5UJ983h1DE" target="_blank" rel="noopener" aria-label="Watch the message: Preach the Word Faithfully"><i aria-hidden="true"></i><span>Watch</span></a></div></div><div class="cvb"><span class="cvn" aria-hidden="true">5</span><div class="cvt"><small>We</small><a href="#series-weare" onclick="cvgo(5);return false">Make disciples who make disciples</a></div><div class="cvm"><span class="cvref">2 Timothy 2:1-2</span><a class="cvplay" href="https://www.youtube.com/watch?v=hqZ2AIpxMlQ" target="_blank" rel="noopener" aria-label="Watch the message: Make Disciples Who Make Disciples"><i aria-hidden="true"></i><span>Watch</span></a></div></div><div class="cvb"><span class="cvn" aria-hidden="true">6</span><div class="cvt"><small>We</small><a href="#series-weare" onclick="cvgo(6);return false">Belong in community</a></div><div class="cvm"><span class="cvref">Romans 12:3-13</span><a class="cvplay" href="https://www.youtube.com/watch?v=-CE-7rweEbQ" target="_blank" rel="noopener" aria-label="Watch the message: Belong in Community"><i aria-hidden="true"></i><span>Watch</span></a></div></div><div class="cvb"><span class="cvn" aria-hidden="true">7</span><div class="cvt"><small>We</small><a href="#series-weare" onclick="cvgo(7);return false">Practice generosity with joy</a></div><div class="cvm"><span class="cvref">2 Corinthians 9:6-15</span><a class="cvplay" href="https://www.youtube.com/watch?v=B7YCVUb2bsc" target="_blank" rel="noopener" aria-label="Watch the message: Practice Generosity with Joy"><i aria-hidden="true"></i><span>Watch</span></a></div></div></div><div class="btnrow cvcta"><a class="btn btn-red" href="#series-weare" onclick="go('series-weare');return false"><span>See the We Are Ravenswood Series</span></a></div>
     </div>
   </section>
   <section class="redbg">
@@ -3142,7 +3248,7 @@ html.rbc-lock,html.rbc-lock body{overflow:hidden;}
   <div class="pagehead dark"><div class="bg" data-bg="p_preach"></div><div class="tint"></div><div class="stripes" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
     <div class="wrap"><div class="eyebrow">Sermon Series</div><h1>We Are Ravenswood</h1><p>Seven values that shape who we are.</p></div></div>
   <section><div class="wrap"><a class="textlink" href="#sermons" onclick="go('sermons');return false">All Sermons</a>
-    <p class="lead mt">Pastor Duston Moore walked through the values of our church in seven messages. Each one starts with a passage of Scripture.</p><div class="vrows mt"><div class="vrow"><div class="vnum">1</div><div class="vbody"><h3>Treasure Christ Above All</h3><p class="vdate">Pastor Duston Moore · Apr 27, 2025</p><div class="scripture">Philippians 3:7 But what things were gain to me, those I counted loss for Christ. 8 Yea doubtless, and I count all things but loss for the excellency of the knowledge of Christ Jesus my Lord: for whom I have suffered the loss of all things, and do count them but dung, that I may win Christ, 9 And be found in him, not having mine own righteousness, which is of the law, but that which is through the faith of Christ, the righteousness which is of God by faith: 10 That I may know him, and the power of his resurrection, and the fellowship of his sufferings, being made conformable unto his death; 11 If by any means I might attain unto the resurrection of the dead.<cite>PHILIPPIANS 3:7-11</cite></div><a class="textlink" href="https://www.youtube.com/watch?v=M4J0aqXYfUI" target="_blank" rel="noopener">Watch the message</a></div></div><div class="vrow"><div class="vnum">2</div><div class="vbody"><h3>Transformed by the Gospel</h3><p class="vdate">Pastor Duston Moore · May 11, 2025</p><p class="vpass">2 Corinthians 3:12-18</p><a class="textlink" href="https://www.youtube.com/watch?v=D1SjUykeJXE" target="_blank" rel="noopener">Watch the message</a></div></div><div class="vrow"><div class="vnum">3</div><div class="vbody"><h3>Prioritize Prayer</h3><p class="vdate">Pastor Duston Moore · May 18, 2025</p><div class="scripture">1 Thessalonians 5:16 Rejoice evermore. 17 Pray without ceasing. 18 In every thing give thanks: for this is the will of God in Christ Jesus concerning you.<cite>1 THESSALONIANS 5:16-18</cite></div><ol><li>We pray because it aligns our hearts with the heart of God.</li><li>We pray because God invites us to ask.</li><li>We pray because prayer moves the hand of God.</li></ol><a class="textlink" href="https://www.youtube.com/watch?v=OBxalyhKzEQ" target="_blank" rel="noopener">Watch the message</a></div></div><div class="vrow"><div class="vnum">4</div><div class="vbody"><h3>Preach the Word Faithfully</h3><p class="vdate">Pastor Duston Moore · May 25, 2025</p><p class="vpass">2 Timothy 4:1-5</p><a class="textlink" href="https://www.youtube.com/watch?v=_5UJ983h1DE" target="_blank" rel="noopener">Watch the message</a></div></div><div class="vrow"><div class="vnum">5</div><div class="vbody"><h3>Make Disciples Who Make Disciples</h3><p class="vdate">Pastor Duston Moore · Jun 1, 2025</p><div class="scripture">2 Timothy 2:1 Thou therefore, my son, be strong in the grace that is in Christ Jesus. 2 And the things that thou hast heard of me among many witnesses, the same commit thou to faithful men, who shall be able to teach others also.<cite>2 TIMOTHY 2:1-2</cite></div><a class="textlink" href="https://www.youtube.com/watch?v=hqZ2AIpxMlQ" target="_blank" rel="noopener">Watch the message</a></div></div><div class="vrow"><div class="vnum">6</div><div class="vbody"><h3>Belong in Community</h3><p class="vdate">Pastor Duston Moore · Jun 8, 2025</p><p class="vpass">Romans 12:3-13</p><p class="vnote">Why church membership matters:</p><ol><li>Because the New Testament assumes it.</li><li>Because spiritual accountability requires it.</li><li>Because pastors can only shepherd people who belong.</li><li>Because the gospel is covenantal, not consumeristic.</li><li>Because discipline and restoration depend on it.</li></ol><a class="textlink" href="https://www.youtube.com/watch?v=-CE-7rweEbQ" target="_blank" rel="noopener">Watch the message</a></div></div><div class="vrow"><div class="vnum">7</div><div class="vbody"><h3>Practice Generosity with Joy</h3><p class="vdate">Pastor Duston Moore · Jun 15, 2025</p><p class="vpass">2 Corinthians 9:6-15</p><a class="textlink" href="https://www.youtube.com/watch?v=B7YCVUb2bsc" target="_blank" rel="noopener">Watch the message</a></div></div></div>
+    <p class="lead mt">Pastor Duston Moore walked through the values of our church in seven messages. Each one starts with a passage of Scripture.</p><nav class="wvnav" aria-label="The seven values"><a href="#wv1" onclick="cvgo(1);return false"><b>1</b>Treasure Christ Above All</a><a href="#wv2" onclick="cvgo(2);return false"><b>2</b>Transformed by the Gospel</a><a href="#wv3" onclick="cvgo(3);return false"><b>3</b>Prioritize Prayer</a><a href="#wv4" onclick="cvgo(4);return false"><b>4</b>Preach the Word Faithfully</a><a href="#wv5" onclick="cvgo(5);return false"><b>5</b>Make Disciples Who Make Disciples</a><a href="#wv6" onclick="cvgo(6);return false"><b>6</b>Belong in Community</a><a href="#wv7" onclick="cvgo(7);return false"><b>7</b>Practice Generosity with Joy</a></nav><div class="vrows mt"><div class="vrow" id="wv1"><div class="vnum">1</div><div class="vbody"><h3>Treasure Christ Above All</h3><p class="vdate">Pastor Duston Moore · Apr 27, 2025</p><div class="scripture">Philippians 3:7 But what things were gain to me, those I counted loss for Christ. 8 Yea doubtless, and I count all things but loss for the excellency of the knowledge of Christ Jesus my Lord: for whom I have suffered the loss of all things, and do count them but dung, that I may win Christ, 9 And be found in him, not having mine own righteousness, which is of the law, but that which is through the faith of Christ, the righteousness which is of God by faith: 10 That I may know him, and the power of his resurrection, and the fellowship of his sufferings, being made conformable unto his death; 11 If by any means I might attain unto the resurrection of the dead.<cite>PHILIPPIANS 3:7-11</cite></div><a class="textlink" href="https://www.youtube.com/watch?v=M4J0aqXYfUI" target="_blank" rel="noopener">Watch the message</a></div><a class="wthumb" href="https://www.youtube.com/watch?v=M4J0aqXYfUI" target="_blank" rel="noopener" aria-label="Watch the message: Treasure Christ Above All"><img loading="lazy" src="https://i.ytimg.com/vi/M4J0aqXYfUI/mqdefault.jpg" alt=""><span class="vplay"></span></a></div><div class="vrow" id="wv2"><div class="vnum">2</div><div class="vbody"><h3>Transformed by the Gospel</h3><p class="vdate">Pastor Duston Moore · May 11, 2025</p><p class="vpass">2 Corinthians 3:12-18</p><a class="textlink" href="https://www.youtube.com/watch?v=D1SjUykeJXE" target="_blank" rel="noopener">Watch the message</a></div><a class="wthumb" href="https://www.youtube.com/watch?v=D1SjUykeJXE" target="_blank" rel="noopener" aria-label="Watch the message: Transformed by the Gospel"><img loading="lazy" src="https://i.ytimg.com/vi/D1SjUykeJXE/mqdefault.jpg" alt=""><span class="vplay"></span></a></div><div class="vrow" id="wv3"><div class="vnum">3</div><div class="vbody"><h3>Prioritize Prayer</h3><p class="vdate">Pastor Duston Moore · May 18, 2025</p><div class="scripture">1 Thessalonians 5:16 Rejoice evermore. 17 Pray without ceasing. 18 In every thing give thanks: for this is the will of God in Christ Jesus concerning you.<cite>1 THESSALONIANS 5:16-18</cite></div><ol><li>We pray because it aligns our hearts with the heart of God.</li><li>We pray because God invites us to ask.</li><li>We pray because prayer moves the hand of God.</li></ol><a class="textlink" href="https://www.youtube.com/watch?v=OBxalyhKzEQ" target="_blank" rel="noopener">Watch the message</a></div><a class="wthumb" href="https://www.youtube.com/watch?v=OBxalyhKzEQ" target="_blank" rel="noopener" aria-label="Watch the message: Prioritize Prayer"><img loading="lazy" src="https://i.ytimg.com/vi/OBxalyhKzEQ/mqdefault.jpg" alt=""><span class="vplay"></span></a></div><div class="vrow" id="wv4"><div class="vnum">4</div><div class="vbody"><h3>Preach the Word Faithfully</h3><p class="vdate">Pastor Duston Moore · May 25, 2025</p><p class="vpass">2 Timothy 4:1-5</p><a class="textlink" href="https://www.youtube.com/watch?v=_5UJ983h1DE" target="_blank" rel="noopener">Watch the message</a></div><a class="wthumb" href="https://www.youtube.com/watch?v=_5UJ983h1DE" target="_blank" rel="noopener" aria-label="Watch the message: Preach the Word Faithfully"><img loading="lazy" src="https://i.ytimg.com/vi/_5UJ983h1DE/mqdefault.jpg" alt=""><span class="vplay"></span></a></div><div class="vrow" id="wv5"><div class="vnum">5</div><div class="vbody"><h3>Make Disciples Who Make Disciples</h3><p class="vdate">Pastor Duston Moore · Jun 1, 2025</p><div class="scripture">2 Timothy 2:1 Thou therefore, my son, be strong in the grace that is in Christ Jesus. 2 And the things that thou hast heard of me among many witnesses, the same commit thou to faithful men, who shall be able to teach others also.<cite>2 TIMOTHY 2:1-2</cite></div><a class="textlink" href="https://www.youtube.com/watch?v=hqZ2AIpxMlQ" target="_blank" rel="noopener">Watch the message</a></div><a class="wthumb" href="https://www.youtube.com/watch?v=hqZ2AIpxMlQ" target="_blank" rel="noopener" aria-label="Watch the message: Make Disciples Who Make Disciples"><img loading="lazy" src="https://i.ytimg.com/vi/hqZ2AIpxMlQ/mqdefault.jpg" alt=""><span class="vplay"></span></a></div><div class="vrow" id="wv6"><div class="vnum">6</div><div class="vbody"><h3>Belong in Community</h3><p class="vdate">Pastor Duston Moore · Jun 8, 2025</p><p class="vpass">Romans 12:3-13</p><p class="vnote">Why church membership matters:</p><ol><li>Because the New Testament assumes it.</li><li>Because spiritual accountability requires it.</li><li>Because pastors can only shepherd people who belong.</li><li>Because the gospel is covenantal, not consumeristic.</li><li>Because discipline and restoration depend on it.</li></ol><a class="textlink" href="https://www.youtube.com/watch?v=-CE-7rweEbQ" target="_blank" rel="noopener">Watch the message</a></div><a class="wthumb" href="https://www.youtube.com/watch?v=-CE-7rweEbQ" target="_blank" rel="noopener" aria-label="Watch the message: Belong in Community"><img loading="lazy" src="https://i.ytimg.com/vi/-CE-7rweEbQ/mqdefault.jpg" alt=""><span class="vplay"></span></a></div><div class="vrow" id="wv7"><div class="vnum">7</div><div class="vbody"><h3>Practice Generosity with Joy</h3><p class="vdate">Pastor Duston Moore · Jun 15, 2025</p><p class="vpass">2 Corinthians 9:6-15</p><a class="textlink" href="https://www.youtube.com/watch?v=B7YCVUb2bsc" target="_blank" rel="noopener">Watch the message</a></div><a class="wthumb" href="https://www.youtube.com/watch?v=B7YCVUb2bsc" target="_blank" rel="noopener" aria-label="Watch the message: Practice Generosity with Joy"><img loading="lazy" src="https://i.ytimg.com/vi/B7YCVUb2bsc/mqdefault.jpg" alt=""><span class="vplay"></span></a></div></div>
     <div class="btnrow mt"><a class="btn btn-red" href="https://www.youtube.com/@ravenswoodbaptistchurch/videos" target="_blank" rel="noopener"><span>All Messages on YouTube</span></a></div></div></section>
 </div>
 
@@ -4095,7 +4201,7 @@ function sgreset(){try{localStorage.removeItem('rbc_sg');}catch(e){}document.que
 
 <script>
 (function(){try{if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
-var sel='.adsteps>div,#adcal .evcard,.srow,.ecards>div,.mtile,.ycard,.eee>div,.gsteps>*,.btimeline>*,.mgrid>div,.giftlist>div,ul.deacons li,.lead-feature,.expect3>*,.kcards>*,#kids .kstrip>img,.kfun>div,.clubs>.club,.awfour>div,.awduo>*,.ypair>img';
+var sel='.cvb,.vrow,.wvnav a,.walk .wstep,.tl .tli,.adsteps>div,#adcal .evcard,.srow,.ecards>div,.mtile,.ycard,.eee>div,.gsteps>*,.btimeline>*,.mgrid>div,.giftlist>div,ul.deacons li,.lead-feature,.expect3>*,.kcards>*,#kids .kstrip>img,.kfun>div,.clubs>.club,.awfour>div,.awduo>*,.ypair>img';
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
 function arm(){document.querySelectorAll(sel).forEach(function(el){if(el.dataset.rv)return;el.dataset.rv=1;var r=el.getBoundingClientRect();el.classList.add('rv');io.observe(el)})}
 arm();var o=new MutationObserver(function(){arm()});o.observe(document.body,{attributes:true,subtree:true,attributeFilter:['class']});
@@ -4161,6 +4267,9 @@ function rbcAdcal(){var c=document.getElementById('adcal');if(!c)return;
   btns.forEach(function(b){b.onclick=function(){draw(b.getAttribute('data-mode'));};});
   off.hidden=true;on.hidden=false;draw(window.innerWidth<640?'AGENDA':(c.getAttribute('data-mode')||'AGENDA'));}
 rbcAdcal();
+</script>
+<script>
+function cvgo(n){go('series-weare');var t=document.getElementById('wv'+n);if(!t)return;setTimeout(function(){t.classList.add('in');t.scrollIntoView({behavior:'smooth',block:'start'});t.classList.add('hl');setTimeout(function(){t.classList.remove('hl');},2200);},60);}
 </script>
 </body>
 </html>
