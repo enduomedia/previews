@@ -1695,6 +1695,7 @@ ul.deacons li:nth-child(2){border-top-color:var(--gunmetal)}ul.deacons li:nth-ch
 #vbs .tf-masonry img{height:auto;}
 @media(max-width:760px){#vbs .tf-banners{grid-template-columns:1fr;gap:14px;}#vbs .tf-masonry{grid-template-columns:1fr 1fr;gap:14px;}#vbs .tf-mcol{display:contents;}#vbs .tf-masonry img,#vbs .tf-mcol img:last-child{aspect-ratio:1/1;height:auto;object-fit:cover;flex:none;border-width:4px;border-radius:14px;}#vbs .tf-banners img{border-width:4px;border-radius:14px;}}
 #kids .kstrip{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+#youth .ystrip{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}#youth .ystrip img{background:#fff;padding:8px;box-shadow:0 10px 24px rgba(0,0,0,.25);transition:transform .35s ease;}#youth .ystrip img:nth-child(odd){transform:rotate(-2deg);}#youth .ystrip img:nth-child(even){transform:rotate(1.5deg) translateY(6px);}@media(max-width:700px){#youth .ystrip{grid-template-columns:1fr 1fr;}#youth .ystrip img:last-child{display:none;}}
 @media(max-width:800px){#kids .kstrip{grid-template-columns:1fr 1fr;}}
 #awana .awduo{display:grid;grid-template-columns:1fr 1.6fr;gap:26px;align-items:center;}
 @media(max-width:800px){#awana .awduo{grid-template-columns:1fr;}}
@@ -1719,7 +1720,7 @@ ul.deacons li:nth-child(2){border-top-color:var(--gunmetal)}ul.deacons li:nth-ch
 
 
 /* Kids, Youth, Awana and Singles refresh (Nov 14) */
-[data-bg="v26_1256"]{background-image:url('img/v26_1256.jpg')}[data-bg="v26_1718"]{background-image:url('img/v26_1718.jpg')}[data-bg="v26_1264"]{background-image:url('img/v26_1264.jpg')}[data-bg="ph_youth_1"]{background-image:url('img/ph_youth_1.jpg')}[data-bg="yt_8156"]{background-image:url('img/yt_8156.jpg')}[data-bg="yt_8148"]{background-image:url('img/yt_8148.jpg')}[data-bg="yt_1138"]{background-image:url('img/yt_1138.jpg')}[data-bg="aw_6530"]{background-image:url('img/aw_6530.jpg')}[data-bg="mb_6793"]{background-image:url('img/mb_6793.jpg')}
+[data-bg="v26_1256"]{background-image:url('img/v26_1256.jpg')}[data-bg="v26_1718"]{background-image:url('img/v26_1718.jpg')}[data-bg="v26_1264"]{background-image:url('img/v26_1264.jpg')}[data-bg="ph_youth_1"]{background-image:url('img/ph_youth_1.jpg')}[data-bg="yt_8156"]{background-image:url('img/yt_8156.jpg')}[data-bg="yt_0286"]{background-image:url('img/yt_0286.jpg')}[data-bg="yt_8148"]{background-image:url('img/yt_8148.jpg')}[data-bg="yt_1138"]{background-image:url('img/yt_1138.jpg')}[data-bg="aw_6530"]{background-image:url('img/aw_6530.jpg')}[data-bg="mb_6793"]{background-image:url('img/mb_6793.jpg')}
 .pbg{position:absolute;inset:0;background-size:cover;background-position:center;filter:grayscale(1) contrast(.95) brightness(1.08);z-index:-3;pointer-events:none;}
 .ptint{position:absolute;inset:0;mix-blend-mode:multiply;z-index:-2;pointer-events:none;}
 .phbg{isolation:isolate;overflow:hidden;}
@@ -3214,8 +3215,8 @@ html.rbc-lock,html.rbc-lock body{overflow:hidden;}
       <div class="kstrip mt2">
         <img loading="lazy" class="photo r43 bw" src="img/kd_2097.jpg" alt="Three kids laughing together in their chairs">
         <img loading="lazy" class="photo r43 bw" src="img/kd_9017.jpg" alt="Two smiling girls wearing name tags">
-        <img loading="lazy" class="photo r43 bw" src="img/kd_3312.jpg" alt="Two boys drawing at a table">
-        <img loading="lazy" class="photo r43 bw" src="img/kd_1734.jpg" alt="A girl with her hands folded in prayer">
+        <img loading="lazy" class="photo r43 bw" src="img/kd_9627.jpg" alt="A boy hugging his little sister after church">
+        <img loading="lazy" class="photo r43 bw" src="img/kd_0221.jpg" alt="A boy holding a baby and smiling">
       </div>
     </div>
   </section>
@@ -3303,7 +3304,7 @@ html.rbc-lock,html.rbc-lock body{overflow:hidden;}
       <div class="eyebrow">Through the Year</div>
       <h2 style="font-size:clamp(40px,4.6vw,62px)">What We Do Together</h2>
       <div class="ygrid mt2">
-        <div class="ycard mt-teal wide yph"><span class="pbg" data-bg="yt_8156" aria-hidden="true"></span><span class="ptint" aria-hidden="true"></span><b>Teen Camp</b><span>A week away every summer.</span></div>
+        <div class="ycard mt-teal wide yph"><span class="pbg" data-bg="yt_0286" aria-hidden="true"></span><span class="ptint" aria-hidden="true"></span><b>Teen Camp</b><span>A week away every summer.</span></div>
         <div class="ycard mt-red yph"><span class="pbg" data-bg="yt_8148" aria-hidden="true"></span><span class="ptint" aria-hidden="true"></span><b>Winter Retreat</b><span>Time away to grow and have fun.</span></div>
         <div class="ycard mt-dark"><b>See You at the Pole</b><span>Praying for our schools.</span></div>
         <div class="ycard mt-red"><b>Back-to-School Bash</b><span>Kicking off the school year together.</span></div>
@@ -3311,6 +3312,11 @@ html.rbc-lock,html.rbc-lock body{overflow:hidden;}
         <div class="ycard mt-teal"><b>Pumpkin Party</b><span>A fall favorite.</span></div>
         <div class="ycard mt-dark"><b>Christmas Party</b><span>Celebrating the season together.</span></div>
         <div class="ycard mt-red span3 yph"><span class="pbg" data-bg="mb_6793" aria-hidden="true"></span><span class="ptint" aria-hidden="true"></span><b>Easter Outreach</b><span>Sharing the gospel in our community.</span></div>
+      </div>
+      <div class="kstrip ystrip mt2">
+        <img loading="lazy" class="photo r43 bw" src="img/yt_0263.jpg" alt="Three friends smiling outdoors at camp">
+        <img loading="lazy" class="photo r43 bw" src="img/yt_8156.jpg" alt="A big group of Ravenswood teens and leaders">
+        <img loading="lazy" class="photo r43 bw" src="img/yt_6434.jpg" alt="A teen giving a thumbs up outside with friends">
       </div>
     </div>
   </section>
@@ -3323,8 +3329,8 @@ html.rbc-lock,html.rbc-lock body{overflow:hidden;}
         <div class="btnrow"><a class="btn btn-teal" href="#visit" onclick="go('visit');return false"><span>Plan Your Visit</span></a><a class="btn btn-outw" href="#contact" onclick="go('contact');return false"><span>Contact Pastor Josh</span></a></div>
       </div>
       <div class="ypair">
-        <img loading="lazy" class="photo r43 bw" src="img/ph_youth_2.jpg" alt="Ravenswood teens together at Teen Camp">
-        <img loading="lazy" class="photo r43 bw" src="img/yt_6434.jpg" alt="A teen giving a thumbs up outside with friends">
+        <img loading="lazy" class="photo r43 bw" src="img/yt_0223.jpg" alt="Three Ravenswood teens smiling together at Teen Camp">
+        <img loading="lazy" class="photo r43 bw" src="img/yt_9468.jpg" alt="Ravenswood teens serving pizza at a table outside">
       </div>
     </div>
   </section>
