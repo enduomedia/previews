@@ -2433,6 +2433,65 @@ html.rbc-lock,html.rbc-lock body{overflow:hidden;}
 @media(max-width:600px){.wvq{flex:none;}.sintro{font-size:19px;padding-left:18px;}.wvfeat{padding:64px 22px 22px;}.wvfeat:before{font-size:100px;left:16px;top:4px;}.wvsum{font-size:17px;}}
 .pqb:before,.wvfeat:before,.wvq1:before{font-family:Georgia,'Times New Roman',serif;font-weight:700;}
 @media(prefers-reduced-motion:reduce){.vmore:after,.vc2 .vlink .vthumb img{transition:none;}.vc2 .vlink:hover .vthumb img{transform:none;}}
+
+/* Header slant: the wedge under the angled edge always takes the color of the section that follows */
+.pagehead:not(.sepiahead){z-index:2;margin-bottom:calc(-1 * var(--slant));}
+.pagehead:not(.sepiahead)+*{border-top:var(--slant) solid transparent;}
+/* Header readability: a deeper fade behind the text side so the type stays crisp over any photo */
+.pagehead:before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;}
+.pagehead:not(.teal):not(.globehead):not(.sepiahead):before{background:linear-gradient(90deg,rgba(20,10,14,.7) 0%,rgba(20,10,14,.55) 38%,rgba(20,10,14,.18) 66%,rgba(20,10,14,0) 88%);}
+.pagehead.sepiahead:before{background:linear-gradient(90deg,rgba(40,24,10,.55) 0%,rgba(40,24,10,.35) 45%,rgba(40,24,10,0) 80%);}
+.pagehead.dark .tint{opacity:1;}
+.pagehead.teal .tint{background:linear-gradient(90deg,rgba(35,197,201,.97) 0%,rgba(35,197,201,.94) 50%,rgba(35,197,201,.78) 72%,rgba(35,197,201,.5) 100%) !important;}
+.pagehead:not(.teal) h1,.pagehead:not(.teal) p,.pagehead:not(.teal) .eyebrow{text-shadow:0 2px 18px rgba(0,0,0,.4),0 1px 3px rgba(0,0,0,.3);}
+.pagehead.teal h1,.pagehead.teal p,.pagehead.teal .eyebrow{text-shadow:0 1px 12px rgba(255,255,255,.3);}
+.pagehead h1 .ol{text-shadow:none;}
+.hero .fade{background:linear-gradient(90deg,rgba(96,8,30,.82) 0%,rgba(120,12,38,.6) 40%,rgba(140,16,44,.15) 68%,rgba(150,18,48,0) 85%);}
+.hero h1,.hero p.sub,.hero .eyebrow{text-shadow:0 2px 18px rgba(0,0,0,.4),0 1px 3px rgba(0,0,0,.3);}
+.hero h1 .ol{text-shadow:none;}
+@media(max-width:760px){
+  .pagehead:not(.teal):not(.globehead):not(.sepiahead):before{background:linear-gradient(180deg,rgba(20,10,14,.32) 0%,rgba(20,10,14,.5) 100%);}
+  .pagehead.sepiahead:before{background:rgba(40,24,10,.4);}
+  .pagehead.teal .tint{background:rgba(35,197,201,.93) !important;}
+  .hero .fade{background:linear-gradient(180deg,rgba(96,8,30,.35) 0%,rgba(96,8,30,.7) 100%);}
+}
+
+/* Events: Every Year at Ravenswood photo cards (two large, three small, no holes) */
+[data-bg="mb_6784"]{background-image:url('img/mb_6784.jpg')}[data-bg="x_street"]{background-image:url('img/x_street.jpg')}
+#events .ygrid.yfive{grid-template-columns:repeat(6,1fr);gap:14px;}
+#events .yfive .ycard{grid-column:span 2;min-height:290px;padding:26px;isolation:isolate;color:#fff !important;background:#16181b !important;box-shadow:none !important;transition:transform .3s ease,box-shadow .3s ease;}
+#events .yfive .ycard.big{grid-column:span 3;min-height:360px;padding:32px;}
+#events .yfive .ycard>.ybg,#events .yfive .ycard>.ytint{position:absolute;inset:0;margin:0;opacity:1;pointer-events:none;}
+#events .yfive .ycard>.ybg{z-index:-3;background-size:cover;background-position:center;filter:grayscale(1) contrast(1.05) brightness(1.05);transition:transform .6s ease;}
+#events .yfive .ycard>.ytint{z-index:-2;mix-blend-mode:multiply;}
+#events .yfive .ycard:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,rgba(16,18,22,.88) 0%,rgba(16,18,22,.6) 38%,rgba(16,18,22,.12) 72%,rgba(16,18,22,0) 100%);pointer-events:none;}
+#events .yfive .yv-red>.ytint{background:var(--crimson);}
+#events .yfive .yv-teal>.ytint{background:var(--teal);}
+#events .yfive .yv-dark>.ytint{background:#6b7380;}
+#events .yfive .yv-navy>.ytint{background:#5d7a96;}
+#events .yfive .yv-navy>.ybg{filter:grayscale(1) contrast(1.1) brightness(1.5);background-position:center 40%;}
+#events .yfive .ycard b{font-size:30px;text-shadow:0 2px 14px rgba(0,0,0,.35);}
+#events .yfive .ycard.big b{font-size:40px;}
+#events .yfive .ycard>span:last-child{font-size:15.5px;opacity:1;max-width:460px;text-shadow:0 1px 8px rgba(0,0,0,.4);}
+#events .yfive .ycard:before{content:"";position:absolute;left:26px;top:26px;width:34px;height:4px;background:#fff;opacity:.9;}
+#events .yfive .ycard.big:before{left:32px;top:32px;}
+#events .yfive .ycard:hover,#events .yfive .ycard:focus-visible{transform:translateY(-4px);box-shadow:0 18px 36px rgba(16,18,22,.22) !important;}
+#events .yfive .ycard:hover>.ybg,#events .yfive .ycard:focus-visible>.ybg{transform:scale(1.05);}
+@media(max-width:900px){
+  #events .ygrid.yfive{grid-template-columns:1fr 1fr;}
+  #events .yfive .ycard.big{grid-column:span 2;min-height:320px;}
+  #events .yfive .ycard{grid-column:span 1;}
+  #events .yfive .ycard:last-child{grid-column:span 2;}
+}
+@media(max-width:600px){
+  #events .ygrid.yfive{grid-template-columns:1fr;gap:12px;}
+  #events .yfive .ycard,#events .yfive .ycard.big,#events .yfive .ycard:last-child{grid-column:span 1;min-height:250px;padding:24px;}
+  #events .yfive .ycard.big b,#events .yfive .ycard b{font-size:30px;}
+  #events .yfive .ycard:before,#events .yfive .ycard.big:before{left:24px;top:24px;}
+}
+@media(prefers-reduced-motion:reduce){#events .yfive .ycard,#events .yfive .ycard>.ybg{transition:none;}#events .yfive .ycard:hover>.ybg{transform:none;}}
+/* Designed forms: keep the target clear of the sticky header when we scroll to it */
+#plan-form,#connect-card{scroll-margin-top:110px;}
 </style>
 </head>
 <body>
@@ -2672,7 +2731,7 @@ html.rbc-lock,html.rbc-lock body{overflow:hidden;}
         <div class="btnrow"><a class="btn btn-dark" href="#connect" onclick="go('connect');return false"><span>Digital Connect Card</span></a><a class="btn btn-outd" href="#faq" onclick="go('expect');setTimeout(function(){document.getElementById('faq').scrollIntoView({behavior:'smooth'})},80);return false"><span>Questions and Answers</span></a></div>
         <a class="mapcard mt2" href="https://www.google.com/maps/search/?api=1&amp;query=4455+N+Seeley+Ave+Chicago+IL+60625" target="_blank" rel="noopener"><img loading="lazy" class="photo r169 bw" src="img/ph_welcome_1.jpg" alt="A Ravenswood greeter handing out bulletins at the front door"><span>Open in Google Maps</span></a>
       </div>
-      <form class="form" onsubmit="return false" aria-label="Plan a visit form">
+      <form class="form" id="plan-form" onsubmit="return false" aria-label="Plan a visit form">
         <h3 style="font-size:40px">Plan My Visit</h3>
         <div class="row2"><div><label for="pv-first">First name *</label><input id="pv-first" autocomplete="given-name" required></div><div><label for="pv-last">Last name *</label><input id="pv-last" autocomplete="family-name" required></div></div>
         <div class="row2"><div><label for="pv-email">Email *</label><input id="pv-email" type="email" autocomplete="email" required></div><div><label for="pv-phone">Phone</label><input id="pv-phone" type="tel" autocomplete="tel"></div></div>
@@ -2859,7 +2918,7 @@ html.rbc-lock,html.rbc-lock body{overflow:hidden;}
         <p class="cardnote mt">Prefer paper? Grab a card from the seatback and turn it in at the Connection Center in our lobby.</p>
         <div class="btnrow"><a class="btn btn-outd" href="#prayer" onclick="go('prayer');return false"><span>Prayer Card</span></a><a class="btn btn-outd" href="#next" onclick="go('next');return false"><span>Next Steps Card</span></a></div>
       </div>
-      <div><form class="dcard teal" onsubmit="return false" aria-label="Digital Connect Card"><div class="hd"><h2>Connect Card</h2><i>We're so glad you're here!</i></div><div class="bd"><label for="f12166">Name:</label><input id="f12166" type="text"><label for="f34236">Email:</label><input id="f34236" type="email"><label for="f37299">Phone:</label><input id="f37299" type="tel"><label for="f36930">Address:</label><input id="f36930" type="text"><input id="f369301" type="text"><label for="f20648">How did you hear about us?</label><input id="f20648" type="text"><label>I would like more information about:</label><div class="checks"><label><input type="checkbox"> Baptism</label><label><input type="checkbox"> Awana&reg; Clubs</label><label><input type="checkbox"> Membership</label><label><input type="checkbox"> Children's Ministry</label><label><input type="checkbox"> Groups</label><label><input type="checkbox"> Youth Ministry</label><label><input type="checkbox"> Volunteering</label><label><input type="checkbox"> Single's Ministry</label></div><div class="donate"><p>As a thank you for joining us, we'd love to donate $5 on your behalf to one of the organizations below. Please indicate where you'd like us to make this donation:</p><div class="opt" style="margin-top:10px"><label><input type="radio" name="dn"> Medical Missions Outreach</label><label><input type="radio" name="dn"> Cuban Pastors' Fund</label><label><input type="radio" name="dn"> Caris Pregnancy Counseling &amp; Resources</label></div></div><button class="btn btn-dark send" type="submit"><span>Send My Connect Card</span></button></div><div class="ft">Thank you! Your card goes straight to our team. <em>Thank you for joining us today!</em></div></form></div>
+      <div><form class="dcard teal" id="connect-card" onsubmit="return false" aria-label="Digital Connect Card"><div class="hd"><h2>Connect Card</h2><i>We're so glad you're here!</i></div><div class="bd"><label for="f12166">Name:</label><input id="f12166" type="text"><label for="f34236">Email:</label><input id="f34236" type="email"><label for="f37299">Phone:</label><input id="f37299" type="tel"><label for="f36930">Address:</label><input id="f36930" type="text"><input id="f369301" type="text"><label for="f20648">How did you hear about us?</label><input id="f20648" type="text"><label>I would like more information about:</label><div class="checks"><label><input type="checkbox"> Baptism</label><label><input type="checkbox"> Awana&reg; Clubs</label><label><input type="checkbox"> Membership</label><label><input type="checkbox"> Children's Ministry</label><label><input type="checkbox"> Groups</label><label><input type="checkbox"> Youth Ministry</label><label><input type="checkbox"> Volunteering</label><label><input type="checkbox"> Single's Ministry</label></div><div class="donate"><p>As a thank you for joining us, we'd love to donate $5 on your behalf to one of the organizations below. Please indicate where you'd like us to make this donation:</p><div class="opt" style="margin-top:10px"><label><input type="radio" name="dn"> Medical Missions Outreach</label><label><input type="radio" name="dn"> Cuban Pastors' Fund</label><label><input type="radio" name="dn"> Caris Pregnancy Counseling &amp; Resources</label></div></div><button class="btn btn-dark send" type="submit"><span>Send My Connect Card</span></button></div><div class="ft">Thank you! Your card goes straight to our team. <em>Thank you for joining us today!</em></div></form></div>
     </div>
   </section>
 </div>
@@ -3684,8 +3743,8 @@ html.rbc-lock,html.rbc-lock body{overflow:hidden;}
         <div><b>Join a Group</b><p>Study God's Word, pray and care for one another through the week.</p><a class="btn btn-teal" href="https://ravenswoodbaptist.breezechms.com/form/0691fa96777221" target="_blank" rel="noopener" data-rbcform="groups" aria-haspopup="dialog"><span>Group Sign-Up</span></a></div>
         <div><b>Discipleship</b><p>Let us know you'd like to grow in your walk with Christ.</p><a class="btn btn-red" href="https://ravenswoodbaptist.breezechms.com/form/e65aa8" target="_blank" rel="noopener" data-rbcform="disc" aria-haspopup="dialog"><span>Discipleship</span></a></div>
         <div><b>Coffee With Pastor</b><p>Grab a coffee with one of our pastors and get to know Ravenswood.</p><a class="btn btn-teal" href="https://ravenswoodbaptist.breezechms.com/form/0691fa3974" target="_blank" rel="noopener" data-rbcform="coffee" aria-haspopup="dialog"><span>Grab a Coffee</span></a></div>
-        <div><b>Plan a Visit</b><p>Let us know you're coming Sunday. Worship is at 10:30 AM.</p><a class="btn btn-white" href="https://ravenswoodbaptist.breezechms.com/form/visitors" target="_blank" rel="noopener" data-rbcform="visit" aria-haspopup="dialog"><span>Plan a Visit</span></a></div>
-        <div><b>Connect Card</b><p>New here? We'd love to meet you.</p><a class="btn btn-outw" href="https://ravenswoodbaptist.breezechms.com/form/guest" target="_blank" rel="noopener" data-rbcform="connect" aria-haspopup="dialog"><span>Connect Card</span></a></div>
+        <div><b>Plan a Visit</b><p>Let us know you're coming Sunday. Worship is at 10:30 AM.</p><a class="btn btn-white" href="#visit" onclick="go('visit');setTimeout(function(){var e=document.getElementById('plan-form');if(e)e.scrollIntoView({behavior:'smooth',block:'start'});},80);return false"><span>Plan a Visit</span></a></div>
+        <div><b>Connect Card</b><p>New here? We'd love to meet you.</p><a class="btn btn-outw" href="#connect" onclick="go('connect');setTimeout(function(){var e=document.getElementById('connect-card');if(e)e.scrollIntoView({behavior:'smooth',block:'start'});},80);return false"><span>Connect Card</span></a></div>
       </div>
     </div>
   </section>
@@ -3887,12 +3946,12 @@ html.rbc-lock,html.rbc-lock body{overflow:hidden;}
       <div class="eyebrow">Through the Year</div>
       <h2 style="font-size:clamp(40px,4.6vw,62px)">Every Year at Ravenswood</h2>
       <p class="lead mt" style="max-width:720px">A few things our church family looks forward to every year. Tap one to see what's coming up next, or what we did last time.</p>
-      <div class="ygrid mt2">
-        <a class="ycard mt-red wide" href="#easter" onclick="go('easter');return false"><b>Easter at Ravenswood</b><span>Palm Sunday, Good Friday, a sunrise service by the lake and Easter Sunday.</span></a>
-        <a class="ycard mt-teal" href="#vbs" onclick="go('vbs');return false"><b>Vacation Bible School</b><span>A week of Bible stories, crafts and games every July.</span></a>
-        <a class="ycard mt-dark" href="#summer" onclick="go('summer');return false"><b>Summer at Ravenswood</b><span>Summer preaching, classes and events all season long.</span></a>
-        <a class="ycard mt-light wide" href="#marriage" onclick="go('marriage');return false"><b>Marriage and Family Weekend</b><span>A fall weekend to invest in your marriage and your home.</span></a>
-        <a class="ycard mt-red span3" href="#christmas" onclick="go('christmas');return false"><b>Christmas at Ravenswood</b><span>A Sunday series, carols and Christmas Eve Candlelight.</span></a>
+      <div class="ygrid yfive mt2">
+        <a class="ycard yv-red big" href="#easter" onclick="go('easter');return false"><span class="ybg" data-bg="mb_6784" aria-hidden="true"></span><span class="ytint" aria-hidden="true"></span><b>Easter at Ravenswood</b><span>Palm Sunday, Good Friday, a sunrise service by the lake and Easter Sunday.</span></a>
+        <a class="ycard yv-teal big" href="#vbs" onclick="go('vbs');return false"><span class="ybg" data-bg="v26_1256" aria-hidden="true"></span><span class="ytint" aria-hidden="true"></span><b>Vacation Bible School</b><span>A week of Bible stories, crafts and games every July.</span></a>
+        <a class="ycard yv-dark" href="#summer" onclick="go('summer');return false"><span class="ybg" data-bg="y_lake" aria-hidden="true"></span><span class="ytint" aria-hidden="true"></span><b>Summer at Ravenswood</b><span>Summer preaching, classes and events all season long.</span></a>
+        <a class="ycard yv-red" href="#marriage" onclick="go('marriage');return false"><span class="ybg" data-bg="mw_09315" aria-hidden="true"></span><span class="ytint" aria-hidden="true"></span><b>Marriage and Family Weekend</b><span>A fall weekend to invest in your marriage and your home.</span></a>
+        <a class="ycard yv-navy" href="#christmas" onclick="go('christmas');return false"><span class="ybg" data-bg="x_street" aria-hidden="true"></span><span class="ytint" aria-hidden="true"></span><b>Christmas at Ravenswood</b><span>A Sunday series, carols and Christmas Eve Candlelight.</span></a>
       </div>
     </div>
   </section>
@@ -4607,7 +4666,7 @@ html.rbc-lock,html.rbc-lock body{overflow:hidden;}
       <h2>Information You Share With Us</h2>
       <p>We only collect information you choose to give us. Our website forms are Plan a Visit, the Digital Connect Card, the Digital Next Steps Card, the Prayer Card and the Contact form. Depending on the form, you may share your name, email, phone number, mailing address, the Sunday you plan to visit, how you heard about us, the ministries you'd like to hear about, your next step of faith, a prayer request or a message.</p>
       <p>On Plan a Visit, a parent or guardian can add the children coming along, with each child's name, birthdate, grade and any allergies, so we can have them ready for the Nursery or Kids' Church. You can also tell us about any accessibility needs so we can help.</p>
-      <p>Some sign-ups, like Plan a Visit, the Connect Card, groups and Awana, open a form from Breeze right on our site. What you enter there goes directly to Breeze.</p>
+      <p>A few sign-ups, like group sign-ups, Discipleship and Coffee With Pastor, open a form from Breeze right on our site. Others, like Awana, open Breeze in a new tab. What you enter there goes directly to Breeze.</p>
       <h2>Where It Goes</h2>
       <p>Form submissions are sent to our church office at <a href="mailto:hello@ravenswood.church">hello@ravenswood.church</a> and may be kept in Breeze, the church management system we use for our church family's contact information, groups and kids' check-in. Only church staff and ministry leaders who need it to care for you can see it.</p>
       <h2>How We Use It</h2>
@@ -4827,9 +4886,7 @@ var RBC_WEBSITE_CAL_ID = "";
 var RBC_FORMS={
   groups:{t:"Group Sign-Up, Fall 2026",u:"https://ravenswoodbaptist.breezechms.com/form/0691fa96777221",embed:"0691fa96777221"},
   disc:{t:"Discipleship",u:"https://ravenswoodbaptist.breezechms.com/form/e65aa8"},
-  coffee:{t:"Coffee With Pastor",u:"https://ravenswoodbaptist.breezechms.com/form/0691fa3974"},
-  visit:{t:"Plan a Visit",u:"https://ravenswoodbaptist.breezechms.com/form/visitors"},
-  connect:{t:"Connect Card",u:"https://ravenswoodbaptist.breezechms.com/form/guest"}
+  coffee:{t:"Coffee With Pastor",u:"https://ravenswoodbaptist.breezechms.com/form/0691fa3974"}
 };
 (function(){
   var box=document.getElementById('rbcbox');if(!box)return;
