@@ -2086,6 +2086,22 @@ html.rbc-lock,html.rbc-lock body{overflow:hidden;}
 
 .legal .lupd{font-family:'RBCHead',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-size:15px;color:var(--crimson);}
 .legal p+p,.legal ul+p,.legal p+ul{margin-top:12px;}
+/* ===== Item 9A: reading plan PDF lightbox ===== */
+.rbcpdf .rbcbox-dlg{width:min(1120px,100%);height:min(92vh,1040px);}
+.rbcpdf .rbcbox-bd{background:#E9ECEE;}
+.rbcpdf .rbcbox-bd:before{content:"Loading the reading plan...";}
+.rbcpdf .rbcbox-bd iframe{background:#E9ECEE;}
+.rbcpdf .pdfpages{position:relative;display:grid;grid-template-columns:repeat(2,1fr);gap:16px;padding:16px;background:#E9ECEE;}
+.rbcpdf .pdfpages figure{margin:0;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.12);}
+.rbcpdf .pdfpages img{display:block;width:100%;height:auto;}
+.rbcpdf .pdfpages figcaption{font-family:'RBCHead',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.06em;font-size:14px;color:var(--gunmetal);padding:8px 12px;border-top:1px solid var(--line);}
+.rbcpdf .rbcbox-ft{align-items:center;padding:12px 16px 12px 24px;}
+.rbcpdf .rbcbox-ft .pdfnote{font-size:14px;color:#5b5e64;}
+.rbcpdf .rbcbox-ft .pdfacts{display:flex;align-items:center;gap:18px;flex-wrap:wrap;}
+.rbcpdf .rbcbox-ft .btn{color:#fff;padding:14px 22px;font-size:17px;}
+.rbcpdf .rbcbox-ft .btn:hover{color:#fff;}
+.rbcpdf .rbcbox-ft .btn svg{width:18px;height:18px;flex:0 0 18px;}
+@media(max-width:640px){.rbcpdf .rbcbox-dlg{width:100%;height:100%;height:100dvh;}.rbcpdf .pdfpages{grid-template-columns:1fr;padding:10px;gap:10px;}.rbcpdf .rbcbox-ft{padding:10px 12px calc(12px + env(safe-area-inset-bottom));}.rbcpdf .rbcbox-ft .pdfnote{display:none;}.rbcpdf .rbcbox-ft .pdfacts{width:100%;justify-content:space-between;}.rbcpdf .rbcbox-ft .btn{flex:1;justify-content:center;}}
 </style>
 </head>
 <body>
@@ -3846,8 +3862,8 @@ html.rbc-lock,html.rbc-lock body{overflow:hidden;}
         <div class="eyebrow">Grow in God's Word</div>
         <h2 style="font-size:clamp(40px,4.6vw,62px)"><span class="ol w">Read the Bible</span><br>With Us</h2>
         <p class="lead mt">Our Bible Reading Plan walks you through the New Testament and the Old Testament together, a few short readings at a time. Start any month and read along with your church family.</p>
-        <div class="btnrow"><a class="btn btn-dark" href="#" onclick="return false"><span>Download the Reading Plan</span></a></div>
-        <div class="needbox"><b>#17 &nbsp;NEED FROM RAVENSWOOD:</b> Your 2026 Bible Reading Plan holds this spot until the 2027 plan is ready. Once it is, we'll add it here as a printable PDF too, like last year.</div>
+        <div class="btnrow"><a class="btn btn-dark" href="files/ravenswood-2026-bible-reading-plan.pdf" data-rbcpdf><span>Download the Reading Plan</span></a></div>
+        <div class="needbox"><b>#17 &nbsp;NEED FROM RAVENSWOOD:</b> The 2026 plan is here as a printable PDF. When the 2027 plan is ready, send it over and we'll swap it in.</div>
       </div>
       <div class="rplan">
         <span class="rp-t">Yet Not I, But Christ</span>
@@ -4352,6 +4368,14 @@ function arm(){document.querySelectorAll(sel).forEach(function(el){if(el.dataset
 arm();var o=new MutationObserver(function(){arm()});o.observe(document.body,{attributes:true,subtree:true,attributeFilter:['class']});
 }catch(e){}})();
 </script>
+<div id="rbcpdf" class="rbcbox rbcpdf" hidden>
+  <div class="rbcbox-scrim" data-pdfclose></div>
+  <div class="rbcbox-dlg" role="dialog" aria-modal="true" aria-labelledby="rbcpdf-t">
+    <div class="rbcbox-hd"><h2 id="rbcpdf-t">2026 Bible Reading Plan</h2><button type="button" class="rbcbox-x" data-pdfclose aria-label="Close reading plan">&times;</button></div>
+    <div class="rbcbox-bd" id="rbcpdf-bd"></div>
+    <div class="rbcbox-ft"><span class="pdfnote">Yet Not I, But Christ. Print it, fold it and keep it in your Bible.</span><span class="pdfacts"><a href="files/ravenswood-2026-bible-reading-plan.pdf" target="_blank" rel="noopener">Open in a new tab</a><a class="btn btn-red" href="files/ravenswood-2026-bible-reading-plan.pdf" download="Ravenswood 2026 Bible Reading Plan.pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 20h14"/></svg><span>Download PDF</span></a></span></div>
+  </div>
+</div>
 <div id="rbcbox" class="rbcbox" hidden>
   <div class="rbcbox-scrim" data-rbcclose></div>
   <div class="rbcbox-dlg" role="dialog" aria-modal="true" aria-labelledby="rbcbox-t">
@@ -4454,6 +4478,42 @@ function init(){var k=0;while(k<N&&ans(k))k++;show(k<N?k:N-1,0,false);}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 var f=document.querySelector('.gpfacts b');
 if(f&&!rm&&'IntersectionObserver' in window&&/^\d+$/.test(f.textContent)){var to=+f.textContent;var io=new IntersectionObserver(function(es){if(!es[0].isIntersecting)return;io.disconnect();var t0=null;function step(t){if(!t0)t0=t;var p=Math.min(1,(t-t0)/900);f.textContent=Math.round(to*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(step);}requestAnimationFrame(step);},{threshold:.6});io.observe(f);}
+})();
+</script>
+<script>
+/* Reading plan PDF lightbox: the PDF inline on desktop, page images on phones and tablets. */
+(function(){
+  var box=document.getElementById('rbcpdf');if(!box)return;
+  var bd=document.getElementById('rbcpdf-bd'),dlg=box.querySelector('.rbcbox-dlg'),xb=box.querySelector('.rbcbox-x'),last=null,timer=null;
+  var PDF='files/ravenswood-2026-bible-reading-plan.pdf';
+  var PAGES=[['img/reading-plan-2026-cover.jpg','Cover'],['img/reading-plan-2026-months-1-4.jpg','Months 1 to 4'],['img/reading-plan-2026-months-5-8.jpg','Months 5 to 8'],['img/reading-plan-2026-months-9-12.jpg','Months 9 to 12']];
+  function inlineOk(){try{return navigator.pdfViewerEnabled!==false&&matchMedia('(min-width:761px) and (pointer:fine)').matches;}catch(e){return false;}}
+  function fill(){bd.innerHTML='';
+    if(inlineOk()){var f=document.createElement('iframe');f.src=PDF+'#view=FitH';f.title='2026 Bible Reading Plan';bd.appendChild(f);return;}
+    var g=document.createElement('div');g.className='pdfpages';
+    PAGES.forEach(function(p,i){var fg=document.createElement('figure'),im=document.createElement('img');im.src=p[0];im.alt='2026 Bible Reading Plan, '+p[1];im.width=1000;im.height=1556;if(i>0)im.loading='lazy';
+      var c=document.createElement('figcaption');c.textContent=p[1];fg.appendChild(im);fg.appendChild(c);g.appendChild(fg);});
+    bd.appendChild(g);}
+  function open(trigger){clearTimeout(timer);last=trigger||document.activeElement;fill();bd.scrollTop=0;
+    box.hidden=false;document.documentElement.classList.add('rbc-lock');
+    requestAnimationFrame(function(){requestAnimationFrame(function(){box.classList.add('open');});});
+    xb.focus();}
+  function close(){if(box.hidden)return;box.classList.remove('open');document.documentElement.classList.remove('rbc-lock');
+    timer=setTimeout(function(){box.hidden=true;bd.innerHTML='';},260);
+    if(last&&last.focus){try{last.focus({preventScroll:true});}catch(e){last.focus();}}last=null;}
+  window.rbcOpenPlan=open;window.rbcClosePlan=close;
+  document.addEventListener('click',function(e){
+    var c=e.target.closest&&e.target.closest('[data-pdfclose]');if(c&&box.contains(c)){e.preventDefault();close();return;}
+    var a=e.target.closest&&e.target.closest('[data-rbcpdf]');if(!a)return;
+    if(e.defaultPrevented||e.button>0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+    e.preventDefault();open(a);});
+  document.addEventListener('keydown',function(e){if(box.hidden)return;
+    if(e.key==='Escape'||e.key==='Esc'){e.preventDefault();close();return;}
+    if(e.key==='Tab'){var f=[].slice.call(dlg.querySelectorAll('button,a[href],iframe,[tabindex]:not([tabindex="-1"])')).filter(function(x){return x.offsetParent!==null;});
+      if(!f.length)return;var first=f[0],lastEl=f[f.length-1];
+      if(!dlg.contains(document.activeElement)){e.preventDefault();first.focus();}
+      else if(e.shiftKey&&document.activeElement===first){e.preventDefault();lastEl.focus();}
+      else if(!e.shiftKey&&document.activeElement===lastEl){e.preventDefault();first.focus();}}});
 })();
 </script>
 </body>
