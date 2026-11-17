@@ -922,6 +922,10 @@ footer{clip-path:polygon(0 48px,100% 0,100% 100%,0 100%);padding-top:120px;margi
 #christmas .xframe{border:2px solid var(--xgold);outline:1px solid var(--xgold);outline-offset:6px;padding:40px;}
 #christmas .xh1{font-family:'XSerif',serif;font-weight:900;color:var(--xred);font-size:clamp(54px,8vw,110px);line-height:.95;text-transform:none;}
 #christmas section.flat{background:transparent;}
+#christmas .xseries figure{display:flex;flex-direction:column;margin:0;}
+#christmas .xseries figcaption{display:flex;flex-direction:column;align-items:flex-start;flex:1;}
+#christmas .xseries figcaption b{margin-bottom:14px;}
+#christmas .xseries figcaption .xwatch{margin-top:auto;}
 /* Christmas type matched to the Christmas art: tall serif and a whimsical script */
 #christmas .xh,#christmas h2,#christmas h3,#christmas .xbar b,#christmas .xseries figcaption b,#christmas .xevent h3,#christmas .xh1{font-family:'XmasSerif','XSerif',serif;font-weight:400;letter-spacing:.01em;}
 #christmas .xh1{text-transform:uppercase;font-size:clamp(60px,9vw,128px);line-height:.92;}
@@ -2191,6 +2195,7 @@ html.rbc-lock,html.rbc-lock body{overflow:hidden;}
 .rp-share>p{font-size:16px;color:#5b5e64;margin-top:8px;}
 .rp-cards{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px;}
 .rp-card{background:#fff;padding:14px;box-shadow:0 2px 0 var(--line);display:flex;flex-direction:column;gap:12px;}
+.rp-card[hidden]{display:none !important;}
 .rp-card .lbl{font-family:'RBCHead',sans-serif;font-weight:600;letter-spacing:.12em;text-transform:uppercase;font-size:14px;color:var(--crimson);}
 .rp-card canvas,.rpv-stage canvas{display:block;width:100%;height:auto;aspect-ratio:1/1;background:var(--gunmetal);cursor:zoom-in;box-shadow:0 0 0 1px var(--line);}
 .rp-acts{display:flex;gap:8px;flex-wrap:wrap;}
