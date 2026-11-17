@@ -2235,6 +2235,7 @@ html.rbc-lock,html.rbc-lock body{overflow:hidden;}
 .rp-legend i.d{background:var(--teal);border-color:var(--teal);}
 .rp-legend i.t{outline:3px solid var(--crimson);outline-offset:-3px;}
 .rp-foot{margin-top:40px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;font-size:15px;color:#5b5e64;}
+.rp-attr{margin-top:18px;font-size:13px;color:#6b6e74;max-width:760px;}
 .rp-foot .btn{font-size:16px;padding:13px 20px;}
 .rpv .rbcbox-dlg{width:min(620px,100%);height:auto;max-height:94vh;}
 .rpv .rbcbox-bd{padding:18px;background:var(--rp-cream,#F6F1E7);}
@@ -4581,7 +4582,7 @@ html.rbc-lock-sv,html.rbc-lock-sv body{overflow:hidden;}
 <div class="page" id="readingplan" data-title="Daily Bible Reading | Ravenswood Baptist Church">
   <div class="rp-hd">
     <div class="wrap">
-      <div class="rp-top"><a href="#next" onclick="go('next');return false">&larr; Next Steps</a><span class="rp-theme">Yet Not I, But Christ</span></div>
+      <div class="rp-top"><a href="#next" onclick="go('next');return false">&larr; Next Steps</a><span class="rp-theme" id="rp-theme">Yet Not I, But Christ</span></div>
       <div class="eyebrow">Daily Bible Reading</div>
       <h1 id="rp-date">Today's Reading</h1>
       <p class="rp-sub" id="rp-sub">&nbsp;</p>
@@ -5259,7 +5260,10 @@ if(f&&!rm&&'IntersectionObserver' in window&&/^\d+$/.test(f.textContent)){var to
 (function(){
   var page=document.getElementById('readingplan');if(!page)return;
   var body=document.getElementById('rp-body'),hDate=document.getElementById('rp-date'),hSub=document.getElementById('rp-sub'),daysEl=document.getElementById('rp-days');
-  var PLAN=null,KV=null,BOOKS={},SLUG={},loading=null,cur=null,curSt=0;
+  var PLAN=null,KV=null,PLANS={},BOOKS={},SLUG={},loading=null,cur=null,curSt=0;
+  /* 2027 and later: data/plan2027.json (Navigators Book-at-a-Time, two readings a day, each reading has a slot: 0 = first reading, 1 = second reading) and data/keyverses2027.json ({"m-d":{"a":first reading verse,"b":second reading verse}}). The plan shown follows the year of the day being viewed. */
+  function use(y){var p=PLANS[y]||(y>2026?PLANS[2027]:PLANS[2026])||PLANS[2026];if(p){PLAN=p.plan;KV=p.kv;var th=document.getElementById('rp-theme');if(th)th.textContent=PLAN.year>2026?PLAN.title:'Yet Not I, But Christ';}}
+  function two(){return PLAN&&PLAN.columns.length===2;}
   var POEM={'Job':1,'Psalms':1,'Proverbs':1,'Ecclesiastes':1,"Solomon's Song":1,'Lamentations':1};
   var MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
   var DL='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 20h14"/></svg>';
@@ -5273,15 +5277,17 @@ if(f&&!rm&&'IntersectionObserver' in window&&/^\d+$/.test(f.textContent)){var to
   function fmt(d){return d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});}
   function dayOf(m,d){return d>=1&&d<=25&&PLAN?PLAN.days[(m-1)*25+d-1]:null;}
   function bookName(b,c1,c2){if(b==='Psalms')return c1===c2?'Psalm':'Psalms';if(b==="Solomon's Song")return 'Song of Songs';return b;}
-  function refText(r){return bookName(r.book,r.chapterStart,r.chapterEnd)+' '+r.label;}
+  function refText(r){return (bookName(r.book,r.chapterStart,r.chapterEnd)+' '+(r.label||'')).trim();}
   /* reading progress: this browser only */
   function readAll(){try{return JSON.parse(localStorage.getItem('rbc_rp_read')||'{}')||{};}catch(e){return {};}}
   function rkey(m,d){var dt=dateOf(m+'-'+d);return (dt?dt.getFullYear():today().getFullYear())+'-'+m+'-'+d;}
   function isRead(m,d){return !!readAll()[rkey(m,d)];}
   function setRead(m,d,on){try{var a=readAll(),k=rkey(m,d);if(on)a[k]=1;else delete a[k];localStorage.setItem('rbc_rp_read',JSON.stringify(a));}catch(e){}}
   function load(){if(loading)return loading;
-    loading=Promise.all([fetch('data/plan.json').then(function(r){if(!r.ok)throw 0;return r.json();}),fetch('data/keyverses.json').then(function(r){if(!r.ok)throw 0;return r.json();}).catch(function(){return {};})])
-      .then(function(a){PLAN=a[0];KV=a[1];PLAN.days.forEach(function(d){d.readings.forEach(function(r){SLUG[r.book]=r.slug;});});});
+    var J=function(u,opt){var p=fetch(u).then(function(r){if(!r.ok)throw 0;return r.json();});return opt?p.catch(function(){return opt===1?null:{};}):p;};
+    loading=Promise.all([J('data/plan.json'),J('data/keyverses.json',2),J('data/plan2027.json',1),J('data/keyverses2027.json',2)])
+      .then(function(a){PLANS[2026]={plan:a[0],kv:a[1]};if(a[2])PLANS[2027]={plan:a[2],kv:a[3]};
+        [a[0],a[2]].forEach(function(P){if(P)P.days.forEach(function(d){d.readings.forEach(function(r){SLUG[r.book]=r.slug;});});});use(today().getFullYear());});
     loading.catch(function(){loading=null;});return loading;}
   function book(slug){if(!BOOKS[slug])BOOKS[slug]=fetch('data/bible/'+slug+'.json').then(function(r){if(!r.ok)throw 0;return r.json();});
     BOOKS[slug].catch(function(){delete BOOKS[slug];});return BOOKS[slug];}
@@ -5298,14 +5304,14 @@ if(f&&!rm&&'IntersectionObserver' in window&&/^\d+$/.test(f.textContent)){var to
     body.querySelectorAll('[data-read="'+c.getAttribute('data-read')+'"]').forEach(function(x){x.checked=c.checked;x.parentNode.classList.toggle('is-done',c.checked);});chips(cur);});
   /* ---------- views ---------- */
   function show(sub){sub=sub||'';var tk=keyOf(today());
-    if(!PLAN){body.innerHTML='<p class="rp-load">Loading today\'s reading...</p>';
+    if(!PLANS[2026]){body.innerHTML='<p class="rp-load">Loading today\'s reading...</p>';
       load().then(function(){show(sub);}).catch(function(){body.innerHTML='<p class="rp-load">We couldn\'t load the reading plan right now. Please check your connection and try again, or <a href="files/ravenswood-2026-bible-reading-plan.pdf" data-rbcpdf>open the printable plan</a>.</p>';});return;}
-    if(sub==='year'){cur='year';chips('year');yearView();return;}
-    var dt=dateOf(sub)||dateOf(tk),k=keyOf(dt);cur=k;chips(k);body.classList.remove('wide');
+    if(sub==='year'){use(today().getFullYear());cur='year';chips('year');yearView();return;}
+    var dt=dateOf(sub)||dateOf(tk),k=keyOf(dt);use(dt.getFullYear());cur=k;chips(k);body.classList.remove('wide');
     var m=dt.getMonth()+1,d=dt.getDate();hDate.textContent=fmt(dt);
     if(d>25){hSub.textContent='Month '+m+', Catch-Up Day';catchUp(m,d,k===tk);}else{hSub.textContent='Month '+m+', Day '+d;dayView(m,d,k===tk);}}
   window.rpShow=show;
-  function dayView(m,d,isToday){var day=dayOf(m,d),R=day.readings;
+  function dayView(m,d,isToday){if(two())return dayView2(m,d,isToday);var day=dayOf(m,d),R=day.readings;
     var link=function(r,i){return '<a href="#rp-p'+i+'" data-jump="'+i+'">'+esc(refText(r))+'</a>';};
     var pass=function(r,i){return '<details class="rp-pass" id="rp-p'+i+'" open><summary><h3>'+esc(refText(r))+'</h3><span class="chev" aria-hidden="true"></span></summary><div class="rp-text'+(POEM[r.book]?' poem':'')+'" data-i="'+i+'"><p class="rp-load">Loading...</p></div></details>';};
     var h='<div class="rp-over"><h2>'+(isToday?'Today\'s Readings':'Readings for Day '+d)+'</h2><div><div class="grp">New Testament</div>'+link(R[0],0)+link(R[1],1)+'</div><div><div class="grp">Old Testament</div>'+link(R[2],2)+link(R[3],3)+'</div></div>'+
@@ -5319,8 +5325,30 @@ if(f&&!rm&&'IntersectionObserver' in window&&/^\d+$/.test(f.textContent)){var to
     curSt=((m-1)*25+d-1)%5;
     [['nt',[0,1],0],['ot',[2,3],2]].forEach(function(g){var c=body.querySelector('.rp-card[data-g="'+g[0]+'"]'),ke=KV&&KV[m+'-'+d];if(ke&&ke[g[0]]===null){c.hidden=true;var sp=body.querySelector('.rp-share>p');if(sp)sp.textContent='A verse for this day. Save it or send it to a friend.';return;}var kv=pick(m,d,R,g[0],g[1],g[2]);
       book(SLUG[kv.book]).then(function(B){var ch=B[kv.c-1]||[],t=[];for(var x=kv.v;x<=(kv.v2||kv.v);x++){if(!ch[x-1])throw 0;t.push(ch[x-1]);}kv.t=t.join(' ');c.querySelector('.ref').textContent=vref(kv);c._v=kv;draw(c.querySelector('canvas'),kv,g[0],curSt);}).catch(function(){c.hidden=true;});});}
+  function dayView2(m,d,isToday){var day=dayOf(m,d),R=day.readings,S=[[],[]];R.forEach(function(r,i){S[r.slot?1:0].push(i);});
+    var link=function(i){return '<a href="#rp-p'+i+'" data-jump="'+i+'">'+esc(refText(R[i]))+'</a>';};
+    var pass=function(i){var r=R[i];return '<details class="rp-pass" id="rp-p'+i+'" open><summary><h3>'+esc(refText(r))+'</h3><span class="chev" aria-hidden="true"></span></summary><div class="rp-text'+(POEM[r.book]?' poem':'')+'" data-i="'+i+'" data-g="'+(r.slot?'ot':'nt')+'"><p class="rp-load">Loading...</p></div></details>';};
+    var h='<div class="rp-over"><h2>'+(isToday?'Today\'s Readings':'Readings for Day '+d)+'</h2><div><div class="grp">First Reading</div>'+S[0].map(link).join('')+'</div><div><div class="grp">Second Reading</div>'+S[1].map(link).join('')+'</div></div>'+
+      checkbox(m,d,'Mark Day '+d+' as read')+'<p class="rp-hint">Tap any verse to turn it into a graphic you can save or share.</p>'+
+      '<div class="rp-sec nt"><h2>First Reading</h2>'+S[0].map(pass).join('')+'</div><div class="rp-sec ot"><h2>Second Reading</h2>'+S[1].map(pass).join('')+'</div>'+
+      checkbox(m,d,'I read Day '+d)+
+      '<div class="rp-share"><h2>Verses to Share</h2><p>One verse from each reading for this day. Save it or send it to a friend.</p><div class="rp-cards">'+card('nt','First Reading')+card('ot','Second Reading')+'</div></div>'+foot();
+    body.innerHTML=h;
+    R.forEach(function(r,i){var el=body.querySelector('.rp-text[data-i="'+i+'"]');
+      book(r.slug).then(function(B){el.innerHTML=passageHTML(r,B);}).catch(function(){el.innerHTML='<p class="rp-err">We couldn\'t load this passage right now. Open your Bible to '+esc(refText(r))+' and read along.</p>';});});
+    curSt=((m-1)*25+d-1)%5;
+    [['nt','a',0],['ot','b',1]].forEach(function(g){var c=body.querySelector('.rp-card[data-g="'+g[0]+'"]'),ke=KV&&KV[m+'-'+d];
+      if(ke&&ke[g[1]]===null){c.hidden=true;var sp=body.querySelector('.rp-share>p');if(sp)sp.textContent='A verse for this day. Save it or send it to a friend.';if(ke.a===null&&ke.b===null){var sh=body.querySelector('.rp-share');if(sh)sh.hidden=true;}return;}
+      var kv=pick2(m,d,R,g[1],S[g[2]]);
+      book(SLUG[kv.book]).then(function(B){var ch=B[kv.c-1]||[],t=[];for(var x=kv.v;x<=(kv.v2||kv.v);x++){if(!ch[x-1])throw 0;t.push(ch[x-1]);}kv.t=t.join(' ');c.querySelector('.ref').textContent=vref(kv);c._v=kv;draw(c.querySelector('canvas'),kv,g[0],curSt);}).catch(function(){c.hidden=true;});});}
+  function pick2(m,d,R,g,idx){var e=KV&&KV[m+'-'+d],p=e&&/^(.+?) (\d+):(\d+)(?:-(\d+))?$/.exec(e[g]||'');
+    if(p){var b=ALIAS[p[1]]||p[1],c=+p[2],v=+p[3],v2=+(p[4]||p[3]),ok=v2>=v;
+      for(var x=v;x<=v2&&ok;x++)ok=idx.some(function(j){return inPass(R[j],b,c,x);});
+      if(ok)return {book:b,c:c,v:v,v2:v2>v?v2:0};}
+    var r=R[idx[0]];return {book:r.book,c:r.chapterStart,v:r.verseStart||1};}
   function card(g,label){return '<div class="rp-card" data-g="'+g+'"><div class="lbl">'+label+' &middot; <span class="ref"></span></div><canvas width="1080" height="1080" role="img" aria-label="'+label+' verse graphic" title="Tap to see it bigger and try other styles"></canvas><div class="rp-acts"><button type="button" class="red" data-act="dl">'+DL+'<span>'+(isTouch?'Save Image':'Download Image')+'</span></button><button type="button" data-act="share" hidden>'+SH+'<span>Share</span></button></div></div>';}
-  function foot(){return '<div class="rp-foot"><a class="btn btn-dark" href="#readingplan/year" onclick="go(\'readingplan/year\');return false"><span>See the Full Year</span></a><a class="btn btn-outd" href="files/ravenswood-2026-bible-reading-plan.pdf" data-rbcpdf><span>Printable Plan</span></a></div>';}
+  function foot(){var pdf=PLAN&&PLAN.year>2026?PLAN.pdf:'files/ravenswood-2026-bible-reading-plan.pdf';
+    return '<div class="rp-foot"><a class="btn btn-dark" href="#readingplan/year" onclick="go(\'readingplan/year\');return false"><span>See the Full Year</span></a>'+(pdf?'<a class="btn btn-outd" href="'+pdf+'" data-rbcpdf><span>Printable Plan</span></a>':'')+'</div>'+(PLAN&&PLAN.attribution?'<p class="rp-attr">'+esc(PLAN.attribution)+'</p>':'');}
   function passageHTML(r,B){var h='',multi=r.chapterEnd>r.chapterStart;
     for(var c=r.chapterStart;c<=r.chapterEnd;c++){var V=B[c-1]||[],a=(c===r.chapterStart&&r.verseStart)?r.verseStart:1,z=(c===r.chapterEnd&&r.verseEnd)?r.verseEnd:V.length;
       if(multi)h+='<h4>'+esc(bookName(r.book,1,1)+' '+c)+'</h4>';h+='<p>';
@@ -5347,15 +5375,15 @@ if(f&&!rm&&'IntersectionObserver' in window&&/^\d+$/.test(f.textContent)){var to
     var all=readAll(),n=0,t=today(),tm=t.getMonth()+1,td=t.getDate(),h='';
     for(var m=1;m<=12;m++){var bks=[[],[],[],[]],g='',done=0;
       for(var d=1;d<=25;d++){var day=dayOf(m,d),on=isRead(m,d);if(on){n++;done++;}
-        day.readings.forEach(function(r,i){var b=bookName(r.book,2,3);if(bks[i].indexOf(b)<0)bks[i].push(b);});
+        day.readings.forEach(function(r,i){var b=bookName(r.book,2,3),j=r.slot==null?i:r.slot;if(bks[j].indexOf(b)<0)bks[j].push(b);});
         g+='<button type="button" data-k="'+m+'-'+d+'" class="'+(on?'done':'')+(m===tm&&d===td?' today':'')+'" title="'+esc(day.readings.map(refText).join(', '))+'" aria-label="Month '+m+', Day '+d+(on?', read':'')+'">'+d+'</button>';}
       h+='<div class="rp-mo'+(m===tm?' cur':'')+'"><h3>Month '+m+' <small>'+MONTHS[m-1]+' &middot; '+done+'/25</small></h3><p class="bk">'+esc([].concat(bks[0],bks[1],bks[2],bks[3]).join(', '))+'</p><div class="rp-grid">'+g+'</div></div>';}
-    body.innerHTML='<div class="rp-year-hd"><div><h2 style="font-size:clamp(30px,4vw,44px)">Yet Not I, But Christ</h2><p>Tap any day to open it. Days 26 to the end of each month are catch-up days.</p></div><div class="rp-prog">'+n+' of 300 read</div></div><div class="rp-year">'+h+'</div><div class="rp-legend"><span><i class="d"></i>Read</span><span><i class="t"></i>Today</span><span><i></i>Not read yet</span></div>'+foot();}
+    body.innerHTML='<div class="rp-year-hd"><div><h2 style="font-size:clamp(30px,4vw,44px)">'+esc(PLAN.year>2026?PLAN.title:'Yet Not I, But Christ')+'</h2><p>Tap any day to open it. Days 26 to the end of each month are catch-up days.</p></div><div class="rp-prog">'+n+' of 300 read</div></div><div class="rp-year">'+h+'</div><div class="rp-legend"><span><i class="d"></i>Read</span><span><i class="t"></i>Today</span><span><i></i>Not read yet</span></div>'+foot();}
   body.addEventListener('click',function(e){
     var k=e.target.closest('[data-k]');if(k&&body.contains(k)){e.preventDefault();go('readingplan/'+k.getAttribute('data-k'));return;}
     var j=e.target.closest('[data-jump]');if(j){e.preventDefault();var p=document.getElementById('rp-p'+j.getAttribute('data-jump'));if(p){p.open=true;p.scrollIntoView({behavior:'smooth',block:'start'});}return;}
     var v=e.target.closest('.v');if(v){body.querySelectorAll('.v.sel').forEach(function(x){x.classList.remove('sel');});v.classList.add('sel');
-      var sup=v.querySelector('sup'),t=v.textContent.slice(sup?sup.textContent.length:0).trim();var ti=v.closest('.rp-text'),vg=ti&&+ti.getAttribute('data-i')>=2?'ot':'nt';openV({book:v.getAttribute('data-b'),c:+v.getAttribute('data-c'),v:+v.getAttribute('data-v'),t:t},vg,curSt,v);return;}
+      var sup=v.querySelector('sup'),t=v.textContent.slice(sup?sup.textContent.length:0).trim();var ti=v.closest('.rp-text'),vg=ti&&ti.getAttribute('data-g')?ti.getAttribute('data-g'):(ti&&+ti.getAttribute('data-i')>=2?'ot':'nt');openV({book:v.getAttribute('data-b'),c:+v.getAttribute('data-c'),v:+v.getAttribute('data-v'),t:t},vg,curSt,v);return;}
     var cd=e.target.closest('.rp-card');if(cd&&cd._v){var a=e.target.closest('[data-act]');
       if(a){if(a.getAttribute('data-act')==='dl')save(cd.querySelector('canvas'),cd._v);else share(cd.querySelector('canvas'),cd._v);}
       else if(e.target.tagName==='CANVAS')openV(cd._v,cd.getAttribute('data-g'),e.target._st||0,e.target);}});
