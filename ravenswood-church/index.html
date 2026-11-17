@@ -306,6 +306,9 @@ ul.tick li:before{content:"";position:absolute;left:0;top:10px;width:16px;height
 .staffperson img,.staffperson .ph{width:96px;height:96px;object-fit:cover;flex-shrink:0;padding:6px;font-size:10.5px;}
 .staffperson h3{font-size:26px;}
 .staffperson .r{font-size:15px;color:#5b5e64;margin-top:2px;}
+.staff:not(.s4) .staffperson{gap:20px;padding:16px;}
+.staff:not(.s4) .staffperson img,.staff:not(.s4) .staffperson .ph{width:150px;height:150px;}
+@media (max-width:1000px){.staff:not(.s4) .staffperson img,.staff:not(.s4) .staffperson .ph{width:124px;height:124px;}}
 
 /* beliefs */
 .belief{padding:28px 0;border-bottom:2px solid var(--line);display:grid;grid-template-columns:260px 1fr;gap:36px;}
@@ -3293,7 +3296,7 @@ html.rbc-lock-sv,html.rbc-lock-sv body{overflow:hidden;}
       <div class="staff mt">
         <div class="staffperson"><img loading="lazy" src="img/hs_ag.jpg" alt="Andrea Gray"><div><h3>Andrea Gray</h3><div class="r">Nursery Coordinator</div></div></div>
         <div class="staffperson"><img loading="lazy" src="img/hs_mp.jpg" alt="Maria Park"><div><h3>Maria Park</h3><div class="r">Church Admin Assistant</div></div></div>
-        <div class="staffperson"><div class="ph ph" role="img" aria-label="Photo coming soon"><span class="need">#5 Need from Ravenswood: photo</span><span>headshot of Kathy Carter</span></div><div><h3>Kathy Carter</h3><div class="r">Financial Office</div></div></div>
+        <div class="staffperson"><img loading="lazy" src="img/hs_kc.jpg" alt="Kathy Carter"><div><h3>Kathy Carter</h3><div class="r">Financial Office</div></div></div>
       </div>
     </div>
   </section>
