@@ -925,6 +925,8 @@ footer{clip-path:polygon(0 48px,100% 0,100% 100%,0 100%);padding-top:120px;margi
 /* Christmas type matched to the Christmas art: tall serif and a whimsical script */
 #christmas .xh,#christmas h2,#christmas h3,#christmas .xbar b,#christmas .xseries figcaption b,#christmas .xevent h3,#christmas .xh1{font-family:'XmasSerif','XSerif',serif;font-weight:400;letter-spacing:.01em;}
 #christmas .xh1{text-transform:uppercase;font-size:clamp(60px,9vw,128px);line-height:.92;}
+#christmas .xh1,#christmas h2,#christmas .xevent h3{-webkit-text-stroke:.022em currentColor;paint-order:stroke fill;}
+#christmas .xh1 .xscript,#christmas h2 .xscript,#christmas .xevent h3 .xscript{-webkit-text-stroke:0;}
 #christmas h2,#christmas .xevent h3,#christmas .xbar b{text-transform:uppercase;}
 #christmas .xbar b{font-size:34px;}
 #christmas .xseries figcaption b{font-size:26px;}
@@ -3023,7 +3025,7 @@ html.rbc-lock-sv,html.rbc-lock-sv body{overflow:hidden;}
       <img loading="lazy" src="img/x_eve.jpg" alt="Christmas Eve Candlelight artwork with carolers outside the church">
       <div class="fb">
         <div class="eyebrow" style="color:var(--xgold)">Thursday, December 24 · 4:30 PM</div>
-        <h3>Christmas Eve <span class="xscript">Candlelight</span></h3>
+        <h3><span style="white-space:nowrap">Christmas Eve</span><br><span class="xscript">Candlelight</span></h3>
         <p class="mt" style="color:var(--xcream)">Join us on Christmas Eve as we celebrate the birth of Jesus together by candlelight. The service lasts about an hour, and the whole family worships together (there is no childcare). Invite a friend!</p>
         <div class="btnrow"><a class="btn btn-xcream" href="https://www.google.com/maps/dir/?api=1&amp;destination=4455+N+Seeley+Ave+Chicago+IL+60625" target="_blank" rel="noopener"><span>Get Directions</span></a></div>
       </div>
@@ -3353,7 +3355,7 @@ html.rbc-lock-sv,html.rbc-lock-sv body{overflow:hidden;}
 <div class="page" id="school" data-title="Ravenswood Christian School | Ravenswood Baptist Church">
   <div class="pagehead rcs-head"><div class="bg" data-bg="s_school"></div><div class="tint"></div>
     <img class="rcs-crownwm" src="img/crown_white.png" alt="" aria-hidden="true">
-    <div class="wrap"><div class="eyebrow">A Ministry of Our Church</div><h1><span class="ol w">Ravenswood</span><br>Christian School</h1><p>Christ-centered education on Chicago's north side, Pre-K through 12th grade.</p><div class="btnrow"><a class="btn btn-white" href="https://ravenswoodchristian.org" target="_blank" rel="noopener"><span>Schedule a Tour</span></a><a class="btn btn-outw" href="https://ravenswoodchristian.org" target="_blank" rel="noopener"><span>Visit RavenswoodChristian.org</span></a></div></div></div>
+    <div class="wrap"><div class="eyebrow">A Ministry of Our Church</div><h1><span class="ol w">Ravenswood</span><br>Christian School</h1><p>Christ-centered education on Chicago's north side, Pre-K through 12th grade.</p><div class="btnrow"><a class="btn btn-white" href="https://ravenswoodchristian.org" target="_blank" rel="noopener"><span>Visit RavenswoodChristian.org</span></a></div></div></div>
   <section class="flat rcs-church">
     <div class="wrap grid2">
       <div>
@@ -3454,8 +3456,8 @@ html.rbc-lock-sv,html.rbc-lock-sv body{overflow:hidden;}
           <h2>Come See for Yourself</h2>
           <p class="rcs-addr"><b>Ravenswood Christian School</b><br>4437 N. Seeley Ave., Chicago, IL 60625</p>
           <p>Admissions, tuition, calendars and everything else for school families lives on the school's own website.</p>
-          <div class="rcs-btns"><a class="rcs-btn rcs-btn-red" href="https://ravenswoodchristian.org" target="_blank" rel="noopener">Schedule a Tour</a><a class="rcs-btn rcs-btn-out" href="https://ravenswoodchristian.org" target="_blank" rel="noopener">Visit RavenswoodChristian.org</a></div>
-          <div class="needtag"><span class="need">#21 Need from Ravenswood: how should families schedule a tour? For now this button opens the school's website.</span></div>
+          <div class="rcs-btns"><a class="rcs-btn rcs-btn-red" href="https://ravenswoodchristian.org" target="_blank" rel="noopener">Visit RavenswoodChristian.org</a></div>
+          
         </div>
       </div>
     </section>
