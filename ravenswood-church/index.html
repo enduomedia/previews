@@ -1620,6 +1620,13 @@ a.ycard{text-decoration:none;display:flex;transition:transform .15s;}a.ycard:hov
 #vbs .tf-fact{background:#fff;border-radius:22px;padding:22px;text-align:center;box-shadow:0 8px 0 rgba(29,63,115,.12);}
 #vbs .tf-fact span{display:block;font-weight:800;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--coral);}
 #vbs .tf-fact b{display:block;font-family:'TFHead',sans-serif;font-weight:400;font-size:24px;margin-top:6px;line-height:1.15;}
+#vbs .tf-regwrap{max-width:900px;}
+#vbs .tf-reg p{margin-top:14px;}
+#vbs .tf-regbox{margin-top:24px;background:#fff;border:1px solid #dfe6ee;border-radius:14px;padding:18px 16px;box-shadow:0 2px 10px rgba(29,63,115,.06);min-height:240px;}
+#vbs .tf-regbox iframe{width:100%!important;border:0;}
+#vbs .tf-regalt{font-size:15px;color:#5b6b80;}
+#vbs .tf-regalt a{color:var(--navy);font-weight:800;text-decoration:underline;}
+#vbs .tf-one{grid-template-columns:1fr;max-width:900px;}
 #vbs .tf-card{background:#fff;border-radius:30px;padding:40px;box-shadow:0 10px 0 rgba(29,63,115,.12);}
 #vbs .tf-card p{font-size:18px;line-height:1.6;margin-top:12px;}
 #vbs .needbox{margin-top:22px;}
@@ -3784,13 +3791,21 @@ html.rbc-lock-sv,html.rbc-lock-sv body{overflow:hidden;}
     </div>
   </section>
   <section class="tf-sec tf-sky" id="vbs-register">
-    <div class="wrap tf-grid2" style="align-items:stretch">
-      <div class="tf-card">
+    <div class="wrap tf-regwrap">
+      <div class="tf-card tf-reg" data-until="2027-05-29">
         <div class="tf-eyebrow">Registration</div>
-        <h2 style="font-size:clamp(36px,4vw,54px)">Register for VBS 2027</h2>
-        <p>Registration opens May 30. Sign up your kids for Take Flight, July 26 to 29.</p>
-        <div class="tf-btns" style="justify-content:flex-start"><a class="tf-btn" href="https://ravenswoodbaptist.breezechms.com/form/VBS2027" target="_blank" rel="noopener">Register</a></div>
+        <h2 style="font-size:clamp(36px,4vw,54px)">Registration Opens May 30</h2>
+        <p>Registration for Take Flight, July 26 to 29, opens Sunday, May 30. Check back here that day to sign up your kids.</p>
       </div>
+      <div class="tf-card tf-reg" data-from="2027-05-30">
+        <div class="tf-eyebrow">Registration Is Open</div>
+        <h2 style="font-size:clamp(36px,4vw,54px)">Register for VBS 2027</h2>
+        <p>Sign up your kids for Take Flight, July 26 to 29, 6 to 8 PM each night, for ages 3 to 12.</p>
+        <div class="tf-regbox"><div id="vbs-breeze" class="breeze_form_embed" data-subdomain="ravenswoodbaptist" data-address="VBS2027" data-width="100%" data-border_width="0" data-border_color="000000" data-background_color="ffffff" data-button_color="1d3f73"></div></div>
+        <p class="tf-regalt">Trouble with the form? <a href="https://ravenswoodbaptist.breezechms.com/form/VBS2027" target="_blank" rel="noopener">Open it in a new tab</a>.</p>
+      </div>
+    </div>
+    <div class="wrap tf-grid2 tf-one" style="align-items:stretch;margin-top:40px">
       <div class="tf-card">
         <div class="tf-eyebrow">Serve at VBS</div>
         <h2 style="font-size:clamp(36px,4vw,54px)">Help Make It Happen</h2>
@@ -5048,6 +5063,9 @@ document.querySelectorAll('.watch').forEach(function(a){var day=ymd(a.getAttribu
 window.addEventListener('popstate',function(){go((location.hash||'#home').slice(1),true);});
 document.querySelectorAll('.yr').forEach(function(s){s.textContent=TODAY.getFullYear();});
 if(location.hash){go(location.hash.slice(1),true);}
+</script>
+<script>
+(function(){if(!document.getElementById('vbs-breeze'))return;var sc=document.createElement('script');sc.src='https://app.breezechms.com/js/form_embed.js';sc.async=true;document.body.appendChild(sc);})();
 </script>
 <script>
 (function(){var links={};document.querySelectorAll('.bnav a').forEach(function(a){links[a.getAttribute('href').slice(1)]=a;});
