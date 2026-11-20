@@ -2930,7 +2930,7 @@ html.rbc-lock-sv,html.rbc-lock-sv body{overflow:hidden;}
         <label for="pv-bible">Would you like a free Bible?</label>
         <select id="pv-bible"><option value="">Select...</option><option>Yes, please</option><option>No, thank you</option></select>
         <label for="pv-q">Anything else you'd like us to know, or a question before your visit?</label><textarea id="pv-q" rows="3"></textarea>
-        <div class="pv-hp" aria-hidden="true"><label for="pv-website">Leave this empty</label><input id="pv-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+        <div class="pv-hp" aria-hidden="true"><label for="pv-hpx">Leave this empty</label><input id="pv-hpx" name="pv_hpx" type="text" tabindex="-1" autocomplete="off"></div>
         <p class="pv-msg" id="pv-msg" role="status" aria-live="polite"></p>
         <div class="btnrow" style="margin-top:20px"><button class="btn btn-red" type="submit" id="pv-btn"><span>Plan My Visit</span></button></div>
       </form>
@@ -2945,7 +2945,7 @@ html.rbc-lock-sv,html.rbc-lock-sv body{overflow:hidden;}
       function pvSend(f){
         var g=function(id){var e=document.getElementById(id);return e?e.value.trim():'';},msg=document.getElementById('pv-msg'),btn=document.getElementById('pv-btn');
         var say=function(t,bad){msg.textContent=t;msg.className='pv-msg'+(bad?' bad':' ok');};
-        var d={first:g('pv-first'),last:g('pv-last'),email:g('pv-email'),phone:g('pv-phone'),sunday:g('pv-date'),people:[],heard:g('pv-heard'),heard_other:g('pv-heard')==='Other'?g('pv-heard-other'):'',access:g('pv-access'),access_more:g('pv-access')==='Yes'?g('pv-access-detail'):'',bible:g('pv-bible'),question:g('pv-q'),website:g('pv-website')};
+        var d={first:g('pv-first'),last:g('pv-last'),email:g('pv-email'),phone:g('pv-phone'),sunday:g('pv-date'),people:[],heard:g('pv-heard'),heard_other:g('pv-heard')==='Other'?g('pv-heard-other'):'',access:g('pv-access'),access_more:g('pv-access')==='Yes'?g('pv-access-detail'):'',bible:g('pv-bible'),question:g('pv-q'),website:g('pv-hpx')};
         [].forEach.call(document.querySelectorAll('#pv-people .pv-person'),function(p){var o={type:p.dataset.type==='child'?'child':'adult',first:'',last:'',birthdate:'',grade:'',notes:''};[].forEach.call(p.querySelectorAll('[data-k]'),function(e){o[e.dataset.k]=e.value.trim();});if(o.first||o.last)d.people.push(o);});
         var miss=[];if(!d.first)miss.push('first name');if(!d.last)miss.push('last name');if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email))miss.push('a valid email');if(!d.sunday)miss.push('which Sunday');
         if(miss.length){say('Please add '+miss.join(', ')+'.',true);return false;}
