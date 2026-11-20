@@ -1374,6 +1374,11 @@ section.vintage{padding-top:calc(110px + var(--slant)) !important;}
 @media (max-width:560px){.staff.s4{grid-template-columns:1fr;}.staff.s4 .staffperson{flex-direction:row;align-items:center;}}
 
 .form .pv-hint{font-size:14px;color:#5b5e64;margin:-4px 0 8px;}
+.pv-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
+.pv-msg{margin:14px 0 0;font-size:16px;font-weight:600;}
+.pv-msg:empty{display:none;}
+.pv-msg.bad{color:var(--crimson);}
+.pv-msg.ok{color:var(--gunmetal);}
 .pv-add{display:flex;gap:10px;flex-wrap:wrap;margin:4px 0 6px;}
 .pv-add button{font:inherit;font-size:15px;font-weight:600;background:#fff;border:2px solid var(--gunmetal,#262b31);color:var(--gunmetal,#262b31);border-radius:999px;padding:6px 16px;cursor:pointer;}
 .pv-add button:hover{background:var(--gunmetal,#262b31);color:#fff;}
@@ -2905,7 +2910,7 @@ html.rbc-lock-sv,html.rbc-lock-sv body{overflow:hidden;}
         <div class="btnrow"><a class="btn btn-dark" href="#connect" onclick="go('connect');return false"><span>Digital Connect Card</span></a><a class="btn btn-outd" href="#faq" onclick="go('expect');setTimeout(function(){document.getElementById('faq').scrollIntoView({behavior:'smooth'})},80);return false"><span>Questions and Answers</span></a></div>
         <a class="mapcard mt2" href="https://www.google.com/maps/search/?api=1&amp;query=4455+N+Seeley+Ave+Chicago+IL+60625" target="_blank" rel="noopener"><img loading="lazy" class="photo r169 bw" src="img/ph_welcome_1.jpg" alt="A Ravenswood greeter handing out bulletins at the front door"><span>Open in Google Maps</span></a>
       </div>
-      <form class="form" id="plan-form" onsubmit="return false" aria-label="Plan a visit form">
+      <form class="form" id="plan-form" onsubmit="return pvSend(this)" novalidate aria-label="Plan a visit form">
         <h3 style="font-size:40px">Plan My Visit</h3>
         <div class="row2"><div><label for="pv-first">First name *</label><input id="pv-first" autocomplete="given-name" required></div><div><label for="pv-last">Last name *</label><input id="pv-last" autocomplete="family-name" required></div></div>
         <div class="row2"><div><label for="pv-email">Email *</label><input id="pv-email" type="email" autocomplete="email" required></div><div><label for="pv-phone">Phone</label><input id="pv-phone" type="tel" autocomplete="tel"></div></div>
@@ -2925,15 +2930,35 @@ html.rbc-lock-sv,html.rbc-lock-sv body{overflow:hidden;}
         <label for="pv-bible">Would you like a free Bible?</label>
         <select id="pv-bible"><option value="">Select...</option><option>Yes, please</option><option>No, thank you</option></select>
         <label for="pv-q">Anything else you'd like us to know, or a question before your visit?</label><textarea id="pv-q" rows="3"></textarea>
-        <div class="btnrow" style="margin-top:20px"><button class="btn btn-red" type="submit"><span>Plan My Visit</span></button></div>
+        <div class="pv-hp" aria-hidden="true"><label for="pv-website">Leave this empty</label><input id="pv-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+        <p class="pv-msg" id="pv-msg" role="status" aria-live="polite"></p>
+        <div class="btnrow" style="margin-top:20px"><button class="btn btn-red" type="submit" id="pv-btn"><span>Plan My Visit</span></button></div>
       </form>
       <script>
-      (function(){var sel=document.getElementById('pv-date');if(!sel)return;var d=new Date();d.setHours(0,0,0,0);var add=(7-d.getDay())%7;if(add===0&&new Date().getHours()>=12)add=7;d.setDate(d.getDate()+add);for(var i=0;i<10;i++){var o=document.createElement('option');o.value=d.toISOString().slice(0,10);o.textContent=d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});sel.appendChild(o);d.setDate(d.getDate()+7);}})();
+      (function(){var sel=document.getElementById('pv-date');if(!sel)return;var d=new Date();d.setHours(0,0,0,0);var add=(7-d.getDay())%7;if(add===0&&new Date().getHours()>=12)add=7;d.setDate(d.getDate()+add);for(var i=0;i<10;i++){var o=document.createElement('option');o.value=d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);o.textContent=d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});sel.appendChild(o);d.setDate(d.getDate()+7);}})();
       function pvAdd(t){var w=document.getElementById('pv-people'),d=document.createElement('div');d.className='pv-person';
       var x='<button type="button" class="pv-x" aria-label="Remove" onclick="this.parentNode.remove()">&times;</button><b>'+(t==='child'?'Child':'Adult')+'</b>';
-      x+='<div class="row2"><div><label>First name</label><input></div><div><label>Last name</label><input></div></div>';
-      if(t==='child'){x+='<div class="row2"><div><label>Birthdate</label><input type="date"></div><div><label>Grade</label><select><option value="">Select...</option><option>Nursery</option><option>Preschool</option><option>Kindergarten</option><option>1st</option><option>2nd</option><option>3rd</option><option>4th</option><option>5th</option><option>6th</option></select></div></div><label>Allergies or anything we should know</label><input>';}
-      d.innerHTML=x;w.appendChild(d);}
+      x+='<div class="row2"><div><label>First name</label><input data-k="first"></div><div><label>Last name</label><input data-k="last"></div></div>';
+      if(t==='child'){x+='<div class="row2"><div><label>Birthdate</label><input type="date" data-k="birthdate"></div><div><label>Grade</label><select data-k="grade"><option value="">Select...</option><option>Nursery</option><option>Preschool</option><option>Kindergarten</option><option>1st</option><option>2nd</option><option>3rd</option><option>4th</option><option>5th</option><option>6th</option></select></div></div><label>Allergies or anything we should know</label><input data-k="notes">';}
+      d.dataset.type=t;d.innerHTML=x;w.appendChild(d);}
+      var PV_URL='https://ravenswood.church/wp-json/rbc/v1/plan-visit';
+      function pvSend(f){
+        var g=function(id){var e=document.getElementById(id);return e?e.value.trim():'';},msg=document.getElementById('pv-msg'),btn=document.getElementById('pv-btn');
+        var say=function(t,bad){msg.textContent=t;msg.className='pv-msg'+(bad?' bad':' ok');};
+        var d={first:g('pv-first'),last:g('pv-last'),email:g('pv-email'),phone:g('pv-phone'),sunday:g('pv-date'),people:[],heard:g('pv-heard'),heard_other:g('pv-heard')==='Other'?g('pv-heard-other'):'',access:g('pv-access'),access_more:g('pv-access')==='Yes'?g('pv-access-detail'):'',bible:g('pv-bible'),question:g('pv-q'),website:g('pv-website')};
+        [].forEach.call(document.querySelectorAll('#pv-people .pv-person'),function(p){var o={type:p.dataset.type==='child'?'child':'adult',first:'',last:'',birthdate:'',grade:'',notes:''};[].forEach.call(p.querySelectorAll('[data-k]'),function(e){o[e.dataset.k]=e.value.trim();});if(o.first||o.last)d.people.push(o);});
+        var miss=[];if(!d.first)miss.push('first name');if(!d.last)miss.push('last name');if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email))miss.push('a valid email');if(!d.sunday)miss.push('which Sunday');
+        if(miss.length){say('Please add '+miss.join(', ')+'.',true);return false;}
+        var fallback="Sorry, something went wrong on our end. Please email hello@ravenswood.church and we'll make sure we're ready for you.";
+        btn.disabled=true;say('Sending...',false);
+        fetch(PV_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)})
+          .then(function(r){return r.json().catch(function(){return {};}).then(function(j){return {s:r.status,j:j};});})
+          .then(function(x){
+            if(x.s>=200&&x.s<300&&x.j&&x.j.ok){var sel=document.getElementById('pv-date'),day=sel.options[sel.selectedIndex]?sel.options[sel.selectedIndex].text:'Sunday';
+              f.innerHTML='<h3 style="font-size:40px">Thank You, '+d.first.replace(/[<>&"]/g,'')+'!</h3><p class="lead mt">We can\'t wait to meet you on '+day+'. Sunday Morning Worship is at 10:30 AM. We\'ll watch for you and help you find your way.</p><p class="mt">Questions before then? Email <a href="mailto:hello@ravenswood.church">hello@ravenswood.church</a>.</p>';return;}
+            btn.disabled=false;say((x.j&&x.j.error)?x.j.error:fallback,true);})
+          .catch(function(){btn.disabled=false;say(fallback,true);});
+        return false;}
       </script>
     </div>
   </section>
