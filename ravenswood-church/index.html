@@ -1629,7 +1629,12 @@ a.ycard{text-decoration:none;display:flex;transition:transform .15s;}a.ycard:hov
 #vbs .tf-reg p{margin-top:14px;}
 #vbs .tf-regbox{margin-top:24px;background:#fff;border:1px solid #dfe6ee;border-radius:14px;padding:18px 16px;box-shadow:0 2px 10px rgba(29,63,115,.06);min-height:240px;}
 #vbs .tf-regbox iframe{width:100%!important;border:0;}
-#vbs .tf-regalt{font-size:15px;color:#5b6b80;}
+#vbs .givesec{background:var(--soft);}
+.givebox{margin-top:24px;background:#fff;border:1px solid var(--line);padding:18px 16px;min-height:260px;box-shadow:0 20px 40px rgba(0,0,0,.08);}
+.givewait{color:#5b5e64;font-size:16px;margin:8px 4px;}
+.givewait a,.givealt a{color:var(--crimson);font-weight:600;}
+.givealt{font-size:15px;color:#5b5e64;margin-top:14px;}
+.tf-regalt{font-size:15px;color:#5b6b80;}
 #vbs .tf-regalt a{color:var(--navy);font-weight:800;text-decoration:underline;}
 #vbs .tf-one{grid-template-columns:1fr;max-width:900px;}
 #vbs .tf-card{background:#fff;border-radius:30px;padding:40px;box-shadow:0 10px 0 rgba(29,63,115,.12);}
@@ -4899,7 +4904,7 @@ html.rbc-lock-sv,html.rbc-lock-sv body{overflow:hidden;}
 <!-- ==================== GIVE ==================== -->
 <div class="page" id="give" data-title="Give | Ravenswood Baptist Church">
   <div class="pagehead"><div class="bg" data-bg="p_worship2"></div><div class="tint"></div><div class="stripes" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
-    <div class="wrap"><div class="eyebrow">We Practice Generosity With Joy</div><h1><span class="ol w">We Give</span><br>Through a Church</h1><p>Generosity is our privilege, especially in view of the fact that Jesus was first generous toward us.</p><div class="btnrow"><a class="btn btn-white" href="https://ravenswoodbaptist.breezechms.com/give/online" target="_blank" rel="noopener"><span>Give Online</span></a></div></div></div>
+    <div class="wrap"><div class="eyebrow">We Practice Generosity With Joy</div><h1><span class="ol w">We Give</span><br>Through a Church</h1><p>Generosity is our privilege, especially in view of the fact that Jesus was first generous toward us.</p><div class="btnrow"><a class="btn btn-white" href="#give-online" onclick="document.getElementById('give-online').scrollIntoView({behavior:'smooth',block:'start'});return false"><span>Give Online</span></a></div></div></div>
   <section>
     <div class="wrap grid2">
       <div>
@@ -4915,11 +4920,20 @@ html.rbc-lock-sv,html.rbc-lock-sv body{overflow:hidden;}
   </section>
   <div class="waysband">
   <div class="ways">
-    <div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm6.9 6h-3a15.7 15.7 0 00-1.4-3.6A8 8 0 0118.9 8zM12 4a14 14 0 011.9 4h-3.8A14 14 0 0112 4zM4.3 14a8.2 8.2 0 010-4h3.4a16.5 16.5 0 000 4zm.8 2h3a15.7 15.7 0 001.4 3.6A8 8 0 015.1 16zm3-8h-3a8 8 0 014.4-3.6A15.7 15.7 0 008.1 8zM12 20a14 14 0 01-1.9-4h3.8A14 14 0 0112 20zm2.3-6H9.7a14.7 14.7 0 010-4h4.6a14.7 14.7 0 010 4zm.3 5.6a15.7 15.7 0 001.4-3.6h3a8 8 0 01-4.4 3.6zm1.7-5.6a16.5 16.5 0 000-4h3.4a8.2 8.2 0 010 4z"/></svg><h3>Online</h3><p>Give safely and securely through our online giving platform. Set up a one-time or recurring gift.</p><a class="btn btn-white" href="https://ravenswoodbaptist.breezechms.com/give/online" target="_blank" rel="noopener"><span>Give Now</span></a></div>
+    <div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm6.9 6h-3a15.7 15.7 0 00-1.4-3.6A8 8 0 0118.9 8zM12 4a14 14 0 011.9 4h-3.8A14 14 0 0112 4zM4.3 14a8.2 8.2 0 010-4h3.4a16.5 16.5 0 000 4zm.8 2h3a15.7 15.7 0 001.4 3.6A8 8 0 015.1 16zm3-8h-3a8 8 0 014.4-3.6A15.7 15.7 0 008.1 8zM12 20a14 14 0 01-1.9-4h3.8A14 14 0 0112 20zm2.3-6H9.7a14.7 14.7 0 010-4h4.6a14.7 14.7 0 010 4zm.3 5.6a15.7 15.7 0 001.4-3.6h3a8 8 0 01-4.4 3.6zm1.7-5.6a16.5 16.5 0 000-4h3.4a8.2 8.2 0 010 4z"/></svg><h3>Online</h3><p>Give safely and securely right here on our website. Set up a one-time or recurring gift.</p><a class="btn btn-white" href="#give-online" onclick="document.getElementById('give-online').scrollIntoView({behavior:'smooth',block:'start'});return false"><span>Give Now</span></a></div>
     <div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5z"/></svg><h3>Dropbox</h3><p>Fill out a giving envelope with your gift (cash or check) and drop it in the giving box at the back of the worship center.</p></div>
     <div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 1H8a3 3 0 00-3 3v16a3 3 0 003 3h8a3 3 0 003-3V4a3 3 0 00-3-3zm-4 21a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm5-4H7V4h10z"/></svg><h3>Text to Give</h3><p>Text "give" to <a href="sms:+17735702476">773-570-2476</a> and follow the instructions provided. Standard message and data rates may apply.</p></div>
   </div>
   </div>
+  <section id="give-online" class="givesec">
+    <div class="wrap narrow">
+      <div class="eyebrow">Give Online</div>
+      <h2 style="font-size:clamp(40px,4.6vw,62px)">Give Right Here</h2>
+      <p class="lead mt">Give a one-time or recurring gift safely and securely. Your gift goes straight to Ravenswood Baptist Church.</p>
+      <div class="givebox"><div id="breeze_giving_embed" data-subdomain="ravenswoodbaptist" data-width="100%" data-background_color="ffffff" data-donate_button_background_color="D32047" data-donate_button_text_color="ffffff"></div><p class="givewait" id="give-wait">Loading the giving form...</p></div>
+      <p class="givealt">Need to log in or change a recurring gift? <a href="https://ravenswoodbaptist.breezechms.com/give/online" target="_blank" rel="noopener">Open giving in a new tab</a>.</p>
+    </div>
+  </section>
   <section>
     <div class="wrap narrow">
       <div class="eyebrow">Giving FAQ</div>
@@ -4931,7 +4945,7 @@ html.rbc-lock-sv,html.rbc-lock-sv body{overflow:hidden;}
         <details class="faq"><summary>Credit card or e-check?</summary><div class="a">Both work. E-check transaction fees are much lower than credit card fees, so more of your gift goes to ministry.</div></details>
         <details class="faq"><summary>Can I make a one-time gift?</summary><div class="a">Yes, online or by contacting the church office at <a href="tel:+17735616576">773.561.6576</a>.</div></details>
       </div>
-      <div class="btnrow"><a class="btn btn-red" href="https://ravenswoodbaptist.breezechms.com/give/online" target="_blank" rel="noopener"><span>Set Up Online Giving</span></a></div>
+      <div class="btnrow"><a class="btn btn-red" href="#give-online" onclick="document.getElementById('give-online').scrollIntoView({behavior:'smooth',block:'start'});return false"><span>Set Up Online Giving</span></a></div>
     </div>
   </section>
 </div>
@@ -5063,6 +5077,7 @@ function go(id,noPush){
   var hs='#'+id+(sub?'/'+sub:''); if(!noPush&&location.hash!==hs){try{history.pushState(null,'','#'+hs.slice(1));}catch(e){}}
   window.scrollTo(0,0);
   if(id==='readingplan'&&window.rpShow)window.rpShow(sub);
+  if(id==='give'&&window.giveLoad)window.giveLoad();
 }
 function toggleMenu(b){var m=document.querySelector('.menu');m.classList.toggle('open');b.setAttribute('aria-expanded',m.classList.contains('open'));}
 function gn(i){var n=document.querySelectorAll('#gn nav button'),p=document.querySelectorAll('#gn .panel');if(i<0||i>=p.length)return;
@@ -5091,6 +5106,9 @@ if(location.hash){go(location.hash.slice(1),true);}
 </script>
 <script>
 (function(){if(!document.getElementById('vbs-breeze'))return;var sc=document.createElement('script');sc.src='https://app.breezechms.com/js/form_embed.js';sc.async=true;document.body.appendChild(sc);})();
+/* Giving: Breeze's own giving form, loaded the first time the Give page opens. Payments stay on Breeze. */
+window.giveLoad=function(){if(window.giveLoaded)return;var box=document.getElementById('breeze_giving_embed');if(!box)return;window.giveLoaded=true;var sc=document.createElement('script');sc.src='https://www.breezechms.com/js/give.js';sc.async=true;document.body.appendChild(sc);var w=document.getElementById('give-wait'),n=0,t=setInterval(function(){n++;if(box.children.length){clearInterval(t);if(w)w.style.display='none';}else if(n>=16){clearInterval(t);if(w)w.innerHTML='The giving form is taking a while to load. <a href="https://ravenswoodbaptist.breezechms.com/give/online" target="_blank" rel="noopener">Open giving in a new tab</a> instead.';}},500);};
+if(document.getElementById('give')&&document.getElementById('give').classList.contains('active'))window.giveLoad();
 </script>
 <script>
 (function(){var links={};document.querySelectorAll('.bnav a').forEach(function(a){links[a.getAttribute('href').slice(1)]=a;});
