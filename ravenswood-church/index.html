@@ -395,6 +395,24 @@ footer .ftime span{color:var(--crimson);}
 .fstripes{position:absolute;top:0;left:0;right:0;display:flex;flex-direction:column;gap:6px;transform:translateY(-100%);}
 .fstripes span{height:6px;background:var(--crimson);}
 
+/* ===== Cookie consent ===== */
+.ckb{position:fixed;left:16px;right:16px;bottom:16px;z-index:150;max-width:760px;margin:0 auto;background:var(--gunmetal);color:#fff;padding:22px 24px;box-shadow:0 18px 40px rgba(0,0,0,.28);font-size:15px;line-height:1.55;border-top:6px solid var(--crimson);}
+.ckb[hidden]{display:none;}
+.ckb h2{font-size:24px;margin-bottom:8px;letter-spacing:.04em;}
+.ckb p{margin:0 0 6px;}
+.ckb a{color:#fff;text-decoration:underline;}
+.ckb-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;align-items:center;}
+.ckb .ckbtn{flex:1 1 160px;justify-content:center;padding:14px 18px;font-size:17px;}
+.ckb .ckbtn-eq{background:#fff;color:var(--gunmetal);border-color:#fff;}
+.ckb .ckbtn-eq:hover{background:var(--crimson);border-color:var(--crimson);color:#fff;}
+.ckb .ckpref{background:transparent;border:0;color:#fff;text-decoration:underline;font:inherit;cursor:pointer;padding:6px 2px;}
+.ckb-prefs{margin-top:14px;border-top:1px solid rgba(255,255,255,.18);padding-top:12px;}
+.ckb-prefs[hidden]{display:none;}
+.ckb-opt{display:flex;gap:12px;align-items:flex-start;padding:8px 0;}
+.ckb-opt input{width:20px;height:20px;margin-top:3px;accent-color:var(--crimson);flex:none;}
+.ckb-opt small{display:block;color:#c9cbcf;font-size:13px;}
+@media(max-width:560px){.ckb{left:10px;right:10px;bottom:10px;padding:18px 16px;font-size:14px;max-height:70vh;overflow:auto;}.ckb h2{font-size:21px;}.ckb .ckbtn{flex:1 1 100%;}}
+
 @media(max-width:1080px){
   .menu{display:none;}
   .burger{display:block;}
@@ -4955,7 +4973,7 @@ html.rbc-lock-sv,html.rbc-lock-sv body{overflow:hidden;}
   <div class="pagehead dark"><div class="wrap"><div class="eyebrow">Legal</div><h1>Privacy Policy</h1><p>How Ravenswood Baptist Church handles the information you share with us.</p></div></div>
   <section>
     <div class="wrap narrow legal">
-      <p class="lupd">Last updated November 14, 2026</p>
+      <p class="lupd">Last updated November 23, 2026</p>
       <h2>Information You Share With Us</h2>
       <p>We only collect information you choose to give us. Our website forms are Plan a Visit, the Digital Connect Card, the Digital Next Steps Card, the Prayer Card and the Contact form. Depending on the form, you may share your name, email, phone number, mailing address, the Sunday you plan to visit, how you heard about us, the ministries you'd like to hear about, your next step of faith, a prayer request or a message.</p>
       <p>On Plan a Visit, a parent or guardian can add the children coming along, with each child's name, birthdate, grade and any allergies, so we can have them ready for the Nursery or Kids' Church. You can also tell us about any accessibility needs so we can help.</p>
@@ -4972,7 +4990,8 @@ html.rbc-lock-sv,html.rbc-lock-sv body{overflow:hidden;}
       <p>Your answers stay on your own device. The test saves your progress in your browser's local storage so you can pick up where you left off, and your answers are never sent to the church. Printing or downloading your results creates a file on your device only. To clear your answers, tap Start Over or clear this site's data in your browser.</p>
       <p>The Daily Bible Reading page works the same way. Days you mark as read are saved only in your browser on your device and are never sent to the church.</p>
       <h2>Cookies and Tracking</h2>
-      <p>This website does not use analytics, advertising or tracking cookies, and it does not use tracking pixels. If we ever add tools like these, we will update this policy and ask for your permission first.</p>
+      <p>With your permission, this website uses Google Analytics to see how people use the site, such as which pages are visited, so we can make it better. Google Analytics sets cookies, and it only turns on if you click Accept all or turn on Analytics under Preferences. If you click Reject all, no analytics cookies are set.</p>
+      <p>Your choice is saved in your browser for 365 days. You can change it anytime with Cookie settings at the bottom of any page. This website does not use advertising cookies or tracking pixels.</p>
       <h2>Content From Other Services</h2>
       <p>Some parts of this site load content from other companies. When they load, these services may receive information such as your IP address and browser type, and may set their own cookies, under their own privacy policies.</p>
       <ul><li>YouTube (Google): sermon videos and video thumbnails</li><li>Google Calendar: our church events calendar</li><li>Breeze: sign-up, registration and giving forms</li></ul>
@@ -5054,7 +5073,7 @@ html.rbc-lock-sv,html.rbc-lock-sv body{overflow:hidden;}
         <a href="#contact" onclick="go('contact');return false">Contact</a></div>
     </div>
     <div class="footbot">
-      <span>&copy; <span class="yr">2026</span> Ravenswood Baptist Church. All rights reserved. &nbsp;·&nbsp; <a href="#privacy" onclick="go('privacy');return false">Privacy Policy</a></span>
+      <span>&copy; <span class="yr">2026</span> Ravenswood Baptist Church. All rights reserved. &nbsp;·&nbsp; <a href="#privacy" onclick="go('privacy');return false">Privacy Policy</a> &nbsp;·&nbsp; <a href="#" onclick="rbcCookieSettings();return false">Cookie settings</a></span>
       <span>Preview build prepared by Enduo Media</span>
     </div>
   </div>
@@ -5618,6 +5637,41 @@ var L=document.getElementById('ksun-line'),h='',lab={kc:'Kids\' Church',bonus:'B
 for(var i=0;i<6;i++){var x=sun+i*7*MS,kk=kind(x);h+='<li class="k-'+kk+(i===0?' now':'')+'"><i></i><b>'+f(x,{month:'short',day:'numeric'})+'</b><span>'+(i===0?'This Sunday: ':'')+lab[kk]+'</span></li>';}
 L.innerHTML=h;L.hidden=false;
 }catch(e){}})();
+</script>
+<div class="ckb" id="ckb" role="dialog" aria-labelledby="ckb-h" aria-describedby="ckb-d" hidden>
+  <h2 id="ckb-h">Cookies</h2>
+  <p id="ckb-d">With your permission, we use Google Analytics cookies to see how people use our website so we can make it better. Nothing is turned on unless you click Accept all.</p>
+  <p>Read our <a href="#privacy" onclick="go('privacy');return false">Privacy Policy</a>.</p>
+  <div class="ckb-prefs" id="ckb-prefs" hidden>
+    <label class="ckb-opt"><input type="checkbox" checked disabled> <span><b>Essential</b><small>Remembers your cookie choice. Always on.</small></span></label>
+    <label class="ckb-opt"><input type="checkbox" id="ckb-an"> <span><b>Analytics</b><small>Google Analytics. Helps us see which pages people visit.</small></span></label>
+    <div class="ckb-row"><button type="button" class="btn ckbtn ckbtn-eq" id="ckb-save">Save my choices</button></div>
+  </div>
+  <div class="ckb-row" id="ckb-main">
+    <button type="button" class="btn ckbtn ckbtn-eq" id="ckb-acc">Accept all</button>
+    <button type="button" class="btn ckbtn ckbtn-eq" id="ckb-rej">Reject all</button>
+    <button type="button" class="ckpref" id="ckb-pref" aria-expanded="false" aria-controls="ckb-prefs">Preferences</button>
+  </div>
+</div>
+<script>
+(function(){
+var GA='G-359W70PW93',KEY='rbc_consent',DAYS=365,loaded=false;
+var box=document.getElementById('ckb'),prefs=document.getElementById('ckb-prefs'),an=document.getElementById('ckb-an'),pb=document.getElementById('ckb-pref');
+function read(){try{var c=JSON.parse(localStorage.getItem(KEY)||'null');if(c&&c.t&&(Date.now()-c.t)<DAYS*864e5)return c;}catch(e){}return null;}
+function write(a){var c={analytics:!!a,t:Date.now()};try{localStorage.setItem(KEY,JSON.stringify(c));}catch(e){}return c;}
+function clearGA(){document.cookie.split(';').forEach(function(x){var k=x.split('=')[0].trim();if(/^_ga/.test(k)){['',location.hostname,'.'+location.hostname].forEach(function(d){document.cookie=k+'=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/'+(d?'; domain='+d:'');});}});}
+function loadGA(){if(loaded)return;loaded=true;window['ga-disable-'+GA]=false;window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};gtag('js',new Date());gtag('config',GA,{page_path:location.pathname+location.hash,page_title:document.title});var sc=document.createElement('script');sc.async=true;sc.src='https://www.googletagmanager.com/gtag/js?id='+GA;document.head.appendChild(sc);
+var lh=location.hash;window.addEventListener('hashchange',function(){if(!loaded||location.hash===lh)return;lh=location.hash;setTimeout(function(){gtag('event','page_view',{page_path:location.pathname+location.hash,page_title:document.title,page_location:location.href});},80);});}
+function apply(c){if(c&&c.analytics){loadGA();}else{if(loaded){window['ga-disable-'+GA]=true;clearGA();location.reload();return;}clearGA();}}
+function hide(){box.hidden=true;prefs.hidden=true;pb.setAttribute('aria-expanded','false');}
+function show(){var c=read();an.checked=!!(c&&c.analytics);box.hidden=false;}
+document.getElementById('ckb-acc').onclick=function(){hide();apply(write(true));};
+document.getElementById('ckb-rej').onclick=function(){hide();apply(write(false));};
+document.getElementById('ckb-save').onclick=function(){hide();apply(write(an.checked));};
+pb.onclick=function(){var o=prefs.hidden;prefs.hidden=!o;pb.setAttribute('aria-expanded',o?'true':'false');};
+window.rbcCookieSettings=show;
+var c=read();if(c){apply(c);}else{show();}
+})();
 </script>
 </body>
 </html>
