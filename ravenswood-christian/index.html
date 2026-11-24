@@ -1692,6 +1692,8 @@ document.addEventListener('keydown',function(e){if(!document.getElementById('doc
 function closeBio(){
   document.getElementById('bioModal').classList.remove('open');
 }
+
+(function(){var h=(location.hash||'').replace('#','');if(h&&document.getElementById(h)&&document.getElementById(h).classList.contains('page')){go(h);window.scrollTo(0,0);}})();
 </script>
 </body>
 </html>
