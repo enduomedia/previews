@@ -2313,13 +2313,17 @@ html.rbc-lock,html.rbc-lock body{overflow:hidden;}
 /* ===== Item 9C: The Good Life, the 2027 look for the Daily Bible Reading page. #readingplan gets class "gl" whenever the 2027 plan is showing. ===== */
 @font-face{font-family:'GLHead';src:url('img/gl_shrikhand_400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap;}
 @font-face{font-family:'GLSub';src:url('img/gl_paytone_400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap;}
-#readingplan .rp-logo{display:none;}
+#readingplan .rp-art{display:none;}
 #readingplan.gl{--gl-m:#682C2E;--gl-c:#EBE0D5;--gl-r:#D15747;--gl-o:#E79C4D;--gl-y:#E2CB55;--gl-p:#D69DA4;--gl-s:#98B7A5;--gl-bg:#F4EDE5;--rp-cream:#F4EDE5;background:var(--gl-bg);color:#3a2a2a;}
 #readingplan.gl .rp-hd{background:var(--gl-c) url('img/goodlife-checker.jpg') center/cover no-repeat;color:var(--gl-m);border-bottom:0;padding-bottom:30px;}
-#readingplan.gl .rp-hd:after{left:0;right:0;top:auto;bottom:0;width:auto;height:30px;background:linear-gradient(var(--gl-y) 0 20%,var(--gl-o) 20% 40%,var(--gl-r) 40% 60%,var(--gl-p) 60% 80%,var(--gl-s) 80% 100%);}
-#readingplan.gl .rp-hd .wrap{display:grid;grid-template-columns:1fr auto;column-gap:36px;align-items:end;}
-#readingplan.gl .rp-hd .wrap>*{grid-column:1;}
-#readingplan.gl .rp-hd .wrap>.rp-logo{display:block;grid-column:2;grid-row:1/span 5;align-self:center;width:clamp(200px,22vw,290px);height:auto;margin:0 0 8px;}
+#readingplan.gl .rp-hd:after{display:none;}
+#readingplan.gl .rp-hd .wrap{position:static;display:flex;flex-direction:column;}
+#readingplan.gl .rp-hd .wrap>*:not(.rp-art){position:relative;z-index:1;}
+/* the key art: the rainbow road runs down the right side of the header and fans out at the bottom, with the logo on the stripes */
+#readingplan.gl .rp-hd{padding-top:44px;padding-bottom:44px;}
+#readingplan.gl .rp-art{display:block;position:absolute;top:0;bottom:0;right:max(-70px,calc((100% - 1200px)/2 - 140px));aspect-ratio:1545/1080;z-index:0;pointer-events:none;}
+#readingplan.gl .rp-road{position:absolute;inset:0;width:100%;height:100%;}
+#readingplan.gl .rp-art .rp-logo{position:absolute;left:50%;top:42%;transform:translate(-50%,-50%);width:47%;height:auto;filter:drop-shadow(0 6px 14px rgba(104,44,46,.18));}
 #readingplan.gl .rp-top a{color:var(--gl-m);opacity:1;font-family:'GLSub',sans-serif;font-weight:400;}
 #readingplan.gl .rp-theme{display:none;}
 #readingplan.gl .rp-hd .eyebrow{font-family:'GLSub',sans-serif;font-weight:400;color:var(--gl-r);letter-spacing:.12em;}
@@ -2404,15 +2408,18 @@ html.rbc-lock,html.rbc-lock body{overflow:hidden;}
 #rpv.gl .rpv-sw button{width:40px;height:40px;}
 #rpv.gl .rp-acts button{background:#682C2E;font-family:'GLSub',sans-serif;font-weight:400;letter-spacing:.03em;font-size:16px;}
 #rpv.gl .rp-acts button.red{background:#D15747;}
-@media(max-width:760px){
-  #readingplan.gl .rp-hd .wrap{grid-template-columns:1fr;}
-  #readingplan.gl .rp-hd .wrap>.rp-logo{grid-column:1;grid-row:auto;justify-self:center;width:min(220px,60vw);margin:2px auto 14px;order:-1;}
-  #readingplan.gl .rp-top{order:-2;}
+@media(max-width:1320px){
+  #readingplan.gl .rp-hd{padding-top:0;padding-bottom:30px;}
+  #readingplan.gl .rp-art{position:relative;top:auto;bottom:auto;right:auto;order:-2;align-self:center;width:min(640px,100%);height:auto;margin:0 auto 18px;}
+  #readingplan.gl .rp-art .rp-logo{width:50%;}
+  #readingplan.gl .rp-hd .wrap>.rp-top{position:absolute;top:12px;left:16px;z-index:2;margin:0;}
+  #readingplan.gl .rp-top a{background:rgba(244,237,229,.92);padding:6px 12px;}
   #readingplan.gl .rp-hd .wrap>.eyebrow,#readingplan.gl .rp-hd h1,#readingplan.gl .rp-sub{text-align:center;justify-content:center;}
+  #readingplan.gl .rp-nav{justify-content:center;}
 }
 @media(max-width:560px){
   #readingplan.gl .rp-hd{padding-bottom:26px;}
-  #readingplan.gl .rp-hd:after{height:24px;}
+  #readingplan.gl .rp-art{width:calc(100% + 32px);max-width:none;margin:0 -16px 14px;}
   #readingplan.gl .rp-hd h1{font-size:34px;}
   #readingplan.gl .rp-over a{font-size:19px;}
 }
@@ -4762,7 +4769,7 @@ html.rbc-lock-sv,html.rbc-lock-sv body{overflow:hidden;}
   <div class="rp-hd">
     <div class="wrap">
       <div class="rp-top"><a href="#next" onclick="go('next');return false">&larr; Next Steps</a><span class="rp-theme" id="rp-theme">Yet Not I, But Christ</span></div>
-      <img class="rp-logo" loading="lazy" src="img/goodlife-logo.png" alt="The Good Life" width="640" height="574">
+      <div class="rp-art"><img class="rp-road" loading="lazy" src="img/goodlife-road.webp" alt="" width="1000" height="699"><img class="rp-logo" loading="lazy" src="img/goodlife-logo.png" alt="The Good Life" width="640" height="574"></div>
       <div class="eyebrow">Daily Bible Reading</div>
       <h1 id="rp-date">Today's Reading</h1>
       <p class="rp-sub" id="rp-sub">&nbsp;</p>
@@ -5668,7 +5675,7 @@ if(f&&!rm&&'IntersectionObserver' in window&&/^\d+$/.test(f.textContent)){var to
       ctx.fillStyle=C.red;ctx.fillRect(60,cy-36,56,5);
       ctx.fillStyle=C.gun;var F=fit(ctx,v.text,bodyF(500),W-X-80,700,64,26,1.34);para(ctx,F,X,140+Math.max(0,(700-F.h)/2));
       footer(ctx,cr,W-80,986,'right','rgba(43,46,51,.6)',C.red);}]};
-  /* The Good Life (2027 plan): ten styles in the series look, all with the series grain on top. Each day the first reading card gets an even style and the second reading card an odd one, so the two never match. */
+  /* The Good Life (2027 plan): thirteen styles in the series look, all with the series grain on top. */
   var GL={m:'#682C2E',c:'#EBE0D5',r:'#D15747',o:'#E79C4D',y:'#E2CB55',p:'#D69DA4',s:'#98B7A5'},GLB=[GL.y,GL.o,GL.r,GL.p,GL.s];
   var GLHEAD='GLHead, Georgia, serif',GLSUB='GLSub, RBCBody, sans-serif';
   var glImgs={};function glImg(n){if(!glImgs[n])glImgs[n]=new Promise(function(ok){var i=new Image();i.onload=function(){ok(i);};i.onerror=function(){ok(null);};i.src='img/'+n;});return glImgs[n];}
@@ -5680,7 +5687,8 @@ if(f&&!rm&&'IntersectionObserver' in window&&/^\d+$/.test(f.textContent)){var to
   var GLSTY=[{n:'Stripes',sw:'linear-gradient(90deg,'+GL.y+' 0 6%,'+GL.o+' 6% 12%,'+GL.r+' 12% 18%,'+GL.p+' 18% 24%,'+GL.s+' 24% 30%,'+GL.c+' 30% 100%)'},
     {n:'Maroon',sw:GL.m},{n:'Checker',sw:'repeating-conic-gradient(#e3d3c3 0 25%,'+GL.c+' 0 50%) 0 0/14px 14px'},
     {n:'Rainbow Corner',sw:'radial-gradient(circle at 100% 100%,'+GL.s+' 0 22%,'+GL.p+' 22% 30%,'+GL.r+' 30% 38%,'+GL.o+' 38% 46%,'+GL.y+' 46% 54%,'+GL.c+' 54% 100%)'},{n:'Logo',sw:GL.c},
-    {n:'Sunrise',sw:'radial-gradient(circle at 50% 110%,'+GL.c+' 0 18%,'+GL.s+' 18% 26%,'+GL.p+' 26% 34%,'+GL.r+' 34% 42%,'+GL.o+' 42% 50%,'+GL.y+' 50% 58%,'+GL.c+' 58% 100%)'},{n:'Mustard',sw:GL.y},{n:'Sage',sw:GL.s},{n:'Retro Lettering',sw:'linear-gradient(135deg,'+GL.c+' 0 55%,'+GL.o+' 55% 64%,'+GL.r+' 64% 73%,'+GL.m+' 73% 100%)'},{n:'Terracotta',sw:GL.r}];
+    {n:'Sunrise',sw:'radial-gradient(circle at 50% 110%,'+GL.c+' 0 18%,'+GL.s+' 18% 26%,'+GL.p+' 26% 34%,'+GL.r+' 34% 42%,'+GL.o+' 42% 50%,'+GL.y+' 50% 58%,'+GL.c+' 58% 100%)'},{n:'Mustard',sw:GL.y},{n:'Sage',sw:GL.s},{n:'Retro Lettering',sw:'linear-gradient(135deg,'+GL.c+' 0 55%,'+GL.o+' 55% 64%,'+GL.r+' 64% 73%,'+GL.m+' 73% 100%)'},{n:'Terracotta',sw:GL.r},
+    {n:'Rainbow Road Sign',sw:'linear-gradient(90deg,'+GL.c+' 0 22%,'+GL.y+' 22% 33%,'+GL.o+' 33% 44%,'+GL.r+' 44% 56%,'+GL.p+' 56% 67%,'+GL.s+' 67% 78%,'+GL.c+' 78% 100%)'},{n:'Rainbow Road',sw:'linear-gradient('+GL.c+' 0 45%,transparent 45%),'+'linear-gradient(90deg,'+GL.c+' 0 22%,'+GL.y+' 22% 33%,'+GL.o+' 33% 44%,'+GL.r+' 44% 56%,'+GL.p+' 56% 67%,'+GL.s+' 67% 78%,'+GL.c+' 78% 100%)'},{n:'Rainbow Road on Maroon',sw:'linear-gradient('+GL.m+' 0 45%,transparent 45%),'+'linear-gradient(90deg,'+GL.m+' 0 22%,'+GL.y+' 22% 33%,'+GL.o+' 33% 44%,'+GL.r+' 44% 56%,'+GL.p+' 56% 67%,'+GL.s+' 67% 78%,'+GL.m+' 78% 100%)'}];
   var GLDRAW=[
     /* 1 cream checker with the rainbow stripes down the left side */
     function(ctx,v,cr,im){var W=1080,X=240;if(im.checker)ctx.drawImage(im.checker,0,0,W,W);else{ctx.fillStyle=GL.c;ctx.fillRect(0,0,W,W);}if(im.stripes)ctx.drawImage(im.stripes,0,0,284,1000,0,0,170,W);else{GLB.forEach(function(c,i){ctx.fillStyle=c;ctx.fillRect(i*34,0,34,W);});}
@@ -5730,14 +5738,31 @@ if(f&&!rm&&'IntersectionObserver' in window&&/^\d+$/.test(f.textContent)){var to
     /* 10 terracotta with a rainbow band across the top */
     function(ctx,v,cr){var W=1080,P=100;ctx.fillStyle=GL.r;ctx.fillRect(0,0,W,W);glBands(ctx,0,0,W,70);
       ctx.fillStyle=GL.c;var F=fit(ctx,v.text,glF,860,580,82,28,1.3),blk=F.h+100,y=170+Math.max(0,(680-blk)/2);
-      para(ctx,F,W/2,y,'center');glRef(ctx,v.ref,W/2,y+F.h+90,58,GL.y,'center');footer(ctx,cr,W/2,1000,'center',GL.c,GL.c);}];
+      para(ctx,F,W/2,y,'center');glRef(ctx,v.ref,W/2,y+F.h+90,58,GL.y,'center');footer(ctx,cr,W/2,1000,'center',GL.c,GL.c);},
+    /* 11 the key art: the rainbow road with the verse on a cream sign */
+    function(ctx,v,cr,im){var W=1080;if(im.roadbg)ctx.drawImage(im.roadbg,0,0,W,W);else{ctx.fillStyle=GL.c;ctx.fillRect(0,0,W,W);}
+      ctx.fillStyle='#F6EFE7';ctx.fillRect(110,220,W-220,560);ctx.strokeStyle=GL.m;ctx.lineWidth=7;ctx.strokeRect(110,220,W-220,560);
+      ctx.fillStyle=GL.m;var F=fit(ctx,v.text,glF,760,330,70,24,1.3),blk=F.h+90,y=262+Math.max(0,(420-blk)/2);
+      para(ctx,F,W/2,y,'center');glRef(ctx,v.ref,W/2,y+F.h+78,52,GL.r,'center',760);footer(ctx,cr,W/2,750,'center',GL.m,GL.m);},
+    /* 12 the rainbow road rising under the verse */
+    function(ctx,v,cr,im){var W=1080;ctx.fillStyle=GL.c;ctx.fillRect(0,0,W,W);if(im.road)ctx.drawImage(im.road,197,W-480,686,480);
+      footer(ctx,cr,W/2,96,'center',GL.m,GL.m);
+      ctx.fillStyle=GL.m;var F=fit(ctx,v.text,glF,880,320,76,24,1.28),blk=F.h+86,y=140+Math.max(0,(420-blk)/2);
+      para(ctx,F,W/2,y,'center');glRef(ctx,v.ref,W/2,y+F.h+76,54,GL.r,'center');},
+    /* 13 the rainbow road on maroon */
+    function(ctx,v,cr,im){var W=1080;ctx.fillStyle=GL.m;ctx.fillRect(0,0,W,W);if(im.road)ctx.drawImage(im.road,197,W-480,686,480);
+      footer(ctx,cr,W/2,96,'center',GL.c,GL.c);
+      ctx.fillStyle=GL.c;var F=fit(ctx,v.text,glF,880,320,76,24,1.28),blk=F.h+86,y=140+Math.max(0,(420-blk)/2);
+      para(ctx,F,W/2,y,'center');glRef(ctx,v.ref,W/2,y+F.h+76,54,GL.y,'center');}];
   /* grain from the series texture, laid over every finished Good Life graphic */
   function glGrain(ctx,g){if(!g)return;ctx.save();ctx.globalCompositeOperation='overlay';ctx.globalAlpha=.55;for(var x=0;x<1080;x+=g.width)for(var y=0;y<1080;y+=g.height)ctx.drawImage(g,x,y);ctx.restore();}
-  function stFor(g){return isGL()?((curSt*2+(g==='ot'?5:0))%10):curSt;}
+  /* default style for each day: every day one of the two cards uses the rainbow road key art */
+  var GLDEF={nt:[10,0,11,9,12],ot:[6,12,8,10,4]};
+  function stFor(g){return isGL()?GLDEF[g==='ot'?'ot':'nt'][curSt%5]:curSt;}
   function shown(t){return String(t).replace(/[,;:]\s*$/,'.');}
   function draw(cv,kv,g,st){g=g==='ot'?'ot':'nt';var N=isGL()?GLDRAW.length:5;st=((+st||0)%N+N)%N;cv._st=st;cv._g=g;
-    if(isGL())return Promise.all([fonts(),glFonts(),crown(),glImg('goodlife-card-stripes.jpg'),glImg('goodlife-card-checker.jpg'),glImg('goodlife-logo.png'),glImg('goodlife-grain.jpg')]).then(function(a){var ctx=cv.getContext('2d');ctx.clearRect(0,0,1080,1080);ctx.textBaseline='alphabetic';ctx.textAlign='left';
-      GLDRAW[st](ctx,{text:shown(kv.t),ref:vref(kv)},a[2],{stripes:a[3],checker:a[4],logo:a[5]});glGrain(ctx,a[6]);return cv;});
+    if(isGL())return Promise.all([fonts(),glFonts(),crown(),glImg('goodlife-card-stripes.jpg'),glImg('goodlife-card-checker.jpg'),glImg('goodlife-logo.png'),glImg('goodlife-grain.jpg'),glImg('goodlife-road.webp'),glImg('goodlife-card-road.jpg')]).then(function(a){var ctx=cv.getContext('2d');ctx.clearRect(0,0,1080,1080);ctx.textBaseline='alphabetic';ctx.textAlign='left';
+      GLDRAW[st](ctx,{text:shown(kv.t),ref:vref(kv)},a[2],{stripes:a[3],checker:a[4],logo:a[5],road:a[7],roadbg:a[8]});glGrain(ctx,a[6]);return cv;});
     return Promise.all([fonts(),crown()]).then(function(a){var ctx=cv.getContext('2d');ctx.clearRect(0,0,1080,1080);ctx.textBaseline='alphabetic';ctx.textAlign='left';
       DRAW[g][st](ctx,{text:shown(kv.t),ref:vref(kv).toUpperCase()},a[1]);return cv;});}
   function fname(kv){return 'ravenswood-'+(bookName(kv.book,1,1)+'-'+kv.c+'-'+kv.v+(kv.v2?'-'+kv.v2:'')).toLowerCase().replace(/[^a-z0-9]+/g,'-')+'.png';}
