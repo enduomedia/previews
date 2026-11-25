@@ -2157,7 +2157,7 @@ html.rbc-lock,html.rbc-lock body{overflow:hidden;}
 .rbcpdf .rbcbox-ft .btn svg{width:18px;height:18px;flex:0 0 18px;}
 @media(max-width:640px){.rbcpdf .rbcbox-dlg{width:100%;height:100%;height:100dvh;}.rbcpdf .pdfpages{grid-template-columns:1fr;padding:10px;gap:10px;}.rbcpdf .rbcbox-ft{padding:10px 12px calc(12px + env(safe-area-inset-bottom));}.rbcpdf .rbcbox-ft .pdfnote{display:none;}.rbcpdf .rbcbox-ft .pdfacts{width:100%;justify-content:space-between;}.rbcpdf .rbcbox-ft .btn{flex:1;justify-content:center;}}
 /* ===== Item 9B: Daily Bible Reading page (#readingplan) ===== */
-#readingplan{--rp-cream:#F6F1E7;background:var(--rp-cream);}
+#readingplan{--rp-cream:#F6F1E7;background:var(--rp-cream);scroll-margin-top:600px;}
 .rp-hd{background:var(--gunmetal);color:#fff;padding:26px 0 0;position:relative;overflow:hidden;border-bottom:6px solid var(--crimson);}
 .rp-hd:after{content:"";position:absolute;right:-40px;top:0;width:260px;height:100%;background:repeating-linear-gradient(115deg,transparent 0 26px,rgba(35,197,201,.16) 26px 40px);pointer-events:none;}
 .rp-hd .wrap{position:relative;z-index:1;}
@@ -2308,6 +2308,110 @@ html.rbc-lock,html.rbc-lock body{overflow:hidden;}
   .rp-qlinks a span{grid-column:1/-1;grid-row:2;}
   .rp-qlinks a i{grid-column:2;grid-row:1;}
   .rp-cu{padding:22px 18px;}
+}
+
+/* ===== Item 9C: The Good Life, the 2027 look for the Daily Bible Reading page. #readingplan gets class "gl" whenever the 2027 plan is showing. ===== */
+@font-face{font-family:'GLHead';src:url('img/gl_shrikhand_400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap;}
+@font-face{font-family:'GLSub';src:url('img/gl_paytone_400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap;}
+#readingplan .rp-logo{display:none;}
+#readingplan.gl{--gl-m:#682C2E;--gl-c:#EBE0D5;--gl-r:#D15747;--gl-o:#E79C4D;--gl-y:#E2CB55;--gl-p:#D69DA4;--gl-s:#98B7A5;--gl-bg:#F4EDE5;--rp-cream:#F4EDE5;background:var(--gl-bg);color:#3a2a2a;}
+#readingplan.gl .rp-hd{background:var(--gl-c) url('img/goodlife-checker.jpg') center/cover no-repeat;color:var(--gl-m);border-bottom:0;padding-bottom:30px;}
+#readingplan.gl .rp-hd:after{left:0;right:0;top:auto;bottom:0;width:auto;height:30px;background:linear-gradient(var(--gl-y) 0 20%,var(--gl-o) 20% 40%,var(--gl-r) 40% 60%,var(--gl-p) 60% 80%,var(--gl-s) 80% 100%);}
+#readingplan.gl .rp-hd .wrap{display:grid;grid-template-columns:1fr auto;column-gap:36px;align-items:end;}
+#readingplan.gl .rp-hd .wrap>*{grid-column:1;}
+#readingplan.gl .rp-hd .wrap>.rp-logo{display:block;grid-column:2;grid-row:1/span 5;align-self:center;width:clamp(200px,22vw,290px);height:auto;margin:0 0 8px;}
+#readingplan.gl .rp-top a{color:var(--gl-m);opacity:1;font-family:'GLSub',sans-serif;font-weight:400;}
+#readingplan.gl .rp-theme{display:none;}
+#readingplan.gl .rp-hd .eyebrow{font-family:'GLSub',sans-serif;font-weight:400;color:var(--gl-r);letter-spacing:.12em;}
+#readingplan.gl h1,#readingplan.gl h2,#readingplan.gl .rp-cu h2{font-family:'GLHead',serif;font-weight:400;text-transform:none;letter-spacing:0;line-height:1.05;color:var(--gl-m);}
+#readingplan.gl .rp-hd h1{font-size:clamp(38px,5.4vw,66px);color:var(--gl-m);}
+#readingplan.gl .rp-sub{font-family:'GLSub',sans-serif;font-weight:400;color:var(--gl-m);opacity:1;letter-spacing:.04em;}
+#readingplan.gl h3,#readingplan.gl h4{font-family:'GLSub',sans-serif;font-weight:400;text-transform:none;letter-spacing:0;color:var(--gl-m);}
+#readingplan.gl .rp-day{border-color:rgba(104,44,46,.28);background:rgba(255,255,255,.55);color:var(--gl-m);font-family:'GLSub',sans-serif;}
+#readingplan.gl .rp-day:hover{border-color:var(--gl-m);}
+#readingplan.gl .rp-day .dn{font-family:'GLSub',sans-serif;font-weight:400;}
+#readingplan.gl .rp-day .wd{font-weight:400;}
+#readingplan.gl .rp-day.today{border-color:var(--gl-r);}
+#readingplan.gl .rp-day.today .wd{color:var(--gl-r);}
+#readingplan.gl .rp-day.on{background:var(--gl-m);border-color:var(--gl-m);color:var(--gl-c);}
+#readingplan.gl .rp-day.on .wd{color:var(--gl-c);}
+#readingplan.gl .rp-day.done:after{background:var(--gl-s);}
+#readingplan.gl .rp-day.on.done:after{background:var(--gl-y);}
+#readingplan.gl .rp-btn{border-color:var(--gl-m);color:var(--gl-m);background:rgba(255,255,255,.55);font-family:'GLSub',sans-serif;font-weight:400;letter-spacing:.04em;}
+#readingplan.gl .rp-btn:hover{background:var(--gl-m);color:var(--gl-c);}
+#readingplan.gl .rp-btn.on{background:var(--gl-r);border-color:var(--gl-r);color:#fff;}
+#readingplan.gl .rp-over,#readingplan.gl .rp-pass,#readingplan.gl .rp-card,#readingplan.gl .rp-cu,#readingplan.gl .rp-mo{box-shadow:0 2px 0 rgba(104,44,46,.14);}
+#readingplan.gl .rp-over .grp{font-family:'GLSub',sans-serif;font-weight:400;color:var(--gl-r);letter-spacing:.1em;}
+#readingplan.gl .rp-over a{font-family:'GLSub',sans-serif;font-weight:400;text-transform:none;font-size:21px;color:var(--gl-m);border-bottom-color:rgba(104,44,46,.14);}
+#readingplan.gl .rp-over a:after{color:var(--gl-o);}
+#readingplan.gl .rp-over a:hover{color:var(--gl-r);}
+#readingplan.gl .rp-check{background:var(--gl-m);color:var(--gl-c);font-family:'GLSub',sans-serif;font-weight:400;letter-spacing:.04em;}
+#readingplan.gl .rp-check input{border-color:var(--gl-y);}
+#readingplan.gl .rp-check input:checked{background:var(--gl-y);}
+#readingplan.gl .rp-check input:checked:before{border-color:var(--gl-m);}
+#readingplan.gl .rp-check.is-done{background:var(--gl-s);color:var(--gl-m);}
+#readingplan.gl .rp-check.is-done input{border-color:var(--gl-m);}
+#readingplan.gl .rp-sec>h2:before{width:42px;height:14px;background:linear-gradient(var(--gl-y) 0 33.3%,var(--gl-o) 33.3% 66.6%,var(--gl-r) 66.6% 100%);}
+#readingplan.gl .rp-sec.ot>h2:before{background:linear-gradient(var(--gl-r) 0 33.3%,var(--gl-p) 33.3% 66.6%,var(--gl-s) 66.6% 100%);}
+#readingplan.gl .rp-pass summary{border-left-color:var(--gl-o);}
+#readingplan.gl .rp-sec.ot .rp-pass summary{border-left-color:var(--gl-s);}
+#readingplan.gl .rp-pass summary h3{font-size:clamp(24px,3vw,30px);}
+#readingplan.gl .rp-pass summary .chev{background:var(--gl-c);}
+#readingplan.gl .rp-pass summary .chev:before{border-color:var(--gl-m);}
+#readingplan.gl .rp-text{color:#3a2a2a;}
+#readingplan.gl .rp-text h4{color:var(--gl-r);letter-spacing:.04em;font-size:18px;}
+#readingplan.gl .rp-text sup{color:var(--gl-r);}
+#readingplan.gl .rp-text .v:hover{background:rgba(226,203,85,.28);}
+#readingplan.gl .rp-text .v.sel{background:rgba(209,87,71,.16);}
+#readingplan.gl .rp-card .lbl{font-family:'GLSub',sans-serif;font-weight:400;color:var(--gl-r);letter-spacing:.06em;}
+#readingplan.gl .rp-card canvas{background:var(--gl-c);}
+#readingplan.gl .rp-acts button{background:var(--gl-m);font-family:'GLSub',sans-serif;font-weight:400;letter-spacing:.03em;font-size:16px;}
+#readingplan.gl .rp-foot .btn{font-family:'GLSub',sans-serif;font-weight:400;letter-spacing:.04em;}
+#readingplan.gl .rp-acts button.red{background:var(--gl-r);}
+#readingplan.gl .rp-cu{border-top-color:var(--gl-o);}
+#readingplan.gl .rp-cu .eyebrow{font-family:'GLSub',sans-serif;font-weight:400;color:var(--gl-r);}
+#readingplan.gl .rp-qlinks a{background:var(--gl-c);color:var(--gl-m);}
+#readingplan.gl .rp-qlinks a:hover{background:#e2d4c6;}
+#readingplan.gl .rp-qlinks b{font-family:'GLSub',sans-serif;font-weight:400;text-transform:none;}
+#readingplan.gl .rp-qlinks i{font-family:'GLSub',sans-serif;font-weight:400;}
+#readingplan.gl .rp-qlinks a.done i{color:#4f7a62;}
+#readingplan.gl .rp-year-hd .rp-prog{font-family:'GLSub',sans-serif;font-weight:400;text-transform:none;color:var(--gl-m);}
+#readingplan.gl .rp-mo{border-top:6px solid var(--gl-s);}
+#readingplan.gl .rp-mo:nth-child(5n+1){border-top-color:var(--gl-y);}
+#readingplan.gl .rp-mo:nth-child(5n+2){border-top-color:var(--gl-o);}
+#readingplan.gl .rp-mo:nth-child(5n+3){border-top-color:var(--gl-r);}
+#readingplan.gl .rp-mo:nth-child(5n+4){border-top-color:var(--gl-p);}
+#readingplan.gl .rp-mo.cur{box-shadow:0 0 0 3px var(--gl-m);}
+#readingplan.gl .rp-mo h3{font-size:23px;}
+#readingplan.gl .rp-grid button{font-family:'GLSub',sans-serif;font-weight:400;background:var(--gl-c);border-color:rgba(104,44,46,.16);color:var(--gl-m);}
+#readingplan.gl .rp-grid button:hover{border-color:var(--gl-m);}
+#readingplan.gl .rp-grid button.done{background:var(--gl-s);border-color:var(--gl-s);}
+#readingplan.gl .rp-grid button.today{outline-color:var(--gl-r);}
+#readingplan.gl .rp-legend i{background:var(--gl-c);}
+#readingplan.gl .rp-legend i.d{background:var(--gl-s);border-color:var(--gl-s);}
+#readingplan.gl .rp-legend i.t{outline-color:var(--gl-r);}
+#readingplan.gl .rp-foot .btn-dark{background:var(--gl-m);}
+#readingplan.gl .rp-foot .btn-dark:hover{background:#4f1f21;}
+#readingplan.gl .rp-foot .btn-outd{border-color:var(--gl-m);color:var(--gl-m);}
+#readingplan.gl .rp-foot .btn-outd:hover{background:var(--gl-m);color:var(--gl-c);}
+#rpv.gl .rbcbox-hd{background:#682C2E;border-bottom-color:#D15747;}
+#rpv.gl .rbcbox-hd h2{font-family:'GLSub',sans-serif;font-weight:400;text-transform:none;letter-spacing:.02em;}
+#rpv.gl .rbcbox-x{background:#D15747;}
+#rpv.gl .rbcbox-bd{background:#F4EDE5;}
+#rpv.gl .rpv-sw button[aria-pressed=true]{box-shadow:0 0 0 3px #682C2E;}
+#rpv.gl .rp-acts button{background:#682C2E;font-family:'GLSub',sans-serif;font-weight:400;letter-spacing:.03em;font-size:16px;}
+#rpv.gl .rp-acts button.red{background:#D15747;}
+@media(max-width:760px){
+  #readingplan.gl .rp-hd .wrap{grid-template-columns:1fr;}
+  #readingplan.gl .rp-hd .wrap>.rp-logo{grid-column:1;grid-row:auto;justify-self:center;width:min(220px,60vw);margin:2px auto 14px;order:-1;}
+  #readingplan.gl .rp-top{order:-2;}
+  #readingplan.gl .rp-hd .wrap>.eyebrow,#readingplan.gl .rp-hd h1,#readingplan.gl .rp-sub{text-align:center;justify-content:center;}
+}
+@media(max-width:560px){
+  #readingplan.gl .rp-hd{padding-bottom:26px;}
+  #readingplan.gl .rp-hd:after{height:24px;}
+  #readingplan.gl .rp-hd h1{font-size:34px;}
+  #readingplan.gl .rp-over a{font-size:19px;}
 }
 
 /* ===== Item 10: Ravenswood Christian School page, church look turning into the school's look ===== */
@@ -4655,6 +4759,7 @@ html.rbc-lock-sv,html.rbc-lock-sv body{overflow:hidden;}
   <div class="rp-hd">
     <div class="wrap">
       <div class="rp-top"><a href="#next" onclick="go('next');return false">&larr; Next Steps</a><span class="rp-theme" id="rp-theme">Yet Not I, But Christ</span></div>
+      <img class="rp-logo" loading="lazy" src="img/goodlife-logo.png" alt="The Good Life" width="640" height="574">
       <div class="eyebrow">Daily Bible Reading</div>
       <h1 id="rp-date">Today's Reading</h1>
       <p class="rp-sub" id="rp-sub">&nbsp;</p>
@@ -5351,7 +5456,7 @@ if(f&&!rm&&'IntersectionObserver' in window&&/^\d+$/.test(f.textContent)){var to
   var body=document.getElementById('rp-body'),hDate=document.getElementById('rp-date'),hSub=document.getElementById('rp-sub'),daysEl=document.getElementById('rp-days');
   var PLAN=null,KV=null,PLANS={},BOOKS={},SLUG={},loading=null,cur=null,curSt=0;
   /* 2027 and later: data/plan2027.json (Navigators Book-at-a-Time, two readings a day, each reading has a slot: 0 = first reading, 1 = second reading) and data/keyverses2027.json ({"m-d":{"a":first reading verse,"b":second reading verse}}). The plan shown follows the year of the day being viewed. */
-  function use(y){var p=PLANS[y]||(y>2026?PLANS[2027]:PLANS[2026])||PLANS[2026];if(p){PLAN=p.plan;KV=p.kv;var th=document.getElementById('rp-theme');if(th)th.textContent=PLAN.year>2026?PLAN.title:'Yet Not I, But Christ';}}
+  function use(y){var p=PLANS[y]||(y>2026?PLANS[2027]:PLANS[2026])||PLANS[2026];if(p){PLAN=p.plan;KV=p.kv;var th=document.getElementById('rp-theme');if(th)th.textContent=PLAN.year>2026?PLAN.title:'Yet Not I, But Christ';page.classList.toggle('gl',PLAN.year>2026);var rv=document.getElementById('rpv');if(rv)rv.classList.toggle('gl',PLAN.year>2026);}}
   function two(){return PLAN&&PLAN.columns.length===2;}
   var POEM={'Job':1,'Psalms':1,'Proverbs':1,'Ecclesiastes':1,"Solomon's Song":1,'Lamentations':1};
   var MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
@@ -5560,8 +5665,46 @@ if(f&&!rm&&'IntersectionObserver' in window&&/^\d+$/.test(f.textContent)){var to
       ctx.fillStyle=C.red;ctx.fillRect(60,cy-36,56,5);
       ctx.fillStyle=C.gun;var F=fit(ctx,v.text,bodyF(500),W-X-80,700,64,26,1.34);para(ctx,F,X,140+Math.max(0,(700-F.h)/2));
       footer(ctx,cr,W-80,986,'right','rgba(43,46,51,.6)',C.red);}]};
+  /* The Good Life (2027 plan): five styles in the series look. The first reading card uses them in order, the second reading card starts two styles later. */
+  var GL={m:'#682C2E',c:'#EBE0D5',r:'#D15747',o:'#E79C4D',y:'#E2CB55',p:'#D69DA4',s:'#98B7A5'},GLB=[GL.y,GL.o,GL.r,GL.p,GL.s];
+  var GLHEAD='GLHead, Georgia, serif',GLSUB='GLSub, RBCBody, sans-serif';
+  var glImgs={};function glImg(n){if(!glImgs[n])glImgs[n]=new Promise(function(ok){var i=new Image();i.onload=function(){ok(i);};i.onerror=function(){ok(null);};i.src='img/'+n;});return glImgs[n];}
+  var glFontP=null;function glFonts(){if(!glFontP){try{glFontP=Promise.all(['40px GLSub','56px GLHead'].map(function(f){return document.fonts.load(f);})).catch(function(){});}catch(e){glFontP=Promise.resolve();}}return glFontP;}
+  function isGL(){return !!(PLAN&&PLAN.year>2026);}
+  function glF(s){return s+'px '+GLSUB;}
+  function glRef(ctx,s,x,y,size,col,align,maxW){ctx.font=size+'px '+GLHEAD;while(ctx.measureText(s).width>(maxW||860)&&size>28){size-=2;ctx.font=size+'px '+GLHEAD;}ctx.fillStyle=col;ctx.textAlign=align||'left';ctx.fillText(s,x,y);ctx.textAlign='left';}
+  function glBands(ctx,x,y,w,h){var bh=h/5;GLB.forEach(function(c,i){ctx.fillStyle=c;ctx.fillRect(x,y+i*bh,w,Math.ceil(bh));});}
+  var GLSTY=[{n:'Stripes',sw:'linear-gradient(90deg,'+GL.y+' 0 6%,'+GL.o+' 6% 12%,'+GL.r+' 12% 18%,'+GL.p+' 18% 24%,'+GL.s+' 24% 30%,'+GL.c+' 30% 100%)'},
+    {n:'Maroon',sw:GL.m},{n:'Checker',sw:'repeating-conic-gradient(#e3d3c3 0 25%,'+GL.c+' 0 50%) 0 0/14px 14px'},
+    {n:'Rainbow Corner',sw:'radial-gradient(circle at 100% 100%,'+GL.s+' 0 22%,'+GL.p+' 22% 30%,'+GL.r+' 30% 38%,'+GL.o+' 38% 46%,'+GL.y+' 46% 54%,'+GL.c+' 54% 100%)'},{n:'Logo',sw:GL.c}];
+  var GLDRAW=[
+    /* 1 cream checker with the rainbow stripes down the left side */
+    function(ctx,v,cr,im){var W=1080,X=240;if(im.checker)ctx.drawImage(im.checker,0,0,W,W);else{ctx.fillStyle=GL.c;ctx.fillRect(0,0,W,W);}if(im.stripes)ctx.drawImage(im.stripes,0,0,284,1000,0,0,170,W);else{GLB.forEach(function(c,i){ctx.fillStyle=c;ctx.fillRect(i*34,0,34,W);});}
+      ctx.fillStyle=GL.m;var F=fit(ctx,v.text,glF,760,600,78,28,1.32),blk=F.h+110,y=150+Math.max(0,(700-blk)/2);
+      para(ctx,F,X,y);glRef(ctx,v.ref,X,y+F.h+90,58,GL.r,'left',760);footer(ctx,cr,X,986,'left',GL.m,GL.m);},
+    /* 2 maroon with a rainbow band above the footer */
+    function(ctx,v,cr){var W=1080,P=100;ctx.fillStyle=GL.m;ctx.fillRect(0,0,W,W);glBands(ctx,0,880,W,60);
+      ctx.fillStyle=GL.c;var F=fit(ctx,v.text,glF,860,560,80,28,1.32),blk=F.h+110,y=120+Math.max(0,(660-blk)/2);
+      para(ctx,F,W/2,y,'center');glRef(ctx,v.ref,W/2,y+F.h+92,58,GL.y,'center');footer(ctx,cr,W/2,1030,'center',GL.c,GL.c);},
+    /* 3 checker with a cream panel */
+    function(ctx,v,cr,im){var W=1080;if(im.checker)ctx.drawImage(im.checker,0,0,W,W);else{ctx.fillStyle=GL.c;ctx.fillRect(0,0,W,W);}
+      ctx.fillStyle='#F6EFE7';ctx.fillRect(90,90,W-180,W-180);ctx.strokeStyle=GL.m;ctx.lineWidth=6;ctx.strokeRect(90,90,W-180,W-180);glBands(ctx,W/2-60,150,120,30);
+      ctx.fillStyle=GL.m;var F=fit(ctx,v.text,glF,740,500,74,26,1.34),blk=F.h+100,y=230+Math.max(0,(560-blk)/2);
+      para(ctx,F,W/2,y,'center');glRef(ctx,v.ref,W/2,y+F.h+86,54,GL.r,'center',740);footer(ctx,cr,W/2,935,'center',GL.m,GL.m);},
+    /* 4 cream with rainbow rings in the bottom right corner */
+    function(ctx,v,cr){var W=1080,P=100;ctx.fillStyle=GL.c;ctx.fillRect(0,0,W,W);
+      [[430,GL.y],[380,GL.o],[330,GL.r],[280,GL.p],[230,GL.s],[180,GL.c]].forEach(function(a){ctx.fillStyle=a[1];ctx.beginPath();ctx.moveTo(W,W);ctx.arc(W,W,a[0],Math.PI,1.5*Math.PI);ctx.closePath();ctx.fill();});
+      ctx.fillStyle=GL.m;var F=fit(ctx,v.text,glF,840,520,80,28,1.3),blk=F.h+100,y=110+Math.max(0,(560-blk)/2);
+      para(ctx,F,P,y);glRef(ctx,v.ref,P,y+F.h+88,58,GL.r,'left',760);footer(ctx,cr,P,986,'left',GL.m,GL.m);},
+    /* 5 The Good Life logo on top */
+    function(ctx,v,cr,im){var W=1080;ctx.fillStyle=GL.c;ctx.fillRect(0,0,W,W);glBands(ctx,0,0,W,40);
+      var lw=0;if(im.logo){lw=250;ctx.drawImage(im.logo,W/2-lw/2,90,lw,lw*im.logo.height/im.logo.width);}var top=im.logo?90+lw*im.logo.height/im.logo.width+40:140;
+      ctx.fillStyle=GL.m;var F=fit(ctx,v.text,glF,840,900-top-150,70,26,1.32),blk=F.h+96,y=top+Math.max(0,(900-top-blk)/2);
+      para(ctx,F,W/2,y,'center');glRef(ctx,v.ref,W/2,y+F.h+82,52,GL.r,'center');footer(ctx,cr,W/2,1010,'center',GL.m,GL.m);}];
   function shown(t){return String(t).replace(/[,;:]\s*$/,'.');}
   function draw(cv,kv,g,st){g=g==='ot'?'ot':'nt';st=((+st||0)%5+5)%5;cv._st=st;cv._g=g;
+    if(isGL())return Promise.all([fonts(),glFonts(),crown(),glImg('goodlife-card-stripes.jpg'),glImg('goodlife-card-checker.jpg'),glImg('goodlife-logo.png')]).then(function(a){var ctx=cv.getContext('2d');ctx.clearRect(0,0,1080,1080);ctx.textBaseline='alphabetic';ctx.textAlign='left';
+      GLDRAW[(st+(g==='ot'?2:0))%5](ctx,{text:shown(kv.t),ref:vref(kv)},a[2],{stripes:a[3],checker:a[4],logo:a[5]});return cv;});
     return Promise.all([fonts(),crown()]).then(function(a){var ctx=cv.getContext('2d');ctx.clearRect(0,0,1080,1080);ctx.textBaseline='alphabetic';ctx.textAlign='left';
       DRAW[g][st](ctx,{text:shown(kv.t),ref:vref(kv).toUpperCase()},a[1]);return cv;});}
   function fname(kv){return 'ravenswood-'+(bookName(kv.book,1,1)+'-'+kv.c+'-'+kv.v+(kv.v2?'-'+kv.v2:'')).toLowerCase().replace(/[^a-z0-9]+/g,'-')+'.png';}
@@ -5592,7 +5735,7 @@ if(f&&!rm&&'IntersectionObserver' in window&&/^\d+$/.test(f.textContent)){var to
     if(moLast&&moLast.focus&&moLast.tabIndex>=0){try{moLast.focus({preventScroll:true});}catch(e){}}moLast=null;}
   /* style picker in the share box: the five styles for this verse's testament */
   function setSw(){var w=mo.querySelector('.rpv-sw'),h='<span>Style</span>';
-    STY[moG].forEach(function(x,i){h+='<button type="button" data-st="'+i+'" style="background:'+x.sw+'" aria-label="Style '+(i+1)+', '+x.n+'" aria-pressed="'+(i===moSt)+'"></button>';});w.innerHTML=h;}
+    (isGL()?GLSTY.slice((moG==='ot'?2:0)).concat(GLSTY.slice(0,(moG==='ot'?2:0))):STY[moG]).forEach(function(x,i){h+='<button type="button" data-st="'+i+'" style="background:'+x.sw+'" aria-label="Style '+(i+1)+', '+x.n+'" aria-pressed="'+(i===moSt)+'"></button>';});w.innerHTML=h;}
   window.rpVerseGraphic=function(kv,g,st){return draw(moC,kv,g||'nt',st||0);};
   if(mo){mo.addEventListener('click',function(e){if(e.target.closest('[data-rpvclose]')){e.preventDefault();closeV();return;}
       var s=e.target.closest('[data-st]');if(s){moSt=+s.getAttribute('data-st');setSw();draw(moC,moV,moG,moSt);var f=mo.querySelector('[data-st="'+moSt+'"]');if(f)f.focus();return;}
