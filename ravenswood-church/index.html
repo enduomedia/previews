@@ -4997,12 +4997,13 @@ html.rbc-lock-sv,html.rbc-lock-sv body{overflow:hidden;}
     <div class="wrap"><div class="eyebrow">We Prioritize Prayer</div><h1><span class="ol w">How Can We</span><br>Pray for You?</h1><p>Share a prayer request or a praise report. Our pastors and church family would be honored to pray with you.</p></div></div>
   <section class="softbg">
     <div class="wrap cardpair">
-      <div><form class="dcard teal" onsubmit="return prSend(this)" name="prayer" aria-label="Digital Prayer Card"><div class="hd"><h2>Prayer Card</h2><i>How can we pray for you?</i></div><div class="bd"><label for="pr-name">Name:</label><input id="pr-name" name="name" type="text" autocomplete="name"><label for="pr-email">Email:</label><input id="pr-email" name="email" type="email" autocomplete="email"><label for="pr-phone">Phone:</label><input id="pr-phone" name="phone" type="tel" autocomplete="tel"><label for="pr-request">Prayer request or praise report:</label><textarea id="pr-request" name="request" rows="6"></textarea><label class="pconf" for="pr-conf" style="display:none"><input type="checkbox" id="pr-conf" name="confidential" value="Yes" onchange="prConf(this)"><span><b>Keep my request confidential.</b> Only our senior pastor will see it.</span></label><input type="hidden" name="share_with" id="pr-share" value="Pastors and prayer team"><button class="btn btn-dark send" type="submit"><span>Send My Prayer Request</span></button></div><div class="ft" id="pr-ft" data-open="Our pastors and church family will be praying for you." data-conf="Confidential. Only our senior pastor will see this request.">Our pastors and church family will be praying for you.</div></form></div>
+      <div><form class="dcard teal" onsubmit="return prSend(this)" name="prayer" aria-label="Digital Prayer Card"><div class="hd"><h2>Prayer Card</h2><i>How can we pray for you?</i></div><div class="bd"><label for="pr-name">Name:</label><input id="pr-name" name="name" type="text" autocomplete="name"><label for="pr-email">Email:</label><input id="pr-email" name="email" type="email" autocomplete="email"><label for="pr-phone">Phone:</label><input id="pr-phone" name="phone" type="tel" autocomplete="tel"><label for="pr-request">Prayer request or praise report:</label><textarea id="pr-request" name="request" rows="6"></textarea><label class="pconf" for="pr-conf"><input type="checkbox" id="pr-conf" name="confidential" value="Yes" onchange="prConf(this)"><span><b>Keep my request confidential.</b> Only our pastors will see it.</span></label><input type="hidden" name="share_with" id="pr-share" value="Pastors and prayer team"><button class="btn btn-dark send" type="submit"><span>Send My Prayer Request</span></button></div><div class="ft" id="pr-ft" data-open="Our pastors and church family will be praying for you." data-conf="Confidential. Only our pastors will see this request.">Our pastors and church family will be praying for you.</div></form></div>
       <div>
         <div class="eyebrow">Prayer on Sundays</div>
         <h2 style="font-size:clamp(40px,4.6vw,62px)">Someone Is Ready to Pray With You</h2>
         <p class="lead mt">After every Sunday service, a pastor and his wife, along with a deacon couple, are available at the front to pray with you.</p>
-        <!-- Hidden until the confidential prayer email is set: <p class="cardnote mt">Mark your request confidential and it will go only to our senior pastor.</p> -->
+        <p class="cardnote mt">Mark your request confidential and it will go only to our pastors.</p>
+        <!-- Confidential requests go to the pastors' private inbox, set in the form settings at launch. That address never appears on the site. All other requests go to the church office. -->
       </div>
     </div>
   </section>
@@ -5109,7 +5110,7 @@ html.rbc-lock-sv,html.rbc-lock-sv body{overflow:hidden;}
       <h2>How We Use It</h2>
       <ul><li>To follow up on your request, answer your questions and pray for you</li><li>To prepare for your visit, including check-in for your children</li><li>To share information about ministries and events you asked about</li></ul>
       <h2>Prayer Requests</h2>
-      <p>Prayer requests are shared with our pastors and prayer team so they can pray for you.</p><!-- Restore once confidential routing is set: Requests marked confidential go only to our senior pastor. -->
+      <p>Prayer requests are shared with our pastors and prayer team so they can pray for you. Requests marked confidential go only to our pastors.</p>
       <h2>Online Giving</h2>
       <p>Online gifts, and purchases like Awana handbooks and uniforms, are handled by Breeze on its own secure pages. This website does not collect or store your card or bank details.</p>
       <h2>Spiritual Gifts Test</h2>
@@ -5380,7 +5381,7 @@ rbcAdcal();
 function cvgo(n){go('series-weare');var t=document.getElementById('wv'+n);if(!t)return;setTimeout(function(){t.classList.add('in');t.scrollIntoView({behavior:'smooth',block:'start'});t.classList.add('hl');setTimeout(function(){t.classList.remove('hl');},2200);},60);}
 </script>
 <script>
-function prConf(c){var f=document.getElementById('pr-ft'),h=document.getElementById('pr-share');if(h)h.value=c.checked?'Senior pastor only (confidential)':'Pastors and prayer team';if(f)f.textContent=c.checked?f.dataset.conf:f.dataset.open;}
+function prConf(c){var f=document.getElementById('pr-ft'),h=document.getElementById('pr-share');if(h)h.value=c.checked?'Pastors only (confidential)':'Pastors and prayer team';if(f)f.textContent=c.checked?f.dataset.conf:f.dataset.open;}
 function mrSend(f){prSend(f);var t=document.getElementById('mr-ft');if(t)t.textContent="Thank you! We'll email the recordings to you soon.";return false;}
 function prSend(f){var d={};[].forEach.call(f.elements,function(e){if(!e.name)return;d[e.name]=e.type==='checkbox'?(e.checked?'Yes':'No'):e.value;});f.dataset.last=JSON.stringify(d);return false;}
 (function(){
