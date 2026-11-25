@@ -2403,8 +2403,8 @@ html.rbc-lock,html.rbc-lock body{overflow:hidden;}
 #rpv.gl .rbcbox-x{background:#D15747;}
 #rpv.gl .rbcbox-bd{background:#F4EDE5;}
 #rpv.gl .rpv-sw button[aria-pressed=true]{box-shadow:0 0 0 3px #682C2E;}
-#rpv.gl .rpv-sw{flex-wrap:wrap;gap:8px;max-width:520px;margin-left:auto;margin-right:auto;}
-#rpv.gl .rpv-sw>span{flex-basis:100%;text-align:center;}
+#rpv.gl .rpv-sw{display:grid;grid-template-columns:repeat(6,40px);gap:10px;justify-content:center;}
+#rpv.gl .rpv-sw>span{grid-column:1/-1;text-align:center;}
 #rpv.gl .rpv-sw button{width:40px;height:40px;}
 #rpv.gl .rp-acts button{background:#682C2E;font-family:'GLSub',sans-serif;font-weight:400;letter-spacing:.03em;font-size:16px;}
 #rpv.gl .rp-acts button.red{background:#D15747;}
@@ -5675,7 +5675,7 @@ if(f&&!rm&&'IntersectionObserver' in window&&/^\d+$/.test(f.textContent)){var to
       ctx.fillStyle=C.red;ctx.fillRect(60,cy-36,56,5);
       ctx.fillStyle=C.gun;var F=fit(ctx,v.text,bodyF(500),W-X-80,700,64,26,1.34);para(ctx,F,X,140+Math.max(0,(700-F.h)/2));
       footer(ctx,cr,W-80,986,'right','rgba(43,46,51,.6)',C.red);}]};
-  /* The Good Life (2027 plan): thirteen styles in the series look, all with the series grain on top. */
+  /* The Good Life (2027 plan): twelve styles in the series look, all with the series grain on top. */
   var GL={m:'#682C2E',c:'#EBE0D5',r:'#D15747',o:'#E79C4D',y:'#E2CB55',p:'#D69DA4',s:'#98B7A5'},GLB=[GL.y,GL.o,GL.r,GL.p,GL.s];
   var GLHEAD='GLHead, Georgia, serif',GLSUB='GLSub, RBCBody, sans-serif';
   var glImgs={};function glImg(n){if(!glImgs[n])glImgs[n]=new Promise(function(ok){var i=new Image();i.onload=function(){ok(i);};i.onerror=function(){ok(null);};i.src='img/'+n;});return glImgs[n];}
@@ -5687,7 +5687,7 @@ if(f&&!rm&&'IntersectionObserver' in window&&/^\d+$/.test(f.textContent)){var to
   var GLSTY=[{n:'Stripes',sw:'linear-gradient(90deg,'+GL.y+' 0 6%,'+GL.o+' 6% 12%,'+GL.r+' 12% 18%,'+GL.p+' 18% 24%,'+GL.s+' 24% 30%,'+GL.c+' 30% 100%)'},
     {n:'Maroon',sw:GL.m},{n:'Checker',sw:'repeating-conic-gradient(#e3d3c3 0 25%,'+GL.c+' 0 50%) 0 0/14px 14px'},
     {n:'Rainbow Corner',sw:'radial-gradient(circle at 100% 100%,'+GL.s+' 0 22%,'+GL.p+' 22% 30%,'+GL.r+' 30% 38%,'+GL.o+' 38% 46%,'+GL.y+' 46% 54%,'+GL.c+' 54% 100%)'},{n:'Logo',sw:GL.c},
-    {n:'Sunrise',sw:'radial-gradient(circle at 50% 110%,'+GL.c+' 0 18%,'+GL.s+' 18% 26%,'+GL.p+' 26% 34%,'+GL.r+' 34% 42%,'+GL.o+' 42% 50%,'+GL.y+' 50% 58%,'+GL.c+' 58% 100%)'},{n:'Mustard',sw:GL.y},{n:'Sage',sw:GL.s},{n:'Retro Lettering',sw:'linear-gradient(135deg,'+GL.c+' 0 55%,'+GL.o+' 55% 64%,'+GL.r+' 64% 73%,'+GL.m+' 73% 100%)'},{n:'Terracotta',sw:GL.r},
+    {n:'Mustard',sw:GL.y},{n:'Sage',sw:GL.s},{n:'Retro Lettering',sw:'linear-gradient(135deg,'+GL.c+' 0 55%,'+GL.o+' 55% 64%,'+GL.r+' 64% 73%,'+GL.m+' 73% 100%)'},{n:'Terracotta',sw:GL.r},
     {n:'Rainbow Road Sign',sw:'linear-gradient(90deg,'+GL.c+' 0 22%,'+GL.y+' 22% 33%,'+GL.o+' 33% 44%,'+GL.r+' 44% 56%,'+GL.p+' 56% 67%,'+GL.s+' 67% 78%,'+GL.c+' 78% 100%)'},{n:'Rainbow Road',sw:'linear-gradient('+GL.c+' 0 45%,transparent 45%),'+'linear-gradient(90deg,'+GL.c+' 0 22%,'+GL.y+' 22% 33%,'+GL.o+' 33% 44%,'+GL.r+' 44% 56%,'+GL.p+' 56% 67%,'+GL.s+' 67% 78%,'+GL.c+' 78% 100%)'},{n:'Rainbow Road on Maroon',sw:'linear-gradient('+GL.m+' 0 45%,transparent 45%),'+'linear-gradient(90deg,'+GL.m+' 0 22%,'+GL.y+' 22% 33%,'+GL.o+' 33% 44%,'+GL.r+' 44% 56%,'+GL.p+' 56% 67%,'+GL.s+' 67% 78%,'+GL.m+' 78% 100%)'}];
   var GLDRAW=[
     /* 1 cream checker with the rainbow stripes down the left side */
@@ -5713,11 +5713,6 @@ if(f&&!rm&&'IntersectionObserver' in window&&/^\d+$/.test(f.textContent)){var to
       var lw=0;if(im.logo){lw=250;ctx.drawImage(im.logo,W/2-lw/2,90,lw,lw*im.logo.height/im.logo.width);}var top=im.logo?90+lw*im.logo.height/im.logo.width+40:140;
       ctx.fillStyle=GL.m;var F=fit(ctx,v.text,glF,840,900-top-150,70,26,1.32),blk=F.h+96,y=top+Math.max(0,(900-top-blk)/2);
       para(ctx,F,W/2,y,'center');glRef(ctx,v.ref,W/2,y+F.h+82,52,GL.r,'center');footer(ctx,cr,W/2,1010,'center',GL.m,GL.m);},
-    /* 6 rainbow sunrise rising from the bottom */
-    function(ctx,v,cr){var W=1080,P=100;ctx.fillStyle=GL.c;ctx.fillRect(0,0,W,W);
-      [[470,GL.y],[420,GL.o],[370,GL.r],[320,GL.p],[270,GL.s],[220,GL.c]].forEach(function(a){ctx.fillStyle=a[1];ctx.beginPath();ctx.arc(W/2,W+40,a[0],Math.PI,2*Math.PI);ctx.closePath();ctx.fill();});
-      ctx.fillStyle=GL.m;var F=fit(ctx,v.text,glF,860,380,76,26,1.3),blk=F.h+96,y=80+Math.max(0,(480-blk)/2);
-      para(ctx,F,W/2,y,'center');glRef(ctx,v.ref,W/2,y+F.h+84,56,GL.r,'center');footer(ctx,cr,W/2,1046,'center',GL.m,GL.m);},
     /* 7 mustard */
     function(ctx,v,cr){var W=1080,P=100;ctx.fillStyle=GL.y;ctx.fillRect(0,0,W,W);glBands(ctx,P,110,150,36);
       ctx.fillStyle=GL.m;var F=fit(ctx,v.text,glF,860,580,82,28,1.3),blk=F.h+100,y=200+Math.max(0,(640-blk)/2);
@@ -5757,7 +5752,7 @@ if(f&&!rm&&'IntersectionObserver' in window&&/^\d+$/.test(f.textContent)){var to
   /* grain from the series texture, laid over every finished Good Life graphic */
   function glGrain(ctx,g){if(!g)return;ctx.save();ctx.globalCompositeOperation='overlay';ctx.globalAlpha=.55;for(var x=0;x<1080;x+=g.width)for(var y=0;y<1080;y+=g.height)ctx.drawImage(g,x,y);ctx.restore();}
   /* default style for each day: every day one of the two cards uses the rainbow road key art */
-  var GLDEF={nt:[10,0,11,9,12],ot:[6,12,8,10,4]};
+  var GLDEF={nt:[9,0,10,8,11],ot:[5,11,7,9,4]};
   function stFor(g){return isGL()?GLDEF[g==='ot'?'ot':'nt'][curSt%5]:curSt;}
   function shown(t){return String(t).replace(/[,;:]\s*$/,'.');}
   function draw(cv,kv,g,st){g=g==='ot'?'ot':'nt';var N=isGL()?GLDRAW.length:5;st=((+st||0)%N+N)%N;cv._st=st;cv._g=g;
