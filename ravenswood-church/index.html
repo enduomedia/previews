@@ -2399,6 +2399,9 @@ html.rbc-lock,html.rbc-lock body{overflow:hidden;}
 #rpv.gl .rbcbox-x{background:#D15747;}
 #rpv.gl .rbcbox-bd{background:#F4EDE5;}
 #rpv.gl .rpv-sw button[aria-pressed=true]{box-shadow:0 0 0 3px #682C2E;}
+#rpv.gl .rpv-sw{flex-wrap:wrap;gap:8px;max-width:520px;margin-left:auto;margin-right:auto;}
+#rpv.gl .rpv-sw>span{flex-basis:100%;text-align:center;}
+#rpv.gl .rpv-sw button{width:40px;height:40px;}
 #rpv.gl .rp-acts button{background:#682C2E;font-family:'GLSub',sans-serif;font-weight:400;letter-spacing:.03em;font-size:16px;}
 #rpv.gl .rp-acts button.red{background:#D15747;}
 @media(max-width:760px){
@@ -5534,7 +5537,7 @@ if(f&&!rm&&'IntersectionObserver' in window&&/^\d+$/.test(f.textContent)){var to
     [['nt','a',0],['ot','b',1]].forEach(function(g){var c=body.querySelector('.rp-card[data-g="'+g[0]+'"]'),ke=KV&&KV[m+'-'+d];
       if(ke&&ke[g[1]]===null){c.hidden=true;var sp=body.querySelector('.rp-share>p');if(sp)sp.textContent='A verse for this day. Save it or send it to a friend.';if(ke.a===null&&ke.b===null){var sh=body.querySelector('.rp-share');if(sh)sh.hidden=true;}return;}
       var kv=pick2(m,d,R,g[1],S[g[2]]);
-      book(SLUG[kv.book]).then(function(B){var ch=B[kv.c-1]||[],t=[];for(var x=kv.v;x<=(kv.v2||kv.v);x++){if(!ch[x-1])throw 0;t.push(ch[x-1]);}kv.t=t.join(' ');c.querySelector('.ref').textContent=vref(kv);c._v=kv;draw(c.querySelector('canvas'),kv,g[0],curSt);}).catch(function(){c.hidden=true;});});}
+      book(SLUG[kv.book]).then(function(B){var ch=B[kv.c-1]||[],t=[];for(var x=kv.v;x<=(kv.v2||kv.v);x++){if(!ch[x-1])throw 0;t.push(ch[x-1]);}kv.t=t.join(' ');c.querySelector('.ref').textContent=vref(kv);c._v=kv;draw(c.querySelector('canvas'),kv,g[0],stFor(g[0]));}).catch(function(){c.hidden=true;});});}
   function pick2(m,d,R,g,idx){var e=KV&&KV[m+'-'+d],p=e&&/^(.+?) (\d+):(\d+)(?:-(\d+))?$/.exec(e[g]||'');
     if(p){var b=ALIAS[p[1]]||p[1],c=+p[2],v=+p[3],v2=+(p[4]||p[3]),ok=v2>=v;
       for(var x=v;x<=v2&&ok;x++)ok=idx.some(function(j){return inPass(R[j],b,c,x);});
@@ -5577,7 +5580,7 @@ if(f&&!rm&&'IntersectionObserver' in window&&/^\d+$/.test(f.textContent)){var to
     var k=e.target.closest('[data-k]');if(k&&body.contains(k)){e.preventDefault();go('readingplan/'+k.getAttribute('data-k'));return;}
     var j=e.target.closest('[data-jump]');if(j){e.preventDefault();var p=document.getElementById('rp-p'+j.getAttribute('data-jump'));if(p){p.open=true;p.scrollIntoView({behavior:'smooth',block:'start'});}return;}
     var v=e.target.closest('.v');if(v){body.querySelectorAll('.v.sel').forEach(function(x){x.classList.remove('sel');});v.classList.add('sel');
-      var sup=v.querySelector('sup'),t=v.textContent.slice(sup?sup.textContent.length:0).trim();var ti=v.closest('.rp-text'),vg=ti&&ti.getAttribute('data-g')?ti.getAttribute('data-g'):(ti&&+ti.getAttribute('data-i')>=2?'ot':'nt');openV({book:v.getAttribute('data-b'),c:+v.getAttribute('data-c'),v:+v.getAttribute('data-v'),t:t},vg,curSt,v);return;}
+      var sup=v.querySelector('sup'),t=v.textContent.slice(sup?sup.textContent.length:0).trim();var ti=v.closest('.rp-text'),vg=ti&&ti.getAttribute('data-g')?ti.getAttribute('data-g'):(ti&&+ti.getAttribute('data-i')>=2?'ot':'nt');openV({book:v.getAttribute('data-b'),c:+v.getAttribute('data-c'),v:+v.getAttribute('data-v'),t:t},vg,stFor(vg),v);return;}
     var cd=e.target.closest('.rp-card');if(cd&&cd._v){var a=e.target.closest('[data-act]');
       if(a){if(a.getAttribute('data-act')==='dl')save(cd.querySelector('canvas'),cd._v);else share(cd.querySelector('canvas'),cd._v);}
       else if(e.target.tagName==='CANVAS')openV(cd._v,cd.getAttribute('data-g'),e.target._st||0,e.target);}});
@@ -5665,7 +5668,7 @@ if(f&&!rm&&'IntersectionObserver' in window&&/^\d+$/.test(f.textContent)){var to
       ctx.fillStyle=C.red;ctx.fillRect(60,cy-36,56,5);
       ctx.fillStyle=C.gun;var F=fit(ctx,v.text,bodyF(500),W-X-80,700,64,26,1.34);para(ctx,F,X,140+Math.max(0,(700-F.h)/2));
       footer(ctx,cr,W-80,986,'right','rgba(43,46,51,.6)',C.red);}]};
-  /* The Good Life (2027 plan): five styles in the series look. The first reading card uses them in order, the second reading card starts two styles later. */
+  /* The Good Life (2027 plan): ten styles in the series look, all with the series grain on top. Each day the first reading card gets an even style and the second reading card an odd one, so the two never match. */
   var GL={m:'#682C2E',c:'#EBE0D5',r:'#D15747',o:'#E79C4D',y:'#E2CB55',p:'#D69DA4',s:'#98B7A5'},GLB=[GL.y,GL.o,GL.r,GL.p,GL.s];
   var GLHEAD='GLHead, Georgia, serif',GLSUB='GLSub, RBCBody, sans-serif';
   var glImgs={};function glImg(n){if(!glImgs[n])glImgs[n]=new Promise(function(ok){var i=new Image();i.onload=function(){ok(i);};i.onerror=function(){ok(null);};i.src='img/'+n;});return glImgs[n];}
@@ -5676,7 +5679,8 @@ if(f&&!rm&&'IntersectionObserver' in window&&/^\d+$/.test(f.textContent)){var to
   function glBands(ctx,x,y,w,h){var bh=h/5;GLB.forEach(function(c,i){ctx.fillStyle=c;ctx.fillRect(x,y+i*bh,w,Math.ceil(bh));});}
   var GLSTY=[{n:'Stripes',sw:'linear-gradient(90deg,'+GL.y+' 0 6%,'+GL.o+' 6% 12%,'+GL.r+' 12% 18%,'+GL.p+' 18% 24%,'+GL.s+' 24% 30%,'+GL.c+' 30% 100%)'},
     {n:'Maroon',sw:GL.m},{n:'Checker',sw:'repeating-conic-gradient(#e3d3c3 0 25%,'+GL.c+' 0 50%) 0 0/14px 14px'},
-    {n:'Rainbow Corner',sw:'radial-gradient(circle at 100% 100%,'+GL.s+' 0 22%,'+GL.p+' 22% 30%,'+GL.r+' 30% 38%,'+GL.o+' 38% 46%,'+GL.y+' 46% 54%,'+GL.c+' 54% 100%)'},{n:'Logo',sw:GL.c}];
+    {n:'Rainbow Corner',sw:'radial-gradient(circle at 100% 100%,'+GL.s+' 0 22%,'+GL.p+' 22% 30%,'+GL.r+' 30% 38%,'+GL.o+' 38% 46%,'+GL.y+' 46% 54%,'+GL.c+' 54% 100%)'},{n:'Logo',sw:GL.c},
+    {n:'Sunrise',sw:'radial-gradient(circle at 50% 110%,'+GL.c+' 0 18%,'+GL.s+' 18% 26%,'+GL.p+' 26% 34%,'+GL.r+' 34% 42%,'+GL.o+' 42% 50%,'+GL.y+' 50% 58%,'+GL.c+' 58% 100%)'},{n:'Mustard',sw:GL.y},{n:'Sage',sw:GL.s},{n:'Retro Lettering',sw:'linear-gradient(135deg,'+GL.c+' 0 55%,'+GL.o+' 55% 64%,'+GL.r+' 64% 73%,'+GL.m+' 73% 100%)'},{n:'Terracotta',sw:GL.r}];
   var GLDRAW=[
     /* 1 cream checker with the rainbow stripes down the left side */
     function(ctx,v,cr,im){var W=1080,X=240;if(im.checker)ctx.drawImage(im.checker,0,0,W,W);else{ctx.fillStyle=GL.c;ctx.fillRect(0,0,W,W);}if(im.stripes)ctx.drawImage(im.stripes,0,0,284,1000,0,0,170,W);else{GLB.forEach(function(c,i){ctx.fillStyle=c;ctx.fillRect(i*34,0,34,W);});}
@@ -5700,11 +5704,40 @@ if(f&&!rm&&'IntersectionObserver' in window&&/^\d+$/.test(f.textContent)){var to
     function(ctx,v,cr,im){var W=1080;ctx.fillStyle=GL.c;ctx.fillRect(0,0,W,W);glBands(ctx,0,0,W,40);
       var lw=0;if(im.logo){lw=250;ctx.drawImage(im.logo,W/2-lw/2,90,lw,lw*im.logo.height/im.logo.width);}var top=im.logo?90+lw*im.logo.height/im.logo.width+40:140;
       ctx.fillStyle=GL.m;var F=fit(ctx,v.text,glF,840,900-top-150,70,26,1.32),blk=F.h+96,y=top+Math.max(0,(900-top-blk)/2);
-      para(ctx,F,W/2,y,'center');glRef(ctx,v.ref,W/2,y+F.h+82,52,GL.r,'center');footer(ctx,cr,W/2,1010,'center',GL.m,GL.m);}];
+      para(ctx,F,W/2,y,'center');glRef(ctx,v.ref,W/2,y+F.h+82,52,GL.r,'center');footer(ctx,cr,W/2,1010,'center',GL.m,GL.m);},
+    /* 6 rainbow sunrise rising from the bottom */
+    function(ctx,v,cr){var W=1080,P=100;ctx.fillStyle=GL.c;ctx.fillRect(0,0,W,W);
+      [[470,GL.y],[420,GL.o],[370,GL.r],[320,GL.p],[270,GL.s],[220,GL.c]].forEach(function(a){ctx.fillStyle=a[1];ctx.beginPath();ctx.arc(W/2,W+40,a[0],Math.PI,2*Math.PI);ctx.closePath();ctx.fill();});
+      ctx.fillStyle=GL.m;var F=fit(ctx,v.text,glF,860,380,76,26,1.3),blk=F.h+96,y=80+Math.max(0,(480-blk)/2);
+      para(ctx,F,W/2,y,'center');glRef(ctx,v.ref,W/2,y+F.h+84,56,GL.r,'center');footer(ctx,cr,W/2,1046,'center',GL.m,GL.m);},
+    /* 7 mustard */
+    function(ctx,v,cr){var W=1080,P=100;ctx.fillStyle=GL.y;ctx.fillRect(0,0,W,W);glBands(ctx,P,110,150,36);
+      ctx.fillStyle=GL.m;var F=fit(ctx,v.text,glF,860,580,82,28,1.3),blk=F.h+100,y=200+Math.max(0,(640-blk)/2);
+      para(ctx,F,P,y);glRef(ctx,v.ref,P,y+F.h+90,60,GL.r,'left');footer(ctx,cr,P,986,'left',GL.m,GL.m);},
+    /* 8 sage with a cream rainbow-edged frame */
+    function(ctx,v,cr){var W=1080;ctx.fillStyle=GL.s;ctx.fillRect(0,0,W,W);
+      GLB.forEach(function(c,i){ctx.strokeStyle=c;ctx.lineWidth=8;var o=60+i*8;ctx.strokeRect(o,o,W-2*o,W-2*o);});
+      ctx.fillStyle=GL.m;var F=fit(ctx,v.text,glF,760,520,78,26,1.32),blk=F.h+100,y=190+Math.max(0,(600-blk)/2);
+      para(ctx,F,W/2,y,'center');glRef(ctx,v.ref,W/2,y+F.h+88,56,GL.m,'center',760);footer(ctx,cr,W/2,930,'center',GL.m,GL.m);},
+    /* 9 the reference in the series lettering, cream letters with a maroon edge and a rainbow shadow */
+    function(ctx,v,cr){var W=1080,P=100;ctx.fillStyle=GL.c;ctx.fillRect(0,0,W,W);
+      var s=120;ctx.font=s+'px '+GLHEAD;while(ctx.measureText(v.ref).width>800&&s>56){s-=4;ctx.font=s+'px '+GLHEAD;}
+      ctx.font=s+'px '+GLSUB;var F=fit(ctx,v.text,glF,860,840-s-150,72,26,1.32),ry=80+Math.max(0,(840-(s*1.1+70+F.h))/2)+s;ctx.font=s+'px '+GLHEAD;ctx.textAlign='center';ctx.lineJoin='round';
+      [GL.s,GL.p,GL.r,GL.o].forEach(function(c,i){var k=(4-i)*Math.round(s/20);ctx.fillStyle=c;ctx.strokeStyle=c;ctx.lineWidth=s/6;ctx.strokeText(v.ref,W/2+k,ry+k);ctx.fillText(v.ref,W/2+k,ry+k);});
+      ctx.strokeStyle=GL.m;ctx.lineWidth=s/6;ctx.strokeText(v.ref,W/2,ry);ctx.fillStyle=GL.c;ctx.fillText(v.ref,W/2,ry);ctx.textAlign='left';
+      ctx.fillStyle=GL.m;ctx.font=glF(F.size);var y=ry+70;
+      para(ctx,F,W/2,y,'center');footer(ctx,cr,W/2,986,'center',GL.m,GL.m);},
+    /* 10 terracotta with a rainbow band across the top */
+    function(ctx,v,cr){var W=1080,P=100;ctx.fillStyle=GL.r;ctx.fillRect(0,0,W,W);glBands(ctx,0,0,W,70);
+      ctx.fillStyle=GL.c;var F=fit(ctx,v.text,glF,860,580,82,28,1.3),blk=F.h+100,y=170+Math.max(0,(680-blk)/2);
+      para(ctx,F,W/2,y,'center');glRef(ctx,v.ref,W/2,y+F.h+90,58,GL.y,'center');footer(ctx,cr,W/2,1000,'center',GL.c,GL.c);}];
+  /* grain from the series texture, laid over every finished Good Life graphic */
+  function glGrain(ctx,g){if(!g)return;ctx.save();ctx.globalCompositeOperation='overlay';ctx.globalAlpha=.55;for(var x=0;x<1080;x+=g.width)for(var y=0;y<1080;y+=g.height)ctx.drawImage(g,x,y);ctx.restore();}
+  function stFor(g){return isGL()?((curSt*2+(g==='ot'?5:0))%10):curSt;}
   function shown(t){return String(t).replace(/[,;:]\s*$/,'.');}
-  function draw(cv,kv,g,st){g=g==='ot'?'ot':'nt';st=((+st||0)%5+5)%5;cv._st=st;cv._g=g;
-    if(isGL())return Promise.all([fonts(),glFonts(),crown(),glImg('goodlife-card-stripes.jpg'),glImg('goodlife-card-checker.jpg'),glImg('goodlife-logo.png')]).then(function(a){var ctx=cv.getContext('2d');ctx.clearRect(0,0,1080,1080);ctx.textBaseline='alphabetic';ctx.textAlign='left';
-      GLDRAW[(st+(g==='ot'?2:0))%5](ctx,{text:shown(kv.t),ref:vref(kv)},a[2],{stripes:a[3],checker:a[4],logo:a[5]});return cv;});
+  function draw(cv,kv,g,st){g=g==='ot'?'ot':'nt';var N=isGL()?GLDRAW.length:5;st=((+st||0)%N+N)%N;cv._st=st;cv._g=g;
+    if(isGL())return Promise.all([fonts(),glFonts(),crown(),glImg('goodlife-card-stripes.jpg'),glImg('goodlife-card-checker.jpg'),glImg('goodlife-logo.png'),glImg('goodlife-grain.jpg')]).then(function(a){var ctx=cv.getContext('2d');ctx.clearRect(0,0,1080,1080);ctx.textBaseline='alphabetic';ctx.textAlign='left';
+      GLDRAW[st](ctx,{text:shown(kv.t),ref:vref(kv)},a[2],{stripes:a[3],checker:a[4],logo:a[5]});glGrain(ctx,a[6]);return cv;});
     return Promise.all([fonts(),crown()]).then(function(a){var ctx=cv.getContext('2d');ctx.clearRect(0,0,1080,1080);ctx.textBaseline='alphabetic';ctx.textAlign='left';
       DRAW[g][st](ctx,{text:shown(kv.t),ref:vref(kv).toUpperCase()},a[1]);return cv;});}
   function fname(kv){return 'ravenswood-'+(bookName(kv.book,1,1)+'-'+kv.c+'-'+kv.v+(kv.v2?'-'+kv.v2:'')).toLowerCase().replace(/[^a-z0-9]+/g,'-')+'.png';}
@@ -5735,7 +5768,7 @@ if(f&&!rm&&'IntersectionObserver' in window&&/^\d+$/.test(f.textContent)){var to
     if(moLast&&moLast.focus&&moLast.tabIndex>=0){try{moLast.focus({preventScroll:true});}catch(e){}}moLast=null;}
   /* style picker in the share box: the five styles for this verse's testament */
   function setSw(){var w=mo.querySelector('.rpv-sw'),h='<span>Style</span>';
-    (isGL()?GLSTY.slice((moG==='ot'?2:0)).concat(GLSTY.slice(0,(moG==='ot'?2:0))):STY[moG]).forEach(function(x,i){h+='<button type="button" data-st="'+i+'" style="background:'+x.sw+'" aria-label="Style '+(i+1)+', '+x.n+'" aria-pressed="'+(i===moSt)+'"></button>';});w.innerHTML=h;}
+    (isGL()?GLSTY:STY[moG]).forEach(function(x,i){h+='<button type="button" data-st="'+i+'" style="background:'+x.sw+'" aria-label="Style '+(i+1)+', '+x.n+'" aria-pressed="'+(i===moSt)+'"></button>';});w.innerHTML=h;}
   window.rpVerseGraphic=function(kv,g,st){return draw(moC,kv,g||'nt',st||0);};
   if(mo){mo.addEventListener('click',function(e){if(e.target.closest('[data-rpvclose]')){e.preventDefault();closeV();return;}
       var s=e.target.closest('[data-st]');if(s){moSt=+s.getAttribute('data-st');setSw();draw(moC,moV,moG,moSt);var f=mo.querySelector('[data-st="'+moSt+'"]');if(f)f.focus();return;}
