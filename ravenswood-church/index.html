@@ -2329,6 +2329,7 @@ html.rbc-lock,html.rbc-lock body{overflow:hidden;}
 #readingplan.gl .rp-hd .eyebrow{font-family:'GLSub',sans-serif;font-weight:400;color:var(--gl-r);letter-spacing:.12em;}
 #readingplan.gl h1,#readingplan.gl h2,#readingplan.gl .rp-cu h2{font-family:'GLHead',serif;font-weight:400;text-transform:none;letter-spacing:0;line-height:1.05;color:var(--gl-m);}
 #readingplan.gl .rp-hd h1{font-size:clamp(38px,5.4vw,66px);color:var(--gl-m);}
+@media(min-width:1321px){#readingplan.gl .rp-hd h1{font-size:clamp(38px,4.3vw,60px);}}
 #readingplan.gl .rp-sub{font-family:'GLSub',sans-serif;font-weight:400;color:var(--gl-m);opacity:1;letter-spacing:.04em;}
 #readingplan.gl h3,#readingplan.gl h4{font-family:'GLSub',sans-serif;font-weight:400;text-transform:none;letter-spacing:0;color:var(--gl-m);}
 #readingplan.gl .rp-day{border-color:rgba(104,44,46,.28);background:rgba(255,255,255,.55);color:var(--gl-m);font-family:'GLSub',sans-serif;}
@@ -2420,6 +2421,7 @@ html.rbc-lock,html.rbc-lock body{overflow:hidden;}
 @media(max-width:560px){
   #readingplan.gl .rp-hd{padding-bottom:26px;}
   #readingplan.gl .rp-art{width:calc(100% + 32px);max-width:none;margin:0 -16px 14px;}
+  #readingplan.gl .rp-art .rp-logo{top:54%;width:48%;}
   #readingplan.gl .rp-hd h1{font-size:34px;}
   #readingplan.gl .rp-over a{font-size:19px;}
 }
@@ -5475,8 +5477,9 @@ if(f&&!rm&&'IntersectionObserver' in window&&/^\d+$/.test(f.textContent)){var to
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
   function today(){var t=(window.TODAY instanceof Date)?new Date(window.TODAY.getTime()):new Date();t.setHours(0,0,0,0);return t;}
   function keyOf(d){return (d.getMonth()+1)+'-'+d.getDate();}
-  function dateOf(k){var p=/^(\d{1,2})-(\d{1,2})$/.exec(k||'');if(!p)return null;var m=+p[1],d=+p[2],t=today(),y=t.getFullYear();
-    if(m<1||m>12||d<1)return null;if(m-(t.getMonth()+1)>6)y--;else if((t.getMonth()+1)-m>6)y++;
+  /* "m-d" picks the nearest year (for the 7-day picker across New Year); "yyyy-m-d" (full year view, catch-up links) names the year */
+  function dateOf(k){var p=/^(?:(\d{4})-)?(\d{1,2})-(\d{1,2})$/.exec(k||'');if(!p)return null;var m=+p[2],d=+p[3],t=today(),y=t.getFullYear();
+    if(m<1||m>12||d<1)return null;if(p[1])y=+p[1];else if(m-(t.getMonth()+1)>6)y--;else if((t.getMonth()+1)-m>6)y++;
     var dt=new Date(y,m-1,d);return dt.getMonth()===m-1?dt:null;}
   function fmt(d){return d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});}
   function dayOf(m,d){return d>=1&&d<=25&&PLAN?PLAN.days[(m-1)*25+d-1]:null;}
@@ -5484,7 +5487,8 @@ if(f&&!rm&&'IntersectionObserver' in window&&/^\d+$/.test(f.textContent)){var to
   function refText(r){return (bookName(r.book,r.chapterStart,r.chapterEnd)+' '+(r.label||'')).trim();}
   /* reading progress: this browser only */
   function readAll(){try{return JSON.parse(localStorage.getItem('rbc_rp_read')||'{}')||{};}catch(e){return {};}}
-  function rkey(m,d){var dt=dateOf(m+'-'+d);return (dt?dt.getFullYear():today().getFullYear())+'-'+m+'-'+d;}
+  var VY=null;/* year being shown */
+  function rkey(m,d){var dt=dateOf(m+'-'+d);return (VY||(dt?dt.getFullYear():today().getFullYear()))+'-'+m+'-'+d;}
   function isRead(m,d){return !!readAll()[rkey(m,d)];}
   function setRead(m,d,on){try{var a=readAll(),k=rkey(m,d);if(on)a[k]=1;else delete a[k];localStorage.setItem('rbc_rp_read',JSON.stringify(a));}catch(e){}}
   function load(){if(loading)return loading;
@@ -5497,7 +5501,7 @@ if(f&&!rm&&'IntersectionObserver' in window&&/^\d+$/.test(f.textContent)){var to
     BOOKS[slug].catch(function(){delete BOOKS[slug];});return BOOKS[slug];}
   function chips(sel){var t=today(),h='';
     for(var i=-3;i<=3;i++){var d=new Date(t.getTime());d.setDate(d.getDate()+i);var m=d.getMonth()+1,dd=d.getDate(),k=m+'-'+dd,cls='rp-day';
-      if(i===0)cls+=' today';if(k===sel)cls+=' on';if(dd>25)cls+=' cu';else if(PLAN&&isRead(m,dd))cls+=' done';
+      if(i===0)cls+=' today';if(k===sel)cls+=' on';if(dd>25)cls+=' cu';else if(PLAN&&readAll()[d.getFullYear()+'-'+m+'-'+dd])cls+=' done';
       h+='<button type="button" class="'+cls+'" data-k="'+k+'" aria-label="'+esc(fmt(d)+(dd>25?', catch-up day':', Month '+m+', Day '+dd)+(i===0?', today':''))+'"'+(i===0?' aria-current="date"':'')+' aria-pressed="'+(k===sel)+'"><span class="wd">'+(i===0?'Today':d.toLocaleDateString('en-US',{weekday:'short'}))+'</span><span class="dn">'+dd+'</span></button>';}
     daysEl.innerHTML=h;document.getElementById('rp-yearbtn').classList.toggle('on',sel==='year');document.getElementById('rp-yearbtn').setAttribute('aria-pressed',sel==='year');}
   daysEl.addEventListener('click',function(e){var b=e.target.closest('[data-k]');if(b)go('readingplan/'+b.getAttribute('data-k'));});
@@ -5510,8 +5514,8 @@ if(f&&!rm&&'IntersectionObserver' in window&&/^\d+$/.test(f.textContent)){var to
   function show(sub){sub=sub||'';var tk=keyOf(today());
     if(!PLANS[2026]){body.innerHTML='<p class="rp-load">Loading today\'s reading...</p>';
       load().then(function(){show(sub);}).catch(function(){body.innerHTML='<p class="rp-load">We couldn\'t load the reading plan right now. Please check your connection and try again, or <a href="files/ravenswood-2026-bible-reading-plan.pdf" data-rbcpdf>open the printable plan</a>.</p>';});return;}
-    if(sub==='year'){use(today().getFullYear());cur='year';chips('year');yearView();return;}
-    var dt=dateOf(sub)||dateOf(tk),k=keyOf(dt);use(dt.getFullYear());cur=k;chips(k);body.classList.remove('wide');
+    if(sub==='year'){VY=today().getFullYear();use(VY);cur='year';chips('year');yearView();return;}
+    var dt=dateOf(sub)||dateOf(tk),k=keyOf(dt);VY=dt.getFullYear();use(VY);cur=k;chips(k);body.classList.remove('wide');
     var m=dt.getMonth()+1,d=dt.getDate();hDate.textContent=fmt(dt);
     if(d>25){hSub.textContent='Month '+m+', Catch-Up Day';catchUp(m,d,k===tk);}else{hSub.textContent='Month '+m+', Day '+d;dayView(m,d,k===tk);}}
   window.rpShow=show;
@@ -5574,13 +5578,13 @@ if(f&&!rm&&'IntersectionObserver' in window&&/^\d+$/.test(f.textContent)){var to
     if(miss.length){h+='<h3>Not Marked as Read Yet</h3><div class="rp-qlinks">';miss.forEach(function(x){h+=qlink(m,x);});h+='</div>';}
     h+='<p>'+(m<12?'The next reading, Month '+(m+1)+', Day 1, is on '+MONTHS[m]+' 1.':'That\'s the end of this year\'s plan. Well done, and keep reading!')+'</p></div>'+foot();
     body.innerHTML=h;}
-  function qlink(m,d){var day=dayOf(m,d),on=isRead(m,d);return '<a href="#readingplan/'+m+'-'+d+'" data-k="'+m+'-'+d+'"'+(on?' class="done"':'')+'><b>Day '+d+'</b><span>'+esc(day.readings.map(refText).join(', '))+'</span><i>'+(on?'Read':'Not yet')+'</i></a>';}
+  function qlink(m,d){var day=dayOf(m,d),on=isRead(m,d);return '<a href="#readingplan/'+VY+'-'+m+'-'+d+'" data-k="'+VY+'-'+m+'-'+d+'"'+(on?' class="done"':'')+'><b>Day '+d+'</b><span>'+esc(day.readings.map(refText).join(', '))+'</span><i>'+(on?'Read':'Not yet')+'</i></a>';}
   function yearView(){hDate.textContent='The Full Year';hSub.textContent='300 Readings in 12 Months';body.classList.add('wide');
     var all=readAll(),n=0,t=today(),tm=t.getMonth()+1,td=t.getDate(),h='';
     for(var m=1;m<=12;m++){var bks=[[],[],[],[]],g='',done=0;
       for(var d=1;d<=25;d++){var day=dayOf(m,d),on=isRead(m,d);if(on){n++;done++;}
         day.readings.forEach(function(r,i){var b=bookName(r.book,2,3),j=r.slot==null?i:r.slot;if(bks[j].indexOf(b)<0)bks[j].push(b);});
-        g+='<button type="button" data-k="'+m+'-'+d+'" class="'+(on?'done':'')+(m===tm&&d===td?' today':'')+'" title="'+esc(day.readings.map(refText).join(', '))+'" aria-label="Month '+m+', Day '+d+(on?', read':'')+'">'+d+'</button>';}
+        g+='<button type="button" data-k="'+VY+'-'+m+'-'+d+'" class="'+(on?'done':'')+(m===tm&&d===td&&VY===t.getFullYear()?' today':'')+'" title="'+esc(day.readings.map(refText).join(', '))+'" aria-label="Month '+m+', Day '+d+(on?', read':'')+'">'+d+'</button>';}
       h+='<div class="rp-mo'+(m===tm?' cur':'')+'"><h3>Month '+m+' <small>'+MONTHS[m-1]+' &middot; '+done+'/25</small></h3><p class="bk">'+esc([].concat(bks[0],bks[1],bks[2],bks[3]).join(', '))+'</p><div class="rp-grid">'+g+'</div></div>';}
     body.innerHTML='<div class="rp-year-hd"><div><h2 style="font-size:clamp(30px,4vw,44px)">'+esc(PLAN.year>2026?PLAN.title:'Yet Not I, But Christ')+'</h2><p>Tap any day to open it. Days 26 to the end of each month are catch-up days.</p></div><div class="rp-prog">'+n+' of 300 read</div></div><div class="rp-year">'+h+'</div><div class="rp-legend"><span><i class="d"></i>Read</span><span><i class="t"></i>Today</span><span><i></i>Not read yet</span></div>'+foot();}
   body.addEventListener('click',function(e){
@@ -5692,62 +5696,62 @@ if(f&&!rm&&'IntersectionObserver' in window&&/^\d+$/.test(f.textContent)){var to
   var GLDRAW=[
     /* 1 cream checker with the rainbow stripes down the left side */
     function(ctx,v,cr,im){var W=1080,X=240;if(im.checker)ctx.drawImage(im.checker,0,0,W,W);else{ctx.fillStyle=GL.c;ctx.fillRect(0,0,W,W);}if(im.stripes)ctx.drawImage(im.stripes,0,0,284,1000,0,0,170,W);else{GLB.forEach(function(c,i){ctx.fillStyle=c;ctx.fillRect(i*34,0,34,W);});}
-      ctx.fillStyle=GL.m;var F=fit(ctx,v.text,glF,760,600,78,28,1.32),blk=F.h+110,y=150+Math.max(0,(700-blk)/2);
+      ctx.fillStyle=GL.m;var F=fit(ctx,v.text,glF,760,600,100,28,1.32),blk=F.h+110,y=150+Math.max(0,(700-blk)/2);
       para(ctx,F,X,y);glRef(ctx,v.ref,X,y+F.h+90,58,GL.r,'left',760);footer(ctx,cr,X,986,'left',GL.m,GL.m);},
     /* 2 maroon with a rainbow band above the footer */
     function(ctx,v,cr){var W=1080,P=100;ctx.fillStyle=GL.m;ctx.fillRect(0,0,W,W);glBands(ctx,0,880,W,60);
-      ctx.fillStyle=GL.c;var F=fit(ctx,v.text,glF,860,560,80,28,1.32),blk=F.h+110,y=120+Math.max(0,(660-blk)/2);
+      ctx.fillStyle=GL.c;var F=fit(ctx,v.text,glF,860,560,102,28,1.32),blk=F.h+110,y=120+Math.max(0,(660-blk)/2);
       para(ctx,F,W/2,y,'center');glRef(ctx,v.ref,W/2,y+F.h+92,58,GL.y,'center');footer(ctx,cr,W/2,1030,'center',GL.c,GL.c);},
     /* 3 checker with a cream panel */
     function(ctx,v,cr,im){var W=1080;if(im.checker)ctx.drawImage(im.checker,0,0,W,W);else{ctx.fillStyle=GL.c;ctx.fillRect(0,0,W,W);}
       ctx.fillStyle='#F6EFE7';ctx.fillRect(90,90,W-180,W-180);ctx.strokeStyle=GL.m;ctx.lineWidth=6;ctx.strokeRect(90,90,W-180,W-180);glBands(ctx,W/2-60,150,120,30);
-      ctx.fillStyle=GL.m;var F=fit(ctx,v.text,glF,740,500,74,26,1.34),blk=F.h+100,y=230+Math.max(0,(560-blk)/2);
+      ctx.fillStyle=GL.m;var F=fit(ctx,v.text,glF,740,500,94,26,1.34),blk=F.h+100,y=230+Math.max(0,(560-blk)/2);
       para(ctx,F,W/2,y,'center');glRef(ctx,v.ref,W/2,y+F.h+86,54,GL.r,'center',740);footer(ctx,cr,W/2,935,'center',GL.m,GL.m);},
     /* 4 cream with rainbow rings in the bottom right corner */
     function(ctx,v,cr){var W=1080,P=100;ctx.fillStyle=GL.c;ctx.fillRect(0,0,W,W);
       [[430,GL.y],[380,GL.o],[330,GL.r],[280,GL.p],[230,GL.s],[180,GL.c]].forEach(function(a){ctx.fillStyle=a[1];ctx.beginPath();ctx.moveTo(W,W);ctx.arc(W,W,a[0],Math.PI,1.5*Math.PI);ctx.closePath();ctx.fill();});
-      ctx.fillStyle=GL.m;var F=fit(ctx,v.text,glF,840,520,80,28,1.3),blk=F.h+100,y=110+Math.max(0,(560-blk)/2);
-      para(ctx,F,P,y);glRef(ctx,v.ref,P,y+F.h+88,58,GL.r,'left',760);footer(ctx,cr,P,986,'left',GL.m,GL.m);},
+      ctx.fillStyle=GL.m;var F=fit(ctx,v.text,glF,840,520,102,28,1.3),blk=F.h+100,y=110+Math.max(0,(560-blk)/2);
+      para(ctx,F,P,y);glRef(ctx,v.ref,P,y+F.h+88,58,GL.r,'left',560);footer(ctx,cr,P,986,'left',GL.m,GL.m);},
     /* 5 The Good Life logo on top */
     function(ctx,v,cr,im){var W=1080;ctx.fillStyle=GL.c;ctx.fillRect(0,0,W,W);glBands(ctx,0,0,W,40);
       var lw=0;if(im.logo){lw=250;ctx.drawImage(im.logo,W/2-lw/2,90,lw,lw*im.logo.height/im.logo.width);}var top=im.logo?90+lw*im.logo.height/im.logo.width+40:140;
-      ctx.fillStyle=GL.m;var F=fit(ctx,v.text,glF,840,900-top-150,70,26,1.32),blk=F.h+96,y=top+Math.max(0,(900-top-blk)/2);
+      ctx.fillStyle=GL.m;var F=fit(ctx,v.text,glF,840,900-top-150,90,26,1.32),blk=F.h+96,y=top+Math.max(0,(900-top-blk)/2);
       para(ctx,F,W/2,y,'center');glRef(ctx,v.ref,W/2,y+F.h+82,52,GL.r,'center');footer(ctx,cr,W/2,1010,'center',GL.m,GL.m);},
     /* 7 mustard */
     function(ctx,v,cr){var W=1080,P=100;ctx.fillStyle=GL.y;ctx.fillRect(0,0,W,W);glBands(ctx,P,110,150,36);
-      ctx.fillStyle=GL.m;var F=fit(ctx,v.text,glF,860,580,82,28,1.3),blk=F.h+100,y=200+Math.max(0,(640-blk)/2);
+      ctx.fillStyle=GL.m;var F=fit(ctx,v.text,glF,860,580,104,28,1.3),blk=F.h+100,y=200+Math.max(0,(640-blk)/2);
       para(ctx,F,P,y);glRef(ctx,v.ref,P,y+F.h+90,60,GL.r,'left');footer(ctx,cr,P,986,'left',GL.m,GL.m);},
     /* 8 sage with a cream rainbow-edged frame */
     function(ctx,v,cr){var W=1080;ctx.fillStyle=GL.s;ctx.fillRect(0,0,W,W);
       GLB.forEach(function(c,i){ctx.strokeStyle=c;ctx.lineWidth=8;var o=60+i*8;ctx.strokeRect(o,o,W-2*o,W-2*o);});
-      ctx.fillStyle=GL.m;var F=fit(ctx,v.text,glF,760,520,78,26,1.32),blk=F.h+100,y=190+Math.max(0,(600-blk)/2);
+      ctx.fillStyle=GL.m;var F=fit(ctx,v.text,glF,760,520,100,26,1.32),blk=F.h+100,y=190+Math.max(0,(600-blk)/2);
       para(ctx,F,W/2,y,'center');glRef(ctx,v.ref,W/2,y+F.h+88,56,GL.m,'center',760);footer(ctx,cr,W/2,930,'center',GL.m,GL.m);},
     /* 9 the reference in the series lettering, cream letters with a maroon edge and a rainbow shadow */
     function(ctx,v,cr){var W=1080,P=100;ctx.fillStyle=GL.c;ctx.fillRect(0,0,W,W);
-      var s=120;ctx.font=s+'px '+GLHEAD;while(ctx.measureText(v.ref).width>800&&s>56){s-=4;ctx.font=s+'px '+GLHEAD;}
-      ctx.font=s+'px '+GLSUB;var F=fit(ctx,v.text,glF,860,840-s-150,72,26,1.32),ry=80+Math.max(0,(840-(s*1.1+70+F.h))/2)+s;ctx.font=s+'px '+GLHEAD;ctx.textAlign='center';ctx.lineJoin='round';
-      [GL.s,GL.p,GL.r,GL.o].forEach(function(c,i){var k=(4-i)*Math.round(s/20);ctx.fillStyle=c;ctx.strokeStyle=c;ctx.lineWidth=s/6;ctx.strokeText(v.ref,W/2+k,ry+k);ctx.fillText(v.ref,W/2+k,ry+k);});
-      ctx.strokeStyle=GL.m;ctx.lineWidth=s/6;ctx.strokeText(v.ref,W/2,ry);ctx.fillStyle=GL.c;ctx.fillText(v.ref,W/2,ry);ctx.textAlign='left';
+      var rr=v.ref.replace(/ /g,'  '),s=120;ctx.font=s+'px '+GLHEAD;while(ctx.measureText(rr).width>800&&s>56){s-=4;ctx.font=s+'px '+GLHEAD;}
+      ctx.font=s+'px '+GLSUB;var F=fit(ctx,v.text,glF,860,840-s-150,92,26,1.32),ry=80+Math.max(0,(840-(s*1.1+70+F.h))/2)+s;ctx.font=s+'px '+GLHEAD;ctx.textAlign='center';ctx.lineJoin='round';
+      [GL.s,GL.p,GL.r,GL.o].forEach(function(c,i){var k=(4-i)*Math.round(s/20);ctx.fillStyle=c;ctx.strokeStyle=c;ctx.lineWidth=s/6;ctx.strokeText(rr,W/2+k,ry+k);ctx.fillText(rr,W/2+k,ry+k);});
+      ctx.strokeStyle=GL.m;ctx.lineWidth=s/6;ctx.strokeText(rr,W/2,ry);ctx.fillStyle=GL.c;ctx.fillText(rr,W/2,ry);ctx.textAlign='left';
       ctx.fillStyle=GL.m;ctx.font=glF(F.size);var y=ry+70;
       para(ctx,F,W/2,y,'center');footer(ctx,cr,W/2,986,'center',GL.m,GL.m);},
     /* 10 terracotta with a rainbow band across the top */
     function(ctx,v,cr){var W=1080,P=100;ctx.fillStyle=GL.r;ctx.fillRect(0,0,W,W);glBands(ctx,0,0,W,70);
-      ctx.fillStyle=GL.c;var F=fit(ctx,v.text,glF,860,580,82,28,1.3),blk=F.h+100,y=170+Math.max(0,(680-blk)/2);
+      ctx.fillStyle=GL.c;var F=fit(ctx,v.text,glF,860,580,104,28,1.3),blk=F.h+100,y=170+Math.max(0,(680-blk)/2);
       para(ctx,F,W/2,y,'center');glRef(ctx,v.ref,W/2,y+F.h+90,58,GL.y,'center');footer(ctx,cr,W/2,1000,'center',GL.c,GL.c);},
     /* 11 the key art: the rainbow road with the verse on a cream sign */
     function(ctx,v,cr,im){var W=1080;if(im.roadbg)ctx.drawImage(im.roadbg,0,0,W,W);else{ctx.fillStyle=GL.c;ctx.fillRect(0,0,W,W);}
-      ctx.fillStyle='#F6EFE7';ctx.fillRect(110,220,W-220,560);ctx.strokeStyle=GL.m;ctx.lineWidth=7;ctx.strokeRect(110,220,W-220,560);
-      ctx.fillStyle=GL.m;var F=fit(ctx,v.text,glF,760,330,70,24,1.3),blk=F.h+90,y=262+Math.max(0,(420-blk)/2);
-      para(ctx,F,W/2,y,'center');glRef(ctx,v.ref,W/2,y+F.h+78,52,GL.r,'center',760);footer(ctx,cr,W/2,750,'center',GL.m,GL.m);},
+      ctx.fillStyle='#F6EFE7';ctx.fillRect(90,170,W-180,630);ctx.strokeStyle=GL.m;ctx.lineWidth=7;ctx.strokeRect(90,170,W-180,630);
+      ctx.fillStyle=GL.m;var F=fit(ctx,v.text,glF,820,410,90,26,1.28),blk=F.h+86,y=206+Math.max(0,(510-blk)/2);
+      para(ctx,F,W/2,y,'center');glRef(ctx,v.ref,W/2,y+F.h+76,52,GL.r,'center',800);footer(ctx,cr,W/2,770,'center',GL.m,GL.m);},
     /* 12 the rainbow road rising under the verse */
-    function(ctx,v,cr,im){var W=1080;ctx.fillStyle=GL.c;ctx.fillRect(0,0,W,W);if(im.road)ctx.drawImage(im.road,197,W-480,686,480);
+    function(ctx,v,cr,im){var W=1080;ctx.fillStyle=GL.c;ctx.fillRect(0,0,W,W);if(im.road)ctx.drawImage(im.road,240,W-420,600,420);
       footer(ctx,cr,W/2,96,'center',GL.m,GL.m);
-      ctx.fillStyle=GL.m;var F=fit(ctx,v.text,glF,880,320,76,24,1.28),blk=F.h+86,y=140+Math.max(0,(420-blk)/2);
+      ctx.fillStyle=GL.m;var F=fit(ctx,v.text,glF,900,400,98,26,1.27),blk=F.h+84,y=136+Math.max(0,(490-blk)/2);
       para(ctx,F,W/2,y,'center');glRef(ctx,v.ref,W/2,y+F.h+76,54,GL.r,'center');},
     /* 13 the rainbow road on maroon */
-    function(ctx,v,cr,im){var W=1080;ctx.fillStyle=GL.m;ctx.fillRect(0,0,W,W);if(im.road)ctx.drawImage(im.road,197,W-480,686,480);
+    function(ctx,v,cr,im){var W=1080;ctx.fillStyle=GL.m;ctx.fillRect(0,0,W,W);if(im.road)ctx.drawImage(im.road,240,W-420,600,420);
       footer(ctx,cr,W/2,96,'center',GL.c,GL.c);
-      ctx.fillStyle=GL.c;var F=fit(ctx,v.text,glF,880,320,76,24,1.28),blk=F.h+86,y=140+Math.max(0,(420-blk)/2);
+      ctx.fillStyle=GL.c;var F=fit(ctx,v.text,glF,900,400,98,26,1.27),blk=F.h+84,y=136+Math.max(0,(490-blk)/2);
       para(ctx,F,W/2,y,'center');glRef(ctx,v.ref,W/2,y+F.h+76,54,GL.y,'center');}];
   /* grain from the series texture, laid over every finished Good Life graphic */
   function glGrain(ctx,g){if(!g)return;ctx.save();ctx.globalCompositeOperation='overlay';ctx.globalAlpha=.55;for(var x=0;x<1080;x+=g.width)for(var y=0;y<1080;y+=g.height)ctx.drawImage(g,x,y);ctx.restore();}
